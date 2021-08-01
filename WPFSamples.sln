@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31424.327
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmCmdBinding", "MvvmCmdBinding\MvvmCmdBinding.csproj", "{0C9CD4D6-33CD-4DD9-964B-735E461004CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HalconContinousGrab", "HalconContinousGrab\HalconContinousGrab.csproj", "{CCC415C3-D58C-4775-840E-825B8952A23C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0C9CD4D6-33CD-4DD9-964B-735E461004CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C9CD4D6-33CD-4DD9-964B-735E461004CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C9CD4D6-33CD-4DD9-964B-735E461004CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C9CD4D6-33CD-4DD9-964B-735E461004CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCC415C3-D58C-4775-840E-825B8952A23C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCC415C3-D58C-4775-840E-825B8952A23C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCC415C3-D58C-4775-840E-825B8952A23C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCC415C3-D58C-4775-840E-825B8952A23C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {79770959-9388-492B-8E98-D33647011510}
+	EndGlobalSection
+EndGlobal
