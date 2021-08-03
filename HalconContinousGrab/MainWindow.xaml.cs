@@ -1,19 +1,7 @@
 ﻿using HalconDotNet;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace HalconContinousGrab
 {
@@ -45,6 +33,11 @@ namespace HalconContinousGrab
             ho_Window = HalconWPF.HalconWindow;
         }
 
+        /// <summary>
+        /// 按钮点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
             string btn = ((Button)sender).Content.ToString();
