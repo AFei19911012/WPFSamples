@@ -4,10 +4,72 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MvvmCmdBinding"
+        xmlns:core="clr-namespace:System;assembly=mscorlib"
+        xmlns:model="clr-namespace:MvvmCmdBinding.Model"
+        xmlns:converter="clr-namespace:MvvmCmdBinding.Converter"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:cmd="http://www.galasoft.ch/mvvmlight"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow" Height="250" Width="600">
+    <Window.Resources>
+        <ObjectDataProvider x:Key="DemoGender" MethodName="GetValues" ObjectType="{x:Type core:Enum}">
+            <ObjectDataProvider.MethodParameters>               
+                <x:Type Type="model:Gender"/>  
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <converter:BoolToVisibilityConverter x:Key="BoolToVisibility"/>
+    </Window.Resources>
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <cmd:EventToCommand Command="{Binding CmdLoaded}" CommandParameter="{Binding ElementName=HalconWPF}"/>
+        </i:EventTrigger>
+        <i:EventTrigger EventName="MouseMove">
+            <cmd:EventToCommand Command="{Binding CmdMouseMove}" PassEventArgsToCommand="True"/>
+        </i:EventTrigger>
+        <i:EventTrigger EventName="MouseDown">
+            <cmd:EventToCommand Command="{Binding CmdMouseDown}" PassEventArgsToCommand="True"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <UniformGrid Rows="1" Columns="2">
+        <StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="3">
+                <Label Content="Binding Text" Width="120"/>
+                <TextBox Text="{Binding BindingText}" MinWidth="100" VerticalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="3">
+                <Label Content="Binding Number" Width="120"/>
+                <TextBox x:Name="TextValue" Text="{Binding BindingNumber}" MinWidth="100" VerticalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="3">
+                <Label Content="Binding Control" Width="120"/>
+                <TextBox Text="{Binding ElementName=TextValue, Path=Text, StringFormat={}{:.F2}}" MinWidth="100" VerticalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="3">
+                <Label Content="Binding Enum" VerticalAlignment="Center" Width="120"/>
+                <StackPanel Margin="3">
+                    <RadioButton Content="Male" IsChecked="{Binding BindingEnum}" Margin="3"/>
+                    <RadioButton Content="Female" IsChecked="{Binding BindingEnum}" Margin="3"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="3">
+                <Label Content="Binding Converter" Width="120"/>
+                <Label Content="IsVisible" VerticalAlignment="Center" Visibility="{Binding ElementName=CheckBoxControl, Path=IsChecked, Converter={StaticResource BoolToVisibility}}"/>
+                <CheckBox Name="CheckBoxControl" Content="Controller" VerticalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="3">
+                <Label Content="Mouse Position" Width="120"/>
+                <Label Content="{Binding ShowingText}" VerticalAlignment="Center"/>
+            </StackPanel>
+        </StackPanel>
+        <DataGrid ItemsSource="{Binding DataList}" AutoGenerateColumns="False" Margin="3">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Number}" Header="Number" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Name}" Header="Name" Width="*"/>
+                <DataGridComboBoxColumn ItemsSource="{Binding Source={StaticResource DemoGender}}" SelectedValueBinding="{Binding Type}" Header="Gender" Width="*"/>
+                <DataGridCheckBoxColumn Binding="{Binding IsChecked}" Header="IsChecked" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </UniformGrid>
 </Window>
