@@ -9,6 +9,8 @@
         xmlns:converter="clr-namespace:MvvmCmdBinding.Converter"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:cmd="http://www.galasoft.ch/mvvmlight"
+        xmlns:viewmodel="clr-namespace:MvvmCmdBinding.ViewModel"
+        Name="MVVMWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="250" Width="600">
     <Window.Resources>
@@ -18,11 +20,16 @@
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
         <converter:BoolToVisibilityConverter x:Key="BoolToVisibility"/>
+        <converter:EnumToBoolConverter x:Key="EnumToBool"/>
     </Window.Resources>
+
+    <Window.DataContext>
+        <viewmodel:ViewModelMain/>
+    </Window.DataContext>
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <cmd:EventToCommand Command="{Binding CmdLoaded}" CommandParameter="{Binding ElementName=HalconWPF}"/>
+            <cmd:EventToCommand Command="{Binding CmdLoaded}" CommandParameter="{Binding ElementName=MVVMWindow}"/>
         </i:EventTrigger>
         <i:EventTrigger EventName="MouseMove">
             <cmd:EventToCommand Command="{Binding CmdMouseMove}" PassEventArgsToCommand="True"/>
@@ -40,36 +47,42 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="3">
                 <Label Content="Binding Number" Width="120"/>
-                <TextBox x:Name="TextValue" Text="{Binding BindingNumber}" MinWidth="100" VerticalAlignment="Center"/>
+                <TextBox x:Name="TextValue" Text="{Binding BindingNumber, StringFormat={}{0:F3}}" MinWidth="100" VerticalAlignment="Center"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="3">
                 <Label Content="Binding Control" Width="120"/>
-                <TextBox Text="{Binding ElementName=TextValue, Path=Text, StringFormat={}{:.F2}}" MinWidth="100" VerticalAlignment="Center"/>
+                <TextBox Text="{Binding ElementName=TextValue, Path=Text}" MinWidth="100" VerticalAlignment="Center"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="3">
                 <Label Content="Binding Enum" VerticalAlignment="Center" Width="120"/>
                 <StackPanel Margin="3">
-                    <RadioButton Content="Male" IsChecked="{Binding BindingEnum}" Margin="3"/>
-                    <RadioButton Content="Female" IsChecked="{Binding BindingEnum}" Margin="3"/>
+                    <RadioButton Content="Male" IsChecked="{Binding BindingEnum, Mode=TwoWay, Converter={StaticResource EnumToBool}, ConverterParameter=0}" Margin="3"/>
+                    <RadioButton Content="Female" IsChecked="{Binding BindingEnum, Mode=TwoWay, Converter={StaticResource EnumToBool}, ConverterParameter=1}" Margin="3"/>
                 </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="3">
                 <Label Content="Binding Converter" Width="120"/>
                 <Label Content="IsVisible" VerticalAlignment="Center" Visibility="{Binding ElementName=CheckBoxControl, Path=IsChecked, Converter={StaticResource BoolToVisibility}}"/>
-                <CheckBox Name="CheckBoxControl" Content="Controller" VerticalAlignment="Center"/>
+                <CheckBox Name="CheckBoxControl" IsChecked="True" Content="Controller" VerticalAlignment="Center"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="3">
                 <Label Content="Mouse Position" Width="120"/>
                 <Label Content="{Binding ShowingText}" VerticalAlignment="Center"/>
             </StackPanel>
         </StackPanel>
-        <DataGrid ItemsSource="{Binding DataList}" AutoGenerateColumns="False" Margin="3">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Number}" Header="Number" Width="*"/>
-                <DataGridTextColumn Binding="{Binding Name}" Header="Name" Width="*"/>
-                <DataGridComboBoxColumn ItemsSource="{Binding Source={StaticResource DemoGender}}" SelectedValueBinding="{Binding Type}" Header="Gender" Width="*"/>
-                <DataGridCheckBoxColumn Binding="{Binding IsChecked}" Header="IsChecked" Width="*"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <StackPanel Margin="3">
+            <DataGrid ItemsSource="{Binding DataList}" AutoGenerateColumns="False" Margin="3">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Number}" Header="Number" Width="*"/>
+                    <DataGridTextColumn Binding="{Binding Name}" Header="Name" Width="*"/>
+                    <DataGridComboBoxColumn ItemsSource="{Binding Source={StaticResource DemoGender}}" SelectedValueBinding="{Binding Type}" Header="Gender" Width="*"/>
+                    <DataGridCheckBoxColumn Binding="{Binding IsChecked}" Header="IsChecked" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Load Image" Margin="3" Command="{Binding CmdWithoutParameter}"/>
+                <Button Content="Calibration" Margin="3" Command="{Binding CmdWithParameter}" CommandParameter="CommandParameter"/>
+            </StackPanel>
+        </StackPanel>
     </UniformGrid>
 </Window>
