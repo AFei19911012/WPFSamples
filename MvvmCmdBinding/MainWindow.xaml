@@ -80,8 +80,8 @@
                 </DataGrid.Columns>
             </DataGrid>
             <StackPanel Orientation="Horizontal">
-                <Button Content="Load Image" Margin="3" Command="{Binding CmdWithoutParameter}"/>
-                <Button Content="Calibration" Margin="3" Command="{Binding CmdWithParameter}" CommandParameter="CommandParameter"/>
+                <Button Content="Cmd without parameter" Margin="3" Command="{Binding CmdWithoutParameter}"/>
+                <Button Content="Cmd with parameter" Margin="3" Command="{Binding CmdWithParameter}" CommandParameter="CommandParameter"/>
             </StackPanel>
         </StackPanel>
     </UniformGrid>
