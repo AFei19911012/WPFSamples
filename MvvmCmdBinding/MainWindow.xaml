@@ -12,7 +12,7 @@
         xmlns:viewmodel="clr-namespace:MvvmCmdBinding.ViewModel"
         Name="MVVMWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="250" Width="600">
+        Title="MainWindow" Height="500" Width="600">
     <Window.Resources>
         <ObjectDataProvider x:Key="DemoGender" MethodName="GetValues" ObjectType="{x:Type core:Enum}">
             <ObjectDataProvider.MethodParameters>               
@@ -34,13 +34,18 @@
         <i:EventTrigger EventName="MouseMove">
             <cmd:EventToCommand Command="{Binding CmdMouseMove}" PassEventArgsToCommand="True"/>
         </i:EventTrigger>
-        <i:EventTrigger EventName="MouseDown">
+        <!--<i:EventTrigger EventName="MouseDown">
             <cmd:EventToCommand Command="{Binding CmdMouseDown}" PassEventArgsToCommand="True"/>
-        </i:EventTrigger>
+        </i:EventTrigger>-->
     </i:Interaction.Triggers>
 
-    <UniformGrid Rows="1" Columns="2">
+    <UniformGrid Rows="2" Columns="3">
         <StackPanel>
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDown">
+                    <cmd:EventToCommand Command="{Binding CmdMouseDown}" PassEventArgsToCommand="True"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
             <StackPanel Orientation="Horizontal" Margin="3">
                 <Label Content="Binding Text" Width="120"/>
                 <TextBox Text="{Binding BindingText}" MinWidth="100" VerticalAlignment="Center"/>
@@ -79,10 +84,63 @@
                     <DataGridCheckBoxColumn Binding="{Binding IsChecked}" Header="IsChecked" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <StackPanel Orientation="Horizontal">
+            <StackPanel>
                 <Button Content="Cmd without parameter" Margin="3" Command="{Binding CmdWithoutParameter}"/>
                 <Button Content="Cmd with parameter" Margin="3" Command="{Binding CmdWithParameter}" CommandParameter="CommandParameter"/>
             </StackPanel>
         </StackPanel>
+        <StackPanel Margin="3">
+            <ListView ItemsSource="{Binding DataList}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="80" Header="Number" DisplayMemberBinding="{Binding Number}"/>
+                        <GridViewColumn Width="100" Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+        <StackPanel Margin="3">
+            <UniformGrid Rows="1" Columns="2" Margin="10">
+                <ListBox x:Name="listBox" SelectedIndex="0" Margin="5">
+                    <ListBoxItem Content="AAA"/>
+                    <ListBoxItem Content="BBB"/>
+                    <ListBoxItem Content="CCC"/>
+                    <ListBoxItem Content="DDD"/>
+                    <ListBoxItem Content="EEE"/>
+                    <ListBoxItem Content="FFF"/>
+                </ListBox>
+                <ListBox SelectedIndex="{Binding ElementName=listBox,Path=SelectedIndex}" Margin="5" ItemsSource="{Binding DataList}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </UniformGrid>
+        </StackPanel>
+        <StackPanel Margin="3">
+            <TreeView Margin="5" ItemsSource="{Binding DataList}">
+                <TreeView.ItemTemplate>
+                    <HierarchicalDataTemplate ItemsSource="{Binding DataList}">
+                        <TextBlock Text="{Binding Name}"/>
+                    </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
+            </TreeView>
+        </StackPanel>
+        <Grid Margin="3">
+            <TextBlock Text="Right Click Here" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+            <Rectangle RadiusX="4" RadiusY="4" Stroke="Magenta" StrokeThickness="2" StrokeDashArray="2,2"/>
+            <Border Background="Transparent">
+                <Border.ContextMenu>
+                    <ContextMenu ItemsSource="{Binding DataList}">
+                        <ContextMenu.ItemTemplate>
+                            <HierarchicalDataTemplate ItemsSource="{Binding DataList}">
+                                <MenuItem Header="{Binding Name}"/>
+                            </HierarchicalDataTemplate>
+                        </ContextMenu.ItemTemplate>
+                    </ContextMenu>
+                </Border.ContextMenu>
+            </Border>
+        </Grid>
     </UniformGrid>
 </Window>

@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using System.Collections.ObjectModel;
 
 namespace MvvmCmdBinding.Model
 {
@@ -41,5 +42,7 @@ namespace MvvmCmdBinding.Model
             get => isChecked;
             set => Set(ref isChecked, value);
         }
+
+        public ObservableCollection<DataModel> DataList { get; set; }
     }
 }

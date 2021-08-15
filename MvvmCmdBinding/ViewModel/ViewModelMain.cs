@@ -120,9 +120,12 @@ namespace MvvmCmdBinding.ViewModel
         {
             return new ObservableCollection<DataModel>
             {
-                new DataModel{ Number = 1, Name = "AAA", Type=Gender.Male, IsChecked = true },
+                new DataModel{ Number = 1, Name = "AAA", Type=Gender.Male, IsChecked = true, 
+                               DataList = new ObservableCollection<DataModel>{ new DataModel { Name = "AAA-1"},
+                                                                               new DataModel { Name = "AAA-2"} } },
                 new DataModel{ Number = 2, Name = "BBB", Type=Gender.Female, IsChecked = false },
-                new DataModel{ Number = 3, Name = "CCC", Type=Gender.Female, IsChecked = false },
+                new DataModel{ Number = 3, Name = "CCC", Type=Gender.Female, IsChecked = false,
+                               DataList = new ObservableCollection<DataModel>{ new DataModel { Name = "CCC-1"} } },
                 new DataModel{ Number = 4, Name = "DDD", Type=Gender.Female, IsChecked = true },
                 new DataModel{ Number = 5, Name = "EEE", Type=Gender.Male, IsChecked = true },
                 new DataModel{ Number = 6, Name = "FFF", Type=Gender.Male, IsChecked = false },
