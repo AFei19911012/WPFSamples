@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmCmdBinding", "MvvmCmdBi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HalconContinousGrab", "HalconContinousGrab\HalconContinousGrab.csproj", "{CCC415C3-D58C-4775-840E-825B8952A23C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HalconWPF", "HalconWPF\HalconWPF.csproj", "{1B174F02-9805-4430-BABB-740EC23D3245}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{CCC415C3-D58C-4775-840E-825B8952A23C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CCC415C3-D58C-4775-840E-825B8952A23C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CCC415C3-D58C-4775-840E-825B8952A23C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B174F02-9805-4430-BABB-740EC23D3245}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B174F02-9805-4430-BABB-740EC23D3245}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B174F02-9805-4430-BABB-740EC23D3245}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B174F02-9805-4430-BABB-740EC23D3245}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

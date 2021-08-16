@@ -1,0 +1,70 @@
+﻿<hc:GlowWindow x:Class="HalconWPF.MainWindow"
+               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+               xmlns:hc="https://handyorg.github.io/handycontrol"
+               xmlns:local="clr-namespace:HalconWPF"
+               mc:Ignorable="d"
+               ActiveGlowColor="{DynamicResource PrimaryColor}"
+               ResizeMode="CanResizeWithGrip"
+               ShowNonClientArea="True"
+               WindowStartupLocation="CenterScreen"
+               Background="{DynamicResource RegionBrush}"
+               Title="HandyControl" 
+               Icon="Resource/Image/icon.ico" 
+               Height="450" Width="800">
+    <hc:TransitioningContentControl>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal">
+                <Image Source="Resource/Image/icon.ico" Height="32" HorizontalAlignment="Left" Margin="10,3"/>
+                <hc:OutlineText Margin="3" Text="Halcon WPF" FontSize="32" FontWeight="Bold" Fill="{DynamicResource PrimaryBrush}" Stroke="Violet" StrokeThickness="2"/>
+            </StackPanel>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="225"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="127*"/>
+                            <ColumnDefinition Width="60*"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <hc:SearchBar hc:InfoElement.Placeholder="Enter key word" Margin="4,4,3.2,3.6" ShowClearButton="True"
+                                  IsRealTime="True" Tag="{Binding ElementName=ListBoxDemo}" Grid.ColumnSpan="2"/>
+                        <ToggleButton Grid.Column="2" Margin="1.8,2,1.8,1.6" Name="ButtonStyleAscending"
+                                  Tag="{Binding ElementName=ListBoxDemo}">
+                            <ToggleButton.Content>
+                                <Image Stretch="None" Source="pack://application:,,,/Resource/Image/SortAscending_gray_16x.png"/>
+                            </ToggleButton.Content>
+                        </ToggleButton>
+                    </Grid>
+                    <ListBox Grid.Row="1" Name="ListBoxDemo" Margin="5" BorderThickness="0" SelectionMode="Single" 
+                         SelectedIndex="{Binding SelectedIndex}" ItemsSource="{Binding DataList}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Width="16" Height="16" Source="{Binding ImgPath}"/>
+                                    <TextBlock Margin="6,0,0,0" Text="{Binding Name}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+                <Border Grid.Column="1" Margin="5" Background="{DynamicResource MainContentForegroundDrawingBrush}">
+                    <Image Source="pack://application:,,,/Resource/Image/Halcon.jpg"/>
+                </Border>
+            </Grid>
+        </Grid>
+    </hc:TransitioningContentControl>
+</hc:GlowWindow>
