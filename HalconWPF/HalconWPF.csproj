@@ -76,6 +76,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="UserControl\AcquisitionImage.xaml.cs">
+      <DependentUpon>AcquisitionImage.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -93,6 +96,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resource\Style\Primary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resource\Style\Style.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl\AcquisitionImage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -127,14 +138,10 @@
   <ItemGroup>
     <Folder Include="Model\" />
     <Folder Include="Resource\Halcon\" />
-    <Folder Include="UserControl\" />
     <Folder Include="ViewModel\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resource\Image\icon.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resource\Image\Halcon.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resource\Image\SortAscending_gray_16x.png" />

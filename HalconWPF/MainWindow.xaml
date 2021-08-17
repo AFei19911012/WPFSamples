@@ -11,9 +11,9 @@
                ShowNonClientArea="True"
                WindowStartupLocation="CenterScreen"
                Background="{DynamicResource RegionBrush}"
-               Title="HandyControl" 
+               Title="HalconWPF" 
                Icon="Resource/Image/icon.ico" 
-               Height="450" Width="800">
+               Height="600" Width="1000">
     <hc:TransitioningContentControl>
         <Grid>
             <Grid.RowDefinitions>
@@ -36,18 +36,13 @@
                     </Grid.RowDefinitions>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="127*"/>
-                            <ColumnDefinition Width="60*"/>
+                            <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
-                        <hc:SearchBar hc:InfoElement.Placeholder="Enter key word" Margin="4,4,3.2,3.6" ShowClearButton="True"
-                                  IsRealTime="True" Tag="{Binding ElementName=ListBoxDemo}" Grid.ColumnSpan="2"/>
-                        <ToggleButton Grid.Column="2" Margin="1.8,2,1.8,1.6" Name="ButtonStyleAscending"
-                                  Tag="{Binding ElementName=ListBoxDemo}">
-                            <ToggleButton.Content>
-                                <Image Stretch="None" Source="pack://application:,,,/Resource/Image/SortAscending_gray_16x.png"/>
-                            </ToggleButton.Content>
-                        </ToggleButton>
+                        <hc:SearchBar Style="{StaticResource SearchBarPlus}" hc:InfoElement.Placeholder="Enter key word" Margin="4" ShowClearButton="True"
+                                      IsRealTime="True" Tag="{Binding ElementName=ListBoxDemo}"/>
+                        <ToggleButton Grid.Column="1" Margin="2" Name="ButtonStyleAscending" Style="{StaticResource DemoInfoSortButtonStyle}"
+                                      Tag="{Binding ElementName=ListBoxDemo}"/>
                     </Grid>
                     <ListBox Grid.Row="1" Name="ListBoxDemo" Margin="5" BorderThickness="0" SelectionMode="Single" 
                          SelectedIndex="{Binding SelectedIndex}" ItemsSource="{Binding DataList}">
@@ -62,7 +57,13 @@
                     </ListBox>
                 </Grid>
                 <Border Grid.Column="1" Margin="5" Background="{DynamicResource MainContentForegroundDrawingBrush}">
-                    <Image Source="pack://application:,,,/Resource/Image/Halcon.jpg"/>
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <hc:OutlineText Margin="3" Text="Halcon" FontSize="200" FontWeight="Bold"
+                                        Fill="{DynamicResource PrimaryBrush}" Stroke="Violet" StrokeThickness="2"/>
+                        <hc:OutlineText Margin="3" Text="WPF" FontSize="200" FontWeight="Bold" HorizontalAlignment="Center"
+                                        Fill="{DynamicResource PrimaryBrush}" Stroke="Violet" StrokeThickness="2"/>
+                    </StackPanel>
+                    
                 </Border>
             </Grid>
         </Grid>
