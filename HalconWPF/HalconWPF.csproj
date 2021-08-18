@@ -76,9 +76,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\DataModel.cs" />
     <Compile Include="UserControl\AcquisitionImage.xaml.cs">
       <DependentUpon>AcquisitionImage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -136,9 +138,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Model\" />
     <Folder Include="Resource\Halcon\" />
-    <Folder Include="ViewModel\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resource\Image\icon.ico" />

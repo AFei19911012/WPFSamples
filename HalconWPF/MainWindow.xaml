@@ -5,6 +5,7 @@
                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                xmlns:hc="https://handyorg.github.io/handycontrol"
                xmlns:local="clr-namespace:HalconWPF"
+               xmlns:viewmodel="clr-namespace:HalconWPF.ViewModel"
                mc:Ignorable="d"
                ActiveGlowColor="{DynamicResource PrimaryColor}"
                ResizeMode="CanResizeWithGrip"
@@ -14,6 +15,9 @@
                Title="HalconWPF" 
                Icon="Resource/Image/icon.ico" 
                Height="600" Width="1000">
+    <hc:GlowWindow.DataContext>
+        <viewmodel:MainWindowViewModel/>
+    </hc:GlowWindow.DataContext>
     <hc:TransitioningContentControl>
         <Grid>
             <Grid.RowDefinitions>
@@ -39,13 +43,13 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
-                        <hc:SearchBar Style="{StaticResource SearchBarPlus}" hc:InfoElement.Placeholder="Enter key word" Margin="4" ShowClearButton="True"
-                                      IsRealTime="True" Tag="{Binding ElementName=ListBoxDemo}"/>
+                        <hc:SearchBar Style="{StaticResource SearchBarPlus}" hc:InfoElement.Placeholder="Enter key word" Margin="4" 
+                                      ShowClearButton="True" IsRealTime="True" Tag="{Binding ElementName=ListBoxDemo}"/>
                         <ToggleButton Grid.Column="1" Margin="2" Name="ButtonStyleAscending" Style="{StaticResource DemoInfoSortButtonStyle}"
                                       Tag="{Binding ElementName=ListBoxDemo}"/>
                     </Grid>
-                    <ListBox Grid.Row="1" Name="ListBoxDemo" Margin="5" BorderThickness="0" SelectionMode="Single" 
-                         SelectedIndex="{Binding SelectedIndex}" ItemsSource="{Binding DataList}">
+                    <ListBox Grid.Row="1" Name="ListBoxDemo" Margin="5" BorderThickness="0" SelectionMode="Single" Style="{StaticResource ListBoxTransparent}"
+                             SelectedIndex="{Binding SelectedIndex}" ItemsSource="{Binding DataList}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">

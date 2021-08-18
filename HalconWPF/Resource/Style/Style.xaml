@@ -17,4 +17,13 @@
         </Setter>
     </Style>
 
+    <Style x:Key="ListBoxItemTransparent" BasedOn="{StaticResource ListBoxItemBaseStyle}" TargetType="ListBoxItem">
+        <Setter Property="Background" Value="Transparent"/>
+    </Style>
+    
+    <Style x:Key="ListBoxTransparent" BasedOn="{StaticResource ListBoxBaseStyle}" TargetType="ListBox">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="ItemContainerStyle" Value="{StaticResource ListBoxItemTransparent}"/>
+    </Style>
+    
 </ResourceDictionary>
