@@ -253,8 +253,13 @@ Point currentPoint = transform .Transform(new Point(0, 0));
 # 10. 屏幕尺寸
 
 ```c#
+// 全屏尺寸
 double width = SystemParameters.PrimaryScreenWidth;
 double height = SystemParameters.PrimaryScreenHeight;
+
+// 不含任务栏尺寸
+double width = SystemParameters.WorkArea.Width;
+double height = SystemParameters.WorkArea.Height;
 ```
 
 
@@ -370,5 +375,192 @@ Path.GetTempPath();
 Path.GetInvalidFileNameChars();
 // 路径中无效字符
 Path.GetInvalidPathChars();
+```
+
+
+
+# 16. 渐变色
+
+```c#
+// XAML 
+<Grid x:Name="GridBack">
+<Grid.Background>
+    <LinearGradientBrush>
+        <LinearGradientBrush.GradientStops>
+            <GradientStop Offset="0" Color="Red"/>
+            <GradientStop Offset="0.5" Color="Indigo"/>
+            <GradientStop Offset="1.0" Color="Violet"/>
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+</Grid.Background>
+</Grid>
+
+// 等价后台代码
+GradientStop color1 = new GradientStop
+{
+    Offset = 0,
+    Color = Colors.Red,
+};
+GradientStop color2 = new GradientStop
+{
+    Offset = 0.5,
+    Color = Colors.Indigo,
+};
+GradientStop color3 = new GradientStop
+{
+    Offset = 1,
+    Color = Colors.Violet,
+};
+LinearGradientBrush brush = new LinearGradientBrush();
+brush.GradientStops.Add(color1);
+brush.GradientStops.Add(color2);
+brush.GradientStops.Add(color3);
+GridBack.Background = brush;
+```
+
+# 17. Button 复杂背景
+
+```c#
+<Button HorizontalAlignment="Center" VerticalAlignment="Center" Background="White" BorderBrush="White">
+    <Grid>
+        <Polygon Points="100,25 125,0 200,25 125,50" Fill="LightBlue"/>
+        <Polygon Points="100,25 75,0 0,25 75,50" Fill="LightPink"/>
+    </Grid>
+</Button>
+```
+
+
+
+# 18. 后台设置元素绑定
+
+```c#
+// XAML 绑定
+<Slider x:Name="SliderFont" Margin="10" Minimum="10" Maximum="40" SmallChange="1" LargeChange="4"/>
+<Button x:Name="ButtonFont" Content="Binding fontsize" Margin="5"
+        FontSize="{Binding ElementName=SliderFont, Path=Value, Mode=TwoWay}"/>
+
+// 后台绑定
+Binding binding = new Binding
+{
+    Source = SliderFont,
+    Path = new PropertyPath("Value"),
+    Mode = BindingMode.TwoWay,
+};
+ButtonFont.SetBinding(FontSizeProperty, binding);
+
+// 注意设置 Mode 为 TwoWay，否则若其它地方有修改，则绑定失效，比如
+ButtonFont.FontSize = 30;
+```
+
+
+
+# 19. 资源样式动画
+
+```c#
+// 资源定义
+<Window.Resources>
+    <ImageBrush x:Key="TileBrush" TileMode="Tile" ViewportUnits="Absolute" Viewport="0 0 16 16" Opacity="0.5"
+                ImageSource="Resource\Image\icon.ico"/>
+
+    <Style x:Key="BigFontButtonStyle" TargetType="Button">
+        <Setter Property="FontFamily" Value="Times New Roman"/>
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+
+    <!-- 资源继承 -->
+    <Style x:Key="EmphasizeBigFont" BasedOn="{StaticResource BigFontButtonStyle}" TargetType="Button">
+        <Setter Property="Control.Foreground" Value="Magenta"/>
+        <Setter Property="Control.Background" Value="DarkBlue"/>
+    </Style>
+
+    <!-- 关联事件 -->
+    <Style x:Key="MouseOverHighlightStyle" TargetType="TextBlock">
+        <Setter Property="Padding" Value="5"/>
+        <EventSetter Event="MouseEnter" Handler="TextBlock_MouseEnter"/>
+        <EventSetter Event="MouseLeave" Handler="TextBlock_MouseLeave"/>
+        <!-- 事件触发器，字体缩放效果 -->
+        <Style.Triggers>
+            <EventTrigger RoutedEvent="Mouse.MouseEnter">
+                <EventTrigger.Actions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Duration="0:0:0.2" Storyboard.TargetProperty="FontSize" To="24"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger.Actions>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="Mouse.MouseLeave">
+                <EventTrigger.Actions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Duration="0:0:1" Storyboard.TargetProperty="FontSize"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger.Actions>
+            </EventTrigger>
+        </Style.Triggers>
+    </Style>
+</Window.Resources>
+
+// 资源使用
+<Button Content="DynamicResource" Margin="10" Background="{DynamicResource TileBrush}"/>
+<Button Content="StaticResource" Margin="10" Background="{StaticResource TileBrush}"/>
+<Button Content="ButtonStyle" Margin="10" Style="{StaticResource EmphasizeBigFont}"/>
+<TextBlock Text="Hover over me" Margin="10" Style="{StaticResource MouseOverHighlightStyle}"/>
+
+// 后台代码
+// 后台修改资源，动态资源改变
+Resources["TileBrush"] = new SolidColorBrush(Colors.LightGoldenrodYellow);
+
+private void TextBlock_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+{
+    (sender as TextBlock).Background = new SolidColorBrush(Colors.LightGoldenrodYellow);
+}
+
+private void TextBlock_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+{
+    (sender as TextBlock).Background = null;
+}
+```
+
+
+
+# 20. VS2019 C# 类注释模板
+
+> C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\IDE\ItemTemplates\CSharp\Code\2052\Class\Class.cs
+
+```c#
+namespace $rootnamespace$
+{
+    ///
+    /// ----------------------------------------------------------------
+    /// Copyright @Taosy.W $year$ All rights reserved
+    /// Author      : Taosy.W
+    /// Created Time: $time$
+    /// Description :
+    /// ------------------------------------------------------
+    /// Version      Modified Time            Modified By    Modified Content
+    /// V1.0.0.0     $time$    Taosy.W                 
+    ///
+    public class $safeitemrootname$
+    {
+    }
+}
+```
+
+
+
+# 21. 子线程更新UI
+
+```c#
+// 在新的线程里用如下方式更新到界面
+Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
+(ThreadStart)delegate ()
+{
+// 列表更新
+DataListNG.Add(dataModel);
+}
+);
 ```
 
