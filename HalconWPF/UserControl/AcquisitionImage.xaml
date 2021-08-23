@@ -3,11 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:HalconWPF.UserControl"
-             xmlns:halcon="clr-namespace:HalconDotNet;assembly=halcondotnet" 
+             xmlns:halcon="clr-namespace:HalconDotNet;assembly=halcondotnet"
+             xmlns:viewmodel="clr-namespace:HalconWPF.ViewModel"
              xmlns:hc="https://handyorg.github.io/handycontrol"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <viewmodel:AcquisitionImageViewModel/>
+    </UserControl.DataContext>
+    <hc:Interaction.Triggers>
+        <hc:EventTrigger EventName="Loaded">
+            <hc:EventToCommand Command="{Binding CmdLoaded}" CommandParameter="{Binding ElementName=HalconWPF}"/>
+        </hc:EventTrigger>
+    </hc:Interaction.Triggers>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -15,9 +23,9 @@
         </Grid.RowDefinitions>
         <halcon:HSmartWindowControlWPF Name="HalconWPF"/>
         <hc:ButtonGroup Grid.Row="1" Margin="5">
-            <Button Height="48" Content="Acqusition" Foreground="{DynamicResource PrimaryTextBrush}"/>
-            <Button Height="48" Content="Realtime" Foreground="{DynamicResource PrimaryTextBrush}"/>
-            <Button Height="48" Content="Save" Foreground="{DynamicResource PrimaryTextBrush}"/>
+            <Button Height="48" Margin="5" Content="Trigger" Command="{Binding CmdTrigger}" CommandParameter="{Binding ElementName=HalconWPF}"/>
+            <Button Height="48" Margin="5" Content="{Binding StrAcqMode}" Command="{Binding CmdRealTime}" CommandParameter="{Binding ElementName=HalconWPF}"/>
+            <Button Height="48" Margin="5" Content="Save" Command="{Binding CmdSave}"/>
         </hc:ButtonGroup>
     </Grid>
 </UserControl>

@@ -1,6 +1,11 @@
-﻿using GalaSoft.MvvmLight;
+﻿
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
 using HalconWPF.Model;
+using HalconWPF.UserControl;
+using System;
 using System.Collections.ObjectModel;
+using System.Windows.Controls;
 
 namespace HalconWPF.ViewModel
 {
@@ -31,6 +36,24 @@ namespace HalconWPF.ViewModel
         }
 
         /// <summary>
+        /// 切换功能页面
+        /// </summary>
+        public RelayCommand<Grid> CmdSelectionChanged => new Lazy<RelayCommand<Grid>>(() => new RelayCommand<Grid>(SelectionChanged)).Value;
+        private void SelectionChanged(Grid mainContent)
+        {
+            if (SelectedIndex < 0)
+            {
+                return;
+            };
+            mainContent.Children.Clear();
+            string name = DataList[SelectedIndex].Name;
+            if (name == "AcquisitionImage")
+            {
+                mainContent.Children.Add(new AcquisitionImage());
+            }
+        }
+
+        /// <summary>
         /// 构造函数
         /// </summary>
         public MainWindowViewModel()
@@ -43,7 +66,7 @@ namespace HalconWPF.ViewModel
         {
             return new ObservableCollection<DataModel>
             {
-                new DataModel{ Name = "AcquisitionImage"},
+                new DataModel{ Name = "AcquisitionImage", ImgPath="pack://application:,,,/Resource/Image/A.png"},
             };
         }
     }

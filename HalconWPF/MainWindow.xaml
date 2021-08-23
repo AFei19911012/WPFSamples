@@ -6,6 +6,7 @@
                xmlns:hc="https://handyorg.github.io/handycontrol"
                xmlns:local="clr-namespace:HalconWPF"
                xmlns:viewmodel="clr-namespace:HalconWPF.ViewModel"
+               xmlns:usercontrol="clr-namespace:HalconWPF.UserControl"
                mc:Ignorable="d"
                ActiveGlowColor="{DynamicResource PrimaryColor}"
                ResizeMode="CanResizeWithGrip"
@@ -45,11 +46,15 @@
                         </Grid.ColumnDefinitions>
                         <hc:SearchBar Style="{StaticResource SearchBarPlus}" hc:InfoElement.Placeholder="Enter key word" Margin="4" 
                                       ShowClearButton="True" IsRealTime="True" Tag="{Binding ElementName=ListBoxDemo}"/>
-                        <ToggleButton Grid.Column="1" Margin="2" Name="ButtonStyleAscending" Style="{StaticResource DemoInfoSortButtonStyle}"
-                                      Tag="{Binding ElementName=ListBoxDemo}"/>
+                        <ToggleButton Grid.Column="1" Margin="2" Style="{StaticResource DemoInfoSortButtonStyle}" Tag="{Binding ElementName=ListBoxDemo}"/>
                     </Grid>
                     <ListBox Grid.Row="1" Name="ListBoxDemo" Margin="5" BorderThickness="0" SelectionMode="Single" Style="{StaticResource ListBoxTransparent}"
                              SelectedIndex="{Binding SelectedIndex}" ItemsSource="{Binding DataList}">
+                        <hc:Interaction.Triggers>
+                            <hc:EventTrigger EventName="SelectionChanged">
+                                <hc:EventToCommand Command="{Binding CmdSelectionChanged}" CommandParameter="{Binding ElementName=MainContent}"/>
+                            </hc:EventTrigger>
+                        </hc:Interaction.Triggers>
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -61,15 +66,19 @@
                     </ListBox>
                 </Grid>
                 <Border Grid.Column="1" Margin="5" Background="{DynamicResource MainContentForegroundDrawingBrush}">
-                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <hc:OutlineText Margin="3" Text="Halcon" FontSize="200" FontWeight="Bold"
-                                        Fill="{DynamicResource PrimaryBrush}" Stroke="Violet" StrokeThickness="2"/>
-                        <hc:OutlineText Margin="3" Text="WPF" FontSize="200" FontWeight="Bold" HorizontalAlignment="Center"
-                                        Fill="{DynamicResource PrimaryBrush}" Stroke="Violet" StrokeThickness="2"/>
-                    </StackPanel>
-                    
+                    <Grid x:Name="MainContent">
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <hc:OutlineText Margin="3" Text="Halcon" FontSize="200" FontWeight="Bold"
+                                            Fill="{DynamicResource PrimaryBrush}" Stroke="Violet" StrokeThickness="2"/>
+                            <hc:OutlineText Margin="3" Text="WPF" FontSize="200" FontWeight="Bold" HorizontalAlignment="Center"
+                                            Fill="{DynamicResource PrimaryBrush}" Stroke="Violet" StrokeThickness="2"/>
+                        </StackPanel>
+                    </Grid>
                 </Border>
             </Grid>
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden" HorizontalAlignment="Right">
+                <StackPanel hc:Growl.GrowlParent="True" VerticalAlignment="Top" Margin="0,10,10,10"/>
+            </ScrollViewer>
         </Grid>
     </hc:TransitioningContentControl>
 </hc:GlowWindow>
