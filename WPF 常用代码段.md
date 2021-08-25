@@ -5,8 +5,6 @@ WPF 常用代码段
 
 --------------------------------------------------------------------------------
 
-
-
 # 1. 获取指定目录下文件、文件夹
 
 ```c#
@@ -37,8 +35,6 @@ FileInfo.LastAccessTime：文件访问时间；
 FileInfo.LastWriteTime：文件修改时间；
 ```
 
-
-
 # 2. string.Format 格式化输出
 
 ```c#
@@ -61,8 +57,6 @@ string.Format("{0:0000.00}", 194.039)    // 0194.04
 string.Format("{0:###.##}", 12394.039)   // 12394.04
 string.Format("{0:####.#}", 194.039)     // 194
 ```
-
-
 
 # 3. 日期时间
 
@@ -94,8 +88,6 @@ string.Format("{0:t}", System.DateTime.Now)   // 15:41
 string.Format("{0:T}", System.DateTime.Now)  // 15:41:50
 ```
 
-
-
 # 4. 线程
 
 ```c#
@@ -108,8 +100,6 @@ private void TestUnitThread()
     Thread.Sleep(2000);
 }
 ```
-
-
 
 # 5. 计时器
 
@@ -134,8 +124,6 @@ private void DeleFiles()
 
 }
 ```
-
-
 
 # 6. 保存配置文件 Serializable 序列化和反序列化
 
@@ -210,8 +198,6 @@ using (FileStream stream = new FileStream("setting/setting.bin", FileMode.Open, 
 }
 ~~~
 
-
-
 # 7. 屏幕截图
 
 ```c#
@@ -224,8 +210,6 @@ private void CaptureScreen()
  bitmap.Save("screen.png", System.Drawing.Imaging.ImageFormat.Png);
 }
 ```
-
-
 
 # 8. TextBlock 多行文本
 
@@ -248,8 +232,6 @@ GeneralTransform transform = myTextBlock.TransformToAncestor(this);
 Point currentPoint = transform .Transform(new Point(0, 0));
 ```
 
-
-
 # 10. 屏幕尺寸
 
 ```c#
@@ -261,8 +243,6 @@ double height = SystemParameters.PrimaryScreenHeight;
 double width = SystemParameters.WorkArea.Width;
 double height = SystemParameters.WorkArea.Height;
 ```
-
-
 
 # 11. 显示图像
 
@@ -313,8 +293,6 @@ while (DateTime.Now < t)
 }
 ```
 
-
-
 # 13. 试错
 
 ```c#
@@ -328,8 +306,6 @@ catch (Exception ex)
 }
 ```
 
-
-
 # 14. 一维数组保存成文本
 
 ```c#
@@ -337,8 +313,6 @@ double[] a1 = new double[4];
 a1[3] = 8;
 File.WriteAllLines("a1.txt", a1.Select(d => d.ToString()));
 ```
-
-
 
 # 15. 文件路径
 
@@ -376,8 +350,6 @@ Path.GetInvalidFileNameChars();
 // 路径中无效字符
 Path.GetInvalidPathChars();
 ```
-
-
 
 # 16. 渐变色
 
@@ -429,8 +401,6 @@ GridBack.Background = brush;
 </Button>
 ```
 
-
-
 # 18. 后台设置元素绑定
 
 ```c#
@@ -451,8 +421,6 @@ ButtonFont.SetBinding(FontSizeProperty, binding);
 // 注意设置 Mode 为 TwoWay，否则若其它地方有修改，则绑定失效，比如
 ButtonFont.FontSize = 30;
 ```
-
-
 
 # 19. 资源样式动画
 
@@ -524,8 +492,6 @@ private void TextBlock_MouseLeave(object sender, System.Windows.Input.MouseEvent
 }
 ```
 
-
-
 # 20. VS2019 C# 类注释模板
 
 > C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\IDE\ItemTemplates\CSharp\Code\2052\Class\Class.cs
@@ -549,8 +515,6 @@ namespace $rootnamespace$
 }
 ```
 
-
-
 # 21. 子线程更新UI
 
 ```c#
@@ -558,9 +522,57 @@ namespace $rootnamespace$
 Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
 (ThreadStart)delegate ()
 {
-// 列表更新
-DataListNG.Add(dataModel);
+	// 列表更新
+	DataListNG.Add(dataModel);
 }
 );
 ```
+
+# 22.  ComboBox绑定枚举、显示描述
+
+```c#
+// 枚举
+public enum Gender
+{
+    Male = 0,
+    Female
+}
+
+// 资源搞一波
+<Window.Resources>
+    <ObjectDataProvider x:Key="DemoGender" MethodName="GetValues" ObjectType="{x:Type core:Enum}">
+        <ObjectDataProvider.MethodParameters>               
+            <x:Type Type="model:Gender"/>  
+        </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+</Window.Resources>
+
+<ComboBox ItemsSource="{Binding Source={StaticResource DemoGender}}" SelectedIndex="0"/>
+
+// 显示描述属性
+<ComboBox ItemsSource="{Binding EnumsDescription}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding ExampleProperty}"/>
+
+// ViewModel
+private Dictionary<Gender, string> enumsDescription;
+public Dictionary<Gender, string> EnumsDescription
+{
+    get => new Dictionary<Gender, string>()
+           {
+               {Gender.Male, "描述：男性"},
+               {Gender.Female, "描述：女性"},
+           };
+    set => Set(ref enumsDescription, value);
+}
+
+private Gender exampleProperty;
+public Gender ExampleProperty
+{
+    get => exampleProperty;
+    set => Set(ref exampleProperty, value);
+}
+```
+
+# 23. MVVM常用控件数据、命令绑定
+
+参考项目：[MvvmCmdBinding](https://github.com/AFei19911012/WPFSamples/tree/main/MvvmCmdBinding)
 
