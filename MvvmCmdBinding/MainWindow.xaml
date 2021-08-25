@@ -126,6 +126,7 @@
                     </HierarchicalDataTemplate>
                 </TreeView.ItemTemplate>
             </TreeView>
+            <ComboBox ItemsSource="{Binding Source={StaticResource DemoGender}}" SelectedIndex="0"/>
             <ComboBox ItemsSource="{Binding EnumsDescription}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding ExampleProperty}"/>
         </StackPanel>
         <Grid Margin="3">

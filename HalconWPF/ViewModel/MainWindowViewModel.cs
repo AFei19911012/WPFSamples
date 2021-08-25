@@ -51,6 +51,10 @@ namespace HalconWPF.ViewModel
             {
                 mainContent.Children.Add(new AcquisitionImage());
             }
+            else if (name == "")
+            {
+               
+            }
         }
 
         /// <summary>
