@@ -2,7 +2,11 @@
 using GalaSoft.MvvmLight.CommandWpf;
 using MvvmCmdBinding.Model;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Input;
 
@@ -54,6 +58,25 @@ namespace MvvmCmdBinding.ViewModel
             get => dataList;
             set => Set(ref dataList, value);
         }
+
+        private Dictionary<Gender, string> enumsDescription;
+        public Dictionary<Gender, string> EnumsDescription
+        {
+            get => new Dictionary<Gender, string>()
+                   {
+                       {Gender.Male, "描述：男性"},
+                       {Gender.Female, "描述：女性"},
+                   };
+            set => Set(ref enumsDescription, value);
+        }
+
+        private Gender exampleProperty;
+        public Gender ExampleProperty
+        {
+            get => exampleProperty;
+            set => Set(ref exampleProperty, value);
+        }
+
 
         public RelayCommand<MainWindow> CmdLoaded => new Lazy<RelayCommand<MainWindow>>(() => new RelayCommand<MainWindow>(Loaded)).Value;
         private void Loaded(MainWindow window)
