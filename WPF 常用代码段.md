@@ -552,15 +552,41 @@ public enum Gender
 // 显示描述属性
 <ComboBox ItemsSource="{Binding EnumsDescription}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding ExampleProperty}"/>
 
+// 添加描述属性
+public enum Gender
+{
+    [Description("男性")]
+    Male = 0,
+    [Description("女性")]
+    Female
+}
+
 // ViewModel
 private Dictionary<Gender, string> enumsDescription;
 public Dictionary<Gender, string> EnumsDescription
 {
     get => new Dictionary<Gender, string>()
-           {
-               {Gender.Male, "描述：男性"},
-               {Gender.Female, "描述：女性"},
-           };
+    {
+        {Gender.Male, "男性"},
+        {Gender.Female, "女性"},
+    };
+    set => Set(ref enumsDescription, value);
+}
+// 或者下面方式
+private Dictionary<Gender, string> enumsDescription;
+public Dictionary<Gender, string> EnumsDescription
+{
+    get
+    {
+        Dictionary<Gender, string> pairs = new Dictionary<Gender, string>();
+        foreach (Gender item in Enum.GetValues(typeof(Gender)))
+        {
+            DescriptionAttribute attributes = (DescriptionAttribute)item.GetType().GetField(item.ToString()).GetCustomAttribute(typeof(DescriptionAttribute), false);
+            pairs.Add(item, attributes.Description);
+        }
+        return pairs;
+    }
+
     set => Set(ref enumsDescription, value);
 }
 
@@ -573,6 +599,15 @@ public Gender ExampleProperty
 ```
 
 # 23. MVVM常用控件数据、命令绑定
+
+> 绑定字符串
+> 绑定数值
+> 绑定控件属性
+> RadioButton枚举绑定
+> 转换器
+> ComboBox显示枚举描述
+> DataGrid数据绑定
+> 命令绑定
 
 参考项目：[MvvmCmdBinding](https://github.com/AFei19911012/WPFSamples/tree/main/MvvmCmdBinding)
 
