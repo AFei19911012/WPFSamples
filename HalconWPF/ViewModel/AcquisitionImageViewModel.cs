@@ -1,8 +1,11 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using HalconDotNet;
+using HalconWPF.UserControl;
 using System;
 using System.Threading;
+using System.Windows;
+using System.Windows.Threading;
 
 namespace HalconWPF.ViewModel
 {
@@ -23,7 +26,9 @@ namespace HalconWPF.ViewModel
         private HObject ho_Image = null;
         private HWindow ho_Window;
         private Thread ho_thread;
-        private bool IsHalconReleted = false;
+        private int ImageWidth;
+        private int ImageHeight;
+        private HSmartWindowControlWPF Halcon;
 
 
         private string strAcqMode;
@@ -34,12 +39,38 @@ namespace HalconWPF.ViewModel
         }
 
         /// <summary>
-        /// Halcon 控件关联，写在主窗体的 Loaded 事件里
+        /// Halcon 图像自适应显示
         /// </summary>
-        public RelayCommand<HSmartWindowControlWPF> CmdLoaded => new Lazy<RelayCommand<HSmartWindowControlWPF>>(() => new RelayCommand<HSmartWindowControlWPF>(Loaded)).Value;
-        private void Loaded(HSmartWindowControlWPF halcon)
+        private void SetHalconScalingZoom()
         {
-            
+            double wRatio = Halcon.ActualWidth / ImageWidth;
+            double hRatio = Halcon.ActualHeight / ImageHeight;
+            double ratio = Math.Min(wRatio, hRatio);
+            Halcon.HImagePart = wRatio > hRatio
+                ? new Rect
+                {
+                    X = -0.5 * ((Halcon.ActualWidth / ratio) - ImageWidth),
+                    Y = 0,
+                    Width = Halcon.ActualWidth / ratio,
+                    Height = Halcon.ActualHeight / ratio
+                }
+                : new Rect
+                {
+                    X = 0,
+                    Y = -0.5 * ((Halcon.ActualHeight / ratio) - ImageHeight),
+                    Width = Halcon.ActualWidth / ratio,
+                    Height = Halcon.ActualHeight / ratio
+                };
+        }
+
+        /// <summary>
+        /// Halcon 控件关联，写在 Loaded 事件里
+        /// </summary>
+        public RelayCommand<RoutedEventArgs> CmdLoaded => new Lazy<RelayCommand<RoutedEventArgs>>(() => new RelayCommand<RoutedEventArgs>(Loaded)).Value;
+        private void Loaded(RoutedEventArgs e)
+        {
+            Halcon = (e.Source as AcquisitionImage).HalconWPF;
+            ho_Window = Halcon.HalconWindow;
         }
 
         /// <summary>
@@ -48,12 +79,6 @@ namespace HalconWPF.ViewModel
         public RelayCommand<HSmartWindowControlWPF> CmdTrigger => new Lazy<RelayCommand<HSmartWindowControlWPF>>(() => new RelayCommand<HSmartWindowControlWPF>(Trigger)).Value;
         private void Trigger(HSmartWindowControlWPF halcon)
         {
-            // 首次运行关联 Halcon 控件
-            if (!IsHalconReleted)
-            {
-                ho_Window = halcon.HalconWindow;
-                IsHalconReleted = true;
-            }
             hv_AcqHandle = new HTuple();
             HOperatorSet.GenEmptyObj(out ho_Image);
             hv_AcqHandle.Dispose();
@@ -65,7 +90,11 @@ namespace HalconWPF.ViewModel
             ho_Image.Dispose();
             HOperatorSet.GrabImageAsync(out ho_Image, hv_AcqHandle, -1);
             HOperatorSet.GetImageSize(ho_Image, out HTuple width, out HTuple height);
-            HOperatorSet.SetPart(ho_Window, 0, 0, height, width);
+            HOperatorSet.SetPart(ho_Window, 0, 0, height - 1, width - 1);
+            ImageWidth = width;
+            ImageHeight = height;
+            // Halcon 图像自适应显示
+            SetHalconScalingZoom();
             ho_Window.DispObj(ho_Image);
             // 关闭摄像头
             HOperatorSet.CloseFramegrabber(hv_AcqHandle);
@@ -80,12 +109,6 @@ namespace HalconWPF.ViewModel
         public RelayCommand<HSmartWindowControlWPF> CmdRealTime => new Lazy<RelayCommand<HSmartWindowControlWPF>>(() => new RelayCommand<HSmartWindowControlWPF>(RealTime)).Value;
         private void RealTime(HSmartWindowControlWPF halcon)
         {
-            // 首次运行关联 Halcon 控件
-            if (!IsHalconReleted)
-            {
-                ho_Window = halcon.HalconWindow;
-                IsHalconReleted = true;
-            }
             if (StrAcqMode == "RealTime")
             {
                 hv_AcqHandle = new HTuple();
@@ -142,8 +165,18 @@ namespace HalconWPF.ViewModel
                 ho_Image.Dispose();
                 HOperatorSet.GrabImageAsync(out ho_Image, hv_AcqHandle, -1);
                 HOperatorSet.GetImageSize(ho_Image, out HTuple width, out HTuple height);
-                HOperatorSet.SetPart(ho_Window, 0, 0, height, width);
+                //HOperatorSet.SetPart(ho_Window, 0, 0, height - 1, width - 1);
                 HOperatorSet.DispObj(ho_Image, ho_Window);
+                ImageWidth = width;
+                ImageHeight = height;
+                // Halcon 图像自适应显示
+                // 在新的线程里用如下方式更新到界面
+                _ = Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
+                (ThreadStart)delegate ()
+                {
+                    SetHalconScalingZoom();
+                }
+                );
             }
         }
 

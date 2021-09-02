@@ -13,7 +13,7 @@
     </UserControl.DataContext>
     <hc:Interaction.Triggers>
         <hc:EventTrigger EventName="Loaded">
-            <hc:EventToCommand Command="{Binding CmdLoaded}" CommandParameter="{Binding ElementName=HalconWPF}"/>
+            <hc:EventToCommand Command="{Binding CmdLoaded}" PassEventArgsToCommand="True"/>
         </hc:EventTrigger>
     </hc:Interaction.Triggers>
     <Grid>
