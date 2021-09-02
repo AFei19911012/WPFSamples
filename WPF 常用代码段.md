@@ -611,3 +611,156 @@ public Gender ExampleProperty
 
 参考项目：[MvvmCmdBinding](https://github.com/AFei19911012/WPFSamples/tree/main/MvvmCmdBinding)
 
+# 24. DataGrid 指定行颜色
+
+```xaml
+// 根据条件设置颜色
+<DataGrid Height="400" SelectionMode="Single" HeadersVisibility="All" AutoGenerateColumns="False" 
+          CanUserSortColumns="False" ItemsSource="{Binding DataListCalInfo}">
+    <DataGrid.Columns>
+        <DataGridTextColumn Width="auto" Binding="{Binding Header}" IsReadOnly="True" Header="项目"/>
+        <DataGridTextColumn Width="*" Binding="{Binding Content}" IsReadOnly="True" Header="描述">
+            <DataGridTextColumn.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsEffective}" Value="false">
+                            <Setter Property="Background" Value="{Binding ColorFalse}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsEffective}" Value="true">
+                            <Setter Property="Background" Value="{Binding ColorTrue}"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGridTextColumn.CellStyle>
+        </DataGridTextColumn>
+    </DataGrid.Columns>
+/DataGrid>
+```
+
+# 25. 横竖分隔线
+
+```xaml
+// 横向分隔线
+<Separator Background="{DynamicResource PrimaryBrush}"/>
+
+// 纵向分隔线
+<GridSplitter Width="1" Background="{DynamicResource PrimaryBrush}"/>
+```
+
+# 26. 打开文件、选择文件夹对话框
+
+```c#
+// 打开文件对话框
+using Microsoft.Win32;
+
+OpenFileDialog dialog = new OpenFileDialog
+{
+    Title = "选择标定图片",
+    Filter = "图像文件(*.jpg;*.png;*.bmp)|*.jpg;*.png;*.bmp",
+    RestoreDirectory = true,
+};
+
+if (dialog.ShowDialog() != true)
+{
+    return;
+}
+string filename = dialog.FileName;
+
+
+// 打开文件夹对话框
+System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
+if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.Cancel)
+{
+    return;
+}
+string foldername = dialog.SelectedPath.Trim();
+```
+
+# 27. Canvas 平移和缩放
+
+```c#
+// xaml 测试用例
+<Border x:Name="DrawingBorder" ClipToBounds="True"
+        MouseDown="DrawingBorder_MouseDown" MouseMove="DrawingBorder_MouseMove" 
+        MouseUp="DrawingBorder_MouseUp" MouseWheel="DrawingBorder_MouseWheel">
+    <Grid>
+        <halcon:HSmartWindowControlWPF Name="HalconWPF" BorderThickness="1" BorderBrush="{DynamicResource PrimaryBrush}"/>
+        <Canvas x:Name="DrawingCanvas">
+            <Canvas.RenderTransform>
+                <TransformGroup/>
+            </Canvas.RenderTransform>
+            <Line X1="100" Y1="100" X2="200" Y2="200" Stroke="Red" StrokeThickness="5"/>
+            <Rectangle Canvas.Left="250" Canvas.Top="250" Width="100" Height="100" Fill="Red"/>
+            <Ellipse Canvas.Left="400" Canvas.Top="200" Width="100" Height="100" Fill="Red"/>
+        </Canvas>
+    </Grid>
+</Border>
+
+// 后台
+private Point StartPoint;
+private bool CanMove = false;
+
+/// <summary>
+/// 点击鼠标
+/// </summary>
+/// <param name="sender"></param>
+/// <param name="e"></param>
+private void DrawingBorder_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+{
+    StartPoint = e.GetPosition(e.Device.Target);
+    CanMove = true;
+}
+
+/// <summary>
+/// 平移
+/// </summary>
+/// <param name="sender"></param>
+/// <param name="e"></param>
+private void DrawingBorder_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
+{
+    Point curPoint = e.GetPosition(e.Device.Target);
+    Vector vector = curPoint - StartPoint;
+    if (CanMove)
+    {
+        TransformGroup group = DrawingCanvas.RenderTransform as TransformGroup;
+        group.Children.Add(new TranslateTransform(vector.X, vector.Y));
+        DrawingCanvas.RenderTransform = group;
+        // 记得更新起点
+        StartPoint = curPoint;
+    }
+}
+
+/// <summary>
+/// 鼠标弹起
+/// </summary>
+/// <param name="sender"></param>
+/// <param name="e"></param>
+private void DrawingBorder_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+{
+    CanMove = false;
+}
+
+/// <summary>
+/// 缩放
+/// </summary>
+/// <param name="sender"></param>
+/// <param name="e"></param>
+private void DrawingBorder_MouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
+{
+    Point curPoint = e.GetPosition(e.Device.Target);
+    TransformGroup group = DrawingCanvas.RenderTransform as TransformGroup;
+    if (e.Delta > 0)
+    {
+        group.Children.Add(new ScaleTransform(HalconWPF.HZoomFactor, HalconWPF.HZoomFactor, curPoint.X, curPoint.Y));
+    }
+    else
+    {
+        group.Children.Add(new ScaleTransform(1 / HalconWPF.HZoomFactor, 1 / HalconWPF.HZoomFactor, curPoint.X, curPoint.Y));
+    }
+    // 更新
+    DrawingCanvas.RenderTransform = group;
+}
+```
+
+
+
