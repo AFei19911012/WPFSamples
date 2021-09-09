@@ -2,10 +2,6 @@ Halcon 常用代码段
 ================================================================================
 [TOC]
 
---------------------------------------------------------------------------------
-
-
-
 # 1. 使用算子处理图像基本流程
 
 ```matlab
@@ -22,8 +18,6 @@ set_display_font (WindowHandle, 16, 'mono', 'true', 'false')
 dev_disp_text ('NG', 'image', 12, 12, 'red', [], [])
 ```
 
-
-
 # 2. 图像预处理
 
 > mean_image、gauss_filter、binomial_filter：消除噪声
@@ -33,8 +27,6 @@ dev_disp_text ('NG', 'image', 12, 12, 'red', [], [])
 > 膨胀：对边界向外部扩充，填充空洞；
 > opening_circle：先腐蚀后膨胀，去除孤立点、毛刺，消除小物体、平滑较大物体边界，同时不改变面积
 > closing_circle：先膨胀后腐蚀，填充物体内部细小空洞，连接临近物体、平滑边界，同时不改变面积
-
-
 
 # 3. 图像分割
 
@@ -48,8 +40,6 @@ count_obj (SelectedRegions, Number)
 area_center(SelectedRegions, Area, Row, Column)
 fill_up (SelectedRegions, RegionFillUp)
 ```
-
-
 
 # 4. 轮廓处理
 
@@ -70,8 +60,6 @@ reduce_domain (Image, Region, ImageReduced)
 distance_cc_min (Contour1, Contour2, Mode, DistanceMin)
 ```
 
-
-
 # 5. 基于形状的模板匹配步骤
 
 ```matlab
@@ -90,15 +78,11 @@ vector_angle_to_rigid (Row1, Column1, Angle1, Row2, Column2, Angle2， HomMat2D)
 affine_trans_contour_xld (Contours, ContoursAffinTrans, HomMat2D)
 ```
 
-
-
 # 6. 批量导入图片
 
 ```matlab
 list_image_files ('scratch', 'png', [], ImageFiles)
 ```
-
-
 
 # 7. 局部阈值
 
@@ -108,8 +92,6 @@ read_image (Image, ImageFiles[Index])
 mean_image (Image, ImageMean, 5, 5)
 dyn_threshold (Image, ImageMean, RegionDynThresh, 5, 'dark')
 ```
-
-
 
 # 8. 频域滤波
 
@@ -121,8 +103,6 @@ convol_fft (ImageFFT, ImageGauss, ImageConvol)
 rft_generic (ImageConvol, ImageFFT1, 'from_freq', 'none', 'byte', Width)
 sub_image (B, ImageFFT1, ImageSub, 2, 100)
 ```
-
-
 
 # 9. 差异模型
 
@@ -139,8 +119,6 @@ erosion_rectangle1 (RegionFillUp, RegionROI, 1, 15)
 compare_variation_model (ImageReduced, RegionDiff, VariationModelID)
 ```
 
-
-
 # 10. 选择指定区域
 
 ```matlab
@@ -151,8 +129,6 @@ for I := 1 to Number by 1
 endfor
 ```
 
-
-
 # 11. 根据骨架合并直线
 
 ```matlab
@@ -161,5 +137,84 @@ connection (Region, ConnectedRegions)
 skeleton (ConnectedRegions, Skeleton)
 gen_contours_skeleton_xld (Skeleton, Contours, 1, 'filter')
 union_collinear_contours_xld (Contours, UnionContours, 30, 2, 10, 0.7, 'attr_keep')
+```
+
+# 12. 获取骨架、XLD 端点
+
+```python
+gen_contour_region_xld (Region, Contours, 'center')
+gen_region_contour_xld (Contours, Region, 'filled')
+skeleton (Region, Skeleton)
+junctions_skeleton (Skeleton, EndPoints, JuncPoints)
+get_region_points (EndPoints, Rows, Columns)
+```
+
+# 13. Halcon 图像自适应显示
+
+```c#
+HOperatorSet.GenEmptyObj(out HObject ho_Image);
+ho_Image.Dispose();
+HOperatorSet.ReadImage(out ho_Image, filename);
+HOperatorSet.GetImageSize(ho_Image, out HTuple width, out HTuple height);
+//HOperatorSet.SetPart(ho_Window, 0, 0, height - 1, width - 1);
+HOperatorSet.DispObj(ho_Image, ho_Window);
+
+double wRatio = Halcon.ActualWidth / ImageWidth;
+double hRatio = Halcon.ActualHeight / ImageHeight;
+double ratio = Math.Min(wRatio, hRatio);
+// Halcon 是 WPF 控件对象
+Halcon.HImagePart = wRatio > hRatio
+    ? new Rect
+    {
+        X = -0.5 * (Halcon.ActualWidth / ratio - ImageWidth),
+        Y = 0,
+        Width = Halcon.ActualWidth / ratio,
+        Height = Halcon.ActualHeight / ratio
+    }
+    : new Rect
+    {
+        X = 0,
+        Y = -0.5 * (Halcon.ActualHeight / ratio - ImageHeight),
+        Width = Halcon.ActualWidth / ratio,
+        Height = Halcon.ActualHeight / ratio
+    };
+    
+// 内置方法
+// 图像自适应显示
+Halcon.SetFullImagePart();
+```
+
+# 14. Halcon 控件坐标对应的图像坐标
+
+```c#
+// Halcon 控件宽高
+double cHeight = Halcon.ActualHeight;
+// Halcon 图像区域
+double x0 = Halcon.HImagePart.X;
+double y0 = Halcon.HImagePart.Y;
+double imHeight = Halcon.HImagePart.Height;
+// Halcon 图像区域是等比例缩放的
+double ratio = imHeight / cHeight;
+// 当前鼠标点相对于 Halcon 图像区域的坐标
+double x1 = (ratio * x) + x0;
+double y1 = (ratio * y) + y0;
+StrMousePostion = "X = " + (int)x1 + ", " + "Y = " + (int)y1;
+if (y1 < 0 || y1 >= ImageHeight || x1 < 0 || x1 >= ImageWidth)
+{
+StrImageGrayValue = "";
+}
+else
+{
+HOperatorSet.GetGrayval(ho_Image, y1, x1, out HTuple grayval);
+StrImageGrayValue = grayval.ToString();
+}
+
+// Halcon 事件
+private void Halcon_HMouseMove(object sender, HSmartWindowControlWPF.HMouseEventArgsWPF e)
+{
+	// 图像坐标
+	int row = (int)e.Row;
+	int column = (int)e.Column;
+}
 ```
 
