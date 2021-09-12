@@ -76,8 +76,8 @@ namespace HalconWPF.ViewModel
         /// <summary>
         /// 触发模式
         /// </summary>
-        public RelayCommand<HSmartWindowControlWPF> CmdTrigger => new Lazy<RelayCommand<HSmartWindowControlWPF>>(() => new RelayCommand<HSmartWindowControlWPF>(Trigger)).Value;
-        private void Trigger(HSmartWindowControlWPF halcon)
+        public RelayCommand CmdTrigger => new Lazy<RelayCommand>(() => new RelayCommand(Trigger)).Value;
+        private void Trigger()
         {
             hv_AcqHandle = new HTuple();
             HOperatorSet.GenEmptyObj(out ho_Image);
@@ -94,7 +94,8 @@ namespace HalconWPF.ViewModel
             ImageWidth = width;
             ImageHeight = height;
             // Halcon 图像自适应显示
-            SetHalconScalingZoom();
+            //SetHalconScalingZoom();
+            Halcon.SetFullImagePart();
             ho_Window.DispObj(ho_Image);
             // 关闭摄像头
             HOperatorSet.CloseFramegrabber(hv_AcqHandle);
@@ -106,8 +107,8 @@ namespace HalconWPF.ViewModel
         /// <summary>
         /// 实时模式
         /// </summary>
-        public RelayCommand<HSmartWindowControlWPF> CmdRealTime => new Lazy<RelayCommand<HSmartWindowControlWPF>>(() => new RelayCommand<HSmartWindowControlWPF>(RealTime)).Value;
-        private void RealTime(HSmartWindowControlWPF halcon)
+        public RelayCommand CmdRealTime => new Lazy<RelayCommand>(() => new RelayCommand(RealTime)).Value;
+        private void RealTime()
         {
             if (StrAcqMode == "RealTime")
             {
@@ -167,6 +168,7 @@ namespace HalconWPF.ViewModel
                 HOperatorSet.GetImageSize(ho_Image, out HTuple width, out HTuple height);
                 //HOperatorSet.SetPart(ho_Window, 0, 0, height - 1, width - 1);
                 HOperatorSet.DispObj(ho_Image, ho_Window);
+                
                 ImageWidth = width;
                 ImageHeight = height;
                 // Halcon 图像自适应显示
@@ -174,7 +176,9 @@ namespace HalconWPF.ViewModel
                 _ = Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
                 (ThreadStart)delegate ()
                 {
-                    SetHalconScalingZoom();
+                    //SetHalconScalingZoom();
+                    // Halcon 自带的方法
+                    Halcon.SetFullImagePart();
                 }
                 );
             }

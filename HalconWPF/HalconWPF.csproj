@@ -56,8 +56,12 @@
     <Reference Include="HandyControl, Version=3.2.0.0, Culture=neutral, PublicKeyToken=45be8712787a1e5b, processorArchitecture=MSIL">
       <HintPath>..\packages\HandyControl.3.2.0\lib\net47\HandyControl.dll</HintPath>
     </Reference>
+    <Reference Include="ICSharpCode.AvalonEdit, Version=6.1.2.30, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
+      <HintPath>..\packages\AvalonEdit.6.1.2.30\lib\net45\ICSharpCode.AvalonEdit.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -83,7 +87,15 @@
     <Compile Include="UserControl\AcquisitionImage.xaml.cs">
       <DependentUpon>AcquisitionImage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControl\ClipNumberAndAngle.xaml.cs">
+      <DependentUpon>ClipNumberAndAngle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\ImageReadSave.xaml.cs">
+      <DependentUpon>ImageReadSave.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\AcquisitionImageViewModel.cs" />
+    <Compile Include="ViewModel\ClipNumberAndAngleViewModel.cs" />
+    <Compile Include="ViewModel\ImageReadSaveViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -110,6 +122,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControl\AcquisitionImage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl\ClipNumberAndAngle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl\ImageReadSave.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -141,9 +161,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resource\Halcon\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Resource\Image\icon.ico" />
   </ItemGroup>
@@ -152,6 +170,37 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resource\Image\A.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Image\B.png" />
+    <Resource Include="Resource\Image\C.png" />
+    <Resource Include="Resource\Image\D.png" />
+    <Resource Include="Resource\Image\E.png" />
+    <Resource Include="Resource\Image\F.png" />
+    <Resource Include="Resource\Image\G.png" />
+    <Resource Include="Resource\Image\H.png" />
+    <Resource Include="Resource\Image\I.png" />
+    <Resource Include="Resource\Image\J.png" />
+    <Resource Include="Resource\Image\K.png" />
+    <Resource Include="Resource\Image\L.png" />
+    <Resource Include="Resource\Image\M.png" />
+    <Resource Include="Resource\Image\N.png" />
+    <Resource Include="Resource\Image\O.png" />
+    <Resource Include="Resource\Image\P.png" />
+    <Resource Include="Resource\Image\Q.png" />
+    <Resource Include="Resource\Image\R.png" />
+    <Resource Include="Resource\Image\S.png" />
+    <Resource Include="Resource\Image\T.png" />
+    <Resource Include="Resource\Image\U.png" />
+    <Resource Include="Resource\Image\V.png" />
+    <Resource Include="Resource\Image\W.png" />
+    <Resource Include="Resource\Image\X.png" />
+    <Resource Include="Resource\Image\Y.png" />
+    <Resource Include="Resource\Image\Z.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Halcon\AcquisitionImage.txt" />
+    <Resource Include="Resource\Halcon\ClipNumberAndAngle.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

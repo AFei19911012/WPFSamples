@@ -1,0 +1,38 @@
+* **********************************************************
+* 分割 -- 计算区域面积、中心、方向
+* **********************************************************
+dev_update_window ('off')
+dev_set_line_width (3)
+* 读取图像
+read_image (Clip, 'clip.png')
+* 获取图像信息
+get_image_size (Clip, Width, Height)
+* get_image_size (Clip, Width, Height)
+* 关闭已打开窗口
+dev_close_window ()
+* 新建窗口
+dev_open_window (0, 0, Width - 1, Height - 1, 'black', WindowHandle)
+* 设置显示属性
+set_display_font (WindowHandle, 14, 'mono', 'true', 'false')
+* 显示图像
+dev_display (Clip)
+* 分割图像，Regions 表示选中灰度区域，可以根据灰度直方图工具来确定
+threshold (Clip, Regions, 0, 70)
+* 获取连通区域
+connection (Regions, ConnectedRegions)
+* 每个别针的面积大致相似，故按照面积来选择，去除多余的 Region，使用特征直方图工具来确定
+select_shape (ConnectedRegions, SelectedRegions, 'area', 'and', 5000, 8000)
+dev_set_draw ('fill')
+dev_set_colored (12)
+dev_display (SelectedRegions)
+* 方向
+orientation_region (SelectedRegions, Phi)
+* 区域面积和中心点坐标
+area_center (SelectedRegions, Area, Row, Column)
+* 显示箭头
+Length := 80
+dev_set_color ('blue')
+disp_arrow (WindowHandle, Row, Column, Row - Length * sin(Phi), Column + Length * cos(Phi), 4)
+* 显示文本
+dev_disp_text (deg(Phi) + '°', 'image', Row, Column, 'black', [], [])
+dev_update_window ('on')

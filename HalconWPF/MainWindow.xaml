@@ -6,7 +6,7 @@
                xmlns:hc="https://handyorg.github.io/handycontrol"
                xmlns:local="clr-namespace:HalconWPF"
                xmlns:viewmodel="clr-namespace:HalconWPF.ViewModel"
-               xmlns:usercontrol="clr-namespace:HalconWPF.UserControl"
+               xmlns:usercontrol="clr-namespace:HalconWPF.UserControl" xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
                mc:Ignorable="d"
                ActiveGlowColor="{DynamicResource PrimaryColor}"
                ResizeMode="CanResizeWithGrip"
@@ -19,6 +19,11 @@
     <hc:GlowWindow.DataContext>
         <viewmodel:MainWindowViewModel/>
     </hc:GlowWindow.DataContext>
+    <hc:Interaction.Triggers>
+        <hc:EventTrigger EventName="Loaded">
+            <hc:EventToCommand Command="{Binding CmdLoaded}" PassEventArgsToCommand="True"/>
+        </hc:EventTrigger>
+    </hc:Interaction.Triggers>
     <hc:TransitioningContentControl>
         <Grid>
             <Grid.RowDefinitions>
@@ -43,16 +48,19 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
                         <hc:SearchBar Style="{StaticResource SearchBarPlus}" hc:InfoElement.Placeholder="Enter key word" Margin="4" 
                                       ShowClearButton="True" IsRealTime="True" Tag="{Binding ElementName=ListBoxDemo}"/>
                         <ToggleButton Grid.Column="1" Margin="2" Style="{StaticResource DemoInfoSortButtonStyle}" Tag="{Binding ElementName=ListBoxDemo}"/>
+                        <ToggleButton Grid.Column="2" Margin="2" Content="Halcon" hc:BorderElement.CornerRadius="0" IsChecked="{Binding IsOpen,ElementName=DrawerSourceCode}"
+                                      Command="{Binding CmdShowSourceCode}" CommandParameter="{Binding IsOpen,ElementName=DrawerSourceCode}"/>
                     </Grid>
                     <ListBox Grid.Row="1" Name="ListBoxDemo" Margin="5" BorderThickness="0" SelectionMode="Single" Style="{StaticResource ListBoxTransparent}"
                              SelectedIndex="{Binding SelectedIndex}" ItemsSource="{Binding DataList}">
                         <hc:Interaction.Triggers>
                             <hc:EventTrigger EventName="SelectionChanged">
-                                <hc:EventToCommand Command="{Binding CmdSelectionChanged}" CommandParameter="{Binding ElementName=MainContent}"/>
+                                <hc:EventToCommand Command="{Binding CmdSelectionChanged}"/>
                             </hc:EventTrigger>
                         </hc:Interaction.Triggers>
                         <ListBox.ItemTemplate>
@@ -75,6 +83,9 @@
                         </StackPanel>
                     </Grid>
                 </Border>
+                <hc:Drawer Name="DrawerSourceCode" MaskCanClose="True" Dock="Right" ShowMode="Push" MaxWidth="700">
+                    <avalonEdit:TextEditor Name="TextContainer" IsReadOnly="True" FontFamily="Consolas" SyntaxHighlighting="C#" FontSize="10pt" Margin="5" ShowLineNumbers="True"/>
+                </hc:Drawer>
             </Grid>
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden" HorizontalAlignment="Right">
                 <StackPanel hc:Growl.GrowlParent="True" VerticalAlignment="Top" Margin="0,10,10,10"/>

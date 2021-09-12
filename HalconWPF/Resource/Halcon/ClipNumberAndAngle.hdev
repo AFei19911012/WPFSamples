@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hdevelop file_version="1.2" halcon_version="18.11.0.1">
+<procedure name="main">
+<interface/>
+<body>
+<c>* **********************************************************</c>
+<c>* 分割 -- 计算区域面积、中心、方向</c>
+<c>* **********************************************************</c>
+<l>dev_update_window ('off')</l>
+<l>dev_set_line_width (3)</l>
+<c>* 读取图像</c>
+<l>read_image (Clip, 'clip.png')</l>
+<c>* 获取图像信息</c>
+<l>get_image_size (Clip, Width, Height)</l>
+<l>* get_image_size (Clip, Width, Height)</l>
+<c>* 关闭已打开窗口</c>
+<l>dev_close_window ()</l>
+<c>* 新建窗口</c>
+<l>dev_open_window (0, 0, Width - 1, Height - 1, 'black', WindowHandle)</l>
+<c>* 设置显示属性</c>
+<l>set_display_font (WindowHandle, 14, 'mono', 'true', 'false')</l>
+<c>* 显示图像</c>
+<l>dev_display (Clip)</l>
+<c>* 分割图像，Regions 表示选中灰度区域，可以根据灰度直方图工具来确定</c>
+<l>threshold (Clip, Regions, 0, 70)</l>
+<c>* 获取连通区域</c>
+<l>connection (Regions, ConnectedRegions)</l>
+<c>* 每个别针的面积大致相似，故按照面积来选择，去除多余的 Region，使用特征直方图工具来确定</c>
+<l>select_shape (ConnectedRegions, SelectedRegions, 'area', 'and', 5000, 8000)</l>
+<l>dev_set_draw ('fill')</l>
+<l>dev_set_colored (12)</l>
+<l>dev_display (SelectedRegions)</l>
+<c>* 方向</c>
+<l>orientation_region (SelectedRegions, Phi)</l>
+<c>* 区域面积和中心点坐标</c>
+<l>area_center (SelectedRegions, Area, Row, Column)</l>
+<c>* 显示箭头</c>
+<l>Length := 80</l>
+<l>dev_set_color ('blue')</l>
+<l>disp_arrow (WindowHandle, Row, Column, Row - Length * sin(Phi), Column + Length * cos(Phi), 4)</l>
+<c>* 显示文本</c>
+<l>dev_disp_text (deg(Phi) + '°', 'image', Row, Column, 'black', [], [])</l>
+<l>dev_update_window ('on')</l>
+</body>
+<docu id="main">
+<parameters/>
+</docu>
+</procedure>
+</hdevelop>
