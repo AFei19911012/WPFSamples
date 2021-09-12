@@ -86,7 +86,6 @@ namespace HalconWPF.ViewModel
                 };
         }
 
-
         /// <summary>
         /// Halcon 控件关联，写在 Loaded 事件里
         /// </summary>
@@ -95,6 +94,33 @@ namespace HalconWPF.ViewModel
         {
             Halcon = (e.Source as ImageReadSave).HalconWPF;
             ho_Window = Halcon.HalconWindow;
+
+            // 添加个事件
+            Halcon.HMouseDown += Halcon_HMouseDown;
+            Halcon.MouseDown += Halcon_MouseDown;
+        }
+
+        /// <summary>
+        /// 测试一下坐标转换是否正确
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Halcon_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Point point = e.GetPosition(e.Device.Target);
+            Point point_halcon = GetImageHalconPoint(point.X, point.Y);
+        }
+
+        /// <summary>
+        /// 测试一下坐标转换是否正确
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Halcon_HMouseDown(object sender, HSmartWindowControlWPF.HMouseEventArgsWPF e)
+        {
+            double row = e.Row;
+            double col = e.Column;
+            Point point = GetImageHalconPoint(col, row, false);
         }
 
         /// <summary>
@@ -116,9 +142,9 @@ namespace HalconWPF.ViewModel
                 // 显示图像
                 ho_Window.DispObj(ho_Image);
                 // 设置原图像比例缩放，这个效果和双击左键效果一样
-                //Halcon.SetFullImagePart();
+                Halcon.SetFullImagePart();
                 // 等价于上面这句话
-                SetHalconScalingZoom(width, height);
+                //SetHalconScalingZoom(width, height);
             }
             else if (btn == "SaveWindow")
             {

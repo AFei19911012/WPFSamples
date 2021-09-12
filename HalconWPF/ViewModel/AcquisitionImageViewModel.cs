@@ -26,41 +26,13 @@ namespace HalconWPF.ViewModel
         private HObject ho_Image = null;
         private HWindow ho_Window;
         private Thread ho_thread;
-        private int ImageWidth;
-        private int ImageHeight;
         private HSmartWindowControlWPF Halcon;
-
 
         private string strAcqMode;
         public string StrAcqMode
         {
             get => strAcqMode;
             set => Set(ref strAcqMode, value);
-        }
-
-        /// <summary>
-        /// Halcon 图像自适应显示
-        /// </summary>
-        private void SetHalconScalingZoom()
-        {
-            double wRatio = Halcon.ActualWidth / ImageWidth;
-            double hRatio = Halcon.ActualHeight / ImageHeight;
-            double ratio = Math.Min(wRatio, hRatio);
-            Halcon.HImagePart = wRatio > hRatio
-                ? new Rect
-                {
-                    X = -0.5 * ((Halcon.ActualWidth / ratio) - ImageWidth),
-                    Y = 0,
-                    Width = Halcon.ActualWidth / ratio,
-                    Height = Halcon.ActualHeight / ratio
-                }
-                : new Rect
-                {
-                    X = 0,
-                    Y = -0.5 * ((Halcon.ActualHeight / ratio) - ImageHeight),
-                    Width = Halcon.ActualWidth / ratio,
-                    Height = Halcon.ActualHeight / ratio
-                };
         }
 
         /// <summary>
@@ -91,10 +63,7 @@ namespace HalconWPF.ViewModel
             HOperatorSet.GrabImageAsync(out ho_Image, hv_AcqHandle, -1);
             HOperatorSet.GetImageSize(ho_Image, out HTuple width, out HTuple height);
             HOperatorSet.SetPart(ho_Window, 0, 0, height - 1, width - 1);
-            ImageWidth = width;
-            ImageHeight = height;
             // Halcon 图像自适应显示
-            //SetHalconScalingZoom();
             Halcon.SetFullImagePart();
             ho_Window.DispObj(ho_Image);
             // 关闭摄像头
@@ -168,16 +137,11 @@ namespace HalconWPF.ViewModel
                 HOperatorSet.GetImageSize(ho_Image, out HTuple width, out HTuple height);
                 //HOperatorSet.SetPart(ho_Window, 0, 0, height - 1, width - 1);
                 HOperatorSet.DispObj(ho_Image, ho_Window);
-                
-                ImageWidth = width;
-                ImageHeight = height;
                 // Halcon 图像自适应显示
                 // 在新的线程里用如下方式更新到界面
                 _ = Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
                 (ThreadStart)delegate ()
                 {
-                    //SetHalconScalingZoom();
-                    // Halcon 自带的方法
                     Halcon.SetFullImagePart();
                 }
                 );

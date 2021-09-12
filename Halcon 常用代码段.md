@@ -187,26 +187,36 @@ Halcon.SetFullImagePart();
 # 14. Halcon 控件坐标对应的图像坐标
 
 ```c#
-// Halcon 控件宽高
-double cHeight = Halcon.ActualHeight;
-// Halcon 图像区域
-double x0 = Halcon.HImagePart.X;
-double y0 = Halcon.HImagePart.Y;
-double imHeight = Halcon.HImagePart.Height;
-// Halcon 图像区域是等比例缩放的
-double ratio = imHeight / cHeight;
-// 当前鼠标点相对于 Halcon 图像区域的坐标
-double x1 = (ratio * x) + x0;
-double y1 = (ratio * y) + y0;
-StrMousePostion = "X = " + (int)x1 + ", " + "Y = " + (int)y1;
-if (y1 < 0 || y1 >= ImageHeight || x1 < 0 || x1 >= ImageWidth)
+// 控件坐标和图像坐标转换，有些许误差
+private Point GetImageHalconPoint(double x, double y, bool flag = true)
 {
-StrImageGrayValue = "";
-}
-else
-{
-HOperatorSet.GetGrayval(ho_Image, y1, x1, out HTuple grayval);
-StrImageGrayValue = grayval.ToString();
+	// Halcon 控件宽高
+	double cHeight = Halcon.ActualHeight;
+	double cWidth = Halcon.ActualWidth;
+	// Halcon 图像区域
+	double x0 = Halcon.HImagePart.X;
+	double y0 = Halcon.HImagePart.Y;
+	double imHeight = Halcon.HImagePart.Height;
+	double imWidth = Halcon.HImagePart.Width;
+	double ratio_y = imHeight / cHeight;
+	double ratio_x = imWidth / cWidth;
+	// 当前点坐标：相对控件或者相对图像
+	double x1;
+	double y1;
+	// Halcon → Image
+	if (flag)
+	{
+
+		x1 = (ratio_x * x) + x0;
+		y1 = (ratio_y * y) + y0;
+	}
+	else
+	// Image → Halcon
+	{
+		x1 = (x - x0) / ratio_x;
+		y1 = (y - y0) / ratio_y;
+	}
+	return new Point(x1, y1);
 }
 
 // Halcon 事件
