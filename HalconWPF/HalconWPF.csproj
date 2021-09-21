@@ -87,6 +87,9 @@
     <Compile Include="UserControl\AcquisitionImage.xaml.cs">
       <DependentUpon>AcquisitionImage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControl\CircleFitting.xaml.cs">
+      <DependentUpon>CircleFitting.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControl\ClipNumberAndAngle.xaml.cs">
       <DependentUpon>ClipNumberAndAngle.xaml</DependentUpon>
     </Compile>
@@ -94,9 +97,14 @@
       <DependentUpon>ImageReadSave.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\AcquisitionImageViewModel.cs" />
+    <Compile Include="ViewModel\CircleFittingViewModel.cs" />
     <Compile Include="ViewModel\ClipNumberAndAngleViewModel.cs" />
     <Compile Include="ViewModel\ImageReadSaveViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="UserControl\PcbDefectDetection.xaml.cs">
+      <DependentUpon>PcbDefectDetection.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\PcbDefectDetectionViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -125,11 +133,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControl\CircleFitting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControl\ClipNumberAndAngle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControl\ImageReadSave.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl\PcbDefectDetection.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -161,7 +177,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resource\Halcon\CircleFitting.txt" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resource\Image\icon.ico" />
   </ItemGroup>
@@ -201,6 +219,12 @@
   <ItemGroup>
     <Resource Include="Resource\Halcon\AcquisitionImage.txt" />
     <Resource Include="Resource\Halcon\ClipNumberAndAngle.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Halcon\ImageReadSave.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Halcon\PcbDefectDetection.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

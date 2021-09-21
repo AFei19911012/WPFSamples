@@ -34,6 +34,7 @@
                 <Image Source="Resource/Image/icon.ico" Height="32" HorizontalAlignment="Left" Margin="10,3"/>
                 <hc:OutlineText Margin="3" Text="Halcon WPF" FontSize="32" FontWeight="Bold" Fill="{DynamicResource PrimaryBrush}" Stroke="Violet" StrokeThickness="2"/>
             </StackPanel>
+            <Separator VerticalAlignment="Bottom" Background="{DynamicResource PrimaryBrush}"/>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="250"/>

@@ -1,7 +1,6 @@
 ﻿
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
-using HalconDotNet;
 using HalconWPF.Model;
 using HalconWPF.UserControl;
 using ICSharpCode.AvalonEdit;
@@ -99,6 +98,14 @@ namespace HalconWPF.ViewModel
             {
                 _ = MainContent.Children.Add(new ClipNumberAndAngle());
             }
+            else if (name == "CircleFitting")
+            {
+                _ = MainContent.Children.Add(new CircleFitting());
+            }
+            else if (name == "PcbDefectDetection")
+            {
+                _ = MainContent.Children.Add(new PcbDefectDetection());
+            }
         }
 
         /// <summary>
@@ -117,6 +124,8 @@ namespace HalconWPF.ViewModel
                 new DataModel{ Name = "AcquisitionImage", ImgPath="pack://application:,,,/Resource/Image/A.png"},
                 new DataModel{ Name = "ImageReadSave", ImgPath="pack://application:,,,/Resource/Image/I.png"},
                 new DataModel{ Name = "ClipNumberAndAngle", ImgPath="pack://application:,,,/Resource/Image/C.png"},
+                new DataModel{ Name = "CircleFitting", ImgPath="pack://application:,,,/Resource/Image/C.png"},
+                new DataModel{ Name = "PcbDefectDetection", ImgPath="pack://application:,,,/Resource/Image/P.png"},
             };
         }
     }

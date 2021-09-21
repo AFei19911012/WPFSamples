@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hdevelop file_version="1.2" halcon_version="18.11.0.1">
+<procedure name="main">
+<interface/>
+<body>
+<c>* **********************************************************</c>
+<c>* 案例：散点拟合圆</c>
+<c>* **********************************************************</c>
+<l>dev_update_window ('off')</l>
+<l>dev_close_window ()</l>
+<l>dev_open_window (0, 0, 640, 480, 'white', WindowHandle)</l>
+<l>set_display_font (WindowHandle, 16, 'mono', 'true', 'false')</l>
+<l>dev_set_line_width (2)</l>
+<c>* 至少需要三个点</c>
+<l>Rows := []</l>
+<l>Cols := []</l>
+<l>Number := 10</l>
+<l>Center_x := 240</l>
+<l>Center_y := 320</l>
+<l>R := 200</l>
+<l>for Index := 0 to Number-1 by 1</l>
+<l>    x := Center_x + R*cos(Index*2*3.14 / Number)</l>
+<l>    y := Center_y + R*sin(Index*2*3.14 / Number)</l>
+<l>    Rows := [Rows, x]</l>
+<l>    Cols := [Cols, y]</l>
+<l>endfor</l>
+<c>* 画点</c>
+<l>gen_cross_contour_xld (Cross, Rows, Cols, 30, 0.785398)</l>
+<l>dev_set_color ('blue')</l>
+<l>dev_display (Cross)</l>
+<c>* 拟合圆</c>
+<l>gen_contour_polygon_xld (Contour, Rows, Cols)</l>
+<l>fit_circle_contour_xld (Contour, 'geotukey', -1, 0, 0, 3, 2, Row, Column, Radius, StartPhi, EndPhi, PointOrder)</l>
+<c>* 生成圆</c>
+<l>gen_circle_contour_xld (ContCircle, Row, Column, Radius, 0, 6.28318, 'positive', 1)</l>
+<l>dev_disp_text (Row + ', ' + Column + ', ' + Radius, 'image', Row, Column, 'black', [], [])</l>
+<l>dev_set_color ('magenta')</l>
+<l>dev_display (ContCircle)</l>
+<l>dev_update_window ('on')</l>
+</body>
+<docu id="main">
+<parameters/>
+</docu>
+</procedure>
+</hdevelop>

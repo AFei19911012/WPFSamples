@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hdevelop file_version="1.2" halcon_version="18.11.0.1">
+<procedure name="main">
+<interface/>
+<body>
+<c>* **********************************************************</c>
+<c>* PCB 缺陷检测</c>
+<c>* **********************************************************</c>
+<l>dev_update_window ('off')</l>
+<c>* 读取图像</c>
+<l>read_image (Image, 'pcb')</l>
+<c>* 常规设置</c>
+<l>dev_close_window ()</l>
+<l>get_image_size (Image, Width, Height)</l>
+<l>dev_open_window (0, 0, Width, Height, 'black', WindowHandle)</l>
+<c>* 闭运算</c>
+<l>gray_opening_shape (Image, ImageOpening, 7, 7, 'octagon')</l>
+<c>* 开运算</c>
+<l>gray_closing_shape (Image, ImageClosing, 7, 7, 'octagon')</l>
+<c>* 动态阈值</c>
+<l>dyn_threshold (ImageOpening, ImageClosing, RegionDynThresh, 75, 'not_equal')</l>
+<l>dev_display (Image)</l>
+<l>dev_set_color ('red')</l>
+<l>dev_display (RegionDynThresh)</l>
+<l>dev_update_window ('on')</l>
+</body>
+<docu id="main">
+<parameters/>
+</docu>
+</procedure>
+</hdevelop>
