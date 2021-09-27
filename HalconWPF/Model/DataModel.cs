@@ -22,5 +22,10 @@ namespace HalconWPF.Model
         }
 
         public string ImgPath { get; set; }
+
+        public double ImageX { get; set; }
+        public double ImageY { get; set; }
+        public double MachineX { get; set; }
+        public double MachineY { get; set; }
     }
 }

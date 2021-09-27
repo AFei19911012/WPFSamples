@@ -1,0 +1,86 @@
+﻿<UserControl x:Class="HalconWPF.UserControl.CalibrationWithPoints"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:halcon="clr-namespace:HalconDotNet;assembly=halcondotnet"
+             xmlns:viewmodel="clr-namespace:HalconWPF.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <viewmodel:CalibrationWithPointsViewModel/>
+    </UserControl.DataContext>
+    <hc:Interaction.Triggers>
+        <hc:EventTrigger EventName="Loaded">
+            <hc:EventToCommand Command="{Binding CmdLoaded}" PassEventArgsToCommand="True"/>
+        </hc:EventTrigger>
+    </hc:Interaction.Triggers>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <halcon:HSmartWindowControlWPF Name="HalconWPF"/>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <DataGrid Margin="3" Width="400" SelectionMode="Single" HeadersVisibility="All" AutoGenerateColumns="False"
+                          CanUserSortColumns="False" CanUserResizeColumns="False" ItemsSource="{Binding DataList}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="*" Header="ImageX" Binding="{Binding ImageX, StringFormat={}{0:F3}}"/>
+                        <DataGridTextColumn Width="*" Header="ImageY" Binding="{Binding ImageY, StringFormat={}{0:F3}}"/>
+                        <DataGridTextColumn Width="*" Header="MachineX" Binding="{Binding MachineX, StringFormat={}{0:F2}}"/>
+                        <DataGridTextColumn Width="*" Header="MachineY" Binding="{Binding MachineY, StringFormat={}{0:F2}}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <GroupBox Grid.Row="1" Header="Affine Transformation" Margin="3" Style="{StaticResource GroupBoxTab}">
+                    <UniformGrid Rows="2" Columns="3">
+                        <hc:Shield Subject="a1=" hc:BorderElement.CornerRadius="0" Color="{DynamicResource PrimaryBrush}" Margin="2">
+                            <TextBox IsReadOnly="True" hc:BorderElement.CornerRadius="0" BorderThickness="0" Background="Transparent" VerticalAlignment="Center"
+                                     Height="30" Text="{Binding ValueA1, StringFormat={}{0:F8}}"/>
+                        </hc:Shield>
+                        <hc:Shield Subject="b1=" hc:BorderElement.CornerRadius="0" Color="{DynamicResource PrimaryBrush}">
+                            <TextBox IsReadOnly="True" hc:BorderElement.CornerRadius="0" BorderThickness="0" Background="Transparent" VerticalAlignment="Center"
+                                     Height="30" Text="{Binding ValueB1, StringFormat={}{0:F8}}"/>
+                        </hc:Shield>
+                        <hc:Shield Subject="c1=" hc:BorderElement.CornerRadius="0" Color="{DynamicResource PrimaryBrush}">
+                            <TextBox IsReadOnly="True" hc:BorderElement.CornerRadius="0" BorderThickness="0" Background="Transparent" VerticalAlignment="Center"
+                                     Height="30" Text="{Binding ValueC1, StringFormat={}{0:F8}}"/>
+                        </hc:Shield>
+                        <hc:Shield Subject="a2=" hc:BorderElement.CornerRadius="0" Color="{DynamicResource PrimaryBrush}">
+                            <TextBox IsReadOnly="True" hc:BorderElement.CornerRadius="0" BorderThickness="0" Background="Transparent" VerticalAlignment="Center"
+                                     Height="30" Text="{Binding ValueA2, StringFormat={}{0:F8}}"/>
+                        </hc:Shield>
+                        <hc:Shield Subject="b2=" hc:BorderElement.CornerRadius="0" Color="{DynamicResource PrimaryBrush}">
+                            <TextBox IsReadOnly="True" hc:BorderElement.CornerRadius="0" BorderThickness="0" Background="Transparent" VerticalAlignment="Center"
+                                     Height="30" Text="{Binding ValueB2, StringFormat={}{0:F8}}"/>
+                        </hc:Shield>
+                        <hc:Shield Subject="c2=" hc:BorderElement.CornerRadius="0" Color="{DynamicResource PrimaryBrush}">
+                            <TextBox IsReadOnly="True" hc:BorderElement.CornerRadius="0" BorderThickness="0" Background="Transparent" VerticalAlignment="Center"
+                                     Height="30" Text="{Binding ValueC2, StringFormat={}{0:F8}}"/>
+                        </hc:Shield>
+                    </UniformGrid>
+                </GroupBox>
+            </Grid>
+        </Grid>
+
+        <hc:ElementGroup Grid.Row="1" Orientation="Horizontal">
+            <Button Content="Load Image" Command="{Binding CmdButtonEvent}" CommandParameter="LoadImage"/>
+            <Button Content="Calibration" Command="{Binding CmdButtonEvent}" CommandParameter="Calibration"/>
+            <Button Content="Validation" Command="{Binding CmdButtonEvent}" CommandParameter="Validation"/>
+            <Button Content="Save Image" Command="{Binding CmdButtonEvent}" CommandParameter="SaveImage"/>
+            <hc:Shield Subject="Mouse Position" Height="30" hc:BorderElement.CornerRadius="0" Color="{DynamicResource PrimaryBrush}">
+                <TextBlock Text="{Binding ShowingText}" Style="{StaticResource TextBlockDefault}"/>
+            </hc:Shield>
+        </hc:ElementGroup>
+    </Grid>
+</UserControl>

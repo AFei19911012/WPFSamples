@@ -37,7 +37,6 @@ namespace HalconWPF.ViewModel
             HOperatorSet.GenEmptyObj(out HObject ho_ImageOpening);
             HOperatorSet.GenEmptyObj(out HObject ho_ImageClosing);
             HOperatorSet.GenEmptyObj(out HObject ho_RegionDynThresh);
-
             ho_Image.Dispose();
             ho_ImageOpening.Dispose();
             ho_ImageClosing.Dispose();
@@ -56,6 +55,7 @@ namespace HalconWPF.ViewModel
             ho_ImageOpening.Dispose();
             ho_ImageClosing.Dispose();
             ho_RegionDynThresh.Dispose();
+            // 图像自适应显示
             Halcon.SetFullImagePart();
         }
     }

@@ -84,8 +84,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\DataModel.cs" />
+    <Compile Include="Model\HalColor.cs" />
+    <Compile Include="Model\HalDrawing.cs" />
+    <Compile Include="Model\HDevelopExport.cs" />
     <Compile Include="UserControl\AcquisitionImage.xaml.cs">
       <DependentUpon>AcquisitionImage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\CalibrationWithPoints.xaml.cs">
+      <DependentUpon>CalibrationWithPoints.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControl\CircleFitting.xaml.cs">
       <DependentUpon>CircleFitting.xaml</DependentUpon>
@@ -97,6 +103,7 @@
       <DependentUpon>ImageReadSave.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\AcquisitionImageViewModel.cs" />
+    <Compile Include="ViewModel\CalibrationWithPointsViewModel.cs" />
     <Compile Include="ViewModel\CircleFittingViewModel.cs" />
     <Compile Include="ViewModel\ClipNumberAndAngleViewModel.cs" />
     <Compile Include="ViewModel\ImageReadSaveViewModel.cs" />
@@ -130,6 +137,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControl\AcquisitionImage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl\CalibrationWithPoints.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -225,6 +236,13 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resource\Halcon\PcbDefectDetection.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Halcon\CalibrationWithPoints.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Image\calibration_circle.bmp" />
+    <Resource Include="Resource\Image\test_circle.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
