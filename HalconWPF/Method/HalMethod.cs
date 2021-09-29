@@ -1,22 +1,24 @@
 ﻿using HalconDotNet;
+using HalconWPF.Halcon;
+using System.Runtime.InteropServices;
 
-namespace HalconWPF.Model
+namespace HalconWPF.Method
 {
     ///
     /// ----------------------------------------------------------------
     /// Copyright @Taosy.W 2021 All rights reserved
     /// Author      : Taosy.W
-    /// Created Time: 2021/9/27 23:48:49
+    /// Created Time: 2021/9/29 15:47:10
     /// Description :
     /// ------------------------------------------------------
     /// Version      Modified Time         Modified By    Modified Content
-    /// V1.0.0.0     2021/9/27 23:48:49    Taosy.W                 
+    /// V1.0.0.0     2021/9/29 15:47:10    Taosy.W                 
     ///
-    public class HDevelopExport
+    public static class HalMethod
     {
         // Chapter: Graphics / Text
         // Short Description: Set font independent of OS 
-        public static void SetDisplayFont(HTuple hv_WindowHandle, HTuple hv_Size, HTuple hv_Font, HTuple hv_Bold, HTuple hv_Slant)
+        public static void Set_display_font(HTuple hv_WindowHandle, HTuple hv_Size, HTuple hv_Font, HTuple hv_Bold, HTuple hv_Slant)
         {
             // Local iconic variables 
 
@@ -235,6 +237,103 @@ namespace HalconWPF.Model
 
                 throw HDevExpDefaultException;
             }
+        }
+
+        /// <summary>
+        /// 设置 Halcon 窗口显示字体
+        /// </summary>
+        /// <param name="ho_Window"></param>
+        /// <param name="fontsize"></param>
+        /// <param name="fontfamily"></param>
+        /// <param name="fontbold"></param>
+        /// <param name="fontslant"></param>
+        public static void SetDisplayFont(this HWindow ho_Window, int fontsize = 16, string fontfamily = "sans", string fontbold = "true", string fontslant = "false")
+        {
+            Set_display_font(ho_Window, fontsize, fontfamily, fontbold, fontslant);
+        }
+
+        /// <summary>
+        /// 显示文本到 Halcon 窗口
+        /// </summary>
+        /// <param name="ho_Window"></param>
+        /// <param name="text"></param>
+        /// <param name="row"></param>
+        /// <param name="col"></param>
+        /// <param name="fontcolor"></param>
+        public static void DispText(this HWindow ho_Window, string text, HTuple row, HTuple col, string co = "image", string fontcolor = "black")
+        {
+            HOperatorSet.DispText(ho_Window, text, co, row, col, fontcolor, new HTuple(), new HTuple());
+        }
+
+        /// <summary>
+        /// 单通道 Halcon 图像 → 灰度值
+        /// </summary>
+        /// <param name="ho_Image"></param>
+        /// <returns></returns>
+        public static void GetImageGrayValue(HImage ho_Image, out byte[] grayValue)
+        {
+            HOperatorSet.GetImagePointer1(ho_Image, out HTuple hv_Pointer, out HTuple hv_Type, out HTuple hv_Width, out HTuple hv_Height);
+            int len = hv_Width * hv_Height;
+            grayValue = new byte[len];
+            Marshal.Copy(hv_Pointer, grayValue, 0, len);
+            return;
+        }
+
+        /// <summary>
+        /// 三通道 Halcon 图像 → R、G、B 值
+        /// </summary>
+        /// <param name="ho_Image"></param>
+        /// <returns></returns>
+        public static void GetImageMultiValue(HImage ho_Image, out byte[] R, out byte[] G, out byte[] B)
+        {
+            HOperatorSet.GetImagePointer3(ho_Image, out HTuple hv_PointerRed, out HTuple hv_PointerGreen, out HTuple hv_PointerBlue, out HTuple hv_Type, out HTuple hv_Width, out HTuple hv_Height);
+            int len = hv_Width * hv_Height;
+            R = new byte[len];
+            G = new byte[len];
+            B = new byte[len];
+            Marshal.Copy(hv_PointerRed, R, 0, len);
+            Marshal.Copy(hv_PointerGreen, G, 0, len);
+            Marshal.Copy(hv_PointerBlue, B, 0, len);
+            return;
+        }
+
+        /// <summary>
+        /// 获取相机信息
+        /// </summary>
+        /// <returns></returns>
+        public static string GetInfoFramegrabber()
+        {
+            HTuple hv_Information = new HTuple();
+            HTuple hv_ValueList = new HTuple();
+            hv_Information.Dispose();
+            hv_ValueList.Dispose();
+            HOperatorSet.InfoFramegrabber("GigEVision2", "device", out hv_Information, out hv_ValueList);
+            //HOperatorSet.InfoFramegrabber("GenICamTL", "device", out hv_Information, out hv_ValueList);
+            //HOperatorSet.InfoFramegrabber("MVision", "device", out hv_Information, out hv_ValueList);
+            hv_Information.Dispose();
+            string camInfo = "";
+            if (hv_ValueList.Length > 0)
+            {
+                // MVision
+                camInfo = hv_ValueList;
+                // GigEVision2
+                if (camInfo.Contains("device"))
+                {
+                    string[] strs = camInfo.Split('|');
+                    camInfo = strs[1].Trim().Split(':')[1];
+                }
+            }
+            return camInfo;
+        }
+
+        /// <summary>
+        /// Halcon 颜色
+        /// </summary>
+        /// <param name="color"></param>
+        /// <returns></returns>
+        public static string GetHalconColor(this HalColor color)
+        {
+            return color.ToString().Replace("_", " ");
         }
     }
 }

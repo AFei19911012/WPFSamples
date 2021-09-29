@@ -1,6 +1,8 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using HalconDotNet;
+using HalconWPF.Halcon;
+using HalconWPF.Method;
 using HalconWPF.UserControl;
 using System;
 using System.Windows;
@@ -67,7 +69,7 @@ namespace HalconWPF.ViewModel
                 // 按面积选择，使用 Halcon 特征直方图工具来定
                 HRegion regions_selected = region_connected.SelectShape("area", "and", 5000, 8000);
                 // 填充
-                ho_Window.SetDraw("fill");
+                ho_Window.SetDraw(HalDrawing.margin.ToString());
                 // 颜色
                 ho_Window.SetColored(12);
                 // 显示
@@ -79,9 +81,10 @@ namespace HalconWPF.ViewModel
                 // 显示箭头
                 double len = 80;
                 ho_Window.SetColor("blue");
+                ho_Window.SetLineWidth(3);
                 ho_Window.DispArrow(rows, columns, rows - (len * phis.TupleSin()), columns + (len * phis.TupleCos()), 4);
                 // 显示文本 设置为 image 不是 window
-                HOperatorSet.DispText(ho_Window, areas + "\n" + phis.TupleDeg() + " degrees", "image", rows, columns, "black", new HTuple(), new HTuple());
+                ho_Window.DispText(areas + "\n" + phis.TupleDeg() + " degrees", rows, columns);
             }
             else if (btn == "SaveWindow")
             {

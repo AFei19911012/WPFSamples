@@ -14,10 +14,8 @@ Center_x := 240
 Center_y := 320
 R := 200
 for Index := 0 to Number-1 by 1
-    x := Center_x + R*cos(Index*2*3.14 / Number)
-    y := Center_y + R*sin(Index*2*3.14 / Number)
-    Rows := [Rows, x]
-    Cols := [Cols, y]
+    Rows[Index] := Center_x + R*cos(Index*2*3.14 / Number)
+    Cols[Index] := Center_y + R*sin(Index*2*3.14 / Number)
 endfor
 * »­µã
 gen_cross_contour_xld (Cross, Rows, Cols, 30, 0.785398)

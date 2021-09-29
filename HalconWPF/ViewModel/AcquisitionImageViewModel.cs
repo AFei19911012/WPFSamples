@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using HalconDotNet;
+using HalconWPF.Method;
 using HalconWPF.UserControl;
 using System;
 using System.Threading;
@@ -54,10 +55,13 @@ namespace HalconWPF.ViewModel
             hv_AcqHandle = new HTuple();
             HOperatorSet.GenEmptyObj(out ho_Image);
             hv_AcqHandle.Dispose();
-            // 启动摄像头
-            //HOperatorSet.OpenFramegrabber("MVision", 1, 1, 0, 0, 0, 0, "progressive", 8, "default", -1, "false", "auto", "U3V:00F86140145 MV-CE050-30UC", 0, -1, out hv_AcqHandle);
+            // 获取相机信息
+            string camInfo = HalMethod.GetInfoFramegrabber();
+            HandyControl.Controls.Growl.Info(camInfo);
+            // 启动相机
+            HOperatorSet.OpenFramegrabber("GigEVision2", 0, 0, 0, 0, 0, 0, "progressive", -1, "default", -1, "false", "default", "default", 0, -1, out hv_AcqHandle);
             // 启动笔记本摄像头
-            HOperatorSet.OpenFramegrabber("DirectShow", 1, 1, 0, 0, 0, 0, "default", 8, "rgb", -1, "false", "default", "[0] ", 0, -1, out hv_AcqHandle);
+            //HOperatorSet.OpenFramegrabber("DirectShow", 1, 1, 0, 0, 0, 0, "default", 8, "rgb", -1, "false", "default", "[0] ", 0, -1, out hv_AcqHandle);
             HOperatorSet.GrabImageStart(hv_AcqHandle, -1);
             ho_Image.Dispose();
             HOperatorSet.GrabImageAsync(out ho_Image, hv_AcqHandle, -1);
@@ -84,7 +88,11 @@ namespace HalconWPF.ViewModel
                 hv_AcqHandle = new HTuple();
                 HOperatorSet.GenEmptyObj(out ho_Image);
                 hv_AcqHandle.Dispose();
+                // 启动相机
                 //HOperatorSet.OpenFramegrabber("MVision", 1, 1, 0, 0, 0, 0, "progressive", 8, "default", -1, "false", "auto", "U3V:00F86140145 MV-CE050-30UC", 0, -1, out hv_AcqHandle);
+                //HOperatorSet.OpenFramegrabber("MVision", 1, 1, 0, 0, 0, 0, "progressive", 8, "default", -1, "false", "auto", "fefault", 0, -1, out hv_AcqHandle);
+                //HOperatorSet.OpenFramegrabber("GenICamTL", 0, 0, 0, 0, 0, 0, "progressive", -1, "default", -1, "false", "default", "default", 0, -1, out hv_AcqHandle);
+                //HOperatorSet.OpenFramegrabber("GigEVision2", 0, 0, 0, 0, 0, 0, "progressive", -1, "default", -1, "false", "default", "default", 0, -1, out hv_AcqHandle);
                 // 启动笔记本自带摄像头
                 HOperatorSet.OpenFramegrabber("DirectShow", 1, 1, 0, 0, 0, 0, "default", 8, "rgb", -1, "false", "default", "[0] ", 0, -1, out hv_AcqHandle);
                 HOperatorSet.GrabImageStart(hv_AcqHandle, -1);

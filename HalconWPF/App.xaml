@@ -12,6 +12,7 @@
                 <ResourceDictionary Source="Resource/Style/Brushes.xaml"/>
                 <ResourceDictionary Source="Resource/Style/Primary.xaml"/>
                 <ResourceDictionary Source="Resource/Style/Style.xaml"/>
+                <ResourceDictionary Source="Resource/Style/Geometry.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

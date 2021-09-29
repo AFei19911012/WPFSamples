@@ -1,6 +1,8 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using HalconDotNet;
+using HalconWPF.Halcon;
+using HalconWPF.Method;
 using HalconWPF.Model;
 using HalconWPF.UserControl;
 using Microsoft.Win32;
@@ -199,15 +201,14 @@ namespace HalconWPF.ViewModel
                 // 绘制圆心
                 HOperatorSet.GenCrossContourXld(out ho_Cross, hv_Row, hv_Column, 50, 0.785398);
                 ho_Window.DispObj(ho_Cross);
-                HDevelopExport.SetDisplayFont(ho_Window, 16, "sans", "true", "false");
+                ho_Window.SetDisplayFont();
                 // 计算仿射矩阵
                 hv_HomMat2D = new HTuple();
                 hv_HomMat2D.Dispose();
                 HOperatorSet.VectorToHomMat2d(hv_Row, hv_Column, hv_Machine_x, hv_Machine_y, out hv_HomMat2D);
                 for (int i = 0; i < DataList.Count; i++)
                 {
-                    DataList[i].ImageX = hv_Column[i];
-                    DataList[i].ImageY = hv_Row[i];
+                    DataList[i] = new DataModel { ImageX = hv_Column[i], ImageY = hv_Row[i], MachineX = DataList[i].MachineX, MachineY = DataList[i].MachineY};
                 }
 
                 // 显示仿射矩阵
@@ -237,7 +238,87 @@ namespace HalconWPF.ViewModel
             // 验证
             else if (btn == "Validation")
             {
+                HRegion ho_Regions = ho_Image.LocalThreshold("adapted_std_deviation", "dark", new HTuple(), new HTuple());
+                ho_Regions = ho_Regions.FillUp();
+                HRegion ho_ConnectedRegions = ho_Regions.Connection();
+                HRegion ho_SelectedRegions = ho_ConnectedRegions.SelectShape("roundness", "and", 0.9, 1);
+                ho_Window.DispObj(ho_SelectedRegions);
+                HXLDCont ho_Contours = ho_SelectedRegions.GenContourRegionXld("center");
+                // 变量初始化
+                HTuple hv_Row = new HTuple();
+                HTuple hv_Column = new HTuple();
+                HTuple hv_Radius = new HTuple();
+                HTuple hv_StartPhi = new HTuple();
+                HTuple hv_EndPhi = new HTuple();
+                HTuple hv_PointOrder = new HTuple();
+                HTuple hv_Qx = new HTuple();
+                HTuple hv_Qy = new HTuple();
+                HOperatorSet.GenEmptyObj(out HObject ho_Cross);
+                hv_Row.Dispose();
+                hv_Column.Dispose();
+                hv_Radius.Dispose();
+                hv_StartPhi.Dispose();
+                hv_EndPhi.Dispose();
+                hv_PointOrder.Dispose();
+                ho_Cross.Dispose();
+                hv_Qx.Dispose();
+                hv_Qy.Dispose();
+                ho_Contours.FitCircleContourXld("geotukey", -1, 0, 0, 3, 2, out hv_Row, out hv_Column, out hv_Radius, out hv_StartPhi, out hv_EndPhi, out hv_PointOrder);
+                HOperatorSet.GenCrossContourXld(out ho_Cross, hv_Row, hv_Column, 50, 0.785398);
+                ho_Window.DispObj(ho_Cross);
+                // 验证
+                HOperatorSet.AffineTransPoint2d(hv_HomMat2D, hv_Row, hv_Column, out hv_Qx, out hv_Qy);
+                HObject ho_Contour = new HObject();
+                HTuple hv_Distance = new HTuple();
+                ho_Contour.Dispose();
+                hv_Distance.Dispose();
+                // 画横线
+                using (HDevDisposeHelper dh = new HDevDisposeHelper())
+                {
+                    ho_Contour.Dispose();
+                    HOperatorSet.GenContourPolygonXld(out ho_Contour, hv_Row.TupleSelect(1).TupleConcat(hv_Row.TupleSelect(2)), hv_Column.TupleSelect(1).TupleConcat(hv_Column.TupleSelect(2)));
+                }
+                ho_Window.DispObj(ho_Contour);
+                // 计算圆心距
+                using (HDevDisposeHelper dh = new HDevDisposeHelper())
+                {
+                    hv_Distance.Dispose();
+                    HOperatorSet.DistancePp(hv_Qy.TupleSelect(1), hv_Qx.TupleSelect(1), hv_Qy.TupleSelect(2), hv_Qx.TupleSelect(2), out hv_Distance);
+                }
+                // 显示文本
+                ho_Window.DispText(hv_Distance + "cm", hv_Row.TupleSelect(1) + 10, hv_Column.TupleSelect(1));
+                // 画竖线
+                using (HDevDisposeHelper dh = new HDevDisposeHelper())
+                {
+                    ho_Contour.Dispose();
+                    HOperatorSet.GenContourPolygonXld(out ho_Contour, hv_Row.TupleSelect(4).TupleConcat(hv_Row.TupleSelect(6)), hv_Column.TupleSelect(4).TupleConcat(hv_Column.TupleSelect(6)));
+                }
+                ho_Window.DispObj(ho_Contour);
+                // 计算圆心距
+                using (HDevDisposeHelper dh = new HDevDisposeHelper())
+                {
+                    hv_Distance.Dispose();
+                    HOperatorSet.DistancePp(hv_Qy.TupleSelect(4), hv_Qx.TupleSelect(4), hv_Qy.TupleSelect(6), hv_Qx.TupleSelect(6), out hv_Distance);
+                }
+                // 显示文本
+                ho_Window.DispText(hv_Distance + "cm", hv_Row.TupleSelect(4), hv_Column.TupleSelect(4));
 
+                // 释放内存
+                ho_Regions.Dispose();
+                ho_ConnectedRegions.Dispose();
+                ho_SelectedRegions.Dispose();
+                ho_Contours.Dispose();
+                ho_Cross.Dispose();
+                ho_Contour.Dispose();
+                hv_Row.Dispose();
+                hv_Column.Dispose();
+                hv_Radius.Dispose();
+                hv_StartPhi.Dispose();
+                hv_EndPhi.Dispose();
+                hv_PointOrder.Dispose();
+                hv_Qx.Dispose();
+                hv_Qy.Dispose();
+                hv_Distance.Dispose();
             }
             // 保存图像
             else if (btn == "SaveImage")

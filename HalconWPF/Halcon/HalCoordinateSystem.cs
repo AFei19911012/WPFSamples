@@ -1,18 +1,18 @@
-﻿namespace HalconWPF.Model
+﻿namespace HalconWPF.Halcon
 {
     ///
     /// ----------------------------------------------------------------
     /// Copyright @Taosy.W 2021 All rights reserved
     /// Author      : Taosy.W
-    /// Created Time: 2021/9/27 23:30:11
+    /// Created Time: 2021/9/29 15:51:38
     /// Description :
     /// ------------------------------------------------------
     /// Version      Modified Time         Modified By    Modified Content
-    /// V1.0.0.0     2021/9/27 23:30:11    Taosy.W                 
+    /// V1.0.0.0     2021/9/29 15:51:38    Taosy.W                 
     ///
-    public enum HalDrawing
+    public enum HalCoordinateSystem
     {
-        margin = 0,
-        fill
+        window = 0,
+        image
     }
 }

@@ -1,6 +1,8 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using HalconDotNet;
+using HalconWPF.Halcon;
+using HalconWPF.Method;
 using HalconWPF.UserControl;
 using System;
 using System.Windows;
@@ -66,8 +68,8 @@ namespace HalconWPF.ViewModel
             double r = 100;
             for (int i = 0; i < number; i++)
             {
-                hv_Rows[i] = center_x + r * Math.Cos(i * 2 * Math.PI / number);
-                hv_Cols[i] = center_y + r * Math.Sin(i * 2 * Math.PI / number);
+                hv_Rows[i] = center_x + (r * Math.Cos(i * 2 * Math.PI / number));
+                hv_Cols[i] = center_y + (r * Math.Sin(i * 2 * Math.PI / number));
             }
             HImage ho_Image = new HImage();
             ho_Image.GenEmptyObj();
@@ -76,7 +78,7 @@ namespace HalconWPF.ViewModel
             ho_Window.SetLineWidth(2);
             // 画十字
             HOperatorSet.GenCrossContourXld(out ho_Cross, hv_Rows, hv_Cols, 30, 0.785398);
-            ho_Window.SetColor("blue");
+            ho_Window.SetColor(HalColor.blue.ToString());
             //ho_Window.SetColored(12);
             ho_Window.DispObj(ho_Cross);
             // 拟合圆
@@ -86,7 +88,7 @@ namespace HalconWPF.ViewModel
             // 生成圆
             HOperatorSet.GenCircleContourXld(out ho_ContCircle, hv_Row, hv_Column, hv_Radius, 0, 6.28318, "positive", 1);
             ho_Window.DispObj(ho_ContCircle);
-            HOperatorSet.DispText(ho_Window, hv_Row + ", " + hv_Column + ", " + hv_Radius, "image", hv_Row, hv_Column, "black", new HTuple(), new HTuple());
+            ho_Window.DispText(hv_Row + ", " + hv_Column + ", " + hv_Radius, hv_Row, hv_Column);
 
             ho_Cross.Dispose();
             ho_Contour.Dispose();

@@ -1,4 +1,4 @@
-﻿namespace HalconWPF.Model
+﻿namespace HalconWPF.Halcon
 {
     ///
     /// ----------------------------------------------------------------

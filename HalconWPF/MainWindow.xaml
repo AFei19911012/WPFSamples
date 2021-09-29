@@ -4,9 +4,8 @@
                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                xmlns:hc="https://handyorg.github.io/handycontrol"
-               xmlns:local="clr-namespace:HalconWPF"
                xmlns:viewmodel="clr-namespace:HalconWPF.ViewModel"
-               xmlns:usercontrol="clr-namespace:HalconWPF.UserControl" xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+               xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
                mc:Ignorable="d"
                ActiveGlowColor="{DynamicResource PrimaryColor}"
                ResizeMode="CanResizeWithGrip"
@@ -49,15 +48,19 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
-                        <hc:SearchBar Style="{StaticResource SearchBarPlus}" hc:InfoElement.Placeholder="Enter key word" Margin="4" 
+                        <hc:SearchBar Style="{StaticResource SearchBarPlus}" hc:InfoElement.Placeholder="Enter key word" Margin="4" hc:BorderElement.CornerRadius="0" 
                                       ShowClearButton="True" IsRealTime="True" Tag="{Binding ElementName=ListBoxDemo}"/>
-                        <ToggleButton Grid.Column="1" Margin="2" Style="{StaticResource DemoInfoSortButtonStyle}" Tag="{Binding ElementName=ListBoxDemo}"/>
-                        <ToggleButton Grid.Column="2" Margin="2" Content="Halcon" hc:BorderElement.CornerRadius="0" IsChecked="{Binding IsOpen,ElementName=DrawerSourceCode}"
-                                      Command="{Binding CmdShowSourceCode}" CommandParameter="{Binding IsOpen,ElementName=DrawerSourceCode}"/>
+                        <hc:ButtonGroup Grid.Column="1">
+                            <ToggleButton Margin="2" hc:BorderElement.CornerRadius="0" Tag="{Binding ElementName=ListBoxDemo}">
+                                <Image Source="Resource/Image/SortAscending_gray_16x.png" Stretch="Uniform" Height="16"/>
+                            </ToggleButton>
+                            <ToggleButton Margin="2" Padding="10" hc:BorderElement.CornerRadius="0" IsChecked="{Binding IsOpen,ElementName=DrawerSourceCode}"
+                                      hc:IconElement.Geometry="{DynamicResource CodeGeometry}" Command="{Binding CmdShowSourceCode}" 
+                                      CommandParameter="{Binding IsOpen,ElementName=DrawerSourceCode}"/>
+                        </hc:ButtonGroup>
                     </Grid>
-                    <ListBox Grid.Row="1" Name="ListBoxDemo" Margin="5" BorderThickness="0" SelectionMode="Single" Style="{StaticResource ListBoxTransparent}"
+                    <ListBox Grid.Row="1" Name="ListBoxDemo" Margin="5" BorderThickness="1" SelectionMode="Single" Style="{StaticResource ListBoxTransparent}"
                              SelectedIndex="{Binding SelectedIndex}" ItemsSource="{Binding DataList}">
                         <hc:Interaction.Triggers>
                             <hc:EventTrigger EventName="SelectionChanged">

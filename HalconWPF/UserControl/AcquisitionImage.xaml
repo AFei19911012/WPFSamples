@@ -23,9 +23,9 @@
         </Grid.RowDefinitions>
         <halcon:HSmartWindowControlWPF Name="HalconWPF"/>
         <hc:ButtonGroup Grid.Row="1" Margin="5">
-            <Button Height="48" Margin="5" Content="Trigger" Command="{Binding CmdTrigger}"/>
-            <Button Height="48" Margin="5" Content="{Binding StrAcqMode}" Command="{Binding CmdRealTime}"/>
-            <Button Height="48" Margin="5" Content="Save" Command="{Binding CmdSave}"/>
+            <Button Height="48" Margin="1" Content="Trigger" Command="{Binding CmdTrigger}"/>
+            <Button Height="48" Margin="1" Content="{Binding StrAcqMode}" Command="{Binding CmdRealTime}"/>
+            <Button Height="48" Margin="1" Content="Save" Command="{Binding CmdSave}"/>
         </hc:ButtonGroup>
     </Grid>
 </UserControl>

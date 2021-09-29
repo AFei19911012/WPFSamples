@@ -19,10 +19,8 @@
 <l>Center_y := 320</l>
 <l>R := 200</l>
 <l>for Index := 0 to Number-1 by 1</l>
-<l>    x := Center_x + R*cos(Index*2*3.14 / Number)</l>
-<l>    y := Center_y + R*sin(Index*2*3.14 / Number)</l>
-<l>    Rows := [Rows, x]</l>
-<l>    Cols := [Cols, y]</l>
+<l>    Rows[Index] := Center_x + R*cos(Index*2*3.14 / Number)</l>
+<l>    Cols[Index] := Center_y + R*sin(Index*2*3.14 / Number)</l>
 <l>endfor</l>
 <c>* 画点</c>
 <l>gen_cross_contour_xld (Cross, Rows, Cols, 30, 0.785398)</l>
