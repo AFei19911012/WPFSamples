@@ -86,12 +86,16 @@
     <Compile Include="Halcon\HalCoordinateSystem.cs" />
     <Compile Include="Helper\DispatcherHelper.cs" />
     <Compile Include="Method\BeepMethod.cs" />
+    <Compile Include="Method\ComMethod.cs" />
     <Compile Include="Method\HalMethod.cs" />
     <Compile Include="Model\DataModel.cs" />
     <Compile Include="Halcon\HalColor.cs" />
     <Compile Include="Halcon\HalDrawing.cs" />
     <Compile Include="UserControl\AcquisitionImage.xaml.cs">
       <DependentUpon>AcquisitionImage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\BearingDefectDetection.xaml.cs">
+      <DependentUpon>BearingDefectDetection.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControl\CalibrationWithPoints.xaml.cs">
       <DependentUpon>CalibrationWithPoints.xaml</DependentUpon>
@@ -106,6 +110,7 @@
       <DependentUpon>ImageReadSave.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\AcquisitionImageViewModel.cs" />
+    <Compile Include="ViewModel\BearingDefectDetectionViewModel.cs" />
     <Compile Include="ViewModel\CalibrationWithPointsViewModel.cs" />
     <Compile Include="ViewModel\CircleFittingViewModel.cs" />
     <Compile Include="ViewModel\ClipNumberAndAngleViewModel.cs" />
@@ -144,6 +149,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControl\AcquisitionImage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl\BearingDefectDetection.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -250,6 +259,16 @@
   <ItemGroup>
     <Resource Include="Resource\Image\calibration_circle.bmp" />
     <Resource Include="Resource\Image\test_circle.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Halcon\BearingDefectDetection.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\ScreenShot\AcquisitionImage.png" />
+    <Resource Include="Resource\ScreenShot\ImageReadSave.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Halcon\TeethDetection.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

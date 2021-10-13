@@ -90,7 +90,7 @@ namespace HalconWPF.ViewModel
             {
                 // 保存窗体，窗体什么样，就保存什么样
                 HImage image = ho_Window.DumpWindowImage();
-                image.WriteImage("png", 0, @"D:\MyPrograms\VisualStudio2019\WPFprograms\WPFSamples\images\clip_image.png");
+                image.WriteImage("png", 0, @"D:\MyPrograms\DataSet\halcon\clip_image.png");
                 HandyControl.Controls.Growl.Info("窗体保存成功。");
             }
         }

@@ -110,6 +110,10 @@ namespace HalconWPF.ViewModel
             {
                 _ = MainContent.Children.Add(new CalibrationWithPoints());
             }
+            else if (name == "BearingDefectDetection")
+            {
+                _ = MainContent.Children.Add(new BearingDefectDetection());
+            }
         }
 
         /// <summary>
@@ -131,6 +135,7 @@ namespace HalconWPF.ViewModel
                 new DataModel{ Name = "CircleFitting", ImgPath="pack://application:,,,/Resource/Image/C.png"},
                 new DataModel{ Name = "PcbDefectDetection", ImgPath="pack://application:,,,/Resource/Image/P.png"},
                 new DataModel{ Name = "CalibrationWithPoints", ImgPath="pack://application:,,,/Resource/Image/C.png"},
+                new DataModel{ Name = "BearingDefectDetection", ImgPath="pack://application:,,,/Resource/Image/B.png"},
             };
         }
     }

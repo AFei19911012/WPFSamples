@@ -99,7 +99,7 @@ namespace HalconWPF.ViewModel
         {
             int x = (int)e.Column;
             int y = (int)e.Row;
-            ShowingText = "x = " + x.ToString("F2") + ", y = " + y.ToString("F2");
+            ShowingText = "x = " + x.ToString() + ", y = " + y.ToString();
         }
 
         public CalibrationWithPointsViewModel()
@@ -135,8 +135,9 @@ namespace HalconWPF.ViewModel
                     Filter = "Image Files (*.png)|*.png|Image Files (*.bmp)|*.bmp|Image Files (*.jpg)|*.jpg",
                     RestoreDirectory = true,
                     Title = "Load Image",
-                    InitialDirectory = @"D:\MyPrograms\VisualStudio2019\WPFprograms\WPFSamples\HalconWPF\Resource\Image",
-                    FileName = "calibration_circle.bmp"
+                    InitialDirectory = @"D:\MyPrograms\DataSet\halcon",
+                    FileName = "calibration_circle.bmp",
+                    FilterIndex = 2,
                 };
                 string filename;
                 if (openFileDialog.ShowDialog() != true)
@@ -238,6 +239,11 @@ namespace HalconWPF.ViewModel
             // 验证
             else if (btn == "Validation")
             {
+                ho_Image = new HImage();
+                ho_Image.Dispose();
+                ho_Image.ReadImage(@"D:\MyPrograms\DataSet\halcon\test_circle.bmp");
+                ho_Window.DispObj(ho_Image);
+                Halcon.SetFullImagePart();
                 HRegion ho_Regions = ho_Image.LocalThreshold("adapted_std_deviation", "dark", new HTuple(), new HTuple());
                 ho_Regions = ho_Regions.FillUp();
                 HRegion ho_ConnectedRegions = ho_Regions.Connection();
@@ -329,7 +335,7 @@ namespace HalconWPF.ViewModel
                     " (*.bmp)|*.bmp|Image Files (*.jpg)|*.jpg",
                     Title = "Save Image",
                     RestoreDirectory = true,
-                    InitialDirectory = @"D:\MyPrograms\VisualStudio2019\WPFprograms\WPFSamples\images",
+                    InitialDirectory = @"D:\MyPrograms\DataSet\halcon",
                     FileName = "result.png"
                 };
                 string filename;

@@ -150,7 +150,7 @@ namespace HalconWPF.ViewModel
             {
                 // 保存窗体，窗体什么样，就保存什么样
                 HImage image = ho_Window.DumpWindowImage();
-                image.WriteImage("png", 0, @"D:\MyPrograms\VisualStudio2019\WPFprograms\WPFSamples\images\window_image.png");
+                image.WriteImage("png", 0, @"D:\MyPrograms\DataSet\halcon\window_image.png");
                 HandyControl.Controls.Growl.Info("窗体保存成功。");
             }
             else if (btn == "SaveImage")
@@ -161,7 +161,7 @@ namespace HalconWPF.ViewModel
                     return;
                 }
                 // 保存原图
-                ho_Image.WriteImage("png", 0, @"D:\MyPrograms\VisualStudio2019\WPFprograms\WPFSamples\images\image_image.png");
+                ho_Image.WriteImage("png", 0, @"D:\MyPrograms\DataSet\halcon\image_image.png");
                 HandyControl.Controls.Growl.Info("图像保存成功。");
             }
         }
