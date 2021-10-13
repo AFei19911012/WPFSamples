@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="HalconWPF.UserControl.TeethDetection"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:halcon="clr-namespace:HalconDotNet;assembly=halcondotnet" 
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:viewmodel="clr-namespace:HalconWPF.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <viewmodel:TeethDetectionViewModel/>
+    </UserControl.DataContext>
+    <!-- 窗体加载时执行 -->
+    <hc:Interaction.Triggers>
+        <hc:EventTrigger EventName="Loaded">
+            <hc:EventToCommand Command="{Binding CmdLoaded}" PassEventArgsToCommand="True"/>
+        </hc:EventTrigger>
+    </hc:Interaction.Triggers>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <halcon:HSmartWindowControlWPF Name="HalconWPF"/>
+        <Separator Grid.Row="1" Background="{DynamicResource PrimaryBrush}"/>
+        <hc:ButtonGroup Grid.Row="2">
+            <Button Content="{Binding StrOperation}" FontSize="30" Cursor="Hand" Height="50" Command="{Binding CmdRun}"/>
+        </hc:ButtonGroup>
+
+        <!-- 消息弹窗的载体 -->
+        <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalAlignment="Right">
+            <StackPanel hc:Growl.GrowlParent="True" VerticalAlignment="Top" Margin="0,10,10,10"/>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

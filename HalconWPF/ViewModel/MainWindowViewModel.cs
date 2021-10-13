@@ -114,6 +114,10 @@ namespace HalconWPF.ViewModel
             {
                 _ = MainContent.Children.Add(new BearingDefectDetection());
             }
+            else if (name == "TeethDetection")
+            {
+                _ = MainContent.Children.Add(new TeethDetection());
+            }
         }
 
         /// <summary>
@@ -136,6 +140,7 @@ namespace HalconWPF.ViewModel
                 new DataModel{ Name = "PcbDefectDetection", ImgPath="pack://application:,,,/Resource/Image/P.png"},
                 new DataModel{ Name = "CalibrationWithPoints", ImgPath="pack://application:,,,/Resource/Image/C.png"},
                 new DataModel{ Name = "BearingDefectDetection", ImgPath="pack://application:,,,/Resource/Image/B.png"},
+                new DataModel{ Name = "TeethDetection", ImgPath="pack://application:,,,/Resource/Image/T.png"},
             };
         }
     }

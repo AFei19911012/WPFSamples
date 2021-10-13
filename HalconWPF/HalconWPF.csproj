@@ -109,6 +109,9 @@
     <Compile Include="UserControl\ImageReadSave.xaml.cs">
       <DependentUpon>ImageReadSave.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControl\TeethDetection.xaml.cs">
+      <DependentUpon>TeethDetection.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\AcquisitionImageViewModel.cs" />
     <Compile Include="ViewModel\BearingDefectDetectionViewModel.cs" />
     <Compile Include="ViewModel\CalibrationWithPointsViewModel.cs" />
@@ -120,6 +123,7 @@
       <DependentUpon>PcbDefectDetection.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\PcbDefectDetectionViewModel.cs" />
+    <Compile Include="ViewModel\TeethDetectionViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -173,6 +177,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControl\PcbDefectDetection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl\TeethDetection.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
