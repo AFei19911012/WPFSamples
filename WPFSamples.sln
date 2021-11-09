@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmCmdBinding", "MvvmCmdBi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HalconWPF", "HalconWPF\HalconWPF.csproj", "{1B174F02-9805-4430-BABB-740EC23D3245}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demos", "Demos\Demos.csproj", "{2EA87DA7-89BD-46C6-B1C1-C65E67BBBE05}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{1B174F02-9805-4430-BABB-740EC23D3245}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B174F02-9805-4430-BABB-740EC23D3245}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B174F02-9805-4430-BABB-740EC23D3245}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EA87DA7-89BD-46C6-B1C1-C65E67BBBE05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EA87DA7-89BD-46C6-B1C1-C65E67BBBE05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EA87DA7-89BD-46C6-B1C1-C65E67BBBE05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EA87DA7-89BD-46C6-B1C1-C65E67BBBE05}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

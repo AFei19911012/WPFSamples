@@ -1,0 +1,12 @@
+﻿<Window x:Class="Demos.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Demos"
+        mc:Ignorable="d"
+        Title="Demos" Height="450" Width="400">
+    <UniformGrid Rows="3">
+        <Button Name="BtnNPOI" Content="NPOI: Excel read and write" Click="BtnNPOI_Click"/>
+    </UniformGrid>
+</Window>
