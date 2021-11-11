@@ -52,3 +52,5 @@ PCB **检测**
 
 ![牙模检测](https://github.com/AFei19911012/WPFSamples/blob/main/HalconWPF/Resource/ScreenShot/TeethDetection.png)
 
+**针脚检测**
+
