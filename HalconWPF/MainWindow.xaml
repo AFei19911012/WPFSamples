@@ -8,16 +8,22 @@
                xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
                mc:Ignorable="d"
                ActiveGlowColor="{DynamicResource PrimaryColor}"
-               ResizeMode="CanResizeWithGrip"
                ShowNonClientArea="True"
                WindowStartupLocation="CenterScreen"
                Background="{DynamicResource RegionBrush}"
-               Title="HalconWPF" 
-               Icon="Resource/Image/icon.ico" 
                Height="600" Width="1000">
     <hc:GlowWindow.DataContext>
         <viewmodel:MainWindowViewModel/>
     </hc:GlowWindow.DataContext>
+
+    <!-- 标题栏内容 -->
+    <hc:GlowWindow.NonClientAreaContent>
+        <StackPanel Orientation="Horizontal">
+            <Image Source="Resource/Image/icon.ico" Height="32" HorizontalAlignment="Left" Margin="10,3"/>
+            <hc:OutlineText Margin="3" Text="Halcon WPF" FontSize="32" FontWeight="Bold" Fill="{DynamicResource PrimaryBrush}" Stroke="Violet" StrokeThickness="2"/>
+        </StackPanel>
+    </hc:GlowWindow.NonClientAreaContent>
+
     <hc:Interaction.Triggers>
         <hc:EventTrigger EventName="Loaded">
             <hc:EventToCommand Command="{Binding CmdLoaded}" PassEventArgsToCommand="True"/>
@@ -29,10 +35,6 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <StackPanel Orientation="Horizontal">
-                <Image Source="Resource/Image/icon.ico" Height="32" HorizontalAlignment="Left" Margin="10,3"/>
-                <hc:OutlineText Margin="3" Text="Halcon WPF" FontSize="32" FontWeight="Bold" Fill="{DynamicResource PrimaryBrush}" Stroke="Violet" StrokeThickness="2"/>
-            </StackPanel>
             <Separator VerticalAlignment="Bottom" Background="{DynamicResource PrimaryBrush}"/>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
@@ -70,8 +72,8 @@
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Image Width="16" Height="16" Source="{Binding ImgPath}"/>
-                                    <TextBlock Margin="6,0,0,0" Text="{Binding Name}"/>
+                                    <Image Width="20" Height="20" Source="{Binding ImgPath}"/>
+                                    <TextBlock Margin="6,3,0,0" Text="{Binding Name}"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>

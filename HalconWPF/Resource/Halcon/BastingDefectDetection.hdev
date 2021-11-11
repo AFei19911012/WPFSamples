@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hdevelop file_version="1.2" halcon_version="18.11.0.1">
+<procedure name="main">
+<interface/>
+<body>
+<c>* **********************************************************</c>
+<c>* 变压器针脚检测</c>
+<c>* **********************************************************</c>
+<c>*</c>
+<l>method := 2</l>
+<l>if (method == 1)</l>
+<c>  * 第一种打光方式</c>
+<l>  dev_update_off ()</l>
+<l>  dev_close_window ()</l>
+<l>  dev_open_window (0, 0, 612, 512, 'white', WindowHandle)</l>
+<l>  set_display_font (WindowHandle, 16, 'mono', 'true', 'false')</l>
+<l>*   dev_set_draw ('margin')</l>
+<l>  dev_set_line_width (1)</l>
+<c>  *</c>
+<l>  list_image_files ('D:/MyPrograms/DataSet/halcon/针脚/01', 'bmp', [], ImageFiles)</l>
+<l>  for Index := 1 to |ImageFiles| by 1</l>
+<l>      read_image (Image, ImageFiles[Index-1])</l>
+<l>      dev_display (Image)</l>
+<c>      * 局部阈值，突出轮廓</c>
+<l>      mean_image (Image, ImageMean, 5, 5)</l>
+<l>      dyn_threshold (Image, ImageMean, RegionDynThresh, 30, 'light')</l>
+<c>      * 饱满</c>
+<l>      closing_circle (RegionDynThresh, RegionClosing, 30)</l>
+<l>      connection (RegionClosing, ConnectedRegions)</l>
+<l>      select_shape (ConnectedRegions, SelectedRegions, 'area', 'and', 100, 99999)</l>
+<l>      shape_trans (SelectedRegions, RegionTrans, 'convex')</l>
+<l>*       dev_display (RegionTrans)</l>
+<l>      sort_region (RegionTrans, SortedRegions, 'first_point', 'true', 'column')</l>
+<l>      area_center (SortedRegions, Area, Row, Column)</l>
+<c>      * 中心点</c>
+<l>      gen_cross_contour_xld (Cross, Row, Column, 100, 0.785398)</l>
+<l>      dev_display (Cross)</l>
+<l>*       disp_continue_message (WindowHandle, 'black', 'true')</l>
+<l>*       stop ()</l>
+<l>      wait_seconds (0.5)</l>
+<l>  endfor</l>
+<l>else</l>
+<c>* 第二种打光方法</c>
+<l>  dev_update_off ()</l>
+<l>  dev_close_window ()</l>
+<l>  dev_open_window (0, 0, 768, 512, 'white', WindowHandle)</l>
+<l>  set_display_font (WindowHandle, 16, 'mono', 'true', 'false')</l>
+<l>  dev_set_draw ('margin')</l>
+<l>  dev_set_line_width (1)</l>
+<c>  *</c>
+<l>  list_image_files ('D:/MyPrograms/DataSet/halcon/针脚/02', 'bmp', [], ImageFiles)</l>
+<l>  for Index := 1 to |ImageFiles| by 1</l>
+<l>      read_image (Image, ImageFiles[Index-1])</l>
+<l>      rgb1_to_gray (Image, GrayImage)</l>
+<c>      * ROI</c>
+<l>      gen_rectangle1 (Rectangle, 0, 500, 2048, 2500)</l>
+<l>      reduce_domain (GrayImage, Rectangle, ImageReduced)</l>
+<c>      * 获取每个针脚大致区域</c>
+<l>      min_max_gray (ImageReduced, ImageReduced, 0, Min, Max, Range)</l>
+<l>      threshold (ImageReduced, Region, 0.8 * Max, Max)</l>
+<l>      dev_display (GrayImage)</l>
+<l>      dilation_circle (Region, RegionDilation, 30)</l>
+<l>      connection (RegionDilation, ConnectedRegions)</l>
+<l>      count_obj (ConnectedRegions, Number)</l>
+<c>      * 大致区域里单独分割</c>
+<l>      gen_empty_region (ROIRegion)</l>
+<l>      for I := 1 to Number by 1</l>
+<l>          select_obj (ConnectedRegions, ObjectSelected, I)</l>
+<l>          reduce_domain (ImageReduced, ObjectSelected, ImageSelected)</l>
+<l>          min_max_gray (ImageSelected, ImageSelected, 0, Min, Max, Range)</l>
+<c>          * 粗略阈值</c>
+<l>          threshold (ImageSelected, Region, 0.9 * Max, Max)</l>
+<l>          closing_circle (Region, RegionClosing, 30)</l>
+<l>          smallest_rectangle1 (RegionClosing, Row1, Column1, Row2, Column2)</l>
+<l>          tuple_min ([Row2 - Row1, Column2 - Column1], Min)</l>
+<l>          tuple_max ([Row2 - Row1, Column2 - Column1], Max)</l>
+<c>          * 光斑太小</c>
+<l>          if (Min &lt; 10)</l>
+<l>              local_threshold (ImageSelected, Region, 'adapted_std_deviation', 'light', [], [])</l>
+<l>              closing_circle (Region, RegionClosing, 30)</l>
+<l>              smallest_rectangle1 (RegionClosing, Row1, Column1, Row2, Column2)</l>
+<l>          endif</l>
+<c>          * 光斑太大，阈值根据针脚的实际尺寸来定</c>
+<l>          if (Max &gt; 42)</l>
+<c>              * 闭操作减小半径</c>
+<l>              closing_circle (Region, RegionClosing, 5)</l>
+<c>              * 选择最大面积</c>
+<l>              connection (RegionClosing, Regions)</l>
+<l>              area_center (Regions, Area, Row, Column)</l>
+<l>              tuple_sort_index (Area, Indices)</l>
+<l>              count_obj (Regions, Len)</l>
+<l>              select_obj (Regions, ObjectSelected, Indices[Len - 1] + 1)     </l>
+<l>              smallest_rectangle1 (ObjectSelected, Row1, Column1, Row2, Column2)</l>
+<l>          endif</l>
+<l>          gen_rectangle1 (Rectangle, Row1, Column1, Row2, Column2)</l>
+<l>          union2 (ROIRegion, Rectangle, ROIRegion)</l>
+<l>      endfor</l>
+<l>      connection (ROIRegion, ConnectedRegions)</l>
+<c>      </c>
+<l>      area_center (ConnectedRegions, Area, Row, Column)</l>
+<l>      gen_cross_contour_xld (Cross, Row, Column, 100, 0.785398)</l>
+<l>      dev_display (ConnectedRegions)</l>
+<l>      dev_display (Cross)</l>
+<l>*       stop () </l>
+<l>      wait_seconds (0.5)</l>
+<l>  endfor</l>
+<l>endif</l>
+</body>
+<docu id="main">
+<parameters/>
+</docu>
+</procedure>
+</hdevelop>

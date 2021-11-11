@@ -94,6 +94,9 @@
     <Compile Include="UserControl\AcquisitionImage.xaml.cs">
       <DependentUpon>AcquisitionImage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControl\BastingDefectDetection.xaml.cs">
+      <DependentUpon>BastingDefectDetection.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControl\BearingDefectDetection.xaml.cs">
       <DependentUpon>BearingDefectDetection.xaml</DependentUpon>
     </Compile>
@@ -113,6 +116,7 @@
       <DependentUpon>TeethDetection.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\AcquisitionImageViewModel.cs" />
+    <Compile Include="ViewModel\BastingDefectDetectionViewModel.cs" />
     <Compile Include="ViewModel\BearingDefectDetectionViewModel.cs" />
     <Compile Include="ViewModel\CalibrationWithPointsViewModel.cs" />
     <Compile Include="ViewModel\CircleFittingViewModel.cs" />
@@ -153,6 +157,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControl\AcquisitionImage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl\BastingDefectDetection.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -277,6 +285,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resource\Halcon\TeethDetection.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Halcon\BastingDefectDetection.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
