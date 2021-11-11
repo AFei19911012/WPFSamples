@@ -54,3 +54,6 @@ PCB **检测**
 
 **针脚检测**
 
+![针脚检测](https://github.com/AFei19911012/WPFSamples/blob/main/HalconWPF/Resource/ScreenShot/BastingDefectDetection1.png)
+
+![针脚检测](https://github.com/AFei19911012/WPFSamples/blob/main/HalconWPF/Resource/ScreenShot/BastingDefectDetection2.png)
