@@ -35,7 +35,7 @@
                 <Button Content="{Binding StrOperation}" FontSize="30" Cursor="Hand" Height="50" Command="{Binding CmdRun}" BorderThickness="0"/>
             </hc:ButtonGroup>
             <Button Grid.Column="1" Content="{Binding StrMethod}" FontFamily="30" Cursor="Hand" Height="50" Command="{Binding CmdChangeMethod}"
-                    BorderThickness="0"/>
+                    hc:BorderElement.CornerRadius="0"/>
         </Grid>
 
         <!-- 消息弹窗的载体 -->

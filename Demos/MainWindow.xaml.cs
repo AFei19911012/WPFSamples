@@ -1,8 +1,12 @@
 ﻿using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace Demos
 {
@@ -11,9 +15,21 @@ namespace Demos
     /// </summary>
     public partial class MainWindow : Window
     {
+        private string Thread_String { get; set; }
+        private string Thread_Para_String { get; set; }
+        private string Task_String { get; set; }
+        private string Task_Para_String { get; set; }
+        private string Timer_String { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
+
+            Thread_String = TB_Thread.Text;
+            Thread_Para_String = TB_ThreadPara.Text;
+            Task_String = TB_Task.Text;
+            Task_Para_String = TB_Task_Para.Text;
+            Timer_String = TB_Timer.Text;
         }
 
         /// <summary>
@@ -105,7 +121,6 @@ namespace Demos
                     workbook.Write(file);
                 }
             }
-            
 
             // 写内容到现有 Excel 指定 sheet
             // 建议先备份，写失败后会清空 Excel 内容
@@ -195,6 +210,104 @@ namespace Demos
                     }
                 }
             }
+        }
+
+        private void BtnThread_Click(object sender, RoutedEventArgs e)
+        {
+            // 线程：无参
+            Thread thread = new Thread(ThreadEvent)
+            {
+                IsBackground = true
+            };
+            thread.Start();
+
+            // 线程：带参
+            //Thread thread_para = new Thread(new ThreadStart(delegate { ThreadParaEvent("带参"); }));
+            Thread thread_para = new Thread(() => { ThreadParaEvent("带参"); });
+            thread_para.Start();
+
+            Thread.Sleep(1000);
+            _ = MessageBox.Show("线程状态：" + thread.IsAlive.ToString() + "\n" + "线程状态：" + thread_para.IsAlive.ToString());
+        }
+
+        private void ThreadEvent()
+        {
+            // 在新的线程里用如下方式更新到界面
+            _ = Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
+            (ThreadStart)delegate ()
+            {
+                TB_Thread.Text = Thread_String + TB_Timer.Text;
+            }
+            );
+        }
+
+        private void ThreadParaEvent(string para)
+        {
+            // 在新的线程里用如下方式更新到界面
+            _ = Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
+            (ThreadStart)delegate ()
+            {
+                TB_ThreadPara.Text = Thread_Para_String + para + " " + TB_Timer.Text;
+            }
+            );
+        }
+
+        private void BtnTask_Click(object sender, RoutedEventArgs e)
+        {
+            // 任务：无参
+            Task task = new Task(TaskEvent);
+            task.Start();
+
+            // 任务：带参
+            Task task_para = new Task(() => { TaskParaEvent("带参"); });
+            task_para.Start();
+
+            Thread.Sleep(1000);
+            _ = MessageBox.Show("线程状态：" + task.Status.ToString() + "\n" + "线程状态：" + task_para.Status.ToString());
+        }
+
+        private void TaskEvent()
+        {
+            // 在新的线程里用如下方式更新到界面
+            _ = Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
+            (ThreadStart)delegate ()
+            {
+                TB_Task.Text = Task_String + TB_Timer.Text;
+            }
+            );
+        }
+
+        private void TaskParaEvent(string para)
+        {
+            // 在新的线程里用如下方式更新到界面
+            _ = Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
+            (ThreadStart)delegate ()
+            {
+                TB_Task_Para.Text = Task_Para_String + para + " " + TB_Timer.Text;
+            }
+            );
+        }
+
+        private void BtnTimer_Click(object sender, RoutedEventArgs e)
+        {
+            DispatcherTimer update_timer = new DispatcherTimer
+            {
+                // 1s 执行一次
+                Interval = new TimeSpan(0, 0, 1)
+            };
+            update_timer.Tick += new EventHandler(TimerEvent);
+            update_timer.Start();
+        }
+
+        private void TimerEvent(object sender, EventArgs e)
+        {
+            // 在新的线程里用如下方式更新到界面
+            _ = Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
+            (ThreadStart)delegate ()
+            {
+                TB_Timer.Text = Timer_String + string.Format("{0:G}", DateTime.Now);
+            }
+            );
         }
     }
 }
