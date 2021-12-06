@@ -25,8 +25,8 @@ namespace HalconWPF.ViewModel
     ///
     public class CalibrationWithPointsViewModel : ViewModelBase
     {
-        private ObservableCollection<DataModel> dataList;
-        public ObservableCollection<DataModel> DataList
+        private ObservableCollection<CDataModel> dataList;
+        public ObservableCollection<CDataModel> DataList
         {
             get => dataList;
             set => Set(ref dataList, value);
@@ -108,19 +108,19 @@ namespace HalconWPF.ViewModel
             ShowingText = "";
         }
 
-        private ObservableCollection<DataModel> GetDataList()
+        private ObservableCollection<CDataModel> GetDataList()
         {
-            return new ObservableCollection<DataModel>
+            return new ObservableCollection<CDataModel>
             {
-                new DataModel{ ImageX = 0, ImageY = 0, MachineX = 2.00, MachineY = 2.00 },
-                new DataModel{ ImageX = 0, ImageY = 0, MachineX = 0.00, MachineY = 2.00 },
-                new DataModel{ ImageX = 0, ImageY = 0, MachineX = -2.0, MachineY = 2.00 },
-                new DataModel{ ImageX = 0, ImageY = 0, MachineX = 2.00, MachineY = 0.00 },
-                new DataModel{ ImageX = 0, ImageY = 0, MachineX = 0.00, MachineY = 0.00 },
-                new DataModel{ ImageX = 0, ImageY = 0, MachineX = -2.0, MachineY = 0.00 },
-                new DataModel{ ImageX = 0, ImageY = 0, MachineX = 2.00, MachineY = -2.0 },
-                new DataModel{ ImageX = 0, ImageY = 0, MachineX = 0.00, MachineY = -2.0 },
-                new DataModel{ ImageX = 0, ImageY = 0, MachineX = -2.0, MachineY = -2.0 },
+                new CDataModel{ ImageX = 0, ImageY = 0, MachineX = 2.00, MachineY = 2.00 },
+                new CDataModel{ ImageX = 0, ImageY = 0, MachineX = 0.00, MachineY = 2.00 },
+                new CDataModel{ ImageX = 0, ImageY = 0, MachineX = -2.0, MachineY = 2.00 },
+                new CDataModel{ ImageX = 0, ImageY = 0, MachineX = 2.00, MachineY = 0.00 },
+                new CDataModel{ ImageX = 0, ImageY = 0, MachineX = 0.00, MachineY = 0.00 },
+                new CDataModel{ ImageX = 0, ImageY = 0, MachineX = -2.0, MachineY = 0.00 },
+                new CDataModel{ ImageX = 0, ImageY = 0, MachineX = 2.00, MachineY = -2.0 },
+                new CDataModel{ ImageX = 0, ImageY = 0, MachineX = 0.00, MachineY = -2.0 },
+                new CDataModel{ ImageX = 0, ImageY = 0, MachineX = -2.0, MachineY = -2.0 },
             };
         }
 
@@ -209,7 +209,7 @@ namespace HalconWPF.ViewModel
                 HOperatorSet.VectorToHomMat2d(hv_Row, hv_Column, hv_Machine_x, hv_Machine_y, out hv_HomMat2D);
                 for (int i = 0; i < DataList.Count; i++)
                 {
-                    DataList[i] = new DataModel { ImageX = hv_Column[i], ImageY = hv_Row[i], MachineX = DataList[i].MachineX, MachineY = DataList[i].MachineY};
+                    DataList[i] = new CDataModel { ImageX = hv_Column[i], ImageY = hv_Row[i], MachineX = DataList[i].MachineX, MachineY = DataList[i].MachineY};
                 }
 
                 // 显示仿射矩阵

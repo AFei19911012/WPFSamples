@@ -62,11 +62,23 @@ namespace MvvmCmdBinding.ViewModel
         private Dictionary<Gender, string> enumsDescription;
         public Dictionary<Gender, string> EnumsDescription
         {
-            get => new Dictionary<Gender, string>()
-                   {
-                       {Gender.Male, "描述：男性"},
-                       {Gender.Female, "描述：女性"},
-                   };
+            //get => new Dictionary<Gender, string>()
+            //       {
+            //           {Gender.Male, "描述：男性"},
+            //           {Gender.Female, "描述：女性"},
+            //       };
+
+            get
+            {
+                Dictionary<Gender, string> pairs = new Dictionary<Gender, string>();
+                foreach (Gender item in Enum.GetValues(typeof(Gender)))
+                {
+                    DescriptionAttribute attributes = (DescriptionAttribute)item.GetType().GetField(item.ToString()).GetCustomAttribute(typeof(DescriptionAttribute), false);
+                    pairs.Add(item, attributes.Description);
+                }
+                return pairs;
+            }
+
             set => Set(ref enumsDescription, value);
         }
 

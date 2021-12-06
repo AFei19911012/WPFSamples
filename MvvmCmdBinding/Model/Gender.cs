@@ -1,4 +1,6 @@
-﻿namespace MvvmCmdBinding.Model
+﻿using System.ComponentModel;
+
+namespace MvvmCmdBinding.Model
 {
     ///
     /// ----------------------------------------------------------------
@@ -12,7 +14,9 @@
     ///
     public enum Gender
     {
+        [Description("男性")]
         Male = 0,
+        [Description("女性")]
         Female
     }
 }

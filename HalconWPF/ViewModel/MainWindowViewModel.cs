@@ -35,8 +35,8 @@ namespace HalconWPF.ViewModel
             set => Set(ref selectedIndex, value);
         }
 
-        private ObservableCollection<DataModel> dataList;
-        public ObservableCollection<DataModel> DataList
+        private ObservableCollection<CDataModel> dataList;
+        public ObservableCollection<CDataModel> DataList
         {
             get => dataList;
             set => Set(ref dataList, value);
@@ -122,6 +122,10 @@ namespace HalconWPF.ViewModel
             {
                 _ = MainContent.Children.Add(new BastingDefectDetection());
             }
+            else if (true)
+            {
+
+            }
         }
 
         /// <summary>
@@ -133,19 +137,19 @@ namespace HalconWPF.ViewModel
             DataList = GetDataList();
         }
 
-        private ObservableCollection<DataModel> GetDataList()
+        private ObservableCollection<CDataModel> GetDataList()
         {
-            return new ObservableCollection<DataModel>
+            return new ObservableCollection<CDataModel>
             {
-                new DataModel{ Name = "AcquisitionImage", ImgPath="pack://application:,,,/Resource/Image/A.png"},
-                new DataModel{ Name = "ImageReadSave", ImgPath="pack://application:,,,/Resource/Image/I.png"},
-                new DataModel{ Name = "ClipNumberAndAngle", ImgPath="pack://application:,,,/Resource/Image/C.png"},
-                new DataModel{ Name = "CircleFitting", ImgPath="pack://application:,,,/Resource/Image/C.png"},
-                new DataModel{ Name = "PcbDefectDetection", ImgPath="pack://application:,,,/Resource/Image/P.png"},
-                new DataModel{ Name = "CalibrationWithPoints", ImgPath="pack://application:,,,/Resource/Image/C.png"},
-                new DataModel{ Name = "BearingDefectDetection", ImgPath="pack://application:,,,/Resource/Image/B.png"},
-                new DataModel{ Name = "TeethDetection", ImgPath="pack://application:,,,/Resource/Image/T.png"},
-                new DataModel{ Name = "BastingDefectDetection", ImgPath="pack://application:,,,/Resource/Image/B.png"},
+                new CDataModel{ Name = "AcquisitionImage", ImgPath="pack://application:,,,/Resource/Image/A.png"},
+                new CDataModel{ Name = "ImageReadSave", ImgPath="pack://application:,,,/Resource/Image/I.png"},
+                new CDataModel{ Name = "ClipNumberAndAngle", ImgPath="pack://application:,,,/Resource/Image/C.png"},
+                new CDataModel{ Name = "CircleFitting", ImgPath="pack://application:,,,/Resource/Image/C.png"},
+                new CDataModel{ Name = "PcbDefectDetection", ImgPath="pack://application:,,,/Resource/Image/P.png"},
+                new CDataModel{ Name = "CalibrationWithPoints", ImgPath="pack://application:,,,/Resource/Image/C.png"},
+                new CDataModel{ Name = "BearingDefectDetection", ImgPath="pack://application:,,,/Resource/Image/B.png"},
+                new CDataModel{ Name = "TeethDetection", ImgPath="pack://application:,,,/Resource/Image/T.png"},
+                new CDataModel{ Name = "BastingDefectDetection", ImgPath="pack://application:,,,/Resource/Image/B.png"},
             };
         }
     }

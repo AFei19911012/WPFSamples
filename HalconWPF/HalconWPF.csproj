@@ -91,7 +91,7 @@
     <Compile Include="Method\BeepMethod.cs" />
     <Compile Include="Method\ComMethod.cs" />
     <Compile Include="Method\HalMethod.cs" />
-    <Compile Include="Model\DataModel.cs" />
+    <Compile Include="Model\CDataModel.cs" />
     <Compile Include="Halcon\HalColor.cs" />
     <Compile Include="Halcon\HalDrawing.cs" />
     <Compile Include="UserControl\AcquisitionImage.xaml.cs">

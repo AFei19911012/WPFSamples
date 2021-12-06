@@ -1,4 +1,5 @@
-﻿using NPOI.SS.UserModel;
+﻿using Demos.Method;
+using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,8 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Threading;
 
 namespace Demos
@@ -21,6 +24,10 @@ namespace Demos
         private string Task_Para_String { get; set; }
         private string Timer_String { get; set; }
 
+        private bool CanMove { get; set; }
+        private Point PointMoveOri { get; set; }
+        private bool IsPanning { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -30,6 +37,10 @@ namespace Demos
             Task_String = TB_Task.Text;
             Task_Para_String = TB_Task_Para.Text;
             Timer_String = TB_Timer.Text;
+
+            CanMove = false;
+            PointMoveOri = new Point();
+            IsPanning = false;
         }
 
         /// <summary>
@@ -212,6 +223,12 @@ namespace Demos
             }
         }
 
+
+        /// <summary>
+        /// 线程 任务 计时器
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnThread_Click(object sender, RoutedEventArgs e)
         {
             // 线程：无参
@@ -226,7 +243,6 @@ namespace Demos
             Thread thread_para = new Thread(() => { ThreadParaEvent("带参"); });
             thread_para.Start();
 
-            Thread.Sleep(1000);
             _ = MessageBox.Show("线程状态：" + thread.IsAlive.ToString() + "\n" + "线程状态：" + thread_para.IsAlive.ToString());
         }
 
@@ -250,6 +266,7 @@ namespace Demos
                 TB_ThreadPara.Text = Thread_Para_String + para + " " + TB_Timer.Text;
             }
             );
+            Thread.Sleep(3000);
         }
 
         private void BtnTask_Click(object sender, RoutedEventArgs e)
@@ -262,7 +279,6 @@ namespace Demos
             Task task_para = new Task(() => { TaskParaEvent("带参"); });
             task_para.Start();
 
-            Thread.Sleep(1000);
             _ = MessageBox.Show("线程状态：" + task.Status.ToString() + "\n" + "线程状态：" + task_para.Status.ToString());
         }
 
@@ -286,6 +302,7 @@ namespace Demos
                 TB_Task_Para.Text = Task_Para_String + para + " " + TB_Timer.Text;
             }
             );
+            Thread.Sleep(3000);
         }
 
         private void BtnTimer_Click(object sender, RoutedEventArgs e)
@@ -308,6 +325,105 @@ namespace Demos
                 TB_Timer.Text = Timer_String + string.Format("{0:G}", DateTime.Now);
             }
             );
+        }
+
+        private void BtnWaitHandle_Click(object sender, RoutedEventArgs e)
+        {
+            Task task = new Task(TaskWaitHandle);
+            task.Start();
+        }
+
+        private void TaskWaitHandle()
+        {
+            // 2 个任务同步执行
+            AutoResetEvent[] watchers = new AutoResetEvent[2];
+            for (int i = 0; i < watchers.Length; i++)
+            {
+                watchers[i] = new AutoResetEvent(false);
+            }
+            Task[] tasks = new Task[2];
+            tasks[0] = new Task(() =>
+            {
+                TaskEvent();
+                // 线程执行完的时候通知
+                _ = watchers[0].Set();
+            });
+
+            tasks[1] = new Task(() =>
+            {
+                TaskParaEvent("带参");
+                // 线程执行完的时候通知
+                _ = watchers[1].Set();
+            });
+
+            tasks[0].Start();
+            tasks[1].Start();
+
+            bool result = WaitHandle.WaitAll(watchers);
+            if (result)
+            {
+                _ = MessageBox.Show("线程状态：" + tasks[0].Status.ToString() + "\n" + "线程状态：" + tasks[1].Status.ToString());
+            }
+        }
+
+
+        /// <summary>
+        /// InkCanvas 绘制箭头
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DrawingCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            CanMove = true;
+            PointMoveOri = e.GetPosition(e.Device.Target);
+        }
+        private void DrawingCanvas_MouseMove(object sender, MouseEventArgs e)
+        {
+            Point curPoint = e.GetPosition(e.Device.Target);
+            // 创建箭头 每次刷新
+            if (CanMove && !IsPanning)
+            {
+                DrawingCanvas.Strokes.Clear();
+                DrawingCanvas.Strokes.Add(InkCanvasMethod.CreateArrow(PointMoveOri, curPoint));
+            }
+
+            // 平移
+            if (CanMove && IsPanning)
+            {
+                Matrix matrixMove = new Matrix();
+                matrixMove.Translate(curPoint.X - PointMoveOri.X, curPoint.Y - PointMoveOri.Y);
+                DrawingCanvas.Strokes.Transform(matrixMove, false);
+                // 更新初始移动位置
+                PointMoveOri = curPoint;
+            }
+        }
+        private void DrawingCanvas_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            CanMove = false;
+        }
+        private void DrawingCanvas_MouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            // 当前点为中心缩放
+            Point curPoint = e.GetPosition(e.Device.Target);
+            Matrix matrix = new Matrix();
+            if (e.Delta > 0)
+            {
+                matrix.ScaleAt(1.25, 1.25, curPoint.X, curPoint.Y);
+            }
+            else
+            {
+                matrix.ScaleAt(0.8, 0.8, curPoint.X, curPoint.Y);
+            }
+            DrawingCanvas.Strokes.Transform(matrix, false);
+        }
+        private void DrawingCanvas_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            IsPanning = true;
+            if (e.ClickCount > 1)
+            {
+                DrawingCanvas.Strokes.Clear();
+                IsPanning = false;
+            }
         }
     }
 }

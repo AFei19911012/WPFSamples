@@ -12,7 +12,7 @@ namespace HalconWPF.Model
     /// Version      Modified Time         Modified By    Modified Content
     /// V1.0.0.0     2021/8/18 23:36:08    Taosy.W                 
     ///
-    public class DataModel : ViewModelBase
+    public class CDataModel : ViewModelBase
     {
         private string name;
         public string Name
