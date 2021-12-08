@@ -241,6 +241,10 @@ namespace HalconWPF.Method
             // 矩形模板、椭圆模板
             if (moduleType == EnumModuleType.rectangle || moduleType == EnumModuleType.ellipse)
             {
+                if (!(stroke is CustomRectangle || stroke is CustomEllipse))
+                {
+                    return mode;
+                }
                 sps.Clear();
                 for (int i = 0; i < 8; i++)
                 {
@@ -287,6 +291,10 @@ namespace HalconWPF.Method
             // 圆模板
             else if (moduleType == EnumModuleType.circle)
             {
+                if (!(stroke is CustomCircle))
+                {
+                    return mode;
+                }
                 // 圆心和任意点
                 Point point1 = (Point)sps[0];
                 double radius = GetDistancePP(point1, (Point)sps[1]);
@@ -307,6 +315,10 @@ namespace HalconWPF.Method
             // 多边形模板
             else if (moduleType == EnumModuleType.polygon)
             {
+                if (!(stroke is CustomPolygon))
+                {
+                    return mode;
+                }
                 // 移动
                 if (GetPointInPolygon(sps, p))
                 {

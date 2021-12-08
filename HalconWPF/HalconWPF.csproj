@@ -21,7 +21,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -56,8 +56,8 @@
     <Reference Include="halcondotnet">
       <HintPath>..\..\..\..\..\Program Files\MVTec\HALCON-18.11-Progress\bin\dotnet35\halcondotnet.dll</HintPath>
     </Reference>
-    <Reference Include="HandyControl, Version=3.2.0.0, Culture=neutral, PublicKeyToken=45be8712787a1e5b, processorArchitecture=MSIL">
-      <HintPath>..\packages\HandyControl.3.2.0\lib\net47\HandyControl.dll</HintPath>
+    <Reference Include="HandyControl, Version=3.3.0.0, Culture=neutral, PublicKeyToken=45be8712787a1e5b, processorArchitecture=MSIL">
+      <HintPath>..\packages\HandyControl.3.3.0\lib\net47\HandyControl.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.AvalonEdit, Version=6.1.2.30, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
       <HintPath>..\packages\AvalonEdit.6.1.2.30\lib\net45\ICSharpCode.AvalonEdit.dll</HintPath>
@@ -97,10 +97,12 @@
     <Compile Include="Method\CustomPolyline.cs" />
     <Compile Include="Method\CustomRectangle.cs" />
     <Compile Include="Method\HalMethod.cs" />
+    <Compile Include="Method\InitMethod.cs" />
     <Compile Include="Method\InkCanvasMethod.cs" />
     <Compile Include="Model\CDataModel.cs" />
     <Compile Include="Halcon\HalColor.cs" />
     <Compile Include="Halcon\HalDrawing.cs" />
+    <Compile Include="Model\CShapeModelMatchResult.cs" />
     <Compile Include="Model\EnumModuleEditType.cs" />
     <Compile Include="Model\EnumModuleType.cs" />
     <Compile Include="UserControl\AcquisitionImage.xaml.cs">
@@ -121,6 +123,9 @@
     <Compile Include="UserControl\ClipNumberAndAngle.xaml.cs">
       <DependentUpon>ClipNumberAndAngle.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControl\DomainModule.xaml.cs">
+      <DependentUpon>DomainModule.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControl\ImageReadSave.xaml.cs">
       <DependentUpon>ImageReadSave.xaml</DependentUpon>
     </Compile>
@@ -133,6 +138,7 @@
     <Compile Include="ViewModel\CalibrationWithPointsViewModel.cs" />
     <Compile Include="ViewModel\CircleFittingViewModel.cs" />
     <Compile Include="ViewModel\ClipNumberAndAngleViewModel.cs" />
+    <Compile Include="ViewModel\DomainModuleViewModel.cs" />
     <Compile Include="ViewModel\ImageReadSaveViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="UserControl\PcbDefectDetection.xaml.cs">
@@ -189,6 +195,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControl\ClipNumberAndAngle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl\DomainModule.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

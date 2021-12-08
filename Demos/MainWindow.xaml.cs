@@ -51,8 +51,7 @@ namespace Demos
         /// <param name="e"></param>
         private void BtnNPOI_Click(object sender, RoutedEventArgs e)
         {
-            string filename = @"D:\MyPrograms\VisualStudio2019\WPFprograms\WPFSamples\Demos\Resource\test.xlsx";
-
+            string filename = @"test.xlsx";
 
             // 获取 Sheet 名称
             IWorkbook workbook;

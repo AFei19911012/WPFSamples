@@ -1,6 +1,9 @@
 ﻿using HalconDotNet;
 using HalconWPF.Halcon;
 using System.Runtime.InteropServices;
+using System.Windows;
+using System.Windows.Input;
+using System.Windows.Media;
 
 namespace HalconWPF.Method
 {
@@ -335,5 +338,51 @@ namespace HalconWPF.Method
         {
             return color.ToString().Replace("_", " ");
         }
+
+        /// <summary>
+        /// 坐标转换：Control ↔ Halcon
+        /// </summary>
+        /// <param name="Halcon"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="isReversed"></param>
+        /// <returns></returns>
+        public static Point ControlPointToHImagePoint(this HSmartWindowControlWPF Halcon, double x, double y, bool isReversed = false)
+        {
+            // Halcon 控件宽高
+            double cHeight = Halcon.ActualHeight;
+            double cWidth = Halcon.ActualWidth;
+            // Halcon 图像区域
+            double x0 = Halcon.HImagePart.X;
+            double y0 = Halcon.HImagePart.Y;
+            double imHeight = Halcon.HImagePart.Height;
+            double imWidth = Halcon.HImagePart.Width;
+            // 缩放系数
+            double ratio_y = imHeight / cHeight;
+            double ratio_x = imWidth / cWidth;
+            double x1;
+            double y1;
+            if (isReversed)
+            {
+                x1 = (x - x0) / ratio_x;
+                y1 = (y - y0) / ratio_y;
+            }
+            else
+            {
+                x1 = (ratio_x * x) + x0;
+                y1 = (ratio_y * y) + y0;
+            }
+            return new Point(x1, y1);
+        }
+        public static PointCollection ControlPointToHImagePoint(this HSmartWindowControlWPF Halcon, StylusPointCollection sps, bool isReversed = false)
+        {
+            PointCollection pts = new PointCollection();
+            for (int i = 0; i < sps.Count; i++)
+            {
+                pts.Add(ControlPointToHImagePoint(Halcon, sps[i].X, sps[i].Y, isReversed));
+            }
+            return pts;
+        }
+
     }
 }

@@ -1,0 +1,86 @@
+﻿<UserControl x:Class="HalconWPF.UserControl.DomainModule"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:viewmodel="clr-namespace:HalconWPF.ViewModel" 
+             xmlns:halcon="clr-namespace:HalconDotNet;assembly=halcondotnet"
+             Background="{DynamicResource RegionBrush}">
+    <UserControl.DataContext>
+        <viewmodel:DomainModuleViewModel/>
+    </UserControl.DataContext>
+
+    <hc:Interaction.Triggers>
+        <hc:EventTrigger EventName="Loaded">
+            <hc:EventToCommand Command="{Binding CmdLoaded}" PassEventArgsToCommand="True"/>
+        </hc:EventTrigger>
+
+        <hc:EventTrigger EventName="SizeChanged">
+            <hc:EventToCommand Command="{Binding CmdSizeChanged}"/>
+        </hc:EventTrigger>
+    </hc:Interaction.Triggers>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Background="{DynamicResource BackgroundBrush}">
+            <TextBlock Text="设计模板" Style="{DynamicResource TextBlockTitleBold}" HorizontalAlignment="Left" Margin="5"/>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" Background="{DynamicResource PrimaryBrush}">
+                <CheckBox IsChecked="{Binding BoolEditMode}" Margin="3" Background="{DynamicResource PrimaryBrush}" BorderThickness="0" Cursor="Hand"/>
+            </Border>
+
+            <ComboBox Grid.Column="1" ItemsSource="{Binding EnumModuleCal}" SelectedValue="{Binding EnumModuleSel}" DisplayMemberPath="Value" SelectedValuePath="Key"
+                      hc:BorderElement.CornerRadius="0" Width="100" FontSize="14"/>
+
+            <hc:ButtonGroup Grid.Column="2" hc:BorderElement.CornerRadius="0">
+                <Button Content="编辑" Command="{Binding CmdButtonEvent}" CommandParameter="Edit" hc:BorderElement.CornerRadius="0" FontSize="14"
+                        FontWeight="Bold" Cursor="Hand" Foreground="{DynamicResource PrimaryBrush}"/>
+                <Button Content="创建" Command="{Binding CmdButtonEvent}" CommandParameter="Create" hc:BorderElement.CornerRadius="0" FontSize="14"
+                        FontWeight="Bold" Cursor="Hand" Foreground="{DynamicResource PrimaryBrush}"/>
+                <Button Content="保存" Command="{Binding CmdButtonEvent}" CommandParameter="Save" hc:BorderElement.CornerRadius="0" FontSize="14" 
+                        FontWeight="Bold" Cursor="Hand" Foreground="{DynamicResource PrimaryBrush}"/>
+                <Button Content="导入" Command="{Binding CmdButtonEvent}" CommandParameter="Load" hc:BorderElement.CornerRadius="0" FontSize="14" 
+                        FontWeight="Bold" Cursor="Hand" Foreground="{DynamicResource PrimaryBrush}"/>
+                <Button Content="匹配" Command="{Binding CmdButtonEvent}" CommandParameter="Match" hc:BorderElement.CornerRadius="0" FontSize="14" 
+                        FontWeight="Bold" Cursor="Hand" Foreground="{DynamicResource PrimaryBrush}"/>
+            </hc:ButtonGroup>
+        </Grid>
+
+        <!-- Halcon 图像显示窗口，同时添加模板创建、编辑功能 -->
+        <Border Grid.Row="2" x:Name="DrawingBorder" ClipToBounds="True">
+            <Grid>
+                <!-- 这是一个载体 -->
+                <hc:SimplePanel Background="White"/>
+                <halcon:HSmartWindowControlWPF Name="HalconWPF" BorderThickness="1" BorderBrush="{DynamicResource PrimaryBrush}" IsHitTestVisible="False"/>
+                <InkCanvas x:Name="DrawingCanvas" Background="Transparent" IsHitTestVisible="False" EditingMode="None"/>
+            </Grid>
+        </Border>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal">
+            <hc:Shield Subject="当前位置" hc:BorderElement.CornerRadius="0" FontSize="14" Height="24" Color="Transparent">
+                <TextBlock Text="{Binding StrCurPosition}" Foreground="{DynamicResource PrimaryTextBrush}" Width="130"/>
+            </hc:Shield>
+
+            <hc:Shield Subject="当前像素" hc:BorderElement.CornerRadius="0" FontSize="14" Height="24" Color="Transparent">
+                <TextBlock Text="{Binding StrCurGrayValue}" Foreground="{DynamicResource PrimaryTextBrush}" Width="100"/>
+            </hc:Shield>
+
+            <hc:Shield Subject="当前时间" hc:BorderElement.CornerRadius="0" FontSize="14" Height="24" Color="Transparent">
+                <TextBlock Text="{Binding StrCurTime}" Foreground="{DynamicResource PrimaryTextBrush}" Width="150"/>
+            </hc:Shield>
+        </StackPanel>
+    </Grid>
+</UserControl>

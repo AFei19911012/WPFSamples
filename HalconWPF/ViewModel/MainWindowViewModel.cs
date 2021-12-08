@@ -1,6 +1,7 @@
 ﻿
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using HalconWPF.Method;
 using HalconWPF.Model;
 using HalconWPF.UserControl;
 using ICSharpCode.AvalonEdit;
@@ -43,7 +44,7 @@ namespace HalconWPF.ViewModel
         }
 
         /// <summary>
-        /// 传个控件进来，没别的意思
+        /// 关联控件
         /// </summary>
         public RelayCommand<RoutedEventArgs> CmdLoaded => new Lazy<RelayCommand<RoutedEventArgs>>(() => new RelayCommand<RoutedEventArgs>(Loaded)).Value;
         private void Loaded(RoutedEventArgs e)
@@ -122,9 +123,9 @@ namespace HalconWPF.ViewModel
             {
                 _ = MainContent.Children.Add(new BastingDefectDetection());
             }
-            else if (true)
+            else if (name == "DomainModule")
             {
-
+                _ = MainContent.Children.Add(new DomainModule());
             }
         }
 
@@ -134,23 +135,7 @@ namespace HalconWPF.ViewModel
         public MainWindowViewModel()
         {
             SelectedIndex = -1;
-            DataList = GetDataList();
-        }
-
-        private ObservableCollection<CDataModel> GetDataList()
-        {
-            return new ObservableCollection<CDataModel>
-            {
-                new CDataModel{ Name = "AcquisitionImage", ImgPath="pack://application:,,,/Resource/Image/A.png"},
-                new CDataModel{ Name = "ImageReadSave", ImgPath="pack://application:,,,/Resource/Image/I.png"},
-                new CDataModel{ Name = "ClipNumberAndAngle", ImgPath="pack://application:,,,/Resource/Image/C.png"},
-                new CDataModel{ Name = "CircleFitting", ImgPath="pack://application:,,,/Resource/Image/C.png"},
-                new CDataModel{ Name = "PcbDefectDetection", ImgPath="pack://application:,,,/Resource/Image/P.png"},
-                new CDataModel{ Name = "CalibrationWithPoints", ImgPath="pack://application:,,,/Resource/Image/C.png"},
-                new CDataModel{ Name = "BearingDefectDetection", ImgPath="pack://application:,,,/Resource/Image/B.png"},
-                new CDataModel{ Name = "TeethDetection", ImgPath="pack://application:,,,/Resource/Image/T.png"},
-                new CDataModel{ Name = "BastingDefectDetection", ImgPath="pack://application:,,,/Resource/Image/B.png"},
-            };
+            DataList = InitMethod.GetDataList();
         }
     }
 }
