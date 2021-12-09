@@ -29,6 +29,8 @@ namespace HalconWPF.Method
                 new CDataModel{ Name = "TeethDetection", ImgPath="pack://application:,,,/Resource/Image/T.png"},
                 new CDataModel{ Name = "BastingDefectDetection", ImgPath="pack://application:,,,/Resource/Image/B.png"},
                 new CDataModel{ Name = "DomainModule", ImgPath="pack://application:,,,/Resource/Image/D.png"},
+                new CDataModel{ Name = "CaliperCalibration", ImgPath="pack://application:,,,/Resource/Image/C.png"},
+                new CDataModel{ Name = "MeasureTools", ImgPath="pack://application:,,,/Resource/Image/M.png"},
             };
         }
     }

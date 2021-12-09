@@ -226,6 +226,44 @@ namespace HalconWPF.Method
         }
 
         /// <summary>
+        /// 点到直线距离
+        /// </summary>
+        /// <param name="p0"></param>
+        /// <param name="p1"></param>
+        /// <param name="p2"></param>
+        /// <returns></returns>
+        public static double GetDistancePL(Point p0, Point p1, Point p2)
+        {
+            double dist = 0;
+            double x1 = p1.X;
+            double y1 = p1.Y;
+            double x2 = p2.X;
+            double y2 = p2.Y;
+            // 垂直情况
+            if (Math.Abs(x1 - x2) < 1e-6)
+            {
+                dist = Math.Abs(p0.X - x1);
+            }
+            else
+            {
+                // 根据点到直线距离公式计算
+                // 计算斜率和截距
+                double k = (y2 - y1) / (x2 - x1);
+                double b = (x2 * y1 - x1 * y2) / (x2 - x1);
+                dist = Math.Abs(k * p0.X - p0.Y + b) / Math.Sqrt(k * k + 1);
+
+                // 根据海伦公式计算
+                //double lenP1P2 = GetDistancePP(p1, p2);
+                //double lenP0P1 = GetDistancePP(p0, p1);
+                //double lenP0P2 = GetDistancePP(p0, p2);
+                //double len = 0.5 * (lenP0P1 + lenP0P2 + lenP1P2);
+                //double area = Math.Sqrt(len * (len - lenP0P1) * (len - lenP0P2) * (len - lenP1P2));
+                //dist = 2 * area / lenP1P2;
+            }
+            return dist;
+        }
+
+        /// <summary>
         /// 编辑状态
         /// </summary>
         /// <param name="stroke"></param>
@@ -339,8 +377,88 @@ namespace HalconWPF.Method
             return mode;
         }
 
-        ////////////////////////////////////////////////////////////////////////////////////////////// 创建模板
+        /// <summary>
+        /// 卡尺矩形模板当前的编辑状态：四个角改变大小、旋转；中间平移
+        /// </summary>
+        /// <param name="stroke"></param>
+        /// <param name="p"></param>
+        /// <returns></returns>
+        public static EnumModuleEditType GetCaliperEditType(this Stroke stroke, Point p)
+        {
+            EnumModuleEditType mode = EnumModuleEditType.None;
+            // 左上开始，逆时针方向 4 个点坐标
+            StylusPointCollection sps = stroke.StylusPoints.Clone();
+            double threshold = 5;
 
+            // 移动
+            if (GetPointInPolygon(sps, p))
+            {
+                mode = EnumModuleEditType.Move;
+            }
+
+            // 旋转
+            for (int i = 0; i < sps.Count; i++)
+            {
+                if (GetDistancePP(p, (Point)sps[i]) <= 2 * threshold)
+                {
+                    mode = EnumModuleEditType.Rotate;
+                }
+            }
+
+            // 缩放
+            if (GetDistancePP(p, (Point)sps[0]) <= threshold || GetDistancePP(p, (Point)sps[1]) <= threshold || GetDistancePP(p, (Point)sps[2]) <= threshold || GetDistancePP(p, (Point)sps[3]) <= threshold)
+            {
+                mode = EnumModuleEditType.Resize;
+            }
+
+            return mode;
+        }
+
+        /// <summary>
+        /// 测量：长度、角度
+        /// </summary>
+        /// <param name="stroke"></param>
+        /// <param name=""></param>
+        /// <param name="tool"></param>
+        /// <returns></returns>
+        public static EnumModuleEditType GetMeasureTools(this Stroke stroke, Point p, EnumMeasureTools tool = EnumMeasureTools.distance)
+        {
+            EnumModuleEditType mode = EnumModuleEditType.None;
+            // 左上开始，逆时针方向 4 个点坐标
+            StylusPointCollection sps = stroke.StylusPoints.Clone();
+            double threshold = 5;
+           
+            if (tool == EnumMeasureTools.distance)
+            {
+                // 移动
+                if (GetDistancePL(p, (Point)sps[0], (Point)sps[1]) < threshold)
+                {
+                    mode = EnumModuleEditType.Move;
+                }
+                // 缩放
+                if (GetDistancePP(p, (Point)sps[0]) <= threshold || GetDistancePP(p, (Point)sps[1]) <= threshold)
+                {
+                    mode = EnumModuleEditType.Resize;
+                }
+            }
+            else if (tool == EnumMeasureTools.angle)
+            {
+                // 移动
+                if (GetPointInPolygon(sps, p))
+                {
+                    mode = EnumModuleEditType.Move;
+                }
+                // 缩放
+                // 缩放
+                if (GetDistancePP(p, (Point)sps[0]) <= threshold || GetDistancePP(p, (Point)sps[1]) <= threshold || GetDistancePP(p, (Point)sps[2]) <= threshold)
+                {
+                    mode = EnumModuleEditType.Resize;
+                }
+            }
+
+            return mode;
+        }
+        ////////////////////////////////////////////////////////////////////////////////////////////// 创建模板
         /// <summary>
         /// 左上 → 右下 8 个点生成矩形
         /// </summary>
@@ -477,6 +595,64 @@ namespace HalconWPF.Method
                 matrix.RotateAt(angle, point.X, point.Y);
                 stroke.Transform(matrix, false);
             }
+            return stroke;
+        }
+
+        /// <summary>
+        /// 左上 → 右下 4 个点生成卡尺矩形
+        /// </summary>
+        /// <param name="point1"></param>
+        /// <param name="point2"></param>
+        /// <returns></returns>
+        public static CustomCaliperRectangle CreateCaliperRectangle(Point point1, Point point2)
+        {
+            // 左上开始，逆时针共 4 个点
+            StylusPointCollection points = new StylusPointCollection()
+            {
+                new StylusPoint(point1.X, point1.Y),
+                new StylusPoint(point1.X, point2.Y),
+                new StylusPoint(point2.X, point2.Y),
+                new StylusPoint(point2.X, point1.Y),
+            };
+            CustomCaliperRectangle stroke = new CustomCaliperRectangle(points)
+            {
+                DrawingAttributes = SetInkAttributes(),
+            };
+
+            return stroke;
+        }
+
+        /// <summary>
+        /// 平行线
+        /// </summary>
+        /// <param name="pts"></param>
+        /// <returns></returns>
+        public static CustomParallelLines CreateParallelLines(List<Point> pts)
+        {
+            CustomParallelLines stroke = new CustomParallelLines(new StylusPointCollection(pts))
+            {
+                DrawingAttributes = SetInkAttributes(),
+            };
+            return stroke;
+        }
+
+        /// <summary>
+        /// 测量距离
+        /// </summary>
+        /// <param name="point1"></param>
+        /// <param name="point2"></param>
+        /// <returns></returns>
+        public static CustomArrowDistance CreateArrowDistance(Point point1, Point point2)
+        {
+            StylusPointCollection points = new StylusPointCollection()
+            {
+                new StylusPoint(point1.X, point1.Y),
+                new StylusPoint(point2.X, point2.Y),
+            };
+            CustomArrowDistance stroke = new CustomArrowDistance(new StylusPointCollection(points))
+            {
+                DrawingAttributes = SetInkAttributes(),
+            };
             return stroke;
         }
     }

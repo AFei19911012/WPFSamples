@@ -15,6 +15,7 @@
         None = 0,
         Move,
         Rotate,
+        Resize,
         SizeAll,
         SizeN,
         SizeS,

@@ -90,9 +90,12 @@
     <Compile Include="Helper\DispatcherHelper.cs" />
     <Compile Include="Method\BeepMethod.cs" />
     <Compile Include="Method\ComMethod.cs" />
+    <Compile Include="Method\CustomArrowDistance.cs" />
+    <Compile Include="Method\CustomCaliperRectangle.cs" />
     <Compile Include="Method\CustomCircle.cs" />
     <Compile Include="Method\CustomEllipse.cs" />
     <Compile Include="Method\CustomMarkerCross.cs" />
+    <Compile Include="Method\CustomParallelLines.cs" />
     <Compile Include="Method\CustomPolygon.cs" />
     <Compile Include="Method\CustomPolyline.cs" />
     <Compile Include="Method\CustomRectangle.cs" />
@@ -103,6 +106,7 @@
     <Compile Include="Halcon\HalColor.cs" />
     <Compile Include="Halcon\HalDrawing.cs" />
     <Compile Include="Model\CShapeModelMatchResult.cs" />
+    <Compile Include="Model\EnumMeasureTools.cs" />
     <Compile Include="Model\EnumModuleEditType.cs" />
     <Compile Include="Model\EnumModuleType.cs" />
     <Compile Include="UserControl\AcquisitionImage.xaml.cs">
@@ -117,6 +121,9 @@
     <Compile Include="UserControl\CalibrationWithPoints.xaml.cs">
       <DependentUpon>CalibrationWithPoints.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControl\CaliperCalibration.xaml.cs">
+      <DependentUpon>CaliperCalibration.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControl\CircleFitting.xaml.cs">
       <DependentUpon>CircleFitting.xaml</DependentUpon>
     </Compile>
@@ -129,6 +136,9 @@
     <Compile Include="UserControl\ImageReadSave.xaml.cs">
       <DependentUpon>ImageReadSave.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControl\MeasureTools.xaml.cs">
+      <DependentUpon>MeasureTools.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControl\TeethDetection.xaml.cs">
       <DependentUpon>TeethDetection.xaml</DependentUpon>
     </Compile>
@@ -136,6 +146,7 @@
     <Compile Include="ViewModel\BastingDefectDetectionViewModel.cs" />
     <Compile Include="ViewModel\BearingDefectDetectionViewModel.cs" />
     <Compile Include="ViewModel\CalibrationWithPointsViewModel.cs" />
+    <Compile Include="ViewModel\CaliperCalibrationViewModel.cs" />
     <Compile Include="ViewModel\CircleFittingViewModel.cs" />
     <Compile Include="ViewModel\ClipNumberAndAngleViewModel.cs" />
     <Compile Include="ViewModel\DomainModuleViewModel.cs" />
@@ -144,6 +155,7 @@
     <Compile Include="UserControl\PcbDefectDetection.xaml.cs">
       <DependentUpon>PcbDefectDetection.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\MeasureToolsViewModel.cs" />
     <Compile Include="ViewModel\PcbDefectDetectionViewModel.cs" />
     <Compile Include="ViewModel\TeethDetectionViewModel.cs" />
     <Page Include="MainWindow.xaml">
@@ -190,6 +202,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControl\CaliperCalibration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControl\CircleFitting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -203,6 +219,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControl\ImageReadSave.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl\MeasureTools.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -310,6 +330,25 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resource\Halcon\BastingDefectDetection.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Image\caliper.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\ScreenShot\BastingDefectDetection1.png" />
+    <Resource Include="Resource\ScreenShot\BastingDefectDetection2.png" />
+    <Resource Include="Resource\ScreenShot\BearingDefectDetection.png" />
+    <Resource Include="Resource\ScreenShot\CalibrationWithPoints.png" />
+    <Resource Include="Resource\ScreenShot\CircleFitting.png" />
+    <Resource Include="Resource\ScreenShot\ClipNumberAndAngle.png" />
+    <Resource Include="Resource\ScreenShot\PcbDefectDetection.png" />
+    <Resource Include="Resource\ScreenShot\TeethDetection.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\ScreenShot\DomainModule.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\ScreenShot\CaliperCalibration.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
