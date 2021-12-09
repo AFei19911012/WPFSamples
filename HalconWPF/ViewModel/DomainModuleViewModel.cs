@@ -199,7 +199,7 @@ namespace HalconWPF.ViewModel
                 {
                     HOperatorSet.GenEmptyObj(out Ho_Image);
                     Ho_Image.Dispose();
-                    HOperatorSet.ReadImage(out Ho_Image, @"D:\MyPrograms\VisualStudio2019\WPFprograms\WPFSamples\HalconWPF\Resource\Image\calibration_circle.bmp");
+                    HOperatorSet.ReadImage(out Ho_Image, @"..\HalconWPF\Resource\Image\calibration_circle.bmp");
                     // 显示属性
                     Ho_Window.SetColor("red");
                     Ho_Window.SetLineWidth(1);

@@ -23,7 +23,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <halcon:HSmartWindowControlWPF Name="HalconWPF"/>
-        <hc:ButtonGroup Grid.Row="1" Margin="3">
+        <hc:ButtonGroup Grid.Row="1">
             <Button Content="Load Image" Command="{Binding CmdImageLoadSave}" CommandParameter="LoadImage"/>
             <Button Content="Calculate" Command="{Binding CmdImageLoadSave}" CommandParameter="Calculate"/>
             <Button Content="Save Window" Command="{Binding CmdImageLoadSave}" CommandParameter="SaveWindow"/>

@@ -74,11 +74,13 @@
         </Grid>
 
         <hc:ElementGroup Grid.Row="1" Orientation="Horizontal">
-            <Button Content="Load Image" Command="{Binding CmdButtonEvent}" CommandParameter="LoadImage"/>
-            <Button Content="Calibration" Command="{Binding CmdButtonEvent}" CommandParameter="Calibration"/>
-            <Button Content="Validation" Command="{Binding CmdButtonEvent}" CommandParameter="Validation"/>
-            <Button Content="Save Image" Command="{Binding CmdButtonEvent}" CommandParameter="SaveImage"/>
-            <hc:Shield Subject="Mouse Position" Height="30" hc:BorderElement.CornerRadius="0" Color="{DynamicResource PrimaryBrush}">
+            <hc:ButtonGroup>
+                <Button Content="Load Image" Command="{Binding CmdButtonEvent}" CommandParameter="LoadImage" hc:BorderElement.CornerRadius="0"/>
+                <Button Content="Calibration" Command="{Binding CmdButtonEvent}" CommandParameter="Calibration"/>
+                <Button Content="Validation" Command="{Binding CmdButtonEvent}" CommandParameter="Validation"/>
+                <Button Content="Save Image" Command="{Binding CmdButtonEvent}" CommandParameter="SaveImage" hc:BorderElement.CornerRadius="0"/>
+            </hc:ButtonGroup>
+            <hc:Shield Subject="Mouse Position" Height="31" hc:BorderElement.CornerRadius="0" Color="{DynamicResource PrimaryBrush}">
                 <TextBlock Text="{Binding ShowingText}" Style="{StaticResource TextBlockDefault}"/>
             </hc:Shield>
         </hc:ElementGroup>

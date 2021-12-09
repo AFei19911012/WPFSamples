@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Security.Permissions;
+using System.Windows;
 using System.Windows.Threading;
 
 namespace HalconWPF.Helper
@@ -34,5 +35,7 @@ namespace HalconWPF.Helper
             ((DispatcherFrame)frame).Continue = false;
             return null;
         }
+
+        public static Dispatcher Dispatcher => Application.Current?.Dispatcher ?? Dispatcher.CurrentDispatcher;
     }
 }

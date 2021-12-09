@@ -295,7 +295,7 @@ namespace HalconWPF.ViewModel
                             using (HDevDisposeHelper dh = new HDevDisposeHelper())
                             {
                                 ho_ObjectSelected.Dispose();
-                                HOperatorSet.SelectObj(ho_Regions, out ho_ObjectSelected, (hv_Indices.TupleSelect(len - 1)) + 1);
+                                HOperatorSet.SelectObj(ho_Regions, out ho_ObjectSelected, hv_Indices.TupleSelect(len - 1) + 1);
                             }
                             // 最小外接矩形
                             hv_Row1.Dispose();
