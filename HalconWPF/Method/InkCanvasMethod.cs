@@ -21,15 +21,16 @@ namespace HalconWPF.Method
     ///
     public static class InkCanvasMethod
     {
-        public static Color ColorDefault = Color.FromArgb(0xFF, 0xFF, 0xA5, 0x00);
-        public static Color ColorEidting = Color.FromArgb(0xFF, 0x07, 0xAA, 0xE5);
-        public static Brush StrokeBrushDefault = new SolidColorBrush(ColorDefault);
-        public static Brush StrokeBrushEdit = new SolidColorBrush(ColorEidting);
+        public static Color ColorDefault { get; set; } = Color.FromArgb(0xFF, 0xFF, 0xA5, 0x00);
+        public static Color ColorMask { get; set; } = Color.FromArgb(0x99, 0x07, 0xAA, 0xE5);
+        public static Brush StrokeBrushDefault { get; set; } = new SolidColorBrush(ColorDefault);
+        public static Brush StrokeBrushMask { get; set; } = new SolidColorBrush(ColorMask);
+        public static double InkStrokeThickness { get; set; } = 10;
 
         /// <summary>
         /// 设置笔迹属性
         /// </summary>
-        public static DrawingAttributes SetInkAttributes(double thickness = 2)
+        public static DrawingAttributes SetInkAttributesDefault(double thickness = 2)
         {
             DrawingAttributes attributes = new DrawingAttributes
             {
@@ -37,8 +38,28 @@ namespace HalconWPF.Method
                 Width = thickness,
                 Height = thickness,
                 Color = ColorDefault,
-                StylusTip = StylusTip.Rectangle,
-                IsHighlighter = false,
+                StylusTip = StylusTip.Ellipse,
+                IsHighlighter = true,
+                IgnorePressure = true,
+            };
+            return attributes;
+        }
+
+        /// <summary>
+        /// 设置掩膜笔迹属性
+        /// </summary>
+        /// <param name="thickness"></param>
+        /// <returns></returns>
+        public static DrawingAttributes SetInkAttributesMask()
+        {
+            DrawingAttributes attributes = new DrawingAttributes
+            {
+                FitToCurve = false,
+                Width = InkStrokeThickness,
+                Height = InkStrokeThickness,
+                Color = ColorMask,
+                StylusTip = StylusTip.Ellipse,
+                IsHighlighter = true,
                 IgnorePressure = true,
             };
             return attributes;
@@ -48,12 +69,29 @@ namespace HalconWPF.Method
         /// 实线 Pen
         /// </summary>
         /// <returns></returns>
-        public static Pen SetPenSolid()
+        public static Pen SetPenSolid(double thickness = 2)
         {
             Pen pen = new Pen
             {
                 Brush = StrokeBrushDefault,
-                Thickness = 2,
+                Thickness = thickness,
+                DashCap = PenLineCap.Round,
+                LineJoin = PenLineJoin.Round,
+                MiterLimit = 0.0
+            };
+            return pen;
+        }
+
+        /// <summary>
+        /// 掩膜 Pen
+        /// </summary>
+        /// <returns></returns>
+        public static Pen SetPenMask(double thickness = 10)
+        {
+            Pen pen = new Pen
+            {
+                Brush = StrokeBrushMask,
+                Thickness = thickness,
                 DashCap = PenLineCap.Round,
                 LineJoin = PenLineJoin.Round,
                 MiterLimit = 0.0
@@ -65,12 +103,12 @@ namespace HalconWPF.Method
         /// 细虚线 Pen
         /// </summary>
         /// <returns></returns>
-        public static Pen SetPenDotted()
+        public static Pen SetPenDotted(double thickness = 1)
         {
             Pen pen = new Pen
             {
                 Brush = StrokeBrushDefault,
-                Thickness = 1,
+                Thickness = thickness,
                 DashStyle = new DashStyle(new double[] { 2.0, 2.0 }, 0.0),
                 DashCap = PenLineCap.Round,
                 LineJoin = PenLineJoin.Round,
@@ -83,12 +121,30 @@ namespace HalconWPF.Method
         /// Point 笔迹
         /// </summary>
         /// <returns></returns>
-        public static Pen SetPenPoint(int thickness = 6)
+        public static Pen SetPenPoint(double thickness = 6)
         {
             Pen pen = new Pen
             {
                 Brush = StrokeBrushDefault,
                 Thickness = thickness,
+                DashCap = PenLineCap.Round,
+                LineJoin = PenLineJoin.Round,
+                MiterLimit = 0.0
+            };
+            return pen;
+        }
+
+        /// <summary>
+        /// Point 掩膜笔迹
+        /// </summary>
+        /// <param name="thickness"></param>
+        /// <returns></returns>
+        public static Pen SetPenPointMask()
+        {
+            Pen pen = new Pen
+            {
+                Brush = StrokeBrushMask,
+                Thickness = InkStrokeThickness,
                 DashCap = PenLineCap.Round,
                 LineJoin = PenLineJoin.Round,
                 MiterLimit = 0.0
@@ -190,6 +246,21 @@ namespace HalconWPF.Method
             point.X /= 3 * area;
             point.Y /= 3 * area;
             return point;
+        }
+
+        /// <summary>
+        /// 坐标点类型转换
+        /// </summary>
+        /// <param name="points"></param>
+        /// <returns></returns>
+        public static PointCollection StylusPointsConverter(this StylusPointCollection points)
+        {
+            PointCollection pts = new PointCollection();
+            for (int i = 0; i < points.Count; i++)
+            {
+                pts.Add(new Point(points[i].X, points[i].Y));
+            }
+            return pts;
         }
 
         /// <summary>
@@ -481,7 +552,7 @@ namespace HalconWPF.Method
             };
             CustomRectangle stroke = new CustomRectangle(points)
             {
-                DrawingAttributes = SetInkAttributes(),
+                DrawingAttributes = SetInkAttributesDefault(),
             };
 
             return stroke;
@@ -517,7 +588,7 @@ namespace HalconWPF.Method
             }
             CustomEllipse stroke = new CustomEllipse(points)
             {
-                DrawingAttributes = SetInkAttributes(),
+                DrawingAttributes = SetInkAttributesDefault(),
             };
             return stroke;
         }
@@ -536,7 +607,7 @@ namespace HalconWPF.Method
             };
             CustomCircle stroke = new CustomCircle(points)
             {
-                DrawingAttributes = SetInkAttributes(),
+                DrawingAttributes = SetInkAttributesDefault(),
             };
             return stroke;
         }
@@ -550,7 +621,7 @@ namespace HalconWPF.Method
         {
             CustomPolygon stroke = new CustomPolygon(points)
             {
-                DrawingAttributes = SetInkAttributes(),
+                DrawingAttributes = SetInkAttributesDefault(),
             };
             return stroke;
         }
@@ -564,7 +635,21 @@ namespace HalconWPF.Method
         {
             CustomPolyline stroke = new CustomPolyline(points)
             {
-                DrawingAttributes = SetInkAttributes(),
+                DrawingAttributes = SetInkAttributesDefault(),
+            };
+            return stroke;
+        }
+
+        /// <summary>
+        /// 创建 LineMask
+        /// </summary>
+        /// <param name="points"></param>
+        /// <returns></returns>
+        public static CustomLineMask CreateLineMask(StylusPointCollection points)
+        {
+            CustomLineMask stroke = new CustomLineMask(points)
+            {
+                DrawingAttributes = SetInkAttributesMask(),
             };
             return stroke;
         }
@@ -585,7 +670,7 @@ namespace HalconWPF.Method
             };
             CustomMarkerCross stroke = new CustomMarkerCross(points)
             {
-                DrawingAttributes = SetInkAttributes(),
+                DrawingAttributes = SetInkAttributesDefault(),
             };
 
             // 旋转
@@ -616,7 +701,7 @@ namespace HalconWPF.Method
             };
             CustomCaliperRectangle stroke = new CustomCaliperRectangle(points)
             {
-                DrawingAttributes = SetInkAttributes(),
+                DrawingAttributes = SetInkAttributesDefault(),
             };
 
             return stroke;
@@ -631,7 +716,7 @@ namespace HalconWPF.Method
         {
             CustomParallelLines stroke = new CustomParallelLines(new StylusPointCollection(pts))
             {
-                DrawingAttributes = SetInkAttributes(),
+                DrawingAttributes = SetInkAttributesDefault(),
             };
             return stroke;
         }
@@ -651,7 +736,7 @@ namespace HalconWPF.Method
             };
             CustomArrowDistance stroke = new CustomArrowDistance(new StylusPointCollection(points))
             {
-                DrawingAttributes = SetInkAttributes(),
+                DrawingAttributes = SetInkAttributesDefault(),
             };
             return stroke;
         }

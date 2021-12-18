@@ -39,8 +39,8 @@ namespace HalconWPF.Method
             PathFigure figure = new PathFigure
             {
                 StartPoint = new Point(point.X, point.Y),
-                IsClosed = false,
-                IsFilled = false,
+                IsClosed = true,
+                IsFilled = true,
             };
             for (int i = 1; i < StylusPoints.Count; i++)
             {
@@ -58,7 +58,6 @@ namespace HalconWPF.Method
             figure = new PathFigure
             {
                 StartPoint = new Point(pointCenter.X - radius, pointCenter.Y),
-                IsClosed = false
             };
             figure.Segments.Add(new LineSegment(new Point(pointCenter.X + radius, pointCenter.Y), true));
             geometry.Figures.Add(figure);
@@ -66,7 +65,6 @@ namespace HalconWPF.Method
             figure = new PathFigure
             {
                 StartPoint = new Point(pointCenter.X, pointCenter.Y - radius),
-                IsClosed = false
             };
             figure.Segments.Add(new LineSegment(new Point(pointCenter.X, pointCenter.Y + radius), true));
             geometry.Figures.Add(figure);

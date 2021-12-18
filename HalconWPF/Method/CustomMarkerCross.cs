@@ -34,7 +34,6 @@ namespace HalconWPF.Method
             PathFigure figure = new PathFigure
             {
                 StartPoint = (Point)StylusPoints[0],
-                IsClosed = false
             };
             figure.Segments.Add(new LineSegment((Point)StylusPoints[1], true));
             geometry.Figures.Add(figure);
@@ -42,7 +41,6 @@ namespace HalconWPF.Method
             figure = new PathFigure
             {
                 StartPoint = (Point)StylusPoints[2],
-                IsClosed = false
             };
             figure.Segments.Add(new LineSegment((Point)StylusPoints[3], true));
             geometry.Figures.Add(figure);

@@ -44,7 +44,6 @@ namespace HalconWPF.Method
             PathFigure figure = new PathFigure
             {
                 StartPoint = new Point(point1.X - len, point1.Y),
-                IsClosed = false
             };
             figure.Segments.Add(new LineSegment(new Point(point1.X + len, point1.Y), true));
             geometry.Figures.Add(figure);
@@ -52,7 +51,6 @@ namespace HalconWPF.Method
             figure = new PathFigure
             {
                 StartPoint = new Point(point1.X, point1.Y - len),
-                IsClosed = false
             };
             figure.Segments.Add(new LineSegment(new Point(point1.X, point1.Y + len), true));
             geometry.Figures.Add(figure);

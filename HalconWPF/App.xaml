@@ -8,12 +8,14 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/>
-                
+
                 <ResourceDictionary Source="Resource/Style/Brushes.xaml"/>
                 <ResourceDictionary Source="Resource/Style/Primary.xaml"/>
                 <ResourceDictionary Source="Resource/Style/Style.xaml"/>
                 <ResourceDictionary Source="Resource/Style/Geometry.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+
+            <FontFamily x:Key="IconFont">pack://application:,,,/HalconWPF;component/Resource/#iconfont</FontFamily>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

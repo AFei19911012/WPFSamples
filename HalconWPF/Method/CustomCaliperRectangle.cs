@@ -36,8 +36,8 @@ namespace HalconWPF.Method
             PathFigure figure = new PathFigure
             {
                 StartPoint = point1,
-                IsClosed = false,
-                IsFilled = false,
+                IsClosed = true,
+                IsFilled = true,
             };
             for (int i = 1; i < StylusPoints.Count; i++)
             {

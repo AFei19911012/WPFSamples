@@ -39,22 +39,26 @@
             </Grid.ColumnDefinitions>
 
             <Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" Background="{DynamicResource PrimaryBrush}">
-                <CheckBox IsChecked="{Binding BoolEditMode}" Margin="3" Background="{DynamicResource PrimaryBrush}" BorderThickness="0" Cursor="Hand"/>
+                <CheckBox IsChecked="{Binding BoolCanEdit}" Margin="3" Background="{DynamicResource PrimaryBrush}" BorderThickness="0" Cursor="Hand"/>
             </Border>
 
             <ComboBox Grid.Column="1" ItemsSource="{Binding EnumModuleCal}" SelectedValue="{Binding EnumModuleSel}" DisplayMemberPath="Value" SelectedValuePath="Key"
                       hc:BorderElement.CornerRadius="0" Width="100" FontSize="14"/>
 
             <hc:ButtonGroup Grid.Column="2" hc:BorderElement.CornerRadius="0">
-                <Button Content="编辑" Command="{Binding CmdButtonEvent}" CommandParameter="Edit" hc:BorderElement.CornerRadius="0" FontSize="14"
+                <Button Content="制作ROI" Command="{Binding CmdButtonEvent}" CommandParameter="MakeROI" hc:BorderElement.CornerRadius="0" FontSize="14"
                         FontWeight="Bold" Cursor="Hand" Foreground="{DynamicResource PrimaryBrush}"/>
-                <Button Content="创建" Command="{Binding CmdButtonEvent}" CommandParameter="Create" hc:BorderElement.CornerRadius="0" FontSize="14"
+                <Button Content="制作模板" Command="{Binding CmdButtonEvent}" CommandParameter="MakeModule" hc:BorderElement.CornerRadius="0" FontSize="14"
                         FontWeight="Bold" Cursor="Hand" Foreground="{DynamicResource PrimaryBrush}"/>
-                <Button Content="保存" Command="{Binding CmdButtonEvent}" CommandParameter="Save" hc:BorderElement.CornerRadius="0" FontSize="14" 
+                <Button Content="确认模板" Command="{Binding CmdButtonEvent}" CommandParameter="ConfirmModule" hc:BorderElement.CornerRadius="0" FontSize="14"
                         FontWeight="Bold" Cursor="Hand" Foreground="{DynamicResource PrimaryBrush}"/>
-                <Button Content="导入" Command="{Binding CmdButtonEvent}" CommandParameter="Load" hc:BorderElement.CornerRadius="0" FontSize="14" 
+                <Button Content="保存模板" Command="{Binding CmdButtonEvent}" CommandParameter="SaveModule" hc:BorderElement.CornerRadius="0" FontSize="14" 
                         FontWeight="Bold" Cursor="Hand" Foreground="{DynamicResource PrimaryBrush}"/>
-                <Button Content="匹配" Command="{Binding CmdButtonEvent}" CommandParameter="Match" hc:BorderElement.CornerRadius="0" FontSize="14" 
+                <Button Content="加载模板" Command="{Binding CmdButtonEvent}" CommandParameter="LoadModule" hc:BorderElement.CornerRadius="0" FontSize="14" 
+                        FontWeight="Bold" Cursor="Hand" Foreground="{DynamicResource PrimaryBrush}"/>
+                <Button Content="加载图像" Command="{Binding CmdButtonEvent}" CommandParameter="LoadImage" hc:BorderElement.CornerRadius="0" FontSize="14" 
+                        FontWeight="Bold" Cursor="Hand" Foreground="{DynamicResource PrimaryBrush}"/>
+                <Button Content="匹配模板" Command="{Binding CmdButtonEvent}" CommandParameter="MatchModule" hc:BorderElement.CornerRadius="0" FontSize="14" 
                         FontWeight="Bold" Cursor="Hand" Foreground="{DynamicResource PrimaryBrush}"/>
             </hc:ButtonGroup>
         </Grid>
@@ -78,6 +82,10 @@
                 <TextBlock Text="{Binding StrCurGrayValue}" Foreground="{DynamicResource PrimaryTextBrush}" Width="100"/>
             </hc:Shield>
 
+            <hc:Shield Subject="当前状态" hc:BorderElement.CornerRadius="0" FontSize="14" Height="24" Color="Transparent">
+                <TextBlock Text="{Binding StrCurState}" Foreground="{DynamicResource PrimaryTextBrush}" Width="130"/>
+            </hc:Shield>
+            
             <hc:Shield Subject="当前时间" hc:BorderElement.CornerRadius="0" FontSize="14" Height="24" Color="Transparent">
                 <TextBlock Text="{Binding StrCurTime}" Foreground="{DynamicResource PrimaryTextBrush}" Width="150"/>
             </hc:Shield>

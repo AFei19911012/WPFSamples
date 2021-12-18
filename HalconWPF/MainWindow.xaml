@@ -11,6 +11,7 @@
                ShowNonClientArea="True"
                WindowStartupLocation="CenterScreen"
                Background="{DynamicResource RegionBrush}"
+               Title="Halcon WPF Demos"
                Height="600" Width="1000">
     <hc:GlowWindow.DataContext>
         <viewmodel:MainWindowViewModel/>
@@ -18,7 +19,7 @@
 
     <!-- 标题栏内容 -->
     <hc:GlowWindow.NonClientAreaContent>
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Background="{DynamicResource RegionBrush}" Margin="-125, 0, 0, 0">
             <Image Source="Resource/Image/icon.ico" Height="32" HorizontalAlignment="Left" Margin="10,3"/>
             <hc:OutlineText Margin="3" Text="Halcon WPF" FontSize="32" FontWeight="Bold" Fill="{DynamicResource PrimaryBrush}" Stroke="Violet" StrokeThickness="2"/>
         </StackPanel>
@@ -48,12 +49,12 @@
                     </Grid.RowDefinitions>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition/>
                             <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
-                        <hc:SearchBar Style="{StaticResource SearchBarPlus}" hc:InfoElement.Placeholder="Enter key word" Margin="4" hc:BorderElement.CornerRadius="0" 
+                        <hc:SearchBar Style="{StaticResource SearchBarPlus}" hc:InfoElement.Placeholder="Enter key word" Margin="4" hc:BorderElement.CornerRadius="0"
                                       ShowClearButton="True" IsRealTime="True" Tag="{Binding ElementName=ListBoxDemo}"/>
-                        <hc:ButtonGroup Grid.Column="1">
+                        <hc:ButtonGroup Grid.Column="1" VerticalAlignment="Center">
                             <ToggleButton Margin="2" hc:BorderElement.CornerRadius="0" Tag="{Binding ElementName=ListBoxDemo}">
                                 <Image Source="Resource/Image/SortAscending_gray_16x.png" Stretch="Uniform" Height="16"/>
                             </ToggleButton>

@@ -15,6 +15,7 @@ using HalconWPF.Method;
 using HalconWPF.Model;
 using HalconWPF.UserControl;
 using Microsoft.Win32;
+using System.Windows.Shapes;
 
 namespace HalconWPF.ViewModel
 {
@@ -31,6 +32,7 @@ namespace HalconWPF.ViewModel
     public class DomainModuleViewModel : ViewModelBase
     {
         ////////////////////////////////// 绑定属性 //////////////////////////////////
+        #region
         /// <summary>
         /// 模板类型
         /// </summary>
@@ -59,13 +61,13 @@ namespace HalconWPF.ViewModel
         }
 
         /// <summary>
-        /// 编辑模式
+        /// 能否编辑
         /// </summary>
-        private bool boolEditMode;
-        public bool BoolEditMode
+        private bool boolCanEdit;
+        public bool BoolCanEdit
         {
-            get => boolEditMode;
-            set => Set(ref boolEditMode, value);
+            get => boolCanEdit;
+            set => Set(ref boolCanEdit, value);
         }
 
         /// <summary>
@@ -86,6 +88,16 @@ namespace HalconWPF.ViewModel
         }
 
         /// <summary>
+        /// 当前状态
+        /// </summary>
+        private string strCurState;
+        public string StrCurState
+        {
+            get => strCurState;
+            set => Set(ref strCurState, value);
+        }
+
+        /// <summary>
         /// 当前时间
         /// </summary>
         private string strCurTime;
@@ -94,8 +106,9 @@ namespace HalconWPF.ViewModel
             get => strCurTime;
             set => Set(ref strCurTime, value);
         }
-
+        #endregion
         //////////////////////////////////// 变量 ////////////////////////////////////
+        #region
         private HSmartWindowControlWPF Halcon { get; set; }
         private HWindow Ho_Window { get; set; }
         private InkCanvas DrawingCanvas { get; set; }
@@ -104,17 +117,16 @@ namespace HalconWPF.ViewModel
         /// <summary>
         /// 缩放参数
         /// </summary>
-        private int WheelScrollValue { get; set; }
-        private int WheelScrollMin { get; set; }
-        private int WheelScrollMax { get; set; }
+        private int WheelScrollValue { get; set; } = 0;
+        private int WheelScrollMin { get; set; } = -5;
+        private int WheelScrollMax { get; set; } = 15;
 
         /// <summary>
         /// 绘制模板 编辑
         /// </summary>
-        private Point PointMoveOri { get; set; }
-        private bool IsMakingModule { get; set; }
-        private bool IsModuleEditing { get; set; }
-        private bool CanMove { get; set; }
+        private Point PointMoveOri { get; set; } = new Point();
+        private EnumModuleEditState ModuleEditState { get; set; } = EnumModuleEditState.none;
+        private bool CanMove { get; set; } = false;
         private EnumModuleEditType ModuleEditType { get; set; }
         private HTuple Hv_ShapeModelID = new HTuple();
 
@@ -126,8 +138,13 @@ namespace HalconWPF.ViewModel
         /// <summary>
         /// 首次显示
         /// </summary>
-        private bool IsFirstShow { get; set; }
+        private bool IsFirstShow { get; set; } = true;
 
+        /// <summary>
+        /// 笔记粗细，主要用于涂抹式选择模板
+        /// </summary>
+        public static double InkStrokeThickness { get; set; } = InkCanvasMethod.InkStrokeThickness;
+        #endregion
         ////////////////////////////////// 构造函数 //////////////////////////////////
         /// <summary>
         /// 构造函数 初始化参数
@@ -135,21 +152,11 @@ namespace HalconWPF.ViewModel
         public DomainModuleViewModel()
         {
             EnumModuleSel = EnumModuleType.rectangle;
-            BoolEditMode = false;
-            PointMoveOri = new Point();
-            CanMove = false;
-            IsMakingModule = false;
-            IsModuleEditing = false;
-            IsFirstShow = true;
-
-            WheelScrollValue = 0;
-            WheelScrollMin = 0;
-            WheelScrollMax = 20;
-
+            BoolCanEdit = false;
             ModuleEditType = EnumModuleEditType.None;
-
             StrCurPosition = "X = null, Y = null";
             StrCurGrayValue = "null";
+            StrCurState = "null";
 
             // 计时器更新时间
             InitTimer();
@@ -181,9 +188,11 @@ namespace HalconWPF.ViewModel
         public RelayCommand CmdSizeChanged => new Lazy<RelayCommand>(() => new RelayCommand(SizeChanged)).Value;
         private void SizeChanged()
         {
+            Halcon.SetFullImagePart();
             WheelScrollValue = 0;
-            // 清空 Strokes
             DrawingCanvas.Strokes.Clear();
+            DrawingCanvas.Children.Clear();
+            ModuleEditState = EnumModuleEditState.none;
         }
 
         /// <summary>
@@ -194,41 +203,40 @@ namespace HalconWPF.ViewModel
         {
             try
             {
-                // 编辑模板
-                if (name == "Edit")
+                // 制作 ROI
+                if (name == "MakeROI")
                 {
-                    HOperatorSet.GenEmptyObj(out Ho_Image);
-                    Ho_Image.Dispose();
-                    HOperatorSet.ReadImage(out Ho_Image, @"..\HalconWPF\Resource\Image\calibration_circle.bmp");
-                    // 显示属性
-                    Ho_Window.SetColor("red");
-                    Ho_Window.SetLineWidth(1);
-                    Ho_Window.DispObj(Ho_Image);
-                    Halcon.HZoomFactor = 1.25;
-                    if (IsFirstShow)
-                    {
-                        IsFirstShow = false;
-                        Halcon.SetFullImagePart();
-                    }
-                    // 锁定
+                    // 切换到制作 ROI 状态
+                    ModuleEditState = EnumModuleEditState.make_roi;
+                    GetCurState();
                     DrawingCanvas.Strokes.Clear();
-                    BoolEditMode = false;
-                    IsMakingModule = true;
+                    DrawingCanvas.Children.Clear();
+                    BoolCanEdit = false;
+                    if (Ho_Image != null && Ho_Image.ToString() != "")
+                    {
+                        Ho_Window.DispObj(Ho_Image);
+                    }
                 }
-                // 创建模板
-                else if (name == "Create")
+
+                // 制作模板
+                else if (name == "MakeModule")
                 {
                     try
                     {
-                        // 绘制了模板
-                        if (DrawingCanvas.Strokes.Count == 1 && Ho_Image != null)
+                        // 切换到制作模板状态
+                        ModuleEditState = EnumModuleEditState.make_module;
+                        GetCurState();
+
+                        // 存在 ROI
+                        if (DrawingCanvas.Strokes.Count > 0 && Ho_Image != null)
                         {
                             // 坐标转换：控件 → 图像
                             PointCollection points = Halcon.ControlPointToHImagePoint(DrawingCanvas.Strokes[0].StylusPoints);
-                            // 抠图
+
+                            // ROI 抠图
                             HOperatorSet.GenEmptyObj(out HObject ho_Region);
                             ho_Region.Dispose();
-                            // 矩形模板 椭圆模板
+                            // 矩形 椭圆
                             if (DrawingCanvas.Strokes[0] is CustomRectangle || DrawingCanvas.Strokes[0] is CustomEllipse)
                             {
                                 // 旋转角度
@@ -258,14 +266,14 @@ namespace HalconWPF.ViewModel
                                     ho_Contour.Dispose();
                                 }
                             }
-                            // 圆模板
+                            // 圆 ROI
                             else if (DrawingCanvas.Strokes[0] is CustomCircle)
                             {
                                 // 半径
                                 double radius = InkCanvasMethod.GetDistancePP(points[0], points[1]);
                                 HOperatorSet.GenCircle(out ho_Region, points[0].Y, points[0].X, radius);
                             }
-                            // 多边形模板
+                            // 多边形
                             else if (DrawingCanvas.Strokes[0] is CustomPolygon)
                             {
                                 HTuple hv_rows = new HTuple();
@@ -281,40 +289,114 @@ namespace HalconWPF.ViewModel
                                 hv_rows.Dispose();
                                 hv_cols.Dispose();
                             }
+                            else
+                            {
+                                HandyControl.Controls.Growl.Info("未找到有效ROI...");
+                                return;
+                            }
                             // 抠图
-                            HOperatorSet.ReduceDomain(Ho_Image, ho_Region, out HObject ho_ImageReduced);
-                            //HOperatorSet.WriteImage(ho_ImageReduced, "bmp", 0, @"ho_ImageReduced.bmp");
+                            if (ho_Region.IsInitialized())
+                            {
+                                HOperatorSet.ReduceDomain(Ho_Image, ho_Region, out HObject ho_ImageROI);
+                                //HOperatorSet.WriteImage(ho_ImageReduced, "bmp", 0, @"ho_ImageReduced.bmp");
+                                ho_Region.Dispose();
+
+                                // 创建形状模板
+                                Hv_ShapeModelID.Dispose();
+                                HOperatorSet.CreateShapeModel(ho_ImageROI, "auto", -0.39, 0.79, "auto", "auto", "use_polarity", "auto", "auto", out Hv_ShapeModelID);
+                                // 寻找模板
+                                HOperatorSet.FindShapeModel(ho_ImageROI, Hv_ShapeModelID, -0.39, 0.79, 0.3, 1, 0.5, "least_squares", 0, 0.9, out HTuple hv_Row, out HTuple hv_Column, out HTuple hv_Angle, out HTuple hv_Score);
+                                ho_ImageROI.Dispose();
+                                hv_Score.Dispose();
+                                // 获取模板轮廓
+                                HOperatorSet.GetShapeModelContours(out HObject ho_ShapeModel, Hv_ShapeModelID, 1);
+                                // 显示模板
+                                HOperatorSet.VectorAngleToRigid(0, 0, 0, hv_Row, hv_Column, hv_Angle, out HTuple hv_HomMat2DRotate);
+                                hv_Row.Dispose();
+                                hv_Column.Dispose();
+                                hv_Angle.Dispose();
+                                HOperatorSet.AffineTransContourXld(ho_ShapeModel, out HObject ho_ModelTrans, hv_HomMat2DRotate);
+                                Ho_Window.DispObj(ho_ModelTrans);
+                                ho_ShapeModel.Dispose();
+                                ho_ModelTrans.Dispose();
+                                hv_HomMat2DRotate.Dispose();
+
+                                DrawingCanvas.Strokes.Clear();
+                                DrawingCanvas.Children.Clear();
+                                HandyControl.Controls.Growl.Info("匹配结果：x = " + (int)hv_Column.D + ", y = " + (int)hv_Row.D + "\n, score = " + hv_Score.D.ToString("F2") + ", angle = " + hv_Angle.D.ToString("F2"));
+                            }
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        HandyControl.Controls.Growl.Error("制作模板失败...");
+                    }
+                }
+
+                // 确认模板
+                else if (name == "ConfirmModule")
+                {
+                    try
+                    {
+                        // 从涂层里重新制作模板
+                        HOperatorSet.GenEmptyObj(out HObject ho_RegionROI);
+                        HOperatorSet.GenEmptyObj(out HObject ho_Region);
+                        ho_RegionROI.Dispose();
+                        for (int m = 0; m < DrawingCanvas.Strokes.Count; m++)
+                        {
+                            // 坐标转换：控件 → 图像
+                            PointCollection points = Halcon.ControlPointToHImagePoint(DrawingCanvas.Strokes[m].StylusPoints);
+                            // ROI 抠图                   
                             ho_Region.Dispose();
-                            // 继续扣 ROI
-                            HOperatorSet.BinaryThreshold(ho_ImageReduced, out ho_Region, "max_separability", "dark", out HTuple hv_UsedThreshold);
-                            HOperatorSet.DilationCircle(ho_Region, out HObject ho_RegionROI, 2);
-                            HOperatorSet.ReduceDomain(ho_ImageReduced, ho_RegionROI, out HObject ho_ImageROI);
-                            ho_Region.Dispose();
+                            HTuple hv_rows = new HTuple();
+                            HTuple hv_cols = new HTuple();
+                            hv_rows.Dispose();
+                            hv_cols.Dispose();
+                            for (int i = 0; i < points.Count; i++)
+                            {
+                                hv_rows[i] = points[i].Y;
+                                hv_cols[i] = points[i].X;
+                            }
+                            HOperatorSet.GenRegionPolygonFilled(out ho_Region, hv_rows, hv_cols);
+                            hv_rows.Dispose();
+                            hv_cols.Dispose();
+                            if (!ho_RegionROI.IsInitialized())
+                            {
+                                HOperatorSet.Union1(ho_Region, out ho_RegionROI);
+                            }
+                            else
+                            {
+                                HOperatorSet.Union2(ho_RegionROI, ho_Region, out ho_RegionROI);
+                            }
+                        }
+                        // 抠图
+                        if (ho_RegionROI.IsInitialized())
+                        {
+                            HOperatorSet.ReduceDomain(Ho_Image, ho_RegionROI, out HObject ho_ImageROI);
+                            //HOperatorSet.WriteImage(ho_ImageROI, "bmp", 0, @"ho_ImageReduced.bmp");
                             ho_RegionROI.Dispose();
-                            hv_UsedThreshold.Dispose();
+
                             // 创建形状模板
                             Hv_ShapeModelID.Dispose();
                             HOperatorSet.CreateShapeModel(ho_ImageROI, "auto", -0.39, 0.79, "auto", "auto", "use_polarity", "auto", "auto", out Hv_ShapeModelID);
                             ho_ImageROI.Dispose();
-
-                            // 显示模板
-                            HOperatorSet.FindShapeModel(ho_ImageReduced, Hv_ShapeModelID, -0.39, 0.79, 0.3, 1, 0.5, "least_squares", 0, 0.9, out HTuple hv_Row, out HTuple hv_Column, out HTuple hv_Angle, out HTuple hv_Score);
+                            // 寻找模板
+                            HOperatorSet.FindShapeModel(Ho_Image, Hv_ShapeModelID, -0.39, 0.79, 0.3, 1, 0.5, "least_squares", 0, 0.9, out HTuple hv_Row, out HTuple hv_Column, out HTuple hv_Angle, out HTuple hv_Score);
+                            hv_Score.Dispose();
                             // 获取模板轮廓
                             HOperatorSet.GetShapeModelContours(out HObject ho_ShapeModel, Hv_ShapeModelID, 1);
-                            // 匹配结果
+                            // 显示模板
                             HOperatorSet.VectorAngleToRigid(0, 0, 0, hv_Row, hv_Column, hv_Angle, out HTuple hv_HomMat2DRotate);
-                            HOperatorSet.AffineTransContourXld(ho_ShapeModel, out HObject ho_ModelTrans, hv_HomMat2DRotate);
-                            Ho_Window.DispObj(ho_ModelTrans);
-                            HandyControl.Controls.Growl.Info("匹配结果：x = " + (int)hv_Column.D + ", y = " + (int)hv_Row.D + "\n, score = " + hv_Score.D.ToString("F2") + ", angle = " + hv_Angle.D.ToString("F2"));
-                            ho_ImageReduced.Dispose();
-                            ho_ShapeModel.Dispose();
-                            hv_HomMat2DRotate.Dispose();
-                            ho_ModelTrans.Dispose();
                             hv_Row.Dispose();
                             hv_Column.Dispose();
                             hv_Angle.Dispose();
-                            hv_Score.Dispose();
-                            HandyControl.Controls.Growl.Success("模板创建成功...\n");
+                            HOperatorSet.AffineTransContourXld(ho_ShapeModel, out HObject ho_ModelTrans, hv_HomMat2DRotate);
+                            Ho_Window.DispObj(Ho_Image);
+                            Ho_Window.DispObj(ho_ModelTrans);
+                            ho_ShapeModel.Dispose();
+                            ho_ModelTrans.Dispose();
+                            hv_HomMat2DRotate.Dispose();
+                            HandyControl.Controls.Growl.Info("匹配结果：x = " + (int)hv_Column.D + ", y = " + (int)hv_Row.D + "\n, score = " + hv_Score.D.ToString("F2") + ", angle = " + hv_Angle.D.ToString("F2"));
                         }
                     }
                     catch (Exception)
@@ -324,10 +406,11 @@ namespace HalconWPF.ViewModel
                 }
 
                 // 保存模板
-                else if (name == "Save")
+                else if (name == "SaveModule")
                 {
                     try
                     {
+                        // 保存 模板
                         if (Hv_ShapeModelID != null && Hv_ShapeModelID.ToString() != "")
                         {
                             SaveFileDialog dialog = new SaveFileDialog
@@ -355,7 +438,7 @@ namespace HalconWPF.ViewModel
                 }
 
                 // 加载模板
-                else if (name == "Load")
+                else if (name == "LoadModule")
                 {
                     try
                     {
@@ -383,8 +466,33 @@ namespace HalconWPF.ViewModel
                     }
                 }
 
+                // 加载图像
+                else if (name == "LoadImage")
+                {
+                    if (Ho_Image == null)
+                    {
+                        HOperatorSet.GenEmptyObj(out Ho_Image);
+                    }
+                    Ho_Image.Dispose();
+                    HOperatorSet.ReadImage(out Ho_Image, @"image\calibration_circle.bmp");
+                    Ho_Window.DispObj(Ho_Image);
+                    if (IsFirstShow)
+                    {
+                        IsFirstShow = false;
+                        Halcon.SetFullImagePart();
+                        // 显示属性
+                        Ho_Window.SetColor("red");
+                        Ho_Window.SetLineWidth(2);
+                    }
+                    // 重置
+                    DrawingCanvas.Strokes.Clear();
+                    DrawingCanvas.Children.Clear();
+                    BoolCanEdit = false;
+                    ModuleEditState = EnumModuleEditState.none;
+                }
+
                 // 模板匹配
-                else if (name == "Match")
+                else if (name == "MatchModule")
                 {
                     if (Hv_ShapeModelID != null && Hv_ShapeModelID.ToString() != "[]")
                     {
@@ -417,6 +525,7 @@ namespace HalconWPF.ViewModel
                             // 保证每次的 Cross 大小一致
                             double r = 10 * Math.Pow(Halcon.HZoomFactor, WheelScrollValue);
                             DrawingCanvas.Strokes.Clear();
+                            DrawingCanvas.Children.Clear();
                             Ho_Window.DispObj(Ho_Image);
                             foreach (CShapeModelMatchResult item in results)
                             {
@@ -452,6 +561,29 @@ namespace HalconWPF.ViewModel
         }
 
         ////////////////////////////////// 方法 //////////////////////////////////
+        #region
+        /// <summary>
+        /// 刷新涂层
+        /// </summary>
+        private void RefreshMask()
+        {
+            // 修改坐标 重绘会闪烁
+            for (int i = 0; i < DrawingCanvas.Children.Count; i++)
+            {
+                Polygon polygon = DrawingCanvas.Children[i] as Polygon;
+                // Stroke 和 Children 是一一对应的
+                polygon.Points = DrawingCanvas.Strokes[i].StylusPoints.StylusPointsConverter();
+            }
+        }
+
+        /// <summary>
+        /// 当前编辑状态
+        /// </summary>
+        private void GetCurState()
+        {
+            StrCurState = ((DescriptionAttribute)ModuleEditState.GetType().GetField(ModuleEditState.ToString()).GetCustomAttribute(typeof(DescriptionAttribute), false)).Description;
+        }
+
         /// <summary>
         /// 鼠标左键弹起
         /// </summary>
@@ -460,6 +592,33 @@ namespace HalconWPF.ViewModel
         private void DrawingBorder_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             CanMove = false;
+
+            // 创建模板
+            if (ModuleEditState == EnumModuleEditState.make_module)
+            {
+                // 创建涂层 最后一个 Stroke
+                int count = DrawingCanvas.Strokes.Count;
+                if (count > 0)
+                {
+                    StylusPointCollection sps = DrawingCanvas.Strokes[count - 1].StylusPoints;
+                    // 最少三个点
+                    if (sps.Count > 2)
+                    {
+                        Polygon polygon = new Polygon()
+                        {
+                            Stroke = InkCanvasMethod.StrokeBrushMask,
+                            StrokeThickness = 1,
+                            Points = sps.StylusPointsConverter(),
+                            Fill = InkCanvasMethod.StrokeBrushMask,
+                        };
+                        DrawingCanvas.Children.Add(polygon);
+                    }
+                    else
+                    {
+                        DrawingCanvas.Strokes.RemoveAt(count - 1);
+                    }
+                }
+            }
         }
         /// <summary>
         /// 鼠标移动
@@ -469,6 +628,23 @@ namespace HalconWPF.ViewModel
         private void DrawingBorder_MouseMove(object sender, MouseEventArgs e)
         {
             Point curPoint = e.GetPosition(e.Device.Target);
+            // 创建模板 可以多个 Stroke
+            if (ModuleEditState == EnumModuleEditState.make_module && CanMove)
+            {
+                // 重绘调整笔迹宽度
+                //int count = DrawingCanvas.Strokes.Count;
+                //StylusPointCollection sps = DrawingCanvas.Strokes[count - 1].StylusPoints.Clone();
+                //DrawingCanvas.Strokes.RemoveAt(count - 1);
+                //sps.Add(new StylusPoint(curPoint.X, curPoint.Y));
+                //DrawingCanvas.Strokes[count - 1].StylusPoints.Add(new StylusPoint(curPoint.X, curPoint.Y));
+                //InkStrokeThickness = InkCanvasMethod.InkStrokeThicknessDefault * Math.Pow(Halcon.HZoomFactor, WheelScrollValue);
+                //DrawingCanvas.Strokes.Add(InkCanvasMethod.CreateLineMask(sps));
+
+                // 不用重绘 框选范围
+                int count = DrawingCanvas.Strokes.Count;
+                DrawingCanvas.Strokes[count - 1].StylusPoints.Add(new StylusPoint(curPoint.X, curPoint.Y));
+                return;
+            }
 
             //////////////////////////////////////// 当前点信息
             if (Ho_Image != null)
@@ -490,21 +666,21 @@ namespace HalconWPF.ViewModel
                 }
             }
 
-            //////////////////////////////////////// 编辑模板
-            if (BoolEditMode)
+            //////////////////////////////////////// 编辑 ROI
+            if (BoolCanEdit)
             {
                 if (DrawingCanvas.Strokes.Count < 1)
                 {
                     return;
                 }
 
-                if (!IsModuleEditing)
+                if (ModuleEditState != EnumModuleEditState.edit_roi)
                 {
                     // 会卡顿 只判断一次 不同位置对应不同鼠标形状
                     ModuleEditType = DrawingCanvas.Strokes[0].GetModuleEditType(curPoint, EnumModuleSel);
                 }
 
-                IsModuleEditing = true;
+                ModuleEditState = EnumModuleEditState.edit_roi;
                 // 根据编辑状态设置鼠标形状
                 if (ModuleEditType == EnumModuleEditType.Move)
                 {
@@ -528,12 +704,12 @@ namespace HalconWPF.ViewModel
                 }
                 else
                 {
-                    IsModuleEditing = false;
+                    ModuleEditState = EnumModuleEditState.none;
                     DrawingBorder.Cursor = Cursors.Arrow;
                 }
 
                 // 编辑
-                if (CanMove && IsModuleEditing)
+                if (CanMove && ModuleEditState == EnumModuleEditState.edit_roi)
                 {
                     // 移动
                     if (ModuleEditType == EnumModuleEditType.Move)
@@ -676,20 +852,19 @@ namespace HalconWPF.ViewModel
                             // 将选中点的坐标替换为新的坐标
                             sps[index] = new StylusPoint(curPoint.X, curPoint.Y);
                         }
-
                         // 更新初始移动位置
                         PointMoveOri = curPoint;
                     }
                 }
                 else
                 {
-                    IsModuleEditing = false;
+                    ModuleEditState = EnumModuleEditState.none;
                     ModuleEditType = EnumModuleEditType.None;
                 }
             }
 
-            //////////////////////////////////////// 创建模板
-            if (IsMakingModule)
+            //////////////////////////////////////// 创建 ROI
+            if (ModuleEditState == EnumModuleEditState.make_roi)
             {
                 // 多边形比较特殊
                 if (EnumModuleSel == EnumModuleType.polygon)
@@ -708,6 +883,7 @@ namespace HalconWPF.ViewModel
 
                         // 重绘
                         DrawingCanvas.Strokes.Clear();
+                        DrawingCanvas.Children.Clear();
                         DrawingCanvas.Strokes.Add(InkCanvasMethod.CreatePolyline(sps));
                     }
                     return;
@@ -718,6 +894,7 @@ namespace HalconWPF.ViewModel
                     return;
                 }
                 DrawingCanvas.Strokes.Clear();
+                DrawingCanvas.Children.Clear();
                 if (EnumModuleSel == EnumModuleType.rectangle)
                 {
                     DrawingCanvas.Strokes.Add(InkCanvasMethod.CreateRectangle(PointMoveOri, curPoint));
@@ -742,6 +919,8 @@ namespace HalconWPF.ViewModel
                 Matrix matrix = new Matrix();
                 matrix.Translate(curPoint.X - PointMoveOri.X, curPoint.Y - PointMoveOri.Y);
                 DrawingCanvas.Strokes.Transform(matrix, false);
+                // 刷新涂层
+                RefreshMask();
                 // 更新起点
                 PointMoveOri = curPoint;
             }
@@ -762,12 +941,14 @@ namespace HalconWPF.ViewModel
                 Halcon.SetFullImagePart();
                 WheelScrollValue = 0;
                 DrawingCanvas.Strokes.Clear();
-                BoolEditMode = false;
+                DrawingCanvas.Children.Clear();
+                ModuleEditState = EnumModuleEditState.none;
+                BoolCanEdit = false;
             }
             else
             {
                 // 创建 PolyLine 添加点 在 MouseMove 中绘制实时效果 
-                if (IsMakingModule && EnumModuleSel == EnumModuleType.polygon)
+                if (ModuleEditState == EnumModuleEditState.make_roi && EnumModuleSel == EnumModuleType.polygon)
                 {
                     if (DrawingCanvas.Strokes.Count == 0)
                     {
@@ -777,6 +958,14 @@ namespace HalconWPF.ViewModel
                     {
                         DrawingCanvas.Strokes[0].StylusPoints.Add(new StylusPoint(PointMoveOri.X, PointMoveOri.Y));
                     }
+                }
+
+                // 创建模板状态
+                else if (ModuleEditState == EnumModuleEditState.make_module)
+                {
+                    // 每次点击创建一个 Stroke
+                    InkStrokeThickness = InkCanvasMethod.InkStrokeThickness * Math.Pow(Halcon.HZoomFactor, WheelScrollValue);
+                    DrawingCanvas.Strokes.Add(InkCanvasMethod.CreateLineMask(new StylusPointCollection { new StylusPoint(PointMoveOri.X, PointMoveOri.Y) }));
                 }
             }
         }
@@ -803,6 +992,8 @@ namespace HalconWPF.ViewModel
                 }
                 matrix.ScaleAt(Halcon.HZoomFactor, Halcon.HZoomFactor, curPoint.X, curPoint.Y);
                 Halcon.HZoomWindowContents(curPoint.X, curPoint.Y, 1);
+                // 缩放时笔迹宽度跟随
+                InkStrokeThickness *= Halcon.HZoomFactor;
             }
             else
             {
@@ -816,8 +1007,13 @@ namespace HalconWPF.ViewModel
                 }
                 matrix.ScaleAt(1 / Halcon.HZoomFactor, 1 / Halcon.HZoomFactor, curPoint.X, curPoint.Y);
                 Halcon.HZoomWindowContents(curPoint.X, curPoint.Y, -1);
+                // 缩放时笔迹宽度跟随
+                InkStrokeThickness /= Halcon.HZoomFactor;
             }
             DrawingCanvas.Strokes.Transform(matrix, false);
+
+            // 重绘涂层
+            RefreshMask();
         }
 
         /// <summary>
@@ -830,19 +1026,22 @@ namespace HalconWPF.ViewModel
             // 双击 锁定模板
             if (e.ClickCount > 1)
             {
-                BoolEditMode = false;
+                BoolCanEdit = false;
+                ModuleEditState = EnumModuleEditState.none;
+                GetCurState();
                 DrawingBorder.Cursor = Cursors.Arrow;
             }
             else
             {
-                // 多边形比较特殊 右键完成创建
-                if (IsMakingModule && EnumModuleSel == EnumModuleType.polygon)
+                // 多边形比较特殊 右键完成制作
+                if (ModuleEditState == EnumModuleEditState.make_roi && EnumModuleSel == EnumModuleType.polygon)
                 {
-                    // 创建过程中是 PolyLine
+                    // 制作过程中是 PolyLine
                     if (DrawingCanvas.Strokes.Count == 1 && DrawingCanvas.Strokes[0].GetType().Name.ToString() == "CustomPolyline")
                     {
                         StylusPointCollection sps = DrawingCanvas.Strokes[0].StylusPoints.Clone();
                         DrawingCanvas.Strokes.Clear();
+                        DrawingCanvas.Children.Clear();
                         // 多边形至少 3 个点
                         if (sps.Count > 2)
                         {
@@ -851,9 +1050,16 @@ namespace HalconWPF.ViewModel
                     }
                 }
 
-                // 创建模板完成 开启编辑状态
-                IsMakingModule = false;
-                BoolEditMode = true;
+                if (ModuleEditState == EnumModuleEditState.make_module)
+                {
+                    ModuleEditState = EnumModuleEditState.none;
+                    return;
+                }
+                // 可以编辑 ROI
+                BoolCanEdit = true;
+                // 切换到编辑 ROI 状态
+                ModuleEditState = EnumModuleEditState.edit_roi;
+                GetCurState();
             }
         }
 
@@ -886,5 +1092,6 @@ namespace HalconWPF.ViewModel
             }
             );
         }
+        #endregion
     }
 }

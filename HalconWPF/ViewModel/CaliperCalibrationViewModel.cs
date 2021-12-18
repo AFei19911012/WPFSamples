@@ -207,7 +207,7 @@ namespace HalconWPF.ViewModel
                 {
                     HOperatorSet.GenEmptyObj(out Ho_Image);
                     Ho_Image.Dispose();
-                    HOperatorSet.ReadImage(out Ho_Image, @"..\HalconWPF\Resource\Image\caliper.bmp");
+                    HOperatorSet.ReadImage(out Ho_Image, @"image\caliper.bmp");
                     Ho_Window.DispObj(Ho_Image);
                     Halcon.SetFullImagePart();
                     Halcon.HZoomFactor = 1.25;

@@ -19,6 +19,7 @@ namespace HalconWPF.Method
         {
             return new ObservableCollection<CDataModel>
             {
+                new CDataModel{ Name = "HalconTools", ImgPath="pack://application:,,,/Resource/Image/H.png"},
                 new CDataModel{ Name = "AcquisitionImage", ImgPath="pack://application:,,,/Resource/Image/A.png"},
                 new CDataModel{ Name = "ImageReadSave", ImgPath="pack://application:,,,/Resource/Image/I.png"},
                 new CDataModel{ Name = "ClipNumberAndAngle", ImgPath="pack://application:,,,/Resource/Image/C.png"},

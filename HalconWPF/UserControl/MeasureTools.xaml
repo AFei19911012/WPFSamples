@@ -28,7 +28,7 @@
         </Grid.RowDefinitions>
 
         <Grid Background="{DynamicResource BackgroundBrush}">
-            <TextBlock Text="设计模板" Style="{DynamicResource TextBlockTitleBold}" HorizontalAlignment="Left" Margin="5"/>
+            <TextBlock Text="测量工具" Style="{DynamicResource TextBlockTitleBold}" HorizontalAlignment="Left" Margin="5"/>
         </Grid>
 
         <Grid Grid.Row="1">

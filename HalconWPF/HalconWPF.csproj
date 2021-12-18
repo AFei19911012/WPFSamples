@@ -62,6 +62,9 @@
     <Reference Include="ICSharpCode.AvalonEdit, Version=6.1.2.30, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
       <HintPath>..\packages\AvalonEdit.6.1.2.30\lib\net45\ICSharpCode.AvalonEdit.dll</HintPath>
     </Reference>
+    <Reference Include="MvCameraControl.Net">
+      <HintPath>..\..\..\..\..\Program Files\MVS\Development\DotNet\AnyCpu\MvCameraControl.Net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Forms" />
@@ -80,6 +83,10 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WSlibs, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\WSlibs\bin\WSlibs.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -94,6 +101,7 @@
     <Compile Include="Method\CustomCaliperRectangle.cs" />
     <Compile Include="Method\CustomCircle.cs" />
     <Compile Include="Method\CustomEllipse.cs" />
+    <Compile Include="Method\CustomLineMask.cs" />
     <Compile Include="Method\CustomMarkerCross.cs" />
     <Compile Include="Method\CustomParallelLines.cs" />
     <Compile Include="Method\CustomPolygon.cs" />
@@ -107,6 +115,7 @@
     <Compile Include="Halcon\HalDrawing.cs" />
     <Compile Include="Model\CShapeModelMatchResult.cs" />
     <Compile Include="Model\EnumMeasureTools.cs" />
+    <Compile Include="Model\EnumModuleEditState.cs" />
     <Compile Include="Model\EnumModuleEditType.cs" />
     <Compile Include="Model\EnumModuleType.cs" />
     <Compile Include="UserControl\AcquisitionImage.xaml.cs">
@@ -132,6 +141,9 @@
     </Compile>
     <Compile Include="UserControl\DomainModule.xaml.cs">
       <DependentUpon>DomainModule.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\HalconTools.xaml.cs">
+      <DependentUpon>HalconTools.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControl\ImageReadSave.xaml.cs">
       <DependentUpon>ImageReadSave.xaml</DependentUpon>
@@ -218,6 +230,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControl\HalconTools.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControl\ImageReadSave.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -258,6 +274,8 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Resource\iconfont.json" />
+    <Resource Include="Resource\iconfont.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -315,10 +333,6 @@
     <Resource Include="Resource\Halcon\CalibrationWithPoints.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resource\Image\calibration_circle.bmp" />
-    <Resource Include="Resource\Image\test_circle.bmp" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resource\Halcon\BearingDefectDetection.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -330,9 +344,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resource\Halcon\BastingDefectDetection.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resource\Image\caliper.bmp" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resource\ScreenShot\BastingDefectDetection1.png" />

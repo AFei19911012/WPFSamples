@@ -35,16 +35,13 @@ namespace HalconWPF.Method
             // 固定长度
             double radius = 2000;
 
-            Matrix matrix = new Matrix();
-            matrix.RotateAt(0, point0.X, point0.Y);
-
             // Rectangle
             PathGeometry geometry = new PathGeometry();
             PathFigure figure = new PathFigure
             {
                 StartPoint = point1,
-                IsClosed = false,
-                IsFilled = false,
+                IsClosed = true,
+                IsFilled = true,
             };
             for (int i = 1; i < StylusPoints.Count; i++)
             {
@@ -61,7 +58,6 @@ namespace HalconWPF.Method
             figure = new PathFigure
             {
                 StartPoint = new Point(point0.X - radius, point0.Y),
-                IsClosed = false
             };
             figure.Segments.Add(new LineSegment(new Point(point0.X + radius, point0.Y), true));
             geometry.Figures.Add(figure);
@@ -69,7 +65,6 @@ namespace HalconWPF.Method
             figure = new PathFigure
             {
                 StartPoint = new Point(point0.X, point0.Y - radius),
-                IsClosed = false
             };
             figure.Segments.Add(new LineSegment(new Point(point0.X, point0.Y + radius), true));
             geometry.Figures.Add(figure);

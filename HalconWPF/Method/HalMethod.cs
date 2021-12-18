@@ -383,6 +383,14 @@ namespace HalconWPF.Method
             }
             return pts;
         }
-
+        public static PointCollection ControlPointToHImagePoint(this HSmartWindowControlWPF Halcon, PointCollection points, bool isReversed = false)
+        {
+            PointCollection pts = new PointCollection();
+            for (int i = 0; i < points.Count; i++)
+            {
+                pts.Add(ControlPointToHImagePoint(Halcon, points[i].X, points[i].Y, isReversed));
+            }
+            return pts;
+        }
     }
 }

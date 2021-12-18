@@ -87,7 +87,11 @@ namespace HalconWPF.ViewModel
             };
             MainContent.Children.Clear();
             string name = DataList[SelectedIndex].Name;
-            if (name == "AcquisitionImage")
+            if (name == "HalconTools")
+            {
+                _ = MainContent.Children.Add(new HalconTools());
+            }
+            else if (name == "AcquisitionImage")
             {
                 _ = MainContent.Children.Add(new AcquisitionImage());
             }
