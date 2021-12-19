@@ -57,3 +57,11 @@ PCB **检测**
 ![针脚检测](https://github.com/AFei19911012/WPFSamples/blob/main/HalconWPF/Resource/ScreenShot/BastingDefectDetection1.png)
 
 ![针脚检测](https://github.com/AFei19911012/WPFSamples/blob/main/HalconWPF/Resource/ScreenShot/BastingDefectDetection2.png)
+
+**形状模板**
+
+![形状模板](https://github.com/AFei19911012/WPFSamples/blob/main/HalconWPF/Resource/ScreenShot/ShapeModule.png)
+
+**卡尺标定**
+
+![卡尺标定](https://github.com/AFei19911012/WPFSamples/blob/main/HalconWPF/Resource/ScreenShot/CaliperCalibration.png)
