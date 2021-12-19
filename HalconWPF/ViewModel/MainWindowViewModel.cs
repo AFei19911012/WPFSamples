@@ -127,14 +127,6 @@ namespace HalconWPF.ViewModel
             {
                 _ = MainContent.Children.Add(new BastingDefectDetection());
             }
-            else if (name == "DomainModule")
-            {
-                _ = MainContent.Children.Add(new DomainModule());
-            }
-            else if (name == "CaliperCalibration")
-            {
-                _ = MainContent.Children.Add(new CaliperCalibration());
-            }
             else if (name == "MeasureTools")
             {
                 _ = MainContent.Children.Add(new MeasureTools());

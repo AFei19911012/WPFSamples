@@ -112,17 +112,17 @@ namespace HalconWPF.ViewModel
         /// <summary>
         /// 缩放参数
         /// </summary>
-        private int WheelScrollValue { get; set; }
-        private int WheelScrollMin { get; set; }
-        private int WheelScrollMax { get; set; }
+        private int WheelScrollValue { get; set; } = 0;
+        private int WheelScrollMin { get; set; } = -5;
+        private int WheelScrollMax { get; set; } = -15;
 
         /// <summary>
         /// 绘制模板 编辑
         /// </summary>
-        private Point PointMoveOri { get; set; }
-        private bool IsMakingModule { get; set; }
-        private bool IsEditingModule { get; set; }
-        private bool CanMove { get; set; }
+        private Point PointMoveOri { get; set; } = new Point();
+        private bool IsMakingModule { get; set; } = false;
+        private bool IsEditingModule { get; set; } = false;
+        private bool CanMove { get; set; } = false;
         private EnumModuleEditType ModuleEditType { get; set; }
         private HTuple Hv_ShapeModelID = new HTuple();
 
@@ -139,15 +139,6 @@ namespace HalconWPF.ViewModel
         {
             EnumToolsSel = EnumMeasureTools.distance;
             BoolEditMode = false;
-            PointMoveOri = new Point();
-            CanMove = false;
-            IsMakingModule = false;
-            IsEditingModule = false;
-
-            WheelScrollValue = 0;
-            WheelScrollMin = 0;
-            WheelScrollMax = 20;
-
             ModuleEditType = EnumModuleEditType.None;
 
             StrCurPosition = "X = null, Y = null";
@@ -200,13 +191,12 @@ namespace HalconWPF.ViewModel
             {
                 HOperatorSet.GenEmptyObj(out Ho_Image);
                 Ho_Image.Dispose();
-                HOperatorSet.ReadImage(out Ho_Image, @"..\HalconWPF\Resource\Image\calibration_circle.bmp");
+                HOperatorSet.ReadImage(out Ho_Image, @"image\calibration_circle.bmp");
                 // 显示属性
                 Ho_Window.SetColor("red");
                 Ho_Window.SetLineWidth(1);
                 Ho_Window.DispObj(Ho_Image);
                 Halcon.SetFullImagePart();
-                Halcon.HZoomFactor = 1.25;
                 // 锁定
                 DrawingCanvas.Strokes.Clear();
                 BoolEditMode = false;

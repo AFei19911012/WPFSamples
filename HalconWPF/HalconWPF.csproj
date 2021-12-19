@@ -130,17 +130,11 @@
     <Compile Include="UserControl\CalibrationWithPoints.xaml.cs">
       <DependentUpon>CalibrationWithPoints.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControl\CaliperCalibration.xaml.cs">
-      <DependentUpon>CaliperCalibration.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControl\CircleFitting.xaml.cs">
       <DependentUpon>CircleFitting.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControl\ClipNumberAndAngle.xaml.cs">
       <DependentUpon>ClipNumberAndAngle.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControl\DomainModule.xaml.cs">
-      <DependentUpon>DomainModule.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControl\HalconTools.xaml.cs">
       <DependentUpon>HalconTools.xaml</DependentUpon>
@@ -158,10 +152,8 @@
     <Compile Include="ViewModel\BastingDefectDetectionViewModel.cs" />
     <Compile Include="ViewModel\BearingDefectDetectionViewModel.cs" />
     <Compile Include="ViewModel\CalibrationWithPointsViewModel.cs" />
-    <Compile Include="ViewModel\CaliperCalibrationViewModel.cs" />
     <Compile Include="ViewModel\CircleFittingViewModel.cs" />
     <Compile Include="ViewModel\ClipNumberAndAngleViewModel.cs" />
-    <Compile Include="ViewModel\DomainModuleViewModel.cs" />
     <Compile Include="ViewModel\ImageReadSaveViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="UserControl\PcbDefectDetection.xaml.cs">
@@ -214,19 +206,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControl\CaliperCalibration.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="UserControl\CircleFitting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControl\ClipNumberAndAngle.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControl\DomainModule.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -356,10 +340,8 @@
     <Resource Include="Resource\ScreenShot\TeethDetection.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resource\ScreenShot\DomainModule.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resource\ScreenShot\CaliperCalibration.png" />
+    <Resource Include="Resource\ScreenShot\ShapeModule.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
