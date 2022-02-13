@@ -64,7 +64,7 @@ namespace HalconWPF.ViewModel
                 return;
             }
             string name = DataList[SelectedIndex].Name;
-            string filename = @"..\HalconWPF\Resource\Halcon\" + name + ".txt";
+            string filename = @"HalconCode\" + name + ".txt";
             if (File.Exists(filename))
             {
                 TextContainer.Load(filename);
@@ -91,39 +91,39 @@ namespace HalconWPF.ViewModel
             {
                 _ = MainContent.Children.Add(new HalconTools());
             }
-            else if (name == "AcquisitionImage")
+            else if (name == "A图像采集")
             {
                 _ = MainContent.Children.Add(new AcquisitionImage());
             }
-            else if (name == "ImageReadSave")
+            else if (name == "A图像读取和保存")
             {
                 _ = MainContent.Children.Add(new ImageReadSave());
             }
-            else if (name == "ClipNumberAndAngle")
+            else if (name == "B计算别针数量和角度")
             {
                 _ = MainContent.Children.Add(new ClipNumberAndAngle());
             }
-            else if (name == "CircleFitting")
+            else if (name == "C拟合圆")
             {
                 _ = MainContent.Children.Add(new CircleFitting());
             }
-            else if (name == "PcbDefectDetection")
+            else if (name == "D缺陷检测-PCB")
             {
                 _ = MainContent.Children.Add(new PcbDefectDetection());
             }
-            else if (name == "CalibrationWithPoints")
+            else if (name == "E九点标定1")
             {
                 _ = MainContent.Children.Add(new CalibrationWithPoints());
             }
-            else if (name == "BearingDefectDetection")
+            else if (name == "D缺陷检测-轴承")
             {
                 _ = MainContent.Children.Add(new BearingDefectDetection());
             }
-            else if (name == "TeethDetection")
+            else if (name == "D缺陷检测-牙模")
             {
                 _ = MainContent.Children.Add(new TeethDetection());
             }
-            else if (name == "BastingDefectDetection")
+            else if (name == "D缺陷检测-针脚")
             {
                 _ = MainContent.Children.Add(new BastingDefectDetection());
             }

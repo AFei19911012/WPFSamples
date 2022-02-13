@@ -265,9 +265,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resource\Halcon\CircleFitting.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resource\Image\icon.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -304,30 +301,8 @@
     <Resource Include="Resource\Image\Z.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resource\Halcon\AcquisitionImage.txt" />
-    <Resource Include="Resource\Halcon\ClipNumberAndAngle.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resource\Halcon\ImageReadSave.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resource\Halcon\PcbDefectDetection.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resource\Halcon\CalibrationWithPoints.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resource\Halcon\BearingDefectDetection.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resource\ScreenShot\AcquisitionImage.png" />
     <Resource Include="Resource\ScreenShot\ImageReadSave.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resource\Halcon\TeethDetection.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resource\Halcon\BastingDefectDetection.txt" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resource\ScreenShot\BastingDefectDetection1.png" />

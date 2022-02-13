@@ -36,6 +36,8 @@ namespace HalconWPF.ViewModel
             set => Set(ref strAcqMode, value);
         }
 
+        private bool IsFirstGrab { get; set; } = true;
+
         /// <summary>
         /// Halcon 控件关联，写在 Loaded 事件里
         /// </summary>
@@ -59,16 +61,20 @@ namespace HalconWPF.ViewModel
             string camInfo = HalMethod.GetInfoFramegrabber();
             HandyControl.Controls.Growl.Info(camInfo);
             // 启动相机
-            HOperatorSet.OpenFramegrabber("GigEVision2", 0, 0, 0, 0, 0, 0, "progressive", -1, "default", -1, "false", "default", "default", 0, -1, out hv_AcqHandle);
+            //HOperatorSet.OpenFramegrabber("GigEVision2", 0, 0, 0, 0, 0, 0, "progressive", -1, "default", -1, "false", "default", "default", 0, -1, out hv_AcqHandle);
             // 启动笔记本摄像头
-            //HOperatorSet.OpenFramegrabber("DirectShow", 1, 1, 0, 0, 0, 0, "default", 8, "rgb", -1, "false", "default", "[0] ", 0, -1, out hv_AcqHandle);
+            HOperatorSet.OpenFramegrabber("DirectShow", 1, 1, 0, 0, 0, 0, "default", 8, "rgb", -1, "false", "default", "[0] ", 0, -1, out hv_AcqHandle);
             HOperatorSet.GrabImageStart(hv_AcqHandle, -1);
             ho_Image.Dispose();
             HOperatorSet.GrabImageAsync(out ho_Image, hv_AcqHandle, -1);
             HOperatorSet.GetImageSize(ho_Image, out HTuple width, out HTuple height);
             HOperatorSet.SetPart(ho_Window, 0, 0, height - 1, width - 1);
             // Halcon 图像自适应显示
-            Halcon.SetFullImagePart();
+            if (IsFirstGrab)
+            {
+                IsFirstGrab = false;
+                Halcon.SetFullImagePart();
+            }
             ho_Window.DispObj(ho_Image);
             // 关闭摄像头
             HOperatorSet.CloseFramegrabber(hv_AcqHandle);
@@ -146,13 +152,16 @@ namespace HalconWPF.ViewModel
                 //HOperatorSet.SetPart(ho_Window, 0, 0, height - 1, width - 1);
                 HOperatorSet.DispObj(ho_Image, ho_Window);
                 // Halcon 图像自适应显示
-                // 在新的线程里用如下方式更新到界面
-                _ = Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
-                (ThreadStart)delegate ()
+                if (IsFirstGrab)
                 {
-                    Halcon.SetFullImagePart();
+                    IsFirstGrab = false;
+                    // 在新的线程里用如下方式更新到界面
+                    _ = Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate ()
+                    {
+                        Halcon.SetFullImagePart();
+                    });
                 }
-                );
+                Thread.Sleep(100);
             }
         }
 

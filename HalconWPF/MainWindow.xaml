@@ -90,8 +90,11 @@
                         </StackPanel>
                     </Grid>
                 </Border>
-                <hc:Drawer Name="DrawerSourceCode" MaskCanClose="True" Dock="Right" ShowMode="Push" MaxWidth="700">
-                    <avalonEdit:TextEditor Name="TextContainer" IsReadOnly="True" FontFamily="Consolas" SyntaxHighlighting="C#" FontSize="10pt" Margin="5" ShowLineNumbers="True"/>
+                <hc:Drawer Name="DrawerSourceCode" MaskCanClose="True" Dock="Right" ShowMode="Push">
+                    <hc:ScrollViewer Width="700">
+                        <avalonEdit:TextEditor Name="TextContainer" IsReadOnly="True" FontFamily="Consolas" SyntaxHighlighting="C#" 
+                                               FontSize="10pt" Margin="5" ShowLineNumbers="True"/>
+                    </hc:ScrollViewer>
                 </hc:Drawer>
             </Grid>
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden" HorizontalAlignment="Right">

@@ -20,15 +20,15 @@ namespace HalconWPF.Method
             return new ObservableCollection<CDataModel>
             {
                 new CDataModel{ Name = "HalconTools", ImgPath="pack://application:,,,/Resource/Image/H.png"},
-                new CDataModel{ Name = "AcquisitionImage", ImgPath="pack://application:,,,/Resource/Image/A.png"},
-                new CDataModel{ Name = "ImageReadSave", ImgPath="pack://application:,,,/Resource/Image/I.png"},
-                new CDataModel{ Name = "ClipNumberAndAngle", ImgPath="pack://application:,,,/Resource/Image/C.png"},
-                new CDataModel{ Name = "CircleFitting", ImgPath="pack://application:,,,/Resource/Image/C.png"},
-                new CDataModel{ Name = "PcbDefectDetection", ImgPath="pack://application:,,,/Resource/Image/P.png"},
-                new CDataModel{ Name = "CalibrationWithPoints", ImgPath="pack://application:,,,/Resource/Image/C.png"},
-                new CDataModel{ Name = "BearingDefectDetection", ImgPath="pack://application:,,,/Resource/Image/B.png"},
-                new CDataModel{ Name = "TeethDetection", ImgPath="pack://application:,,,/Resource/Image/T.png"},
-                new CDataModel{ Name = "BastingDefectDetection", ImgPath="pack://application:,,,/Resource/Image/B.png"},
+                new CDataModel{ Name = "A图像采集", ImgPath="pack://application:,,,/Resource/Image/A.png"},
+                new CDataModel{ Name = "A图像读取和保存", ImgPath="pack://application:,,,/Resource/Image/A.png"},
+                new CDataModel{ Name = "B计算别针数量和角度", ImgPath="pack://application:,,,/Resource/Image/B.png"},
+                new CDataModel{ Name = "C拟合圆", ImgPath="pack://application:,,,/Resource/Image/C.png"},
+                new CDataModel{ Name = "D缺陷检测-PCB", ImgPath="pack://application:,,,/Resource/Image/D.png"},
+                new CDataModel{ Name = "E九点标定1", ImgPath="pack://application:,,,/Resource/Image/E.png"},
+                new CDataModel{ Name = "D缺陷检测-轴承", ImgPath="pack://application:,,,/Resource/Image/D.png"},
+                new CDataModel{ Name = "D缺陷检测-牙模", ImgPath="pack://application:,,,/Resource/Image/D.png"},
+                new CDataModel{ Name = "D缺陷检测-针脚", ImgPath="pack://application:,,,/Resource/Image/D.png"},
                 new CDataModel{ Name = "MeasureTools", ImgPath="pack://application:,,,/Resource/Image/M.png"},
             };
         }

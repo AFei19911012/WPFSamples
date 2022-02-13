@@ -53,7 +53,7 @@ namespace HalconWPF.ViewModel
                 ho_Window.SetPart(0, 0, height - 1, width - 1);
                 ho_Window.DispObj(ho_Image);
                 // 自适应比例
-                Halcon.SetFullImagePart();  
+                Halcon.SetFullImagePart();
             }
             else if (btn == "Calculate")
             {
