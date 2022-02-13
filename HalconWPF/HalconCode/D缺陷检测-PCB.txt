@@ -1,0 +1,20 @@
+* **********************************************************
+* PCB 缺陷检测
+* **********************************************************
+dev_update_window ('off')
+* 读取图像
+read_image (Image, 'pcb')
+* 常规设置
+dev_close_window ()
+get_image_size (Image, Width, Height)
+dev_open_window (0, 0, Width, Height, 'black', WindowHandle)
+* 闭运算
+gray_opening_shape (Image, ImageOpening, 7, 7, 'octagon')
+* 开运算
+gray_closing_shape (Image, ImageClosing, 7, 7, 'octagon')
+* 动态阈值
+dyn_threshold (ImageOpening, ImageClosing, RegionDynThresh, 75, 'not_equal')
+dev_display (Image)
+dev_set_color ('red')
+dev_display (RegionDynThresh)
+dev_update_window ('on')

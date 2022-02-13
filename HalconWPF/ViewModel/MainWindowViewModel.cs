@@ -64,7 +64,7 @@ namespace HalconWPF.ViewModel
                 return;
             }
             string name = DataList[SelectedIndex].Name;
-            string filename = @"HalconCode\" + name + ".txt";
+            string filename = @"..\HalconWPF\HalconCode\" + name + ".txt";
             if (File.Exists(filename))
             {
                 TextContainer.Load(filename);

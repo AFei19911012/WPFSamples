@@ -1,0 +1,102 @@
+* **********************************************************
+* 变压器针脚检测
+* **********************************************************
+*
+method := 2
+if (method == 1)
+  * 第一种打光方式
+  dev_update_off ()
+  dev_close_window ()
+  dev_open_window (0, 0, 612, 512, 'white', WindowHandle)
+  set_display_font (WindowHandle, 16, 'mono', 'true', 'false')
+*   dev_set_draw ('margin')
+  dev_set_line_width (1)
+  *
+  list_image_files ('D:/MyPrograms/DataSet/halcon/针脚/01', 'bmp', [], ImageFiles)
+  for Index := 1 to |ImageFiles| by 1
+      read_image (Image, ImageFiles[Index-1])
+      dev_display (Image)
+      * 局部阈值，突出轮廓
+      mean_image (Image, ImageMean, 5, 5)
+      dyn_threshold (Image, ImageMean, RegionDynThresh, 30, 'light')
+      * 饱满
+      closing_circle (RegionDynThresh, RegionClosing, 30)
+      connection (RegionClosing, ConnectedRegions)
+      select_shape (ConnectedRegions, SelectedRegions, 'area', 'and', 100, 99999)
+      shape_trans (SelectedRegions, RegionTrans, 'convex')
+*       dev_display (RegionTrans)
+      sort_region (RegionTrans, SortedRegions, 'first_point', 'true', 'column')
+      area_center (SortedRegions, Area, Row, Column)
+      * 中心点
+      gen_cross_contour_xld (Cross, Row, Column, 100, 0.785398)
+      dev_display (Cross)
+*       disp_continue_message (WindowHandle, 'black', 'true')
+*       stop ()
+      wait_seconds (0.5)
+  endfor
+else
+* 第二种打光方法
+  dev_update_off ()
+  dev_close_window ()
+  dev_open_window (0, 0, 768, 512, 'white', WindowHandle)
+  set_display_font (WindowHandle, 16, 'mono', 'true', 'false')
+  dev_set_draw ('margin')
+  dev_set_line_width (1)
+  *
+  list_image_files ('D:/MyPrograms/DataSet/halcon/针脚/02', 'bmp', [], ImageFiles)
+  for Index := 1 to |ImageFiles| by 1
+      read_image (Image, ImageFiles[Index-1])
+      rgb1_to_gray (Image, GrayImage)
+      * ROI
+      gen_rectangle1 (Rectangle, 0, 500, 2048, 2500)
+      reduce_domain (GrayImage, Rectangle, ImageReduced)
+      * 获取每个针脚大致区域
+      min_max_gray (ImageReduced, ImageReduced, 0, Min, Max, Range)
+      threshold (ImageReduced, Region, 0.8 * Max, Max)
+      dev_display (GrayImage)
+      dilation_circle (Region, RegionDilation, 30)
+      connection (RegionDilation, ConnectedRegions)
+      count_obj (ConnectedRegions, Number)
+      * 大致区域里单独分割
+      gen_empty_region (ROIRegion)
+      for I := 1 to Number by 1
+          select_obj (ConnectedRegions, ObjectSelected, I)
+          reduce_domain (ImageReduced, ObjectSelected, ImageSelected)
+          min_max_gray (ImageSelected, ImageSelected, 0, Min, Max, Range)
+          * 粗略阈值
+          threshold (ImageSelected, Region, 0.9 * Max, Max)
+          closing_circle (Region, RegionClosing, 30)
+          smallest_rectangle1 (RegionClosing, Row1, Column1, Row2, Column2)
+          tuple_min ([Row2 - Row1, Column2 - Column1], Min)
+          tuple_max ([Row2 - Row1, Column2 - Column1], Max)
+          * 光斑太小
+          if (Min < 10)
+              local_threshold (ImageSelected, Region, 'adapted_std_deviation', 'light', [], [])
+              closing_circle (Region, RegionClosing, 30)
+              smallest_rectangle1 (RegionClosing, Row1, Column1, Row2, Column2)
+          endif
+          * 光斑太大，阈值根据针脚的实际尺寸来定
+          if (Max > 42)
+              * 闭操作减小半径
+              closing_circle (Region, RegionClosing, 5)
+              * 选择最大面积
+              connection (RegionClosing, Regions)
+              area_center (Regions, Area, Row, Column)
+              tuple_sort_index (Area, Indices)
+              count_obj (Regions, Len)
+              select_obj (Regions, ObjectSelected, Indices[Len - 1] + 1)     
+              smallest_rectangle1 (ObjectSelected, Row1, Column1, Row2, Column2)
+          endif
+          gen_rectangle1 (Rectangle, Row1, Column1, Row2, Column2)
+          union2 (ROIRegion, Rectangle, ROIRegion)
+      endfor
+      connection (ROIRegion, ConnectedRegions)
+      
+      area_center (ConnectedRegions, Area, Row, Column)
+      gen_cross_contour_xld (Cross, Row, Column, 100, 0.785398)
+      dev_display (ConnectedRegions)
+      dev_display (Cross)
+*       stop () 
+      wait_seconds (0.5)
+  endfor
+endif

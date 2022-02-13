@@ -1,0 +1,112 @@
+* **********************************************************
+* 九点标定
+* **********************************************************
+* 变换矩阵
+hom_mat2d_identity (HomMat2DIdentity)
+* 平移 (10, 20) 个像素
+hom_mat2d_translate (HomMat2DIdentity, 10, 20, HomMat2DTranslate)
+* 旋转 90 度
+angle := rad(90)
+hom_mat2d_rotate (HomMat2DTranslate, angle, 0, 0, HomMat2DRotate)
+* 测试 (64, 64) → (-84, 74)
+affine_trans_point_2d (HomMat2DRotate, 64, 64, Qx, Qy)
+
+* **********************************************************
+* 九点标定案例
+* **********************************************************
+image_x := [514.335, 515.782, 517.313, 954.505, 955.708, 957.037, 1393.84, 1395.07, 1395.99]
+image_y := [1807.44, 1347.12, 908.469, 1808.40, 1348.22, 909.957, 1809.31, 1349.42, 911.162]
+machine_x := [2.00, 0.00, -2.0, 2.00, 0.00, -2.0, 2.00, 0.00, -2.0]
+machine_y := [2.00, 2.00, 2.00, 0.00, 0.00, 0.00, -2.0, -2.0, -2.0]
+* 计算变换矩阵
+* 实际上做了一个最小二乘
+vector_to_hom_mat2d (image_x, image_y, machine_x, machine_y, HomMat2D)
+* 保存变换矩阵
+serialize_hom_mat2d (HomMat2D, SerializedItemHandle)
+open_file ('transform_vector.hmat', 'output_binary', FileHandle)
+fwrite_serialized_item (FileHandle, SerializedItemHandle)
+close_file (FileHandle)
+* 读取变换矩阵
+open_file ('transform_vector.hmat', 'input_binary', FileHandle) 
+fread_serialized_item (FileHandle, SerializedItemHandle) 
+deserialize_hom_mat2d (SerializedItemHandle, HomMat2D_9points) 
+close_file (FileHandle)
+* 测试
+affine_trans_point_2d (HomMat2D_9points, 514.335, 1807.44, Qx, Qy)
+
+* **********************************************************
+* 案例分析
+* **********************************************************
+Machine_x := machine_x
+Machine_y := machine_y
+dev_update_window ('off')
+read_image (Image, 'D:/MyPrograms/HalconSamples/images/calibration_circle')
+get_image_size (Image, Width, Height)
+dev_close_window ()
+dev_open_window (0, 0, Width/4, Height/4, 'black', WindowHandle)
+dev_set_line_width (3)
+dev_set_draw ('margin')
+set_display_font (WindowHandle, 16, 'mono', 'true', 'false')
+dev_display(Image)
+disp_continue_message (WindowHandle, 'black', 'true')
+stop ()
+* 阈值分割
+threshold (Image, Regions, 20, 100)
+* 填充
+fill_up (Regions, Regions)
+* 连通区域
+connection (Regions, ConnectedRegions)
+* 特征选择
+select_shape (ConnectedRegions, SelectedRegions, 'roundness', 'and', 0.95, 1)
+* 按相对位置排序
+sort_region (SelectedRegions, SortedRegions, 'first_point', 'true', 'row')
+dev_set_colored (12)
+dev_display (SelectedRegions)
+* 按 F5 继续
+disp_continue_message (WindowHandle, 'black', 'true')
+stop ()
+* 区域面积和中心点坐标
+* area_center (SortedRegions, Area, Row, Column)
+* 最小外接圆
+* smallest_circle (SortedRegions, Row, Column, Radius)
+* 圆拟合
+gen_contour_region_xld (SortedRegions, Contours, 'center')
+fit_circle_contour_xld (Contours, 'geotukey', -1, 0, 0, 3, 2, Row, Column, Radius, StartPhi, EndPhi, PointOrder)
+gen_cross_contour_xld (Cross, Row, Column, 50, 0.785398)
+dev_display(Cross)
+disp_continue_message (WindowHandle, 'black', 'true')
+stop ()
+* 转换矩阵
+vector_to_hom_mat2d (Row, Column, Machine_x, Machine_y, HomMat2D)
+
+* **********************************************************
+* 验证
+* **********************************************************
+read_image (Image, 'D:/MyPrograms/HalconSamples/images/test_circle.bmp')
+dev_display (Image)
+* 按 F5 继续
+disp_continue_message (WindowHandle, 'black', 'true')
+stop ()
+threshold (Image, Regions, 25, 160)
+fill_up (Regions, Regions)
+connection (Regions, ConnectedRegions)
+count_obj (ConnectedRegions, Number)
+select_shape (ConnectedRegions, SelectedRegions, 'roundness', 'and', 0.95, 1)
+sort_region (SelectedRegions, SortedRegions, 'first_point', 'true', 'row')
+gen_contour_region_xld (SortedRegions, Contours, 'center')
+fit_circle_contour_xld (Contours, 'geotukey', -1, 0, 0, 3, 2, Row, Column, Radius, StartPhi, EndPhi, PointOrder)
+affine_trans_point_2d (HomMat2D, Row, Column, Qx, Qy)
+gen_cross_contour_xld (Cross, Row, Column, 50, 0.785398)
+dev_display(Cross)
+* 画两条线并计算长度
+* 横线
+gen_contour_polygon_xld (Contour, [Row[1], Row[2]], [Column[1], Column[2]])
+dev_display (Contour)
+distance_pp (Qy[1], Qx[1], Qy[2], Qx[2], Distance)
+disp_message (WindowHandle, Distance + 'cm', 'window', Row[1]/4+10, Column[1]/4, 'red', 'true')
+* 竖线
+gen_contour_polygon_xld (Contour, [Row[4], Row[6]], [Column[4], Column[6]])
+dev_display (Contour)
+distance_pp (Qy[4], Qx[4], Qy[6], Qx[6], Distance)
+disp_message (WindowHandle, Distance + 'cm', 'window', Row[4]/4, Column[4]/4+10, 'red', 'true')
+dev_update_window ('on')

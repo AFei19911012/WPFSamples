@@ -300,23 +300,5 @@
     <Resource Include="Resource\Image\Y.png" />
     <Resource Include="Resource\Image\Z.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resource\ScreenShot\AcquisitionImage.png" />
-    <Resource Include="Resource\ScreenShot\ImageReadSave.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resource\ScreenShot\BastingDefectDetection1.png" />
-    <Resource Include="Resource\ScreenShot\BastingDefectDetection2.png" />
-    <Resource Include="Resource\ScreenShot\BearingDefectDetection.png" />
-    <Resource Include="Resource\ScreenShot\CalibrationWithPoints.png" />
-    <Resource Include="Resource\ScreenShot\CircleFitting.png" />
-    <Resource Include="Resource\ScreenShot\ClipNumberAndAngle.png" />
-    <Resource Include="Resource\ScreenShot\PcbDefectDetection.png" />
-    <Resource Include="Resource\ScreenShot\TeethDetection.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resource\ScreenShot\CaliperCalibration.png" />
-    <Resource Include="Resource\ScreenShot\ShapeModule.png" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

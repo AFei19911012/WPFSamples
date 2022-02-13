@@ -1,0 +1,32 @@
+* **********************************************************
+* 案例：散点拟合圆
+* **********************************************************
+dev_update_window ('off')
+dev_close_window ()
+dev_open_window (0, 0, 640, 480, 'white', WindowHandle)
+set_display_font (WindowHandle, 16, 'mono', 'true', 'false')
+dev_set_line_width (2)
+* 至少需要三个点
+Rows := []
+Cols := []
+Number := 10
+Center_x := 240
+Center_y := 320
+R := 200
+for Index := 0 to Number-1 by 1
+    Rows[Index] := Center_x + R*cos(Index*2*3.14 / Number)
+    Cols[Index] := Center_y + R*sin(Index*2*3.14 / Number)
+endfor
+* 画点
+gen_cross_contour_xld (Cross, Rows, Cols, 30, 0.785398)
+dev_set_color ('blue')
+dev_display (Cross)
+* 拟合圆
+gen_contour_polygon_xld (Contour, Rows, Cols)
+fit_circle_contour_xld (Contour, 'geotukey', -1, 0, 0, 3, 2, Row, Column, Radius, StartPhi, EndPhi, PointOrder)
+* 生成圆
+gen_circle_contour_xld (ContCircle, Row, Column, Radius, 0, 6.28318, 'positive', 1)
+dev_disp_text (Row + ', ' + Column + ', ' + Radius, 'image', Row, Column, 'black', [], [])
+dev_set_color ('magenta')
+dev_display (ContCircle)
+dev_update_window ('on')
