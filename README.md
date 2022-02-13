@@ -34,7 +34,7 @@ Halcon 图像链接：
 
 ![预览](https://github.com/AFei19911012/WPFSamples/blob/main/HalconWPF/ScreenShot1.png)
 
-![2D测量](https://github.com/AFei19911012/WPFSamples/blob/main/HalconWPF/ScreenShot1.png)
+![2D测量](https://github.com/AFei19911012/WPFSamples/blob/main/HalconWPF/ScreenShot2.png)
 
 1. Halcon工具:形状模板
 2. Halcon工具:标定
