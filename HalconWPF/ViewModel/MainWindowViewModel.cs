@@ -1,5 +1,4 @@
-﻿
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using HalconWPF.Method;
 using HalconWPF.Model;
@@ -10,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using WSlibs.Tools;
 
 namespace HalconWPF.ViewModel
 {
@@ -87,9 +87,29 @@ namespace HalconWPF.ViewModel
             };
             MainContent.Children.Clear();
             string name = DataList[SelectedIndex].Name;
-            if (name == "HalconTools")
+            if (name == "Halcon工具-形状模板")
             {
-                _ = MainContent.Children.Add(new HalconTools());
+                _ = MainContent.Children.Add(new ShapeModuleTool());
+            }
+            else if (name == "Halcon工具-标定")
+            {
+                _ = MainContent.Children.Add(new CamCalibrationTool());
+            }
+            else if (name == "Halcon工具-2D测量")
+            {
+                _ = MainContent.Children.Add(new MetrolobyObjectMeasureTool());
+            }
+            else if (name == "Halcon工具-卡尺标定")
+            {
+                _ = MainContent.Children.Add(new CaliperCalibrationTool());
+            }
+            else if (name == "Halcon工具-形状标定")
+            {
+                _ = MainContent.Children.Add(new ShapeCalibrationTool());
+            }
+            else if (name == "Halcon工具-ROI")
+            {
+                _ = MainContent.Children.Add(new ROITool());
             }
             else if (name == "A图像采集")
             {
@@ -111,7 +131,7 @@ namespace HalconWPF.ViewModel
             {
                 _ = MainContent.Children.Add(new PcbDefectDetection());
             }
-            else if (name == "E九点标定1")
+            else if (name == "E九点标定")
             {
                 _ = MainContent.Children.Add(new CalibrationWithPoints());
             }

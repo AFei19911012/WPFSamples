@@ -1,5 +1,7 @@
 # WPFSamples
 
+记录 WPF 和 Halcon 编程的学习案例
+
 ```
 WPF & Halcon samples for learning
 
@@ -14,54 +16,36 @@ Halcon 图像链接：
 --来自百度网盘超级会员V5的分享
 ```
 
+## Demos
+
+一些小 Demo
+
+1. NPOI 读写 Excel
+2. 线程、任务：无参、有参、同步；计时器
+3. InkCanvas 绘制箭头
+
 ## MVVM 数据、命令绑定
+
+常用控件数据绑定、命令绑定；
 
 ![MVVM 数据、命令绑定](https://github.com/AFei19911012/WPFSamples/blob/main/MvvmCmdBinding/ScreenShot.png)
 
 ## Halcon & WPF 案例
 
-**实时图像采集**
 
-![实时图像采集](https://github.com/AFei19911012/WPFSamples/blob/main/HalconWPF/Resource/ScreenShot/AcquisitionImage.png)
 
-**轴承检测**
-
-![轴承检测](https://github.com/AFei19911012/WPFSamples/blob/main/HalconWPF/Resource/ScreenShot/BearingDefectDetection.png)
-
-**相机标定**
-
-![相机标定](https://github.com/AFei19911012/WPFSamples/blob/main/HalconWPF/Resource/ScreenShot/CalibrationWithPoints.png)
-
-**拟合圆**
-
-![拟合圆](https://github.com/AFei19911012/WPFSamples/blob/main/HalconWPF/Resource/ScreenShot/CircleFitting.png)
-
-**别针检测**
-
-![别针检测](https://github.com/AFei19911012/WPFSamples/blob/main/HalconWPF/Resource/ScreenShot/ClipNumberAndAngle.png)
-
-**图像读取和保存**
-
-![图像读取和保存](https://github.com/AFei19911012/WPFSamples/blob/main/HalconWPF/Resource/ScreenShot/ImageReadSave.png)
-
-PCB **检测**
-
-![PCB 检测](https://github.com/AFei19911012/WPFSamples/blob/main/HalconWPF/Resource/ScreenShot/PcbDefectDetection.png)
-
-**牙模检测**
-
-![牙模检测](https://github.com/AFei19911012/WPFSamples/blob/main/HalconWPF/Resource/ScreenShot/TeethDetection.png)
-
-**针脚检测**
-
-![针脚检测](https://github.com/AFei19911012/WPFSamples/blob/main/HalconWPF/Resource/ScreenShot/BastingDefectDetection1.png)
-
-![针脚检测](https://github.com/AFei19911012/WPFSamples/blob/main/HalconWPF/Resource/ScreenShot/BastingDefectDetection2.png)
-
-**形状模板**
-
-![形状模板](https://github.com/AFei19911012/WPFSamples/blob/main/HalconWPF/Resource/ScreenShot/ShapeModule.png)
-
-**卡尺标定**
-
-![卡尺标定](https://github.com/AFei19911012/WPFSamples/blob/main/HalconWPF/Resource/ScreenShot/CaliperCalibration.png)
+1. Halcon工具:形状模板
+2. Halcon工具:标定
+3. Halcon工具:2D测量
+4. Halcon工具:卡尺标定
+5. Halcon工具:形状标定
+6. Halcon工具:ROI
+7. 图像采集
+8. 图像读取和保存
+9. 计算别针数量和角度
+10. 散点拟合圆
+11. 缺陷检测-PCB
+12. 缺陷检测-轴承
+13. 缺陷检测-牙模
+14. 缺陷检测-针脚
+15. 九点标定1

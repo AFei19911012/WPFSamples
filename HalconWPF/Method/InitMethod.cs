@@ -19,13 +19,18 @@ namespace HalconWPF.Method
         {
             return new ObservableCollection<CDataModel>
             {
-                new CDataModel{ Name = "HalconTools", ImgPath="pack://application:,,,/Resource/Image/H.png"},
+                new CDataModel{ Name = "Halcon工具-形状模板", ImgPath="pack://application:,,,/Resource/Image/H.png"},
+                new CDataModel{ Name = "Halcon工具-标定", ImgPath="pack://application:,,,/Resource/Image/H.png"},
+                new CDataModel{ Name = "Halcon工具-2D测量", ImgPath="pack://application:,,,/Resource/Image/H.png"},
+                new CDataModel{ Name = "Halcon工具-卡尺标定", ImgPath="pack://application:,,,/Resource/Image/H.png"},
+                new CDataModel{ Name = "Halcon工具-形状标定", ImgPath="pack://application:,,,/Resource/Image/H.png"},
+                new CDataModel{ Name = "Halcon工具-ROI", ImgPath="pack://application:,,,/Resource/Image/H.png"},
                 new CDataModel{ Name = "A图像采集", ImgPath="pack://application:,,,/Resource/Image/A.png"},
                 new CDataModel{ Name = "A图像读取和保存", ImgPath="pack://application:,,,/Resource/Image/A.png"},
                 new CDataModel{ Name = "B计算别针数量和角度", ImgPath="pack://application:,,,/Resource/Image/B.png"},
                 new CDataModel{ Name = "C拟合圆", ImgPath="pack://application:,,,/Resource/Image/C.png"},
                 new CDataModel{ Name = "D缺陷检测-PCB", ImgPath="pack://application:,,,/Resource/Image/D.png"},
-                new CDataModel{ Name = "E九点标定1", ImgPath="pack://application:,,,/Resource/Image/E.png"},
+                new CDataModel{ Name = "E九点标定", ImgPath="pack://application:,,,/Resource/Image/E.png"},
                 new CDataModel{ Name = "D缺陷检测-轴承", ImgPath="pack://application:,,,/Resource/Image/D.png"},
                 new CDataModel{ Name = "D缺陷检测-牙模", ImgPath="pack://application:,,,/Resource/Image/D.png"},
                 new CDataModel{ Name = "D缺陷检测-针脚", ImgPath="pack://application:,,,/Resource/Image/D.png"},

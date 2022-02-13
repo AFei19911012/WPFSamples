@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>HalconWPF</RootNamespace>
     <AssemblyName>HalconWPF</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -136,9 +136,6 @@
     <Compile Include="UserControl\ClipNumberAndAngle.xaml.cs">
       <DependentUpon>ClipNumberAndAngle.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControl\HalconTools.xaml.cs">
-      <DependentUpon>HalconTools.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControl\ImageReadSave.xaml.cs">
       <DependentUpon>ImageReadSave.xaml</DependentUpon>
     </Compile>
@@ -211,10 +208,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControl\ClipNumberAndAngle.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControl\HalconTools.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

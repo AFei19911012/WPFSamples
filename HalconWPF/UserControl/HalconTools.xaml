@@ -1,9 +1,0 @@
-﻿<UserControl x:Class="HalconWPF.UserControl.HalconTools"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:hc="https://handyorg.github.io/handycontrol">
-    <hc:ButtonGroup Orientation="Vertical" Width="auto" Height="auto">
-        <Button Content="形状模板" Margin="5" Click="ButtonShapeModel_Click"/>
-        <Button Content="卡尺标定" Margin="5" Click="ButtonCaliper_Click"/>
-    </hc:ButtonGroup>
-</UserControl>
