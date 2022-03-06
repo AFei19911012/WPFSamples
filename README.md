@@ -36,12 +36,12 @@ Halcon 图像链接：
 
 ![2D测量](https://github.com/AFei19911012/WPFSamples/blob/main/HalconWPF/ScreenShot2.png)
 
-1. Halcon工具:形状模板
-2. Halcon工具:标定
-3. Halcon工具:2D测量
-4. Halcon工具:卡尺标定
-5. Halcon工具:形状标定
-6. Halcon工具:ROI
+1. Halcon工具：形状模板
+2. Halcon工具：九点标定、旋转标定
+3. Halcon工具：测量模型
+4. Halcon工具：卡尺标定
+5. Halcon工具：形状标定
+6. Halcon工具：ROI工具
 7. 图像采集
 8. 图像读取和保存
 9. 计算别针数量和角度
