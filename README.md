@@ -21,8 +21,10 @@ Halcon 图像链接：
 一些小 Demo
 
 1. NPOI 读写 Excel
-2. 线程、任务：无参、有参、同步；计时器
+2. 线程 Thread、任务 Task：无参、有参、同步；计时器
 3. InkCanvas 绘制箭头
+3. ModBus TCP 通讯
+3. TCP IP 通讯
 
 ## MVVM 数据、命令绑定
 
