@@ -1,0 +1,1923 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MvCameraControl.Net</name>
+    </assembly>
+    <members>
+        <member name="T:MvCamCtrl.NET.MyCamera">
+            <summary>
+            MyCamera
+            </summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_UNKNOW_DEVICE">
+            <summary>Unknown Device Type, Reserved</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_GIGE_DEVICE">
+            <summary>GigE Device</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_1394_DEVICE">
+            <summary>1394-a/b Device</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_USB_DEVICE">
+            <summary>USB3.0 Device</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_CAMERALINK_DEVICE">
+            <summary>CameraLink Device</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_OK">
+            <summary>Successed, no error</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_HANDLE">
+            <summary>Error or invalid handle</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_SUPPORT">
+            <summary>Not supported function</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_BUFOVER">
+            <summary>Buffer overflow</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_CALLORDER">
+            <summary>Function calling order error</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_PARAMETER">
+            <summary>Incorrect parameter</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_RESOURCE">
+            <summary>Applying resource failed</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_NODATA">
+            <summary>No data</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_PRECONDITION">
+            <summary>Precondition error, or running environment changed</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_VERSION">
+            <summary>Version mismatches</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_NOENOUGH_BUF">
+            <summary>Insufficient memory</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_ABNORMAL_IMAGE">
+            <summary>Abnormal image, maybe incomplete image because of lost packet</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_LOAD_LIBRARY">
+            <summary>Load library failed</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_NOOUTBUF">
+            <summary>No Avaliable Buffer</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_ENCRYPT">
+            <summary>Encryption error</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_UNKNOW">
+            <summary>Unknown error</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_GC_GENERIC">
+            <summary>General error</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_GC_ARGUMENT">
+            <summary>Illegal parameters</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_GC_RANGE">
+            <summary>The value is out of range</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_GC_PROPERTY">
+            <summary>Property</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_GC_RUNTIME">
+            <summary>Running environment error</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_GC_LOGICAL">
+            <summary>Logical error</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_GC_ACCESS">
+            <summary>Node accessing condition error</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_GC_TIMEOUT">
+            <summary>Timeout</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_GC_DYNAMICCAST">
+            <summary>Transformation exception</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_GC_UNKNOW">
+            <summary>GenICam unknown error</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_NOT_IMPLEMENTED">
+            <summary>The command is not supported by device</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_INVALID_ADDRESS">
+            <summary>The target address being accessed does not exist</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_WRITE_PROTECT">
+            <summary>The target address is not writable</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_ACCESS_DENIED">
+            <summary>No permission</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_BUSY">
+            <summary>Device is busy, or network disconnected</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_PACKET">
+            <summary>Network data packet error</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_NETER">
+            <summary>Network error</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_IP_CONFLICT">
+            <summary>Device IP conflict</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_USB_READ">
+            <summary>Reading USB error</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_USB_WRITE">
+            <summary>Writing USB error</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_USB_DEVICE">
+            <summary>Device exception</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_USB_GENICAM">
+            <summary>GenICam error</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_USB_BANDWIDTH">
+            <summary>Insufficient bandwidth, this error code is newly added</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_USB_DRIVER">
+            <summary>Driver mismatch or unmounted drive</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_USB_UNKNOW">
+            <summary>USB unknown error</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_UPG_FILE_MISMATCH">
+            <summary>Firmware mismatches</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_UPG_LANGUSGE_MISMATCH">
+            <summary>Firmware language mismatches</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_UPG_CONFLICT">
+            <summary>Upgrading conflicted (repeated upgrading requests during device upgrade)</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_UPG_INNER_ERR">
+            <summary>Camera internal error during upgrade</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_E_UPG_UNKNOW">
+            <summary>Unknown error during upgrade</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_OK">
+            <summary>处理正确</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_ERR">
+            <summary>不确定类型错误</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_ABILITY_ARG">
+            <summary>能力集中存在无效参数</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_MEM_NULL">
+            <summary>内存地址为空</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_MEM_ALIGN">
+            <summary>内存对齐不满足要求</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_MEM_LACK">
+            <summary>内存空间大小不够</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_MEM_SIZE_ALIGN">
+            <summary>内存空间大小不满足对齐要求</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_MEM_ADDR_ALIGN">
+            <summary>内存地址不满足对齐要求</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_IMG_FORMAT">
+            <summary>图像格式不正确或者不支持</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_IMG_SIZE">
+            <summary>图像宽高不正确或者超出范围</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_IMG_STEP">
+            <summary>图像宽高与step参数不匹配</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_IMG_DATA_NULL">
+            <summary>图像数据存储地址为空</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_CFG_TYPE">
+            <summary>设置或者获取参数类型不正确</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_CFG_SIZE">
+            <summary>设置或者获取参数的输入、输出结构体大小不正确</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_PRC_TYPE">
+            <summary>处理类型不正确</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_PRC_SIZE">
+            <summary>处理时输入、输出参数大小不正确</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_FUNC_TYPE">
+            <summary>子处理类型不正确</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_FUNC_SIZE">
+            <summary>子处理时输入、输出参数大小不正确</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_PARAM_INDEX">
+            <summary>index参数不正确</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_PARAM_VALUE">
+            <summary>value参数不正确或者超出范围</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_PARAM_NUM">
+            <summary>param_num参数不正确</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_NULL_PTR">
+            <summary>函数参数指针为空</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_OVER_MAX_MEM">
+            <summary>超过限定的最大内存</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_CALL_BACK">
+            <summary>回调函数出错</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_ENCRYPT">
+            <summary>加密错误</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_EXPIRE">
+            <summary>算法库使用期限错误</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_BAD_ARG">
+            <summary>参数范围不正确</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_DATA_SIZE">
+            <summary>数据大小不正确</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_STEP">
+            <summary>数据step不正确</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_CPUID">
+            <summary>cpu不支持优化代码中的指令集</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_WARNING">
+            <summary>警告</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_TIME_OUT">
+            <summary>算法库超时</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_LIB_VERSION">
+            <summary>算法版本号出错</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_MODEL_VERSION">
+            <summary>模型版本号出错</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_GPU_MEM_ALLOC">
+            <summary>GPU内存分配错误</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_FILE_NON_EXIST">
+            <summary>文件不存在</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_NONE_STRING">
+            <summary>字符串为空</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_IMAGE_CODEC">
+            <summary>图像解码器错误</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_FILE_OPEN">
+            <summary>打开文件错误</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_FILE_READ">
+            <summary>文件读取错误</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_FILE_WRITE">
+            <summary>文件写错误</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_FILE_READ_SIZE">
+            <summary>文件读取大小错误</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_FILE_TYPE">
+            <summary>文件类型错误</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_MODEL_TYPE">
+            <summary>模型类型错误</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_MALLOC_MEM">
+            <summary>分配内存错误</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_BIND_CORE_FAILED">
+            <summary>线程绑核失败</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_DENOISE_NE_IMG_FORMAT">
+            <summary>噪声特性图像格式错误</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_DENOISE_NE_FEATURE_TYPE">
+            <summary>噪声特性类型错误</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_DENOISE_NE_PROFILE_NUM">
+            <summary>噪声特性个数错误</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_DENOISE_NE_GAIN_NUM">
+            <summary>噪声特性增益个数错误</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_DENOISE_NE_GAIN_VAL">
+            <summary>噪声曲线增益值输入错误</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_DENOISE_NE_BIN_NUM">
+            <summary>噪声曲线柱数错误</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_DENOISE_NE_INIT_GAIN">
+            <summary>噪声估计初始化增益设置错误</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_DENOISE_NE_NOT_INIT">
+            <summary>噪声估计未初始化</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_DENOISE_COLOR_MODE">
+            <summary>颜色空间模式错误</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_DENOISE_ROI_NUM">
+            <summary>图像ROI个数错误</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_DENOISE_ROI_ORI_PT">
+            <summary>图像ROI原点错误</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_DENOISE_ROI_SIZE">
+            <summary>图像ROI大小错误</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_DENOISE_GAIN_NOT_EXIST">
+            <summary>输入的相机增益不存在(增益个数已达上限)</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_DENOISE_GAIN_BEYOND_RANGE">
+            <summary>输入的相机增益不在范围内</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_ALG_E_DENOISE_NP_BUF_SIZE">
+            <summary>输入的噪声特性内存大小错误</summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.INFO_MAX_BUFFER_SIZE">
+            <summary>
+            ch:信息结构体的最大缓存 | en: Max buffer size of information structs
+            </summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_MAX_GENTL_IF_NUM">
+            <summary>
+            ch:最大Interface数量 | en:Max num of interfaces
+            </summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_MAX_GENTL_DEV_NUM">
+            <summary>
+            ch:最大GenTL设备数量 | en:Max num of GenTL devices
+            </summary>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetSDKVersion_NET">
+            <summary>
+            Get SDK Version
+            </summary>
+            <returns>Always return 4 Bytes of version number |Main  |Sub   |Rev   |Test|
+                                                              8bits  8bits  8bits  8bits 
+            </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_EnumerateTls_NET">
+            <summary>
+            Get supported Transport Layer
+            </summary>
+            <returns>Supported Transport Layer number</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_EnumDevices_NET(System.UInt32,MvCamCtrl.NET.MyCamera.MV_CC_DEVICE_INFO_LIST@)">
+            <summary>
+            Enumerate Device
+            </summary>
+            <param name="nTLayerType">Enumerate TLs</param>
+            <param name="stDevList">Device List</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_EnumDevicesEx_NET(System.UInt32,MvCamCtrl.NET.MyCamera.MV_CC_DEVICE_INFO_LIST@,System.String)">
+            <summary>
+            Enumerate device according to manufacture name
+            </summary>
+            <param name="nTLayerType">Enumerate TLs</param>
+            <param name="stDevList">Device List</param>
+            <param name="pManufacturerName">Manufacture Name</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_IsDeviceAccessible_NET(MvCamCtrl.NET.MyCamera.MV_CC_DEVICE_INFO@,System.UInt32)">
+            <summary>
+            Is the device accessible
+            </summary>
+            <param name="stDevInfo">Device Information</param>
+            <param name="nAccessMode">Access Right</param>
+            <returns>Access, return true. Not access, return false</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.Finalize">
+            <summary>
+            Destructor
+            </summary>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_CreateDevice_NET(MvCamCtrl.NET.MyCamera.MV_CC_DEVICE_INFO@)">
+            <summary>
+            Create Device
+            </summary>
+            <param name="stDevInfo">Device Information</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_CreateDeviceWithoutLog_NET(MvCamCtrl.NET.MyCamera.MV_CC_DEVICE_INFO@)">
+            <summary>
+            Create Device without log
+            </summary>
+            <param name="stDevInfo">Device Information</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_DestroyDevice_NET">
+            <summary>
+            Destroy Device
+            </summary>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_OpenDevice_NET">
+            <summary>
+            Open Device
+            </summary>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_OpenDevice_NET(System.UInt32,System.UInt16)">
+            <summary>
+            Open Device
+            </summary>
+            <param name="nAccessMode">Access Right</param>
+            <param name="nSwitchoverKey">Switch key of access right</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_CloseDevice_NET">
+            <summary>
+            Close Device
+            </summary>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_IsDeviceConnected_NET">
+            <summary>
+            Is the device connected
+            </summary>
+            <returns>Connected, return true. Not Connected or DIsconnected, return false</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_RegisterImageCallBackEx_NET(MvCamCtrl.NET.MyCamera.cbOutputExdelegate,System.IntPtr)">
+            <summary>
+            Register the image callback function
+            </summary>
+            <param name="cbOutput">Callback function pointer</param>
+            <param name="pUser">User defined variable</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_RegisterImageCallBackForRGB_NET(MvCamCtrl.NET.MyCamera.cbOutputExdelegate,System.IntPtr)">
+            <summary>
+            Register the RGB image callback function
+            </summary>
+            <param name="cbOutput">Callback function pointer</param>
+            <param name="pUser">User defined variable</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_RegisterImageCallBackForBGR_NET(MvCamCtrl.NET.MyCamera.cbOutputExdelegate,System.IntPtr)">
+            <summary>
+            Register the BGR image callback function
+            </summary>
+            <param name="cbOutput">Callback function pointer</param>
+            <param name="pUser">User defined variable</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_StartGrabbing_NET">
+            <summary>
+            Start Grabbing
+            </summary>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_StopGrabbing_NET">
+            <summary>
+            Stop Grabbing
+            </summary>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetImageForRGB_NET(System.IntPtr,System.UInt32,MvCamCtrl.NET.MyCamera.MV_FRAME_OUT_INFO_EX@,System.Int32)">
+            <summary>
+            Get one frame of RGB image, this function is using query to get data
+            query whether the internal cache has data, get data if there has, return error code if no data
+            </summary>
+            <param name="pData">Image data receiving buffer</param>
+            <param name="nDataSize">Buffer size</param>
+            <param name="pFrameInfo">Image information</param>
+            <param name="nMsec">Waiting timeout</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetImageForBGR_NET(System.IntPtr,System.UInt32,MvCamCtrl.NET.MyCamera.MV_FRAME_OUT_INFO_EX@,System.Int32)">
+            <summary>
+            Get one frame of BGR image, this function is using query to get data
+            query whether the internal cache has data, get data if there has, return error code if no data
+            </summary>
+            <param name="pData">Image data receiving buffer</param>
+            <param name="nDataSize">Buffer size</param>
+            <param name="pFrameInfo">Image information</param>
+            <param name="nMsec">Waiting timeout</param>
+            <returns>Success, return MV_OK. Failure, return error cod</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetImageBuffer_NET(MvCamCtrl.NET.MyCamera.MV_FRAME_OUT@,System.Int32)">
+            <summary>
+            Get a frame of an image using an internal cache
+            </summary>
+            <param name="pFrame">Image data and image information</param>
+            <param name="nMsec">Waiting timeout</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_FreeImageBuffer_NET(MvCamCtrl.NET.MyCamera.MV_FRAME_OUT@)">
+            <summary>
+            Free image buffer（used with MV_CC_GetImageBuffer）
+            </summary>
+            <param name="pFrame">Image data and image information</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetOneFrameTimeout_NET(System.IntPtr,System.UInt32,MvCamCtrl.NET.MyCamera.MV_FRAME_OUT_INFO_EX@,System.Int32)">
+            <summary>
+            Get a frame of an image
+            </summary>
+            <param name="pData">Image data receiving buffer</param>
+            <param name="nDataSize">Buffer size</param>
+            <param name="pFrameInfo">Image information</param>
+            <param name="nMsec">Waiting timeout</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_ClearImageBuffer_NET">
+            <summary>
+            Clear image Buffers to clear old data
+            </summary>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_DisplayOneFrame_NET(MvCamCtrl.NET.MyCamera.MV_DISPLAY_FRAME_INFO@)">
+            <summary>
+            Display one frame image
+            </summary>
+            <param name="pDisplayInfo">Image information</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetImageNodeNum_NET(System.UInt32)">
+            <summary>
+            Set the number of the internal image cache nodes in SDK(Greater than or equal to 1, to be called before the capture)
+            </summary>
+            <param name="nNum">Number of cache nodes</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetGrabStrategy_NET(MvCamCtrl.NET.MyCamera.MV_GRAB_STRATEGY)">
+            <summary>
+            Set Grab Strategy
+            </summary>
+            <param name="enGrabStrategy">The value of grab strategy</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetOutputQueueSize_NET(System.UInt32)">
+            <summary>
+            Set The Size of Output Queue(Only work under the strategy of MV_GrabStrategy_LatestImages，rang：1-ImageNodeNum)
+            </summary>
+            <param name="nOutputQueueSize">The Size of Output Queue</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetDeviceInfo_NET(MvCamCtrl.NET.MyCamera.MV_CC_DEVICE_INFO@)">
+            <summary>
+            Get device information(Called before start grabbing)
+            </summary>
+            <param name="pstDevInfo">device information</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetAllMatchInfo_NET(MvCamCtrl.NET.MyCamera.MV_ALL_MATCH_INFO@)">
+            <summary>
+            Get various type of information
+            </summary>
+            <param name="pstInfo">Various type of information</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetIntValueEx_NET(System.String,MvCamCtrl.NET.MyCamera.MVCC_INTVALUE_EX@)">
+            <summary>
+            Get Integer value
+            </summary>
+            <param name="strKey">Key value, for example, using "Width" to get width</param>
+            <param name="pstValue">Value of device features</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetIntValueEx_NET(System.String,System.Int64)">
+            <summary>
+            Set Integer value
+            </summary>
+            <param name="strKey">Key value, for example, using "Width" to set width</param>
+            <param name="nValue">Feature value to set</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetEnumValue_NET(System.String,MvCamCtrl.NET.MyCamera.MVCC_ENUMVALUE@)">
+            <summary>
+            Get Enum value
+            </summary>
+            <param name="strKey">Key value, for example, using "PixelFormat" to get pixel format</param>
+            <param name="pstValue">Value of device features</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetEnumValue_NET(System.String,System.UInt32)">
+            <summary>
+            Set Enum value
+            </summary>
+            <param name="strKey">Key value, for example, using "PixelFormat" to set pixel format</param>
+            <param name="nValue">Feature value to set</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetEnumValueByString_NET(System.String,System.String)">
+            <summary>
+            Set Enum value
+            </summary>
+            <param name="strKey">Key value, for example, using "PixelFormat" to set pixel format</param>
+            <param name="sValue">Feature String to set</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetFloatValue_NET(System.String,MvCamCtrl.NET.MyCamera.MVCC_FLOATVALUE@)">
+            <summary>
+            Get Float value
+            </summary>
+            <param name="strKey">Key value</param>
+            <param name="pstValue">Value of device features</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetFloatValue_NET(System.String,System.Single)">
+            <summary>
+            Set float value
+            </summary>
+            <param name="strKey">Key value</param>
+            <param name="fValue">Feature value to set</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetBoolValue_NET(System.String,System.Boolean@)">
+            <summary>
+            Get Boolean value
+            </summary>
+            <param name="strKey">Key value</param>
+            <param name="pbValue">Value of device features</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetBoolValue_NET(System.String,System.Boolean)">
+            <summary>
+            Set Boolean value
+            </summary>
+            <param name="strKey">Key value</param>
+            <param name="bValue">Feature value to set</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetStringValue_NET(System.String,MvCamCtrl.NET.MyCamera.MVCC_STRINGVALUE@)">
+            <summary>
+            Get String value
+            </summary>
+            <param name="strKey">Key value</param>
+            <param name="pstValue">Value of device features</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetStringValue_NET(System.String,System.String)">
+            <summary>
+            Set String value
+            </summary>
+            <param name="strKey">Key value</param>
+            <param name="strValue">Feature value to set</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetCommandValue_NET(System.String)">
+            <summary>
+            Send Command
+            </summary>
+            <param name="strKey">Key value</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_InvalidateNodes_NET">
+            <summary>
+            Invalidate GenICam Nodes
+            </summary>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_LocalUpgrade_NET(System.String)">
+            <summary>
+            Device Local Upgrade
+            </summary>
+            <param name="pFilePathName">File path and name</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetUpgradeProcess_NET(System.UInt32@)">
+            <summary>
+            Get Upgrade Progress
+            </summary>
+            <param name="pnProcess">Value of Progress</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_ReadMemory_NET(System.IntPtr,System.Int64,System.Int64)">
+            <summary>
+            Read Memory
+            </summary>
+            <param name="pBuffer">Used as a return value, save the read-in memory value(Memory value is stored in accordance with the big end model)</param>
+            <param name="nAddress">Memory address to be read, which can be obtained from the Camera.xml file of the device, the form xml node value of xxx_RegAddr</param>
+            <param name="nLength">Length of the memory to be read</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_WriteMemory_NET(System.IntPtr,System.Int64,System.Int64)">
+            <summary>
+            Write Memory
+            </summary>
+            <param name="pBuffer">Memory value to be written ( Note the memory value to be stored in accordance with the big end model)</param>
+            <param name="nAddress">Memory address to be written, which can be obtained from the Camera.xml file of the device, the form xml node value of xxx_RegAddr</param>
+            <param name="nLength">Length of the memory to be written</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_RegisterExceptionCallBack_NET(MvCamCtrl.NET.MyCamera.cbExceptiondelegate,System.IntPtr)">
+            <summary>
+            Register Exception Message CallBack, call after open device
+            </summary>
+            <param name="cbException">Exception Message CallBack Function</param>
+            <param name="pUser">User defined variable</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_RegisterAllEventCallBack_NET(MvCamCtrl.NET.MyCamera.cbEventdelegateEx,System.IntPtr)">
+            <summary>
+            Register event callback, which is called after the device is opened
+            </summary>
+            <param name="cbEvent">Event CallBack Function</param>
+            <param name="pUser">User defined variable</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_RegisterEventCallBackEx_NET(System.String,MvCamCtrl.NET.MyCamera.cbEventdelegateEx,System.IntPtr)">
+            <summary>
+            Register single event callback, which is called after the device is opened
+            </summary>
+            <param name="pEventName">Event name</param>
+            <param name="cbEvent">Event CallBack Function</param>
+            <param name="pUser">User defined variable</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_GIGE_ForceIpEx_NET(System.UInt32,System.UInt32,System.UInt32)">
+            <summary>
+            Force IP
+            </summary>
+            <param name="nIP">IP to set</param>
+            <param name="nSubNetMask">Subnet mask</param>
+            <param name="nDefaultGateWay">Default gateway</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_GIGE_SetIpConfig_NET(System.UInt32)">
+            <summary>
+            IP configuration method
+            </summary>
+            <param name="nType">IP type, refer to MV_IP_CFG_x</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_GIGE_SetNetTransMode_NET(System.UInt32)">
+            <summary>
+            Set to use only one mode,type: MV_NET_TRANS_x. When do not set, priority is to use driver by default
+            </summary>
+            <param name="nType">Net transmission mode, refer to MV_NET_TRANS_x</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_GIGE_GetNetTransInfo_NET(MvCamCtrl.NET.MyCamera.MV_NETTRANS_INFO@)">
+            <summary>
+            Get net transmission information
+            </summary>
+            <param name="pstInfo">Transmission information</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_GIGE_SetDiscoveryMode_NET(System.UInt32)">
+            <summary>
+            Setting the ACK mode of devices Discovery
+            </summary>
+            <param name="nMode">ACK mode（Default-Broadcast）,0-Unicast,1-Broadcast</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_GIGE_SetGvspTimeout_NET(System.UInt32)">
+            <summary>
+            Set GVSP streaming timeout
+            </summary>
+            <param name="nMillisec">Timeout, default 300ms, range: >10ms</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_GIGE_GetGvspTimeout_NET(System.UInt32@)">
+            <summary>
+            Get GVSP streaming timeout
+            </summary>
+            <param name="pMillisec">Timeout, ms as unit</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_GIGE_SetGvcpTimeout_NET(System.UInt32)">
+            <summary>
+            Set GVCP cammand timeout
+            </summary>
+            <param name="nMillisec">Timeout, ms as unit, range: 0-10000</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_GIGE_GetGvcpTimeout_NET(System.UInt32@)">
+            <summary>
+            Get GVCP cammand timeout
+            </summary>
+            <param name="pMillisec">Timeout, ms as unit</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_GIGE_SetRetryGvcpTimes_NET(System.UInt32)">
+            <summary>
+            Set the number of retry GVCP cammand
+            </summary>
+            <param name="nRetryGvcpTimes">The number of retries，rang：0-100</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_GIGE_GetRetryGvcpTimes_NET(System.UInt32@)">
+            <summary>
+            Get the number of retry GVCP cammand
+            </summary>
+            <param name="pRetryGvcpTimes">The number of retries</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetOptimalPacketSize_NET">
+            <summary>
+            Get the optimal Packet Size, Only support GigE Camera
+            </summary>
+            <returns>Optimal packet size</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_GIGE_SetResend_NET(System.UInt32,System.UInt32,System.UInt32)">
+            <summary>
+            Set whethe to enable resend, and set resend
+            </summary>
+            <param name="bEnable">Enable resend</param>
+            <param name="nMaxResendPercent">Max resend persent</param>
+            <param name="nResendTimeout">Resend timeout</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_GIGE_SetResendMaxRetryTimes_NET(System.UInt32)">
+            <summary>
+            Set the max resend retry times
+            </summary>
+            <param name="nRetryTimes">The max times to retry resending lost packets，default 20</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_GIGE_GetResendMaxRetryTimes_NET(System.UInt32@)">
+            <summary>
+            Get the max resend retry times
+            </summary>
+            <param name="pnRetryTimes">the max times to retry resending lost packets</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_GIGE_SetResendTimeInterval_NET(System.UInt32)">
+            <summary>
+            Set time interval between same resend requests
+            </summary>
+            <param name="nMillisec">The time interval between same resend requests,default 10ms</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_GIGE_GetResendTimeInterval_NET(System.UInt32@)">
+            <summary>
+            Get time interval between same resend requests
+            </summary>
+            <param name="pnMillisec">The time interval between same resend requests</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_GIGE_SetTransmissionType_NET(MvCamCtrl.NET.MyCamera.MV_CC_TRANSMISSION_TYPE@)">
+            <summary>
+            Set transmission type,Unicast or Multicast
+            </summary>
+            <param name="pstTransmissionType">Struct of transmission type</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_GIGE_IssueActionCommand_NET(MvCamCtrl.NET.MyCamera.MV_ACTION_CMD_INFO@,MvCamCtrl.NET.MyCamera.MV_ACTION_CMD_RESULT_LIST@)">
+            <summary>
+            Issue Action Command
+            </summary>
+            <param name="pstActionCmdInfo">Action Command info</param>
+            <param name="pstActionCmdResults">Action Command Result List</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_GIGE_GetMulticastStatus_NET(MvCamCtrl.NET.MyCamera.MV_CC_DEVICE_INFO@,System.Boolean@)">
+            <summary>
+            Get Multicast Status
+            </summary>
+            <param name="pstDevInfo">Device Information</param>
+            <param name="pStatus">Status of Multicast</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CAML_SetDeviceBaudrate_NET(System.UInt32)">
+            <summary>
+            Set device baudrate using one of the CL_BAUDRATE_XXXX value
+            </summary>
+            <param name="nBaudrate">Baudrate to set. Refer to the 'CameraParams.h' for parameter definitions, for example, #define MV_CAML_BAUDRATE_9600  0x00000001</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CAML_GetDeviceBaudrate_NET(System.UInt32@)">
+            <summary>
+            Get device baudrate, using one of the CL_BAUDRATE_XXXX value
+            </summary>
+            <param name="pnCurrentBaudrate">Return pointer of baud rate to user. 
+                                            Refer to the 'CameraParams.h' for parameter definitions, for example, #define MV_CAML_BAUDRATE_9600  0x00000001</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CAML_GetSupportBaudrates_NET(System.UInt32@)">
+            <summary>
+            Get supported baudrates of the combined device and host interface
+            </summary>
+            <param name="pnBaudrateAblity">Return pointer of the supported baudrates to user. 'OR' operation results of the supported baudrates. 
+                                           Refer to the 'CameraParams.h' for single value definitions, for example, #define MV_CAML_BAUDRATE_9600  0x00000001</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CAML_SetGenCPTimeOut_NET(System.UInt32)">
+            <summary>
+            Sets the timeout for operations on the serial port
+            </summary>
+            <param name="nMillisec">Timeout in [ms] for operations on the serial port.</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_USB_SetTransferSize_NET(System.UInt32)">
+            <summary>
+            Set transfer size of U3V device
+            </summary>
+            <param name="nTransferSize">Transfer size，Byte，default：1M，rang：>=0x10000</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_USB_GetTransferSize_NET(System.UInt32@)">
+            <summary>
+            Get transfer size of U3V device
+            </summary>
+            <param name="pTransferSize">Transfer size，Byte</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_USB_SetTransferWays_NET(System.UInt32)">
+            <summary>
+            Set transfer ways of U3V device
+            </summary>
+            <param name="nTransferWays">Transfer ways，rang：1-10</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_USB_GetTransferWays_NET(System.UInt32@)">
+            <summary>
+            Get transfer ways of U3V device
+            </summary>
+            <param name="pTransferWays">Transfer ways</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_EnumInterfacesByGenTL_NET(MvCamCtrl.NET.MyCamera.MV_GENTL_IF_INFO_LIST@,System.String)">
+            <summary>
+            Enumerate interfaces by GenTL
+            </summary>
+            <param name="stIFInfoList"> Interface information list</param>
+            <param name="pGenTLPath">Path of GenTL's cti file</param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_EnumDevicesByGenTL_NET(MvCamCtrl.NET.MyCamera.MV_GENTL_IF_INFO@,MvCamCtrl.NET.MyCamera.MV_GENTL_DEV_INFO_LIST@)">
+            <summary>
+            Enumerate Device Based On GenTL
+            </summary>
+            <param name="stIFInfo">Interface information</param>
+            <param name="stDevList">Device List</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_CreateDeviceByGenTL_NET(MvCamCtrl.NET.MyCamera.MV_GENTL_DEV_INFO@)">
+            <summary>
+            Create Device Handle Based On GenTL Device Info
+            </summary>
+            <param name="stDevInfo">Device Information Structure</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_XML_GetGenICamXML_NET(System.IntPtr,System.UInt32,System.UInt32@)">
+            <summary>
+            Get camera feature tree XML
+            </summary>
+            <param name="pData">XML data receiving buffer</param>
+            <param name="nDataSize">Buffer size</param>
+            <param name="pnDataLen">Actual data length</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_XML_GetNodeAccessMode_NET(System.String,MvCamCtrl.NET.MyCamera.MV_XML_AccessMode@)">
+            <summary>
+            Get Access mode of cur node
+            </summary>
+            <param name="pstrName">Name of node</param>
+            <param name="pAccessMode">Access mode of the node</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_XML_GetNodeInterfaceType_NET(System.String,MvCamCtrl.NET.MyCamera.MV_XML_InterfaceType@)">
+            <summary>
+            Get Interface Type of cur node
+            </summary>
+            <param name="pstrName">Name of node</param>
+            <param name="pInterfaceType">Interface Type of the node</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SaveImageEx_NET(MvCamCtrl.NET.MyCamera.MV_SAVE_IMAGE_PARAM_EX@)">
+            <summary>
+            Save image, support Bmp and Jpeg. Encoding quality(50-99]
+            </summary>
+            <param name="stSaveParam">Save image parameters structure</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SaveImageToFile_NET(MvCamCtrl.NET.MyCamera.MV_SAVE_IMG_TO_FILE_PARAM@)">
+            <summary>
+            Save the image file, support Bmp、 Jpeg、Png and Tiff. Encoding quality(50-99]
+            </summary>
+            <param name="pstSaveFileParam">Save the image file parameter structure</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SavePointCloudData_NET(MvCamCtrl.NET.MyCamera.MV_SAVE_POINT_CLOUD_PARAM@)">
+            <summary>
+            Save 3D point data, support PLY、CSV and OBJ
+            </summary>
+            <param name="pstPointDataParam">Save 3D point data parameters structure</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_RotateImage_NET(MvCamCtrl.NET.MyCamera.MV_CC_ROTATE_IMAGE_PARAM@)">
+            <summary>
+            Rotate Image
+            </summary>
+            <param name="pstRotateParam">Rotate image parameter structure</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_FlipImage_NET(MvCamCtrl.NET.MyCamera.MV_CC_FLIP_IMAGE_PARAM@)">
+            <summary>
+            Flip Image
+            </summary>
+            <param name="pstFlipParam">Flip image parameter structure</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_ConvertPixelType_NET(MvCamCtrl.NET.MyCamera.MV_PIXEL_CONVERT_PARAM@)">
+            <summary>
+            Pixel format conversion
+            </summary>
+            <param name="pstCvtParam">Convert Pixel Type parameter structure</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetBayerCvtQuality_NET(System.UInt32)">
+            <summary>
+            Interpolation algorithm type setting
+            </summary>
+            <param name="BayerCvtQuality">Bayer interpolation method  0-Fast 1-Equilibrium 2-Optimal</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetBayerGammaValue_NET(System.Single)">
+            <summary>
+            Set Gamma value
+            </summary>
+            <param name="fBayerGammaValue">Gamma value[0.1,4.0]</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetBayerGammaParam_NET(MvCamCtrl.NET.MyCamera.MV_CC_GAMMA_PARAM@)">
+            <summary>
+            Set Gamma param
+            </summary>
+            <param name="pstGammaParam">Gamma parameter structure</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetBayerCCMParam_NET(MvCamCtrl.NET.MyCamera.MV_CC_CCM_PARAM@)">
+            <summary>
+            Set CCM param
+            </summary>
+            <param name="pstCCMParam">CCM parameter structure</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetBayerCCMParamEx_NET(MvCamCtrl.NET.MyCamera.MV_CC_CCM_PARAM_EX@)">
+            <summary>
+            Set CCM param
+            </summary>
+            <param name="pstCCMParam">CCM parameter structure</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetBayerCLUTParam_NET(MvCamCtrl.NET.MyCamera.MV_CC_CLUT_PARAM@)">
+            <summary>
+            Set CLUT param
+            </summary>
+            <param name="pstCLUTParam">CLUT parameter structure</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_ImageContrast_NET(MvCamCtrl.NET.MyCamera.MV_CC_CONTRAST_PARAM@)">
+            <summary>
+            Adjust image contrast
+            </summary>
+            <param name="pstContrastParam">Contrast parameter structure</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_ImageSharpen_NET(MvCamCtrl.NET.MyCamera.MV_CC_SHARPEN_PARAM@)">
+            <summary>
+            Image sharpen
+            </summary>
+            <param name="pstSharpenParam">Sharpen parameter structure</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_ColorCorrect_NET(MvCamCtrl.NET.MyCamera.MV_CC_COLOR_CORRECT_PARAM@)">
+            <summary>
+            Color Correct(include CCM and CLUT)
+            </summary>
+            <param name="pstColorCorrectParam">Color Correct parameter structure</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_NoiseEstimate_NET(MvCamCtrl.NET.MyCamera.MV_CC_NOISE_ESTIMATE_PARAM@)">
+            <summary>
+            Noise Estimate
+            </summary>
+            <param name="pstNoiseEstimateParam">Noise Estimate parameter structure</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SpatialDenoise_NET(MvCamCtrl.NET.MyCamera.MV_CC_SPATIAL_DENOISE_PARAM@)">
+            <summary>
+            Spatial Denoise
+            </summary>
+            <param name="pstSpatialDenoiseParam">Spatial Denoise parameter structure</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_LSCCalib_NET(MvCamCtrl.NET.MyCamera.MV_CC_LSC_CALIB_PARAM@)">
+            <summary>
+            LSC Calib
+            </summary>
+            <param name="pstLSCCalibParam">LSC Calib parameter structure</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_LSCCorrect_NET(MvCamCtrl.NET.MyCamera.MV_CC_LSC_CORRECT_PARAM@)">
+            <summary>
+            LSC Correct
+            </summary>
+            <param name="pstLSCCorrectParam">LSC Correct parameter structure</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_HB_Decode_NET(MvCamCtrl.NET.MyCamera.MV_CC_HB_DECODE_PARAM@)">
+            <summary>
+            High Bandwidth Decode
+            </summary>
+            <param name="pstDecodeParam">High Bandwidth Decode parameter structure</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_BayerNoiseEstimate_NET(MvCamCtrl.NET.MyCamera.MV_CC_BAYER_NOISE_ESTIMATE_PARAM@)">
+            <summary>
+            Noise estimate of Bayer format
+            </summary>
+            <param name="pstNoiseEstimateParam">Noise estimate parameter structure</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_BayerSpatialDenoise_NET(MvCamCtrl.NET.MyCamera.MV_CC_BAYER_SPATIAL_DENOISE_PARAM@)">
+            <summary>
+            Spatial Denoise of Bayer format
+            </summary>
+            <param name="pstSpatialDenoiseParam">Spatial Denoise parameter structure</param>
+            <returns>Success, return MV_OK. Failure, return error code</returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_FeatureSave_NET(System.String)">
+            <summary>
+            Save camera feature
+            </summary>
+            <param name="pFileName">File name</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_FeatureLoad_NET(System.String)">
+            <summary>
+            Load camera feature
+            </summary>
+            <param name="pFileName">File name</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_FileAccessRead_NET(MvCamCtrl.NET.MyCamera.MV_CC_FILE_ACCESS@)">
+            <summary>
+            Read the file from the camera
+            </summary>
+            <param name="pstFileAccess">File access structure</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_FileAccessWrite_NET(MvCamCtrl.NET.MyCamera.MV_CC_FILE_ACCESS@)">
+            <summary>
+            Write the file to camera
+            </summary>
+            <param name="pstFileAccess">File access structure</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetFileAccessProgress_NET(MvCamCtrl.NET.MyCamera.MV_CC_FILE_ACCESS_PROGRESS@)">
+            <summary>
+            Get File Access Progress 
+            </summary>
+            <param name="pstFileAccessProgress">File access Progress</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_StartRecord_NET(MvCamCtrl.NET.MyCamera.MV_CC_RECORD_PARAM@)">
+            <summary>
+            Start Record
+            </summary>
+            <param name="pstRecordParam">Record param structure</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_InputOneFrame_NET(MvCamCtrl.NET.MyCamera.MV_CC_INPUT_FRAME_INFO@)">
+            <summary>
+            Input RAW data to Record
+            </summary>
+            <param name="pstInputFrameInfo">Record data structure</param>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_StopRecord_NET">
+            <summary>
+            Stop Record
+            </summary>
+            <returns>Success, return MV_OK. Failure, return error code </returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetSDKLogPath_NET(System.String)">
+            <summary>
+            Set SDK log path (Interfaces not recommended)
+            If the logging service MvLogServer is enabled, the interface is invalid and The logging service is enabled by default
+            </summary>
+            <param name="pSDKLogPath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetImageInfo_NET(MvCamCtrl.NET.MyCamera.MV_IMAGE_BASIC_INFO@)">
+            <summary>
+            Get basic information of image (Interfaces not recommended)
+            </summary>
+            <param name="pstInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetTlProxy_NET">
+            <summary>
+            Get GenICam proxy (Interfaces not recommended)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_XML_GetRootNode_NET(MvCamCtrl.NET.MyCamera.MV_XML_NODE_FEATURE@)">
+            <summary>
+            Get root node (Interfaces not recommended)
+            </summary>
+            <param name="pstNode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_XML_GetChildren_NET(MvCamCtrl.NET.MyCamera.MV_XML_NODE_FEATURE@,System.IntPtr)">
+            <summary>
+            Get all children node of specific node from xml, root node is Root (Interfaces not recommended)
+            </summary>
+            <param name="pstNode"></param>
+            <param name="pstNodesList"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_XML_GetChildren_NET(MvCamCtrl.NET.MyCamera.MV_XML_NODE_FEATURE@,MvCamCtrl.NET.MyCamera.MV_XML_NODES_LIST@)">
+            <summary>
+            Get all children node of specific node from xml, root node is Root (Interfaces not recommended)
+            </summary>
+            <param name="pstNode"></param>
+            <param name="pstNodesList"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_XML_GetNodeFeature_NET(MvCamCtrl.NET.MyCamera.MV_XML_NODE_FEATURE@,System.IntPtr)">
+            <summary>
+            Get current node feature (Interfaces not recommended)
+            </summary>
+            <param name="pstNode"></param>
+            <param name="pstFeature"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_XML_UpdateNodeFeature_NET(MvCamCtrl.NET.MyCamera.MV_XML_InterfaceType,System.IntPtr)">
+            <summary>
+            Update node (Interfaces not recommended)
+            </summary>
+            <param name="enType"></param>
+            <param name="pstFeature"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_XML_RegisterUpdateCallBack_NET(MvCamCtrl.NET.MyCamera.cbXmlUpdatedelegate,System.IntPtr)">
+            <summary>
+            Register update callback (Interfaces not recommended)
+            </summary>
+            <param name="cbXmlUpdate"></param>
+            <param name="pUser"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetOneFrame_NET(System.IntPtr,System.UInt32,MvCamCtrl.NET.MyCamera.MV_FRAME_OUT_INFO@)">
+            <summary>
+            This interface is abandoned, it is recommended to use the MV_CC_GetOneFrameTimeOut
+            </summary>
+            <param name="pData"></param>
+            <param name="nDataSize"></param>
+            <param name="pFrameInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetOneFrameEx_NET(System.IntPtr,System.UInt32,MvCamCtrl.NET.MyCamera.MV_FRAME_OUT_INFO_EX@)">
+            <summary>
+            This interface is abandoned, it is recommended to use the MV_CC_GetOneFrameTimeOut
+            </summary>
+            <param name="pData"></param>
+            <param name="nDataSize"></param>
+            <param name="pFrameInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_RegisterImageCallBack_NET(MvCamCtrl.NET.MyCamera.cbOutputdelegate,System.IntPtr)">
+            <summary>
+            This interface is abandoned, it is recommended to use the MV_CC_RegisterImageCallBackEx
+            </summary>
+            <param name="cbOutput"></param>
+            <param name="pUser"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SaveImage_NET(MvCamCtrl.NET.MyCamera.MV_SAVE_IMAGE_PARAM@)">
+            <summary>
+            This interface is abandoned, it is recommended to use the MV_CC_SaveImageEx
+            </summary>
+            <param name="stSaveParam"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_GIGE_ForceIp_NET(System.UInt32)">
+            <summary>
+            This interface is abandoned, it is recommended to use the MV_GIGE_ForceIpEx
+            </summary>
+            <param name="nIP"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_RegisterEventCallBack_NET(MvCamCtrl.NET.MyCamera.cbEventdelegate,System.IntPtr)">
+            <summary>
+            This interface is abandoned, it is recommended to use the MV_CC_RegisterEventCallBackEx
+            </summary>
+            <param name="cbEvent"></param>
+            <param name="pUser"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_Display_NET(System.IntPtr)">
+            <summary>
+            This interface is abandoned, it is recommended to use the MV_CC_DisplayOneFrame
+            </summary>
+            <param name="hWnd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetIntValue_NET(System.String,MvCamCtrl.NET.MyCamera.MVCC_INTVALUE@)">
+            <summary>
+            This interface is abandoned, it is recommended to use the MV_CC_GetIntValueEx
+            </summary>
+            <param name="strKey"></param>
+            <param name="pstValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetIntValue_NET(System.String,System.UInt32)">
+            <summary>
+            This interface is abandoned, it is recommended to use the MV_CC_SetIntValueEx
+            </summary>
+            <param name="strKey"></param>
+            <param name="nValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetWidth_NET(MvCamCtrl.NET.MyCamera.MVCC_INTVALUE@)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="pstValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetWidth_NET(System.UInt32)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="nValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetHeight_NET(MvCamCtrl.NET.MyCamera.MVCC_INTVALUE@)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="pstValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetHeight_NET(System.UInt32)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="nValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetAOIoffsetX_NET(MvCamCtrl.NET.MyCamera.MVCC_INTVALUE@)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="pstValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetAOIoffsetX_NET(System.UInt32)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="nValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetAOIoffsetY_NET(MvCamCtrl.NET.MyCamera.MVCC_INTVALUE@)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="pstValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetAOIoffsetY_NET(System.UInt32)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="nValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetAutoExposureTimeLower_NET(MvCamCtrl.NET.MyCamera.MVCC_INTVALUE@)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="pstValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetAutoExposureTimeLower_NET(System.UInt32)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="nValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetAutoExposureTimeUpper_NET(MvCamCtrl.NET.MyCamera.MVCC_INTVALUE@)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="pstValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetAutoExposureTimeUpper_NET(System.UInt32)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="nValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetBrightness_NET(MvCamCtrl.NET.MyCamera.MVCC_INTVALUE@)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="pstValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetBrightness_NET(System.UInt32)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="nValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetFrameRate_NET(MvCamCtrl.NET.MyCamera.MVCC_FLOATVALUE@)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="pstValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetFrameRate_NET(System.Single)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="fValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetGain_NET(MvCamCtrl.NET.MyCamera.MVCC_FLOATVALUE@)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="pstValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetGain_NET(System.Single)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="fValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetExposureTime_NET(MvCamCtrl.NET.MyCamera.MVCC_FLOATVALUE@)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="pstValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetExposureTime_NET(System.Single)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="fValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetPixelFormat_NET(MvCamCtrl.NET.MyCamera.MVCC_ENUMVALUE@)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="pstValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetAcquisitionMode_NET(MvCamCtrl.NET.MyCamera.MVCC_ENUMVALUE@)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="pstValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetAcquisitionMode_NET(System.UInt32)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="nValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetGainMode_NET(MvCamCtrl.NET.MyCamera.MVCC_ENUMVALUE@)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="pstValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetGainMode_NET(System.UInt32)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="nValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetExposureAutoMode_NET(MvCamCtrl.NET.MyCamera.MVCC_ENUMVALUE@)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="pstValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetExposureAutoMode_NET(System.UInt32)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="nValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetTriggerMode_NET(MvCamCtrl.NET.MyCamera.MVCC_ENUMVALUE@)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="pstValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetTriggerMode_NET(System.UInt32)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="nValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetTriggerDelay_NET(MvCamCtrl.NET.MyCamera.MVCC_FLOATVALUE@)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="pstValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetTriggerDelay_NET(System.Single)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="fValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetTriggerSource_NET(System.UInt32)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="nValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_TriggerSoftwareExecute_NET">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetGammaSelector_NET(MvCamCtrl.NET.MyCamera.MVCC_ENUMVALUE@)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="pstValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetGammaSelector_NET(System.UInt32)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="nValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetGamma_NET(MvCamCtrl.NET.MyCamera.MVCC_FLOATVALUE@)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="pstValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetGamma_NET(System.Single)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="fValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetSharpness_NET(MvCamCtrl.NET.MyCamera.MVCC_INTVALUE@)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="pstValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetSharpness_NET(System.UInt32)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="nValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetHue_NET(MvCamCtrl.NET.MyCamera.MVCC_INTVALUE@)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="pstValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetHue_NET(System.UInt32)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="nValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetSaturation_NET(MvCamCtrl.NET.MyCamera.MVCC_INTVALUE@)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="pstValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetSaturation_NET(System.UInt32)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="nValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetBalanceWhiteAuto_NET(MvCamCtrl.NET.MyCamera.MVCC_ENUMVALUE@)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="pstValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetBalanceWhiteAuto_NET(System.UInt32)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="nValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetBalanceRatioRed_NET(MvCamCtrl.NET.MyCamera.MVCC_INTVALUE@)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="pstValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetBalanceRatioRed_NET(System.UInt32)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="nValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetBalanceRatioGreen_NET(MvCamCtrl.NET.MyCamera.MVCC_INTVALUE@)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="pstValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetBalanceRatioGreen_NET(System.UInt32)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="nValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetBalanceRatioBlue_NET(MvCamCtrl.NET.MyCamera.MVCC_INTVALUE@)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="pstValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetBalanceRatioBlue_NET(System.UInt32)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="nValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetDeviceUserID_NET(MvCamCtrl.NET.MyCamera.MVCC_STRINGVALUE@)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="pstValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetDeviceUserID_NET(System.String)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="chValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetBurstFrameCount_NET(MvCamCtrl.NET.MyCamera.MVCC_INTVALUE@)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="pstValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetBurstFrameCount_NET(System.UInt32)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="nValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetAcquisitionLineRate_NET(MvCamCtrl.NET.MyCamera.MVCC_INTVALUE@)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="pstValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetAcquisitionLineRate_NET(System.UInt32)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="nValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_GetHeartBeatTimeout_NET(MvCamCtrl.NET.MyCamera.MVCC_INTVALUE@)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="pstValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_CC_SetHeartBeatTimeout_NET(System.UInt32)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="nValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_GIGE_GetGevSCPSPacketSize_NET(MvCamCtrl.NET.MyCamera.MVCC_INTVALUE@)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="pstValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_GIGE_SetGevSCPSPacketSize_NET(System.UInt32)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="nValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_GIGE_GetGevSCPD_NET(MvCamCtrl.NET.MyCamera.MVCC_INTVALUE@)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="pstValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_GIGE_SetGevSCPD_NET(System.UInt32)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="nValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_GIGE_GetGevSCDA_NET(System.UInt32@)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="pnIP"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_GIGE_SetGevSCDA_NET(System.UInt32)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="nIP"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_GIGE_GetGevSCSP_NET(System.UInt32@)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="pnPort"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.MV_GIGE_SetGevSCSP_NET(System.UInt32)">
+            <summary>
+            This interface is replaced by general interface
+            </summary>
+            <param name="nPort"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.GetCameraHandle">
+            <summary>
+            Get Camera Handle
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MvCamCtrl.NET.MyCamera.ByteToStruct(System.Byte[],System.Type)">
+            <summary>
+            Byte array to struct
+            </summary>
+            <param name="bytes">Byte array</param>
+            <param name="type">Struct type</param>
+            <returns>Struct object</returns>
+        </member>
+        <member name="T:MvCamCtrl.NET.MyCamera.cbOutputdelegate">
+            <summary>
+            Grab callback
+            </summary>
+            <param name="pData">Image data</param>
+            <param name="pFrameInfo">Frame info</param>
+            <param name="pUser">User defined variable</param>
+        </member>
+        <member name="T:MvCamCtrl.NET.MyCamera.cbOutputExdelegate">
+            <summary>
+            Grab callback
+            </summary>
+            <param name="pData">Image data</param>
+            <param name="pFrameInfo">Frame info</param>
+            <param name="pUser">User defined variable</param>
+        </member>
+        <member name="T:MvCamCtrl.NET.MyCamera.cbXmlUpdatedelegate">
+            <summary>
+            Xml Update callback(Interfaces not recommended)
+            </summary>
+            <param name="enType">Node type</param>
+            <param name="pstFeature">Current node feature structure</param>
+            <param name="pstNodesList">Nodes list</param>
+            <param name="pUser">User defined variable</param>
+        </member>
+        <member name="T:MvCamCtrl.NET.MyCamera.cbExceptiondelegate">
+            <summary>
+            Exception callback
+            </summary>
+            <param name="nMsgType">Msg type</param>
+            <param name="pUser">User defined variable</param>
+        </member>
+        <member name="T:MvCamCtrl.NET.MyCamera.cbEventdelegate">
+            <summary>
+            Event callback (Interfaces not recommended)
+            </summary>
+            <param name="nUserDefinedId">User defined ID</param>
+            <param name="pUser">User defined variable</param>
+        </member>
+        <member name="T:MvCamCtrl.NET.MyCamera.cbEventdelegateEx">
+            <summary>
+            Event callback
+            </summary>
+            <param name="pEventInfo">Event Info</param>
+            <param name="pUser">User defined variable</param>
+        </member>
+        <member name="T:MvCamCtrl.NET.MyCamera.MV_GIGE_DEVICE_INFO_EX">
+            <summary>
+            ch: GigE设备信息 | en: GigE device information
+            </summary>
+        </member>
+        <member name="T:MvCamCtrl.NET.MyCamera.MV_USB3_DEVICE_INFO_EX">
+            <summary>
+            ch:USB3 设备信息 | en:USB3 device information
+            </summary>
+        </member>
+        <member name="T:MvCamCtrl.NET.MyCamera.MV_CamL_DEV_INFO">
+            <summary>
+            ch:CamLink设备信息 | en:CamLink device information
+            </summary>
+        </member>
+        <member name="T:MvCamCtrl.NET.MyCamera.MV_CC_DEVICE_INFO">
+            <summary>
+            ch:设备信息 | en:Device information
+            </summary>
+        </member>
+        <member name="F:MvCamCtrl.NET.MyCamera.MV_CC_DEVICE_INFO.nMacAddrLow">
+            MAC 地址
+        </member>
+        <member name="T:MvCamCtrl.NET.MyCamera.MV_CC_DEVICE_INFO.SPECIAL_INFO">
+            <summary>
+            ch:特定类型的设备信息 | en:Special devcie information
+            </summary>
+        </member>
+        <member name="T:MvCamCtrl.NET.MyCamera.MV_GENTL_IF_INFO">
+            <summary>
+            ch:通过GenTL枚举到的Interface信息 | en:Interface Information with GenTL
+            </summary>
+        </member>
+        <member name="T:MvCamCtrl.NET.MyCamera.MV_GENTL_IF_INFO_LIST">
+            <summary>
+            ch:通过GenTL枚举到的设备信息列表 | en:Interface Information List with GenTL
+            </summary>
+        </member>
+        <member name="T:MvCamCtrl.NET.MyCamera.MV_GENTL_DEV_INFO">
+            <summary>
+            ch:通过GenTL枚举到的设备信息 | en:Device Information discovered by with GenTL
+            </summary>
+        </member>
+        <member name="T:MvCamCtrl.NET.MyCamera.MV_GENTL_DEV_INFO_LIST">
+            <summary>
+            ch:GenTL设备列表 | en:GenTL devices list
+            </summary>
+        </member>
+    </members>
+</doc>

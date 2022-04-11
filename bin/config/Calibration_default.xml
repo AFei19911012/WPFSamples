@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Calibration>
+  <Matrix A1="1" B1="0" C1="0" A2="0" B2="1" C2="0" />
+  <Rotate CenterX="2847.4633747020184" CenterY="1935.5624171572952" />
+</Calibration>

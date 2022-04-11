@@ -29,7 +29,7 @@ namespace HalconWPF.ViewModel
         private Grid MainContent;
         private TextEditor TextContainer;
 
-        private int selectedIndex;
+        private int selectedIndex = -1;
         public int SelectedIndex
         {
             get => selectedIndex;
@@ -87,69 +87,80 @@ namespace HalconWPF.ViewModel
             };
             MainContent.Children.Clear();
             string name = DataList[SelectedIndex].Name;
-            if (name == "Halcon工具-形状模板")
-            {
-                _ = MainContent.Children.Add(new ShapeModuleTool());
-            }
-            else if (name == "Halcon工具-标定")
+            if (name.Contains("九点标定工具"))
             {
                 _ = MainContent.Children.Add(new CamCalibrationTool());
             }
-            else if (name == "Halcon工具-2D测量")
+            else if (name.Contains("模板匹配工具"))
+            {
+                _ = MainContent.Children.Add(new ShapeModuleTool());
+            }
+            else if (name.Contains("测量模型工具"))
             {
                 _ = MainContent.Children.Add(new MetrolobyObjectMeasureTool());
             }
-            else if (name == "Halcon工具-卡尺标定")
+            else if (name.Contains("卡尺标定工具"))
             {
                 _ = MainContent.Children.Add(new CaliperCalibrationTool());
             }
-            else if (name == "Halcon工具-形状标定")
+            else if (name.Contains("形状标定工具"))
             {
                 _ = MainContent.Children.Add(new ShapeCalibrationTool());
             }
-            else if (name == "Halcon工具-ROI")
+            else if (name.Contains("ROI工具"))
             {
                 _ = MainContent.Children.Add(new ROITool());
             }
-            else if (name == "A图像采集")
+            else if (name.Contains("图像简易编程工具"))
+            {
+                _ = MainContent.Children.Add(new ImageProcessTool());
+            }
+            else if (name.Contains("图像裁剪工具"))
+            {
+                _ = MainContent.Children.Add(new CropImageTool());
+            }
+            else if (name.Contains("OCR分类工具"))
+            {
+                _ = MainContent.Children.Add(new OCRToolEpic());
+            }
+            else if (name.Contains("测量工具：长度、角度"))
+            {
+                _ = MainContent.Children.Add(new MeasureTools());
+            }
+
+            else if (name.Contains("图像采集：调用相机接口"))
             {
                 _ = MainContent.Children.Add(new AcquisitionImage());
             }
-            else if (name == "A图像读取和保存")
+            else if (name.Contains("读取本地图像、保存图像、保存窗体"))
             {
                 _ = MainContent.Children.Add(new ImageReadSave());
             }
-            else if (name == "B计算别针数量和角度")
-            {
-                _ = MainContent.Children.Add(new ClipNumberAndAngle());
-            }
-            else if (name == "C拟合圆")
+            else if (name.Contains("拟合圆"))
             {
                 _ = MainContent.Children.Add(new CircleFitting());
             }
-            else if (name == "D缺陷检测-PCB")
-            {
-                _ = MainContent.Children.Add(new PcbDefectDetection());
-            }
-            else if (name == "E九点标定")
+            else if (name.Contains("九点标定"))
             {
                 _ = MainContent.Children.Add(new CalibrationWithPoints());
             }
-            else if (name == "D缺陷检测-轴承")
+
+            else if (name.Contains("计算别针数量和角度"))
             {
-                _ = MainContent.Children.Add(new BearingDefectDetection());
+                _ = MainContent.Children.Add(new ClipNumberAndAngle());
             }
-            else if (name == "D缺陷检测-牙模")
+            else if (name.Contains("牙模切割"))
             {
                 _ = MainContent.Children.Add(new TeethDetection());
             }
-            else if (name == "D缺陷检测-针脚")
+
+            else if (name.Contains("PCB板电路检测"))
             {
-                _ = MainContent.Children.Add(new BastingDefectDetection());
+                _ = MainContent.Children.Add(new PcbDefectDetection());
             }
-            else if (name == "MeasureTools")
+            else if (name.Contains("轴承滚子检测"))
             {
-                _ = MainContent.Children.Add(new MeasureTools());
+                _ = MainContent.Children.Add(new BearingDefectDetection());
             }
         }
 
@@ -158,7 +169,6 @@ namespace HalconWPF.ViewModel
         /// </summary>
         public MainWindowViewModel()
         {
-            SelectedIndex = -1;
             DataList = InitMethod.GetDataList();
         }
     }

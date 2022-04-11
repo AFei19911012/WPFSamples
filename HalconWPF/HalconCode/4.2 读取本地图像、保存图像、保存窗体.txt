@@ -1,0 +1,8 @@
+read_image (Image, 'claudia.png')
+get_image_size (Image, Width, Height)
+dev_close_window ()
+dev_open_window (0, 0, Width, Height, 'black', WindowHandle)
+dev_display (Image)
+* write_image (Image, 'png', 0, 'image_image.png')
+dump_window_image (Image_window, WindowHandle)
+write_image (Image_window, 'png', 0, 'window_image.png')

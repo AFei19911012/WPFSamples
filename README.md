@@ -1,55 +1,23 @@
 # WPFSamples
 
-记录 WPF 和 Halcon 编程的学习案例
+记录 WPF 和 Halcon 编程的学习案例 :smile:
 
-```
-WPF & Halcon samples for learning
-
-Blog:   https://www.zhihu.com/people/1105936347
-Github: https://github.com/AFei19911012/WPFSamples
-```
+[Blog]: https://www.zhihu.com/column/c_1403661250718617600	"知乎【WPF&amp;Halcon案例代码解析】"
+[Github]: https://github.com/AFei19911012/WPFSamples	"Github"
 
 ```
 Halcon 图像链接：
-链接：https://pan.baidu.com/s/1Q6BpV9d-Pnut_ATG_xrVrA 
-提取码：gxnp 
 --来自百度网盘超级会员V5的分享
 ```
 
-## Demos
+[百度网盘]: https://pan.baidu.com/s/1Q6BpV9d-Pnut_ATG_xrVrA	"提取码：gxnp"
 
-一些小 Demo
+------
 
-1. NPOI 读写 Excel
-2. 线程 Thread、任务 Task：无参、有参、同步；计时器
-3. InkCanvas 绘制箭头
-3. ModBus TCP 通讯
-3. TCP IP 通讯
+# 内容结构
 
-## MVVM 数据、命令绑定
+[![LZI2rt.png](https://s1.ax1x.com/2022/04/12/LZI2rt.png)](https://imgtu.com/i/LZI2rt)
 
-常用控件数据绑定、命令绑定；
+[![LZIfVf.png](https://s1.ax1x.com/2022/04/12/LZIfVf.png)](https://imgtu.com/i/LZIfVf)
 
-![MVVM 数据、命令绑定](https://github.com/AFei19911012/WPFSamples/blob/main/MvvmCmdBinding/ScreenShot.png)
-
-## Halcon & WPF 案例
-
-![预览](https://github.com/AFei19911012/WPFSamples/blob/main/HalconWPF/ScreenShot1.png)
-
-![2D测量](https://github.com/AFei19911012/WPFSamples/blob/main/HalconWPF/ScreenShot2.png)
-
-1. Halcon工具：形状模板
-2. Halcon工具：九点标定、旋转标定
-3. Halcon工具：测量模型
-4. Halcon工具：卡尺标定
-5. Halcon工具：形状标定
-6. Halcon工具：ROI工具
-7. 图像采集
-8. 图像读取和保存
-9. 计算别针数量和角度
-10. 散点拟合圆
-11. 缺陷检测-PCB
-12. 缺陷检测-轴承
-13. 缺陷检测-牙模
-14. 缺陷检测-针脚
-15. 九点标定
+[![LZIRqP.png](https://s1.ax1x.com/2022/04/12/LZIRqP.png)](https://imgtu.com/i/LZIRqP)

@@ -19,22 +19,28 @@ namespace HalconWPF.Method
         {
             return new ObservableCollection<CDataModel>
             {
-                new CDataModel{ Name = "Halcon工具-形状模板", ImgPath="pack://application:,,,/Resource/Image/H.png"},
-                new CDataModel{ Name = "Halcon工具-标定", ImgPath="pack://application:,,,/Resource/Image/H.png"},
-                new CDataModel{ Name = "Halcon工具-2D测量", ImgPath="pack://application:,,,/Resource/Image/H.png"},
-                new CDataModel{ Name = "Halcon工具-卡尺标定", ImgPath="pack://application:,,,/Resource/Image/H.png"},
-                new CDataModel{ Name = "Halcon工具-形状标定", ImgPath="pack://application:,,,/Resource/Image/H.png"},
-                new CDataModel{ Name = "Halcon工具-ROI", ImgPath="pack://application:,,,/Resource/Image/H.png"},
-                new CDataModel{ Name = "A图像采集", ImgPath="pack://application:,,,/Resource/Image/A.png"},
-                new CDataModel{ Name = "A图像读取和保存", ImgPath="pack://application:,,,/Resource/Image/A.png"},
-                new CDataModel{ Name = "B计算别针数量和角度", ImgPath="pack://application:,,,/Resource/Image/B.png"},
-                new CDataModel{ Name = "C拟合圆", ImgPath="pack://application:,,,/Resource/Image/C.png"},
-                new CDataModel{ Name = "D缺陷检测-PCB", ImgPath="pack://application:,,,/Resource/Image/D.png"},
-                new CDataModel{ Name = "E九点标定", ImgPath="pack://application:,,,/Resource/Image/E.png"},
-                new CDataModel{ Name = "D缺陷检测-轴承", ImgPath="pack://application:,,,/Resource/Image/D.png"},
-                new CDataModel{ Name = "D缺陷检测-牙模", ImgPath="pack://application:,,,/Resource/Image/D.png"},
-                new CDataModel{ Name = "D缺陷检测-针脚", ImgPath="pack://application:,,,/Resource/Image/D.png"},
-                new CDataModel{ Name = "MeasureTools", ImgPath="pack://application:,,,/Resource/Image/M.png"},
+                new CDataModel{ Name = "2.1 视觉对位基础案例", ImgPath="pack://application:,,,/Resource/Image/B.png"},
+                new CDataModel{ Name = "2.2 九点标定工具", ImgPath="pack://application:,,,/Resource/Image/B.png"},
+                new CDataModel{ Name = "2.3 模板匹配工具", ImgPath="pack://application:,,,/Resource/Image/B.png"},
+                new CDataModel{ Name = "2.4 测量模型工具", ImgPath="pack://application:,,,/Resource/Image/B.png"},
+                new CDataModel{ Name = "2.5 卡尺标定工具", ImgPath="pack://application:,,,/Resource/Image/B.png"},
+                new CDataModel{ Name = "2.6 形状标定工具", ImgPath="pack://application:,,,/Resource/Image/B.png"},
+                new CDataModel{ Name = "2.7 ROI工具", ImgPath="pack://application:,,,/Resource/Image/B.png"},
+                new CDataModel{ Name = "2.8 图像简易编程工具", ImgPath="pack://application:,,,/Resource/Image/B.png"},
+                new CDataModel{ Name = "2.9 图像裁剪工具", ImgPath="pack://application:,,,/Resource/Image/B.png"},
+                new CDataModel{ Name = "2.10 OCR分类工具", ImgPath="pack://application:,,,/Resource/Image/B.png"},
+                new CDataModel{ Name = "2.11 测量工具：长度、角度", ImgPath="pack://application:,,,/Resource/Image/B.png"},
+
+                new CDataModel{ Name = "4.1 图像采集：调用相机接口", ImgPath="pack://application:,,,/Resource/Image/D.png"},
+                new CDataModel{ Name = "4.2 读取本地图像、保存图像、保存窗体", ImgPath="pack://application:,,,/Resource/Image/D.png"},
+                new CDataModel{ Name = "4.3 拟合圆", ImgPath="pack://application:,,,/Resource/Image/D.png"},
+                new CDataModel{ Name = "4.4 九点标定", ImgPath="pack://application:,,,/Resource/Image/D.png"},
+
+                new CDataModel{ Name = "5.1 计算别针数量和角度", ImgPath="pack://application:,,,/Resource/Image/E.png"},
+                new CDataModel{ Name = "5.2 牙模切割", ImgPath="pack://application:,,,/Resource/Image/E.png"},
+
+                new CDataModel{ Name = "6.1 PCB板电路检测", ImgPath="pack://application:,,,/Resource/Image/F.png"},
+                new CDataModel{ Name = "6.2 轴承滚子检测", ImgPath="pack://application:,,,/Resource/Image/F.png"},
             };
         }
     }

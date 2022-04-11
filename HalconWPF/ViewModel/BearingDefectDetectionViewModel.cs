@@ -160,7 +160,7 @@ namespace HalconWPF.ViewModel
                 );
 
                 // 清空
-                HOperatorSet.ClearWindow(ho_WindowImage); 
+                HOperatorSet.ClearWindow(ho_WindowImage);
                 HOperatorSet.MedianImage(ho_Image, out ho_ImageMedian, "circle", 10, "mirrored");
                 HOperatorSet.Rgb1ToGray(ho_ImageMedian, out ho_GrayImage);
                 HOperatorSet.AutoThreshold(ho_GrayImage, out ho_Regions, 10);
