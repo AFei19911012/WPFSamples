@@ -7,6 +7,7 @@
 
 ```
 Halcon 图像链接：
+百度网盘 https://pan.baidu.com/s/1Q6BpV9d-Pnut_ATG_xrVrA 提取码：gxnp
 --来自百度网盘超级会员V5的分享
 ```
 
