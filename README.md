@@ -2,18 +2,14 @@
 
 记录 WPF 和 Halcon 编程的学习案例 :smile:
 
-[Blog]: https://www.zhihu.com/column/c_1403661250718617600	"知乎【WPF&amp;Halcon案例代码解析】"
-[Github]: https://github.com/AFei19911012/WPFSamples	"Github"
-
 ```
+【WPF&amp;Halcon案例代码解析】 https://www.zhihu.com/column/c_1403661250718617600 
+Github https://github.com/AFei19911012/WPFSamples 
+
 Halcon 图像链接：
 百度网盘 https://pan.baidu.com/s/1Q6BpV9d-Pnut_ATG_xrVrA 提取码：gxnp
 --来自百度网盘超级会员V5的分享
 ```
-
-[百度网盘]: https://pan.baidu.com/s/1Q6BpV9d-Pnut_ATG_xrVrA	"提取码：gxnp"
-
-------
 
 # 内容结构
 
