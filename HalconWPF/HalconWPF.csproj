@@ -93,26 +93,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Halcon\HalCoordinateSystem.cs" />
     <Compile Include="Helper\DispatcherHelper.cs" />
     <Compile Include="Method\BeepMethod.cs" />
     <Compile Include="Method\ComMethod.cs" />
     <Compile Include="Method\CustomArrowDistance.cs" />
-    <Compile Include="Method\CustomCaliperRectangle.cs" />
-    <Compile Include="Method\CustomCircle.cs" />
-    <Compile Include="Method\CustomEllipse.cs" />
-    <Compile Include="Method\CustomLineMask.cs" />
-    <Compile Include="Method\CustomMarkerCross.cs" />
-    <Compile Include="Method\CustomParallelLines.cs" />
-    <Compile Include="Method\CustomPolygon.cs" />
-    <Compile Include="Method\CustomPolyline.cs" />
-    <Compile Include="Method\CustomRectangle.cs" />
     <Compile Include="Method\HalMethod.cs" />
     <Compile Include="Method\InitMethod.cs" />
     <Compile Include="Method\InkCanvasMethod.cs" />
     <Compile Include="Model\CDataModel.cs" />
-    <Compile Include="Halcon\HalColor.cs" />
-    <Compile Include="Halcon\HalDrawing.cs" />
     <Compile Include="Model\CShapeModelMatchResult.cs" />
     <Compile Include="Model\EnumMeasureTools.cs" />
     <Compile Include="Model\EnumModuleEditState.cs" />

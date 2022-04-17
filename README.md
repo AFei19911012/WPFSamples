@@ -3,7 +3,7 @@
 记录 WPF 和 Halcon 编程的学习案例 :smile:
 
 ```
-【WPF&amp;Halcon案例代码解析】 https://www.zhihu.com/column/c_1403661250718617600 
+【WPF&Halcon案例代码解析】 https://www.zhihu.com/column/c_1403661250718617600 
 Github https://github.com/AFei19911012/WPFSamples 
 
 Halcon 图像链接：
@@ -13,7 +13,95 @@ Halcon 图像链接：
 
 # 内容结构
 
-[![LZI2rt.png](https://s1.ax1x.com/2022/04/12/LZI2rt.png)](https://imgtu.com/i/LZI2rt)
+Halcon&WPF案例代码解析
+
+\1. WPF案例
+
+1.1 NPOI读写Excel
+
+1.2 线程Thread、任务Task
+
+1.3 计时器
+
+1.4 使用InkCanvas绘制箭头：缩放、平移
+
+1.5 ModBus通讯
+
+1.6 SimpleTCP通讯
+
+1.7 MVVM：数据绑定、命令绑定
+
+1.8 HandyControl控件使用
+
+1.9 HelixToolkit 学习
+
+1.10 使用HelixToolkit重构3D文件
+
+\2. 视觉工具
+
+2.1 视觉对位基础案例
+
+2.2 九点标定工具
+
+2.3 模板匹配工具
+
+2.4 测量模型工具
+
+2.5 卡尺标定工具
+
+2.6 形状标定工具
+
+2.7 ROI工具
+
+2.8 图像简易编程工具
+
+2.9 图像裁剪工具
+
+2.10 OCR分类工具
+
+2.11 测量工具：长度、角度
+
+\3. 疑难问题
+
+3.1 提升程序运行CT：图像采集、图像处理过程
+
+3.2 C# WinForm 调用 WPF UserControl 的正确方式
+
+3.3 HOperatorSet.GetGrayval、HOperatorSet.ReduceDomain 为 null
+
+3.4 MVS 未安装 USB3 驱动或驱动无效、C# 初始化相机失败
+
+3.5 Halcon 图像自适应显示、图像坐标↔控件坐标
+
+\4. 基础知识
+
+4.1 图像采集：调用相机接口
+
+4.2 读取本地图像、保存图像、保存窗体
+
+4.3 拟合圆
+
+4.4 九点标定
+
+\5. Blob分析
+
+5.1 计算别针数量和角度
+
+5.2 牙模切割
+
+\6. 缺陷检测
+
+6.1 PCB板电路检测
+
+6.2 轴承滚子检测
+
+\7. 模板匹配
+
+\8. 测量模型
+
+\9. OCR
+
+[![L1I3BF.png](https://s1.ax1x.com/2022/04/14/L1I3BF.png)](https://imgtu.com/i/L1I3BF)
 
 [![LZIfVf.png](https://s1.ax1x.com/2022/04/12/LZIfVf.png)](https://imgtu.com/i/LZIfVf)
 

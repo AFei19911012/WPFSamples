@@ -1,7 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using HalconDotNet;
-using HalconWPF.Halcon;
 using HalconWPF.Method;
 using HalconWPF.UserControl;
 using System;
@@ -69,7 +68,7 @@ namespace HalconWPF.ViewModel
                 // 按面积选择，使用 Halcon 特征直方图工具来定
                 HRegion regions_selected = region_connected.SelectShape("area", "and", 5000, 8000);
                 // 填充
-                ho_Window.SetDraw(HalDrawing.margin.ToString());
+                ho_Window.SetDraw("margin");
                 // 颜色
                 ho_Window.SetColored(12);
                 // 显示

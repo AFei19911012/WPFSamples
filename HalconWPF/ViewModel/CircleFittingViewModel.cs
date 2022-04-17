@@ -1,7 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using HalconDotNet;
-using HalconWPF.Halcon;
 using HalconWPF.Method;
 using HalconWPF.UserControl;
 using System;
@@ -78,7 +77,7 @@ namespace HalconWPF.ViewModel
             ho_Window.SetLineWidth(2);
             // 画十字
             HOperatorSet.GenCrossContourXld(out ho_Cross, hv_Rows, hv_Cols, 30, 0.785398);
-            ho_Window.SetColor(HalColor.blue.ToString());
+            ho_Window.SetColor("blue");
             //ho_Window.SetColored(12);
             ho_Window.DispObj(ho_Cross);
             // 拟合圆

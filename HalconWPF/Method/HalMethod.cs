@@ -1,5 +1,4 @@
 ﻿using HalconDotNet;
-using HalconWPF.Halcon;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Input;
@@ -327,16 +326,6 @@ namespace HalconWPF.Method
                 }
             }
             return camInfo;
-        }
-
-        /// <summary>
-        /// Halcon 颜色
-        /// </summary>
-        /// <param name="color"></param>
-        /// <returns></returns>
-        public static string GetHalconColor(this HalColor color)
-        {
-            return color.ToString().Replace("_", " ");
         }
 
         /// <summary>

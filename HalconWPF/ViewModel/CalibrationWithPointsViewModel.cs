@@ -1,7 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using HalconDotNet;
-using HalconWPF.Halcon;
 using HalconWPF.Method;
 using HalconWPF.Model;
 using HalconWPF.UserControl;
@@ -175,7 +174,7 @@ namespace HalconWPF.ViewModel
                 HRegion ho_SortedRegions = ho_SelectedRegions.SortRegion("first_point", "true", "row");
                 // 设置颜色
                 ho_Window.SetColored(12);
-                ho_Window.SetDraw(HalDrawing.margin.ToString());
+                ho_Window.SetDraw("margin");
                 ho_Window.SetLineWidth(3);
                 // 显示结果
                 ho_Window.DispObj(ho_SortedRegions);

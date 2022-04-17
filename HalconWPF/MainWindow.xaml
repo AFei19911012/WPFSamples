@@ -12,6 +12,7 @@
                WindowStartupLocation="CenterScreen"
                Background="{DynamicResource RegionBrush}"
                Title="Halcon WPF Demos"
+               ShowTitle="False"
                Height="600" Width="1000">
     <hc:GlowWindow.DataContext>
         <viewmodel:MainWindowViewModel/>
@@ -19,7 +20,7 @@
 
     <!-- 标题栏内容 -->
     <hc:GlowWindow.NonClientAreaContent>
-        <StackPanel Orientation="Horizontal" Background="{DynamicResource RegionBrush}" Margin="-125, 0, 0, 0">
+        <StackPanel Orientation="Horizontal" Background="{DynamicResource RegionBrush}">
             <Image Source="Resource/Image/icon.ico" Height="32" HorizontalAlignment="Left" Margin="10,3"/>
             <hc:OutlineText Margin="3" Text="Halcon WPF" FontSize="32" FontWeight="Bold" Fill="{DynamicResource PrimaryBrush}" Stroke="Violet" StrokeThickness="2"/>
         </StackPanel>
