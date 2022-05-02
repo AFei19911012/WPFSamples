@@ -19,7 +19,7 @@ namespace HalconWPF.Method
         {
             return new ObservableCollection<CDataModel>
             {
-                new CDataModel{ Name = "2.1 视觉对位基础案例", ImgPath="pack://application:,,,/Resource/Image/B.png"},
+                new CDataModel{ Name = "2.1 二维码和条码识别工具", ImgPath="pack://application:,,,/Resource/Image/B.png"},
                 new CDataModel{ Name = "2.2 九点标定工具", ImgPath="pack://application:,,,/Resource/Image/B.png"},
                 new CDataModel{ Name = "2.3 模板匹配工具", ImgPath="pack://application:,,,/Resource/Image/B.png"},
                 new CDataModel{ Name = "2.4 测量模型工具", ImgPath="pack://application:,,,/Resource/Image/B.png"},

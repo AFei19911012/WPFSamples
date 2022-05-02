@@ -1,0 +1,32 @@
+dev_update_off ()
+dev_close_window ()
+read_image (Image, 'D:/MyPrograms/DataSet/halcon/qr1.bmp')
+dev_open_window_fit_image (Image, 0, 0, -1, -1, WindowHandle)
+set_display_font (WindowHandle, 16, 'mono', 'true', 'false')
+dev_set_line_width (3)
+dev_set_color ('green')
+* 创建二维码模型
+create_data_code_2d_model ('QR Code', [], [], DataCodeHandle)
+* 寻找二维码并解码
+find_data_code_2d (Image, SymbolXLDs, DataCodeHandle, [], [], ResultHandles, DecodedDataStrings)
+* 清除二维码模型
+clear_data_code_2d_model (DataCodeHandle)
+dev_display (Image)
+dev_display (SymbolXLDs)
+dev_disp_text (DecodedDataStrings, 'window', 'top', 'left', 'black', [], [])
+
+******************
+******************
+*** 条形码
+read_image (Image, 'barcode/gs1_128/gs1_128_generated_01.png')
+* 创建条码模型
+create_bar_code_model ([], [], BarCodeHandle)
+* 寻找条码并解码
+find_bar_code (Image, SymbolRegions, BarCodeHandle, 'auto', DecodedDataStrings)
+* 获取解码结果
+get_bar_code_result (BarCodeHandle, 'all', 'decoded_types', BarCodeResults)
+* 清除条码模型
+clear_bar_code_model (BarCodeHandle)
+dev_display (Image)
+dev_display (SymbolRegions)
+dev_set_draw ('margin')

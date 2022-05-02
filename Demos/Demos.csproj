@@ -88,6 +88,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Demo\LoggerDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Demo\TcpDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -106,6 +110,9 @@
     </Compile>
     <Compile Include="Demo\DrawingTransformArrow.xaml.cs">
       <DependentUpon>DrawingTransformArrow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Demo\LoggerDemo.xaml.cs">
+      <DependentUpon>LoggerDemo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Demo\TcpDemo.xaml.cs">
       <DependentUpon>TcpDemo.xaml</DependentUpon>

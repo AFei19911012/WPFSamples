@@ -87,7 +87,11 @@ namespace HalconWPF.ViewModel
             };
             MainContent.Children.Clear();
             string name = DataList[SelectedIndex].Name;
-            if (name.Contains("九点标定工具"))
+            if (name.Contains("二维码和条码识别工具"))
+            {
+                _ = MainContent.Children.Add(new BarCodeQRTool());
+            }
+            else if (name.Contains("九点标定工具"))
             {
                 _ = MainContent.Children.Add(new CamCalibrationTool());
             }
@@ -121,7 +125,7 @@ namespace HalconWPF.ViewModel
             }
             else if (name.Contains("OCR分类工具"))
             {
-                _ = MainContent.Children.Add(new OCRToolEpic());
+                _ = MainContent.Children.Add(new OcrClassificationTool());
             }
             else if (name.Contains("测量工具：长度、角度"))
             {

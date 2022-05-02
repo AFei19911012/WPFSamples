@@ -21,5 +21,13 @@
         <TabItem Header="TCP 通讯测试">
             <demo:TcpDemo/>
         </TabItem>
+        <TabItem Header="日志记录">
+            <Grid>
+                <demo:LoggerDemo x:Name="MyLogger"/>
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Right">
+                    <Button Content="添加日志" Click="Button_Click"/>
+                </StackPanel>
+            </Grid>
+        </TabItem>
     </TabControl>
 </Window>

@@ -1,0 +1,43 @@
+dev_close_window()
+read_image (Image, 'D:/MyPrograms/DataSet/halcon/calibration_circle.bmp')
+get_image_size (Image, Width, Height)
+dev_open_window (0, 0, Width/4, Height/4, 'black', WindowHandle)
+dev_display(Image)
+
+*创建测量模型
+create_metrology_model (MetrologyHandle)
+*设置测量图像大小
+set_metrology_model_image_size (MetrologyHandle, Width, Height)
+
+*阈值图像处理
+threshold (Image, Region, 0, 200)
+*联通区域
+connection (Region, ConnectedRegions)
+*获取圆的中心的面积
+area_center (ConnectedRegions, Area, Row, Column)
+
+*显示图片
+* dev_set_color ('green')
+* dev_set_draw ('margin')
+dev_display (Image)
+
+r := gen_tuple_const(9, 100)
+*生成圆
+* gen_circle (Circle, Row[0], Column[0],80)
+*添加圆到测量模型中
+add_metrology_object_circle_measure (MetrologyHandle, Row, Column, r, 100, 5, 1, 30, [], [], Index)
+*设置模型参数
+set_metrology_object_param (MetrologyHandle, Index, 'measure_transition', 'positive')
+set_metrology_object_param (MetrologyHandle, Index, 'min_score', 0.9)
+*应用测量模型
+apply_metrology_model (Image, MetrologyHandle)
+*获取测量模型里的测量轮廓
+get_metrology_object_result_contour (Contour, MetrologyHandle, 'all', 'all', 1.5)
+*获取测量结果
+get_metrology_object_result (MetrologyHandle, 'all', 'all', 'result_type', 'radius', Parameter)
+get_metrology_object_measures (Contours, MetrologyHandle, 'all', 'all', Row1, Column1)
+
+dev_display (Contour)
+set_tposition (WindowHandle,0, 0)
+write_string (WindowHandle, Parameter)
+clear_metrology_model(MetrologyHandle)

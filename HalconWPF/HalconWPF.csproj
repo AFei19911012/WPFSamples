@@ -85,7 +85,7 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="WSlibs, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\WSlibs\bin\WSlibs.dll</HintPath>
+      <HintPath>..\..\SVNprograms\WSlibs\bin\WSlibs.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
