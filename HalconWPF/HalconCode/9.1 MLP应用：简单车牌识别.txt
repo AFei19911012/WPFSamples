@@ -1,0 +1,37 @@
+* **********************************************************
+* OCR -- 车牌识别
+* **********************************************************
+dev_set_line_width (3)
+* 读取图片
+read_image (Image, 'audi2')
+* 图片的尺寸
+get_image_size (Image, Width, Height)
+dev_close_window ()
+dev_open_window (0, 0, Width/2, Height/2, 'black', WindowHandle)
+* 设置字体
+set_display_font (WindowHandle, 16, 'mono', 'true', 'false')
+
+* 定位车牌位置
+* 阈值分割，借助灰度直方图
+threshold (Image, Regions, 30, 72)
+* 连通区域
+connection (Regions, RegionsConnection)
+* 特征选择，借助特征直方图
+select_shape (RegionsConnection, SelectedRegions, ['width','height','area'], 'and', [33.57,31.14,810.02], [54.95,71.89,1190.55])
+* 按照相对位置排序
+sort_region(SelectedRegions, SortRegions, 'upper_left', 'true', 'column')
+* mlp 分类器
+read_ocr_class_mlp('Industrial_NoRej.omc', OCRHandle)
+do_ocr_multi_class_mlp(SortRegions, Image, OCRHandle, Class, Confidence)
+* 检测出来的数量
+count_obj (SortRegions, Number)
+* 面积和中心
+area_center(SortRegions, Area, Row, Column)
+* 显示结果
+Message := 'Carplate: '
+for i := 0 to Number-1 by 1
+    Message := Message + Class[i]
+endfor
+dev_display(Image)
+dev_display(SortRegions)
+dev_disp_text (Message, 'window', 12, 12, 'black', [], [])

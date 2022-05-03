@@ -1,0 +1,70 @@
+* **********************************************************
+* 模板匹配 -- 基于形状
+* **********************************************************
+* 加载图像
+read_image (ModelImage, 'model.bmp')
+* 图像尺寸
+get_image_size (ModelImage, Width, Height)
+dev_close_window ()
+dev_open_window (0, 0, Width/2, Height/2, 'white', WindowHandle)
+dev_set_draw ('margin')
+dev_set_line_width (2)
+set_display_font (WindowHandle, 14, 'mono', 'true', 'false')
+* 显示图像
+dev_display (ModelImage)
+
+****** 创建矩形区域
+* draw_rectangle2 (WindowHandle, Row, Column, Phi, Length1, Length2)
+gen_rectangle2 (ROI, 406.5, 394.5, 0.7854, 203, 46)
+dev_display (ROI)
+* 分离模板
+reduce_domain (ModelImage, ROI, ImageROI)
+****** 创建模型
+* 创建形状模型表示，可根据金字塔各层级检查参数
+inspect_shape_model (ImageROI, ShapeModelImages, ShapeModelRegions, 8, 30)
+dev_clear_window ()
+dev_display (ShapeModelRegions)
+* 面积和中心
+area_center (ShapeModelRegions, AreaModelRegions, RowModelRegions, ColumnModelRegions)
+* 数量
+count_obj (ShapeModelRegions, HeightPyramid)
+* 确定金字塔层级
+for i := 1 to HeightPyramid by 1
+    if (AreaModelRegions[i - 1] >= 15)
+        NumLevels := i
+    endif
+endfor
+* 创建模板
+create_shape_model (ImageROI, 'auto', -0.39, 0.79, 'auto', 'auto', 'use_polarity', 'auto', 'auto', ModelID)
+* create_shape_model (ImageROI, NumLevels, 0, rad(360), 'auto', 'none', 'use_polarity', 30, 10, ModelID)
+* 获取轮廓信息
+get_shape_model_contours (ShapeModel, ModelID, 1)
+****** 在新的图像中寻找目标
+for i := 0 to 36 by 1
+    * 待搜索图像
+    rotate_image (ModelImage, SearchImage, 5*i, 'constant')
+    * 寻找模板所在区域
+*     find_shape_model (SearchImage, ModelID, -0.39, 0.79, 0.3, 1, 0.5, 'least_squares', 0, 0.9, RowCheck, ColumnCheck, AngleCheck, Score)
+    find_shape_model (SearchImage, ModelID, 0, rad(360), 0.3, 1, 0.5, 'least_squares', 0, 0.7, RowCheck, ColumnCheck, AngleCheck, Score)
+    if (|Score| == 1)
+        dev_set_color ('orange red')
+        ** 方式一
+        * 根据点的对应关系计算变换矩阵
+        vector_angle_to_rigid (0, 0, 0, RowCheck, ColumnCheck, AngleCheck, MovementOfObject)
+        ** 方式二
+        * 生成变换矩阵
+*         hom_mat2d_identity (MovementOfObject)
+        * 偏移
+*         hom_mat2d_translate (MovementOfObject, RowCheck, ColumnCheck, MovementOfObject)
+        * 旋转
+*         hom_mat2d_rotate (MovementOfObject, AngleCheck, RowCheck, ColumnCheck, MovementOfObject)
+        * 仿射变换
+        affine_trans_contour_xld (ShapeModel, ModelAtNewPosition, MovementOfObject)
+        dev_display (SearchImage)
+        dev_display (ModelAtNewPosition)
+        dev_disp_text ('Score = ' + Score, 'window', 100, 100, 'orange red', [], [])
+    endif
+    wait_seconds (0.1)
+endfor
+****** 清空
+clear_shape_model (ModelID)

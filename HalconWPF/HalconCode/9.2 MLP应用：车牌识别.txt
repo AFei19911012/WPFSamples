@@ -1,0 +1,71 @@
+* **********************************************************
+* OCR -- 车牌识别
+* **********************************************************
+* 加载图像
+read_image (Image, 'D:/MyPrograms/DataSet/halcon/carplate')
+* 图像尺寸
+get_image_size (Image, Width, Height)
+dev_close_window ()
+dev_open_window (0, 0, Width/2, Height/2, 'black', WindowHandle)
+dev_set_line_width (2)
+set_display_font (WindowHandle, 16, 'mono', 'true', 'false')
+dev_display (Image)
+
+****** 车牌定位和校正
+* 图像通道
+decompose3 (Image, ImageR, ImageG, ImageB)
+trans_from_rgb (ImageR, ImageG, ImageB, Hue, Saturation, Value, 'hsv')
+* 阈值分割
+threshold (Saturation, Regions, 50, 255)
+fill_up (Regions, RegionFillUp)
+* 连通区域
+connection (RegionFillUp, ConnectedRegions)
+dev_display (ConnectedRegions)
+* 特征选择
+select_shape (ConnectedRegions, SelectedRegions, 'area', 'and', 8000, 10000)
+* 变形
+shape_trans (SelectedRegions, RegionTrans, 'convex')
+* 角度
+orientation_region (RegionTrans, Phi)
+* 面积和中心
+area_center (RegionTrans, Area, Row, Column)
+* 根据点的对应关系计算变换矩阵
+if (Phi < 0)
+    vector_angle_to_rigid (Row, Column, Phi, Row, Column, rad(180), HomMat2D)
+else
+    vector_angle_to_rigid (Row, Column, Phi, Row, Column, 0, HomMat2D)
+endif
+* 校正
+affine_trans_region (RegionTrans, RegionAffineTrans, HomMat2D, 'nearest_neighbor')
+affine_trans_image (Image, ImageAffineTrans, HomMat2D, 'constant', 'false')
+* 提取车牌区域
+reduce_domain (ImageAffineTrans, RegionAffineTrans, ImageReduced)
+
+****** 字符分割
+* 灰度图
+rgb1_to_gray (ImageReduced, GrayImage)
+* 反色，分类器里的车牌是黑色，这里是白色
+invert_image (GrayImage, ImageInvert)
+* 阈值分割
+threshold (ImageInvert, Regions1, 0, 60)
+* 连通区域
+connection (Regions1, ConnectedRegions1)
+select_shape (ConnectedRegions1, SelectedRegions1, ['area','height'], 'and', [82.11,29.312], [281.19,35.275])
+* 按相对位置排序
+sort_region (SelectedRegions1, SortedRegions, 'character', 'true', 'column')
+dev_clear_window ()
+dev_display (ImageAffineTrans)
+dev_display (SortedRegions)
+
+****** 字符识别
+* 分类器
+read_ocr_class_mlp ('Industrial_0-9A-Z_NoRej.omc', OCRHandle)
+do_ocr_multi_class_mlp (SortedRegions, ImageInvert, OCRHandle, Class, Confidence)
+* 检测出来的数量
+count_obj (SortedRegions, Number)
+* 显示结果
+Message := 'Carplate: '
+for i := 0 to Number-1 by 1
+    Message := Message + Class[i]
+endfor
+disp_message (WindowHandle, Message, 'window', 12, 12, 'black', 'true')

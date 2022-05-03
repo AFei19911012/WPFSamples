@@ -24,16 +24,26 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="400"/>
             </Grid.ColumnDefinitions>
             <halcon:HSmartWindowControlWPF Name="HalconWPF"/>
-            <Grid Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition Height="auto"/>
-                </Grid.RowDefinitions>
-                <DataGrid Margin="3" Width="400" SelectionMode="Single" HeadersVisibility="All" AutoGenerateColumns="False"
-                          CanUserSortColumns="False" CanUserResizeColumns="False" ItemsSource="{Binding DataList}">
+            <StackPanel Grid.Column="1" Orientation="Vertical">
+                <hc:ButtonGroup>
+                    <Button Content="Load Image" Command="{Binding CmdButtonEvent}" CommandParameter="LoadImage"
+                            FontSize="20" Height="32" Margin="5" hc:BorderElement.CornerRadius="16"/>
+                    <Button Content="Save Image" Command="{Binding CmdButtonEvent}" CommandParameter="SaveImage" 
+                            FontSize="20" Height="32" Margin="5" hc:BorderElement.CornerRadius="16"/>
+                </hc:ButtonGroup>
+
+                <hc:ButtonGroup>
+                    <Button Content="Calibration" Command="{Binding CmdButtonEvent}" CommandParameter="Calibration" 
+                            FontSize="20" Height="32" hc:BorderElement.CornerRadius="16"/>
+                    <Button Content="Validation" Command="{Binding CmdButtonEvent}" CommandParameter="Validation" 
+                            FontSize="20" Height="32" hc:BorderElement.CornerRadius="16"/>
+                </hc:ButtonGroup>
+                
+                <DataGrid Margin="3" SelectionMode="Single" HeadersVisibility="All" AutoGenerateColumns="False"
+                          CanUserSortColumns="False" CanUserResizeColumns="False" Style="{StaticResource DataGrid.Small}" ItemsSource="{Binding DataList}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Width="*" Header="ImageX" Binding="{Binding ImageX, StringFormat={}{0:F3}}"/>
                         <DataGridTextColumn Width="*" Header="ImageY" Binding="{Binding ImageY, StringFormat={}{0:F3}}"/>
@@ -42,47 +52,39 @@
                     </DataGrid.Columns>
                 </DataGrid>
 
-                <GroupBox Grid.Row="1" Header="Affine Transformation" Margin="3" Style="{StaticResource GroupBoxTab}">
+                <GroupBox Header="Affine Transformation" Margin="3" Style="{StaticResource GroupBoxTab}">
                     <UniformGrid Rows="2" Columns="3">
                         <hc:Shield Subject="a1=" hc:BorderElement.CornerRadius="0" Color="{DynamicResource PrimaryBrush}" Margin="2">
-                            <TextBox IsReadOnly="True" hc:BorderElement.CornerRadius="0" BorderThickness="0" Background="Transparent" VerticalAlignment="Center"
-                                     Height="30" Text="{Binding ValueA1, StringFormat={}{0:F8}}"/>
+                            <TextBox IsReadOnly="True" hc:BorderElement.CornerRadius="0" BorderThickness="0" VerticalAlignment="Center"
+                                     Margin="-5" Text="{Binding ValueA1, StringFormat={}{0:F8}}"/>
                         </hc:Shield>
-                        <hc:Shield Subject="b1=" hc:BorderElement.CornerRadius="0" Color="{DynamicResource PrimaryBrush}">
-                            <TextBox IsReadOnly="True" hc:BorderElement.CornerRadius="0" BorderThickness="0" Background="Transparent" VerticalAlignment="Center"
-                                     Height="30" Text="{Binding ValueB1, StringFormat={}{0:F8}}"/>
+                        <hc:Shield Subject="b1=" hc:BorderElement.CornerRadius="0" Color="{DynamicResource PrimaryBrush}" Margin="2">
+                            <TextBox IsReadOnly="True" hc:BorderElement.CornerRadius="0" BorderThickness="0" VerticalAlignment="Center"
+                                     Margin="-5" Text="{Binding ValueB1, StringFormat={}{0:F8}}"/>
                         </hc:Shield>
-                        <hc:Shield Subject="c1=" hc:BorderElement.CornerRadius="0" Color="{DynamicResource PrimaryBrush}">
-                            <TextBox IsReadOnly="True" hc:BorderElement.CornerRadius="0" BorderThickness="0" Background="Transparent" VerticalAlignment="Center"
-                                     Height="30" Text="{Binding ValueC1, StringFormat={}{0:F8}}"/>
+                        <hc:Shield Subject="c1=" hc:BorderElement.CornerRadius="0" Color="{DynamicResource PrimaryBrush}" Margin="2">
+                            <TextBox IsReadOnly="True" hc:BorderElement.CornerRadius="0" BorderThickness="0" VerticalAlignment="Center"
+                                     Margin="-5" Text="{Binding ValueC1, StringFormat={}{0:F8}}"/>
                         </hc:Shield>
-                        <hc:Shield Subject="a2=" hc:BorderElement.CornerRadius="0" Color="{DynamicResource PrimaryBrush}">
-                            <TextBox IsReadOnly="True" hc:BorderElement.CornerRadius="0" BorderThickness="0" Background="Transparent" VerticalAlignment="Center"
-                                     Height="30" Text="{Binding ValueA2, StringFormat={}{0:F8}}"/>
+                        <hc:Shield Subject="a2=" hc:BorderElement.CornerRadius="0" Color="{DynamicResource PrimaryBrush}" Margin="2">
+                            <TextBox IsReadOnly="True" hc:BorderElement.CornerRadius="0" BorderThickness="0" VerticalAlignment="Center"
+                                     Margin="-5" Text="{Binding ValueA2, StringFormat={}{0:F8}}"/>
                         </hc:Shield>
-                        <hc:Shield Subject="b2=" hc:BorderElement.CornerRadius="0" Color="{DynamicResource PrimaryBrush}">
-                            <TextBox IsReadOnly="True" hc:BorderElement.CornerRadius="0" BorderThickness="0" Background="Transparent" VerticalAlignment="Center"
-                                     Height="30" Text="{Binding ValueB2, StringFormat={}{0:F8}}"/>
+                        <hc:Shield Subject="b2=" hc:BorderElement.CornerRadius="0" Color="{DynamicResource PrimaryBrush}" Margin="2">
+                            <TextBox IsReadOnly="True" hc:BorderElement.CornerRadius="0" BorderThickness="0" VerticalAlignment="Center"
+                                     Margin="-5" Text="{Binding ValueB2, StringFormat={}{0:F8}}"/>
                         </hc:Shield>
-                        <hc:Shield Subject="c2=" hc:BorderElement.CornerRadius="0" Color="{DynamicResource PrimaryBrush}">
-                            <TextBox IsReadOnly="True" hc:BorderElement.CornerRadius="0" BorderThickness="0" Background="Transparent" VerticalAlignment="Center"
-                                     Height="30" Text="{Binding ValueC2, StringFormat={}{0:F8}}"/>
+                        <hc:Shield Subject="c2=" hc:BorderElement.CornerRadius="0" Color="{DynamicResource PrimaryBrush}" Margin="2">
+                            <TextBox IsReadOnly="True" hc:BorderElement.CornerRadius="0" BorderThickness="0" VerticalAlignment="Center"
+                                     Margin="-5" Text="{Binding ValueC2, StringFormat={}{0:F8}}"/>
                         </hc:Shield>
                     </UniformGrid>
                 </GroupBox>
-            </Grid>
+            </StackPanel>
         </Grid>
 
-        <hc:ElementGroup Grid.Row="1" Orientation="Horizontal">
-            <hc:ButtonGroup>
-                <Button Content="Load Image" Command="{Binding CmdButtonEvent}" CommandParameter="LoadImage" hc:BorderElement.CornerRadius="0"/>
-                <Button Content="Calibration" Command="{Binding CmdButtonEvent}" CommandParameter="Calibration"/>
-                <Button Content="Validation" Command="{Binding CmdButtonEvent}" CommandParameter="Validation"/>
-                <Button Content="Save Image" Command="{Binding CmdButtonEvent}" CommandParameter="SaveImage" hc:BorderElement.CornerRadius="0"/>
-            </hc:ButtonGroup>
-            <hc:Shield Subject="Mouse Position" Height="31" hc:BorderElement.CornerRadius="0" Color="{DynamicResource PrimaryBrush}">
-                <TextBlock Text="{Binding ShowingText}" Style="{StaticResource TextBlockDefault}"/>
-            </hc:Shield>
-        </hc:ElementGroup>
+        <hc:Shield Grid.Row="1" Subject="Mouse Position" hc:BorderElement.CornerRadius="0" Color="{DynamicResource PrimaryBrush}">
+            <TextBlock Text="{Binding ShowingText}" Style="{StaticResource TextBlockDefault}"/>
+        </hc:Shield>
     </Grid>
 </UserControl>

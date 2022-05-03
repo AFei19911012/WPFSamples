@@ -127,6 +127,9 @@
     <Compile Include="UserControl\MeasureTools.xaml.cs">
       <DependentUpon>MeasureTools.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControl\MlpCarplateRecognition.xaml.cs">
+      <DependentUpon>MlpCarplateRecognition.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControl\TeethDetection.xaml.cs">
       <DependentUpon>TeethDetection.xaml</DependentUpon>
     </Compile>
@@ -141,6 +144,7 @@
       <DependentUpon>PcbDefectDetection.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\MeasureToolsViewModel.cs" />
+    <Compile Include="ViewModel\MlpCarplateRecognitionVM.cs" />
     <Compile Include="ViewModel\PcbDefectDetectionViewModel.cs" />
     <Compile Include="ViewModel\TeethDetectionViewModel.cs" />
     <Page Include="MainWindow.xaml">
@@ -196,6 +200,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControl\MeasureTools.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl\MlpCarplateRecognition.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

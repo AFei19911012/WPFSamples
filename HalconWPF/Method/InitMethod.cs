@@ -30,6 +30,7 @@ namespace HalconWPF.Method
                 new CDataModel{ Name = "2.9 图像裁剪工具", ImgPath="pack://application:,,,/Resource/Image/B.png"},
                 new CDataModel{ Name = "2.10 OCR分类工具", ImgPath="pack://application:,,,/Resource/Image/B.png"},
                 new CDataModel{ Name = "2.11 测量工具：长度、角度", ImgPath="pack://application:,,,/Resource/Image/B.png"},
+                new CDataModel{ Name = "2.12 图像裁剪工具", ImgPath="pack://application:,,,/Resource/Image/B.png"},
 
                 new CDataModel{ Name = "4.1 图像采集：调用相机接口", ImgPath="pack://application:,,,/Resource/Image/D.png"},
                 new CDataModel{ Name = "4.2 读取本地图像、保存图像、保存窗体", ImgPath="pack://application:,,,/Resource/Image/D.png"},
@@ -41,6 +42,8 @@ namespace HalconWPF.Method
 
                 new CDataModel{ Name = "6.1 PCB板电路检测", ImgPath="pack://application:,,,/Resource/Image/F.png"},
                 new CDataModel{ Name = "6.2 轴承滚子检测", ImgPath="pack://application:,,,/Resource/Image/F.png"},
+
+                new CDataModel{ Name = "9.1 MLP应用：简单车牌识别", ImgPath="pack://application:,,,/Resource/Image/I.png"},
             };
         }
     }

@@ -131,6 +131,10 @@ namespace HalconWPF.ViewModel
             {
                 _ = MainContent.Children.Add(new MeasureTools());
             }
+            else if (name.Contains("图像裁剪工具"))
+            {
+                _ = MainContent.Children.Add(new CropImageTool());
+            }
 
             else if (name.Contains("图像采集：调用相机接口"))
             {
@@ -165,6 +169,11 @@ namespace HalconWPF.ViewModel
             else if (name.Contains("轴承滚子检测"))
             {
                 _ = MainContent.Children.Add(new BearingDefectDetection());
+            }
+
+            else if (name.Contains("MLP应用：简单车牌识别"))
+            {
+                _ = MainContent.Children.Add(new MlpCarplateRecognition());
             }
         }
 
