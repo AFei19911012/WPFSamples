@@ -35,7 +35,7 @@ namespace HalconWPF.ViewModel
         private void ExecuteCarplateRecognition()
         {
             HOperatorSet.ReadImage(out HObject ho_Image, "audi2");
-            /// 定位车片位置
+            /// 定位车牌位置
             // 阈值分割，可借助灰度直方图
             HOperatorSet.Threshold(ho_Image, out HObject ho_Region, 30, 72);
             // 连通
