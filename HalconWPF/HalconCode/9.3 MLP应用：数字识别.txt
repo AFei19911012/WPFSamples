@@ -1,0 +1,29 @@
+* **********************************************************
+* 高压包字符 NG 检测：ocr 字符检测
+* **********************************************************
+* 
+dev_close_window ()
+dev_open_window (0, 0, 600, 400, 'white', WindowHandle)
+set_display_font (WindowHandle, 20, 'mono', 'true', 'false')
+dev_set_line_width (3)
+*
+read_image (Image, 'D:/MyPrograms/DataSet/halcon/ocr数字识别/Image_01')
+* 
+* ocr 字符识别
+* 识别、分割字符
+threshold (Image, Region, 0, 200)
+closing_circle (Region, RegionClosing, 5)
+connection (RegionClosing, ConnectedRegions)
+select_shape (ConnectedRegions, SelectedRegions, 'area', 'and', 2000, 20000)
+sort_region (SelectedRegions, SortedRegions, 'first_point', 'true', 'column')
+area_center (SortedRegions, Area, Row, Column)
+* 分类器
+read_ocr_class_mlp('Industrial_NoRej.omc', OCRHandle)
+do_ocr_multi_class_mlp (SortedRegions, Image, OCRHandle, Class, Confidence)
+dev_display (Image)
+dev_display (SortedRegions)
+Message := ''
+for Index := 0 to |Class| - 1 by 1
+    Message := Message + Class[Index]
+endfor
+dev_disp_text (Message, 'window', 20, 20, 'black', [], [])

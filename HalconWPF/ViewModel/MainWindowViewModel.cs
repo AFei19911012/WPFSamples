@@ -179,6 +179,10 @@ namespace HalconWPF.ViewModel
             {
                 _ = MainContent.Children.Add(new MlpCarplate());
             }
+            else if (name.Contains("MLP应用：数字识别"))
+            {
+                _ = MainContent.Children.Add(new MlpNumberRecognition());
+            }
         }
 
         /// <summary>
