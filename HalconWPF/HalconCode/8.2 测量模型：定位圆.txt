@@ -26,7 +26,7 @@ r := gen_tuple_const(9, 100)
 * gen_circle (Circle, Row[0], Column[0],80)
 *添加圆到测量模型中
 add_metrology_object_circle_measure (MetrologyHandle, Row, Column, r, 100, 5, 1, 30, [], [], Index)
-*设置模型参数
+*设置对象参数
 set_metrology_object_param (MetrologyHandle, Index, 'measure_transition', 'positive')
 set_metrology_object_param (MetrologyHandle, Index, 'min_score', 0.9)
 *应用测量模型
