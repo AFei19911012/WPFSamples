@@ -120,6 +120,9 @@
     <Compile Include="UserControl\ImageReadSave.xaml.cs">
       <DependentUpon>ImageReadSave.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControl\LedBoomDefectDetection.xaml.cs">
+      <DependentUpon>LedBoomDefectDetection.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControl\MeasureTools.xaml.cs">
       <DependentUpon>MeasureTools.xaml</DependentUpon>
     </Compile>
@@ -200,6 +203,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControl\ImageReadSave.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl\LedBoomDefectDetection.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

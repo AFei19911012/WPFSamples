@@ -91,6 +91,7 @@ namespace HalconWPF.ViewModel
                 _ = MainContent.Children.Add(new MeasureTools());
             }
 
+            // 4. 基础知识
             else if (name.Contains("图像采集：调用相机接口"))
             {
                 _ = MainContent.Children.Add(new AcquisitionImage());
@@ -108,6 +109,7 @@ namespace HalconWPF.ViewModel
                 _ = MainContent.Children.Add(new CalibrationWithPoints());
             }
 
+            // 5. Bolb 分析
             else if (name.Contains("计算别针数量和角度"))
             {
                 _ = MainContent.Children.Add(new ClipNumberAndAngle());
@@ -117,6 +119,7 @@ namespace HalconWPF.ViewModel
                 _ = MainContent.Children.Add(new TeethDetection());
             }
 
+            // 6. 缺陷检测
             else if (name.Contains("PCB板电路检测"))
             {
                 _ = MainContent.Children.Add(new PcbDefectDetection());
@@ -125,7 +128,12 @@ namespace HalconWPF.ViewModel
             {
                 _ = MainContent.Children.Add(new BearingDefectDetection());
             }
+            else if (name.Contains("LED灯珠检测"))
+            {
+                _ = MainContent.Children.Add(new LedBoomDefectDetection());
+            }
 
+            // 9. OCR
             else if (name.Contains("MLP应用：简单车牌识别"))
             {
                 _ = MainContent.Children.Add(new MlpCarplateRecognition());

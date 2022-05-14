@@ -1,0 +1,29 @@
+read_image (Image, 'D:/MyPrograms/DataSet/halcon/LED.tif')
+count_seconds (Seconds)
+median_image (Image, ImageMedian, 'circle', 3, 'mirrored')
+dyn_threshold (Image, ImageMedian, RegionDynThresh, 3, 'light')
+opening_circle (RegionDynThresh, RegionOpening, 2)
+connection (RegionOpening, ConnectedRegions)
+area_center (ConnectedRegions, Area, Row, Column)
+get_grayval (ImageMedian, Row, Column, Grayval)
+dev_update_off ()
+darkvalue := 100
+gen_empty_region (DarkRegion)
+for Index := 1 to |Grayval| by 1
+    select_obj (ConnectedRegions, ObjectSelected, Index)
+    if (Grayval[Index - 1] < darkvalue)
+        union2 (DarkRegion, ObjectSelected, DarkRegion)
+    endif
+endfor
+count_seconds (Seconds1)
+t1 := Seconds1 - Seconds
+dev_update_on ()
+connection (DarkRegion, ConnectedRegions)
+area_center (ConnectedRegions, Area, Row, Column)
+gen_cross_contour_xld (Cross, Row, Column, 6, 0.785398)
+dev_clear_window ()
+dev_set_draw ('margin')
+dev_set_line_width (2)
+dev_display (Image)
+dev_display (Cross)
+dev_display (ConnectedRegions)
