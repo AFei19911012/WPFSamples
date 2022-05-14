@@ -19,18 +19,7 @@ namespace HalconWPF.Method
         {
             return new ObservableCollection<CDataModel>
             {
-                new CDataModel{ Name = "2.1 二维码和条码识别工具", ImgPath="pack://application:,,,/Resource/Image/B.png"},
-                new CDataModel{ Name = "2.2 九点标定工具", ImgPath="pack://application:,,,/Resource/Image/B.png"},
-                new CDataModel{ Name = "2.3 模板匹配工具", ImgPath="pack://application:,,,/Resource/Image/B.png"},
-                new CDataModel{ Name = "2.4 测量模型工具", ImgPath="pack://application:,,,/Resource/Image/B.png"},
-                new CDataModel{ Name = "2.5 卡尺标定工具", ImgPath="pack://application:,,,/Resource/Image/B.png"},
-                new CDataModel{ Name = "2.6 形状标定工具", ImgPath="pack://application:,,,/Resource/Image/B.png"},
-                new CDataModel{ Name = "2.7 ROI工具", ImgPath="pack://application:,,,/Resource/Image/B.png"},
-                new CDataModel{ Name = "2.8 图像简易编程工具", ImgPath="pack://application:,,,/Resource/Image/B.png"},
-                new CDataModel{ Name = "2.9 图像裁剪工具", ImgPath="pack://application:,,,/Resource/Image/B.png"},
-                new CDataModel{ Name = "2.10 OCR分类工具", ImgPath="pack://application:,,,/Resource/Image/B.png"},
                 new CDataModel{ Name = "2.11 测量工具：长度、角度", ImgPath="pack://application:,,,/Resource/Image/B.png"},
-                new CDataModel{ Name = "2.12 图像裁剪工具", ImgPath="pack://application:,,,/Resource/Image/B.png"},
 
                 new CDataModel{ Name = "4.1 图像采集：调用相机接口", ImgPath="pack://application:,,,/Resource/Image/D.png"},
                 new CDataModel{ Name = "4.2 读取本地图像、保存图像、保存窗体", ImgPath="pack://application:,,,/Resource/Image/D.png"},

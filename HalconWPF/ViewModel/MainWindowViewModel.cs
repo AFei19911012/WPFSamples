@@ -9,7 +9,6 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using WSlibs.Tools;
 
 namespace HalconWPF.ViewModel
 {
@@ -87,53 +86,9 @@ namespace HalconWPF.ViewModel
             };
             MainContent.Children.Clear();
             string name = DataList[SelectedIndex].Name;
-            if (name.Contains("二维码和条码识别工具"))
-            {
-                _ = MainContent.Children.Add(new BarCodeQRTool());
-            }
-            else if (name.Contains("九点标定工具"))
-            {
-                _ = MainContent.Children.Add(new CamCalibrationTool());
-            }
-            else if (name.Contains("模板匹配工具"))
-            {
-                _ = MainContent.Children.Add(new ShapeModuleTool());
-            }
-            else if (name.Contains("测量模型工具"))
-            {
-                _ = MainContent.Children.Add(new MetrolobyObjectMeasureTool());
-            }
-            else if (name.Contains("卡尺标定工具"))
-            {
-                _ = MainContent.Children.Add(new CaliperCalibrationTool());
-            }
-            else if (name.Contains("形状标定工具"))
-            {
-                _ = MainContent.Children.Add(new ShapeCalibrationTool());
-            }
-            else if (name.Contains("ROI工具"))
-            {
-                _ = MainContent.Children.Add(new ROITool());
-            }
-            else if (name.Contains("图像简易编程工具"))
-            {
-                _ = MainContent.Children.Add(new ImageProcessTool());
-            }
-            else if (name.Contains("图像裁剪工具"))
-            {
-                _ = MainContent.Children.Add(new CropImageTool());
-            }
-            else if (name.Contains("OCR分类工具"))
-            {
-                _ = MainContent.Children.Add(new OcrClassificationTool());
-            }
-            else if (name.Contains("测量工具：长度、角度"))
+            if (name.Contains("测量工具：长度、角度"))
             {
                 _ = MainContent.Children.Add(new MeasureTools());
-            }
-            else if (name.Contains("图像裁剪工具"))
-            {
-                _ = MainContent.Children.Add(new CropImageTool());
             }
 
             else if (name.Contains("图像采集：调用相机接口"))

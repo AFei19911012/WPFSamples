@@ -4,7 +4,6 @@ using HalconDotNet;
 using HalconWPF.UserControl;
 using System;
 using System.Windows;
-using WSlibs.Method;
 
 namespace HalconWPF.ViewModel
 {
@@ -121,8 +120,7 @@ namespace HalconWPF.ViewModel
             ho_Window.SetColored(12);
             ho_Window.DispObj(ho_ImageAffineTrans);
             ho_Window.DispObj(ho_SortRegions);
-            ho_Window.SetDisplayFont(24);
-            ho_Window.DispText(msg, 12, 12);
+            ho_Window.DispText(msg, "image", 12, 12, "orange red", new HTuple(), new HTuple());
             ho_ImageAffineTrans.Dispose();
             ho_SortRegions.Dispose();
             // 图像自适应显示
