@@ -1,0 +1,39 @@
+﻿<Window x:Class="Demos.Demo.WindowClosedQuestion"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        Topmost="True"
+        Title="提示" Height="200">
+    <Window.Resources>
+        <ResourceDictionary>
+            <!-- 主题样式 -->
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid Background="{DynamicResource BorderBrush}" VerticalAlignment="Top">
+            <TextBlock Text="提示" FontSize="20" Margin="5"/>
+        </Grid>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Path Fill="{DynamicResource PrimaryBrush}" Data="{StaticResource AskGeometry}" Width="32" Stretch="Uniform" 
+                  VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20"/>
+            <TextBlock Text="确认是否退出" FontSize="24" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <hc:ButtonGroup VerticalAlignment="Bottom" Background="{DynamicResource BorderBrush}">
+            <Button Content="是" FontSize="16" Cursor="Hand" Margin="10,5"
+                    hc:BorderElement.CornerRadius="0" HorizontalAlignment="Right" Click="ButtonYes_Click"/>
+            <Button Content="否" FontSize="16" Cursor="Hand"
+                    hc:BorderElement.CornerRadius="0" HorizontalAlignment="Left" Click="ButtonNo_Click"/>
+        </hc:ButtonGroup>
+    </Grid>
+</Window>

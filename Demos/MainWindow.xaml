@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:demo="clr-namespace:Demos.Demo"
         mc:Ignorable="d"
+        Closing="Window_Closing"
         Title="Demos" Height="450" Width="600">
-    <TabControl SelectedIndex="3">
+    <TabControl TabStripPlacement="Left">
         <TabItem Header="NPOI: Excel 读写">
             <StackPanel>
                 <Button Content="NPOI: Excel 读写、格式" Margin="10" Click="BtnNPOI_Click"/>
@@ -15,7 +16,7 @@
         <TabItem Header="任务线程案例">
             <demo:ThreadTaskDemo/>
         </TabItem>
-        <TabItem Header="InkCanvas绘制箭头案例">
+        <TabItem Header="InkCanvas绘制箭头">
             <demo:DrawingTransformArrow/>
         </TabItem>
         <TabItem Header="TCP 通讯测试">
@@ -25,9 +26,12 @@
             <Grid>
                 <demo:LoggerDemo x:Name="MyLogger"/>
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Right">
-                    <Button Content="添加日志" Click="Button_Click"/>
+                    <Button Content="添加日志" Click="BtnLogger_Click"/>
                 </StackPanel>
             </Grid>
+        </TabItem>
+        <TabItem Header="自动关闭的窗体">
+            <Button Content="显示自动关闭的窗体" Click="BtnAutoClosedWindow_Click"/>
         </TabItem>
     </TabControl>
 </Window>

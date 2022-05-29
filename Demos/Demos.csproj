@@ -42,6 +42,9 @@
     <Reference Include="BouncyCastle.Crypto, Version=1.9.0.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
       <HintPath>..\packages\Portable.BouncyCastle.1.9.0\lib\net40\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
+    <Reference Include="HandyControl, Version=3.3.0.0, Culture=neutral, PublicKeyToken=45be8712787a1e5b, processorArchitecture=MSIL">
+      <HintPath>..\packages\HandyControl.3.3.0\lib\net472\HandyControl.dll</HintPath>
+    </Reference>
     <Reference Include="HslCommunication, Version=7.0.1.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\UsingPackages\HslCommunication.dll</HintPath>
@@ -100,6 +103,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Demo\WindowAutoClosedSuccess.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Demo\WindowClosedQuestion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -119,6 +130,12 @@
     </Compile>
     <Compile Include="Demo\ThreadTaskDemo.xaml.cs">
       <DependentUpon>ThreadTaskDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Demo\WindowAutoClosedSuccess.xaml.cs">
+      <DependentUpon>WindowAutoClosedSuccess.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Demo\WindowClosedQuestion.xaml.cs">
+      <DependentUpon>WindowClosedQuestion.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
