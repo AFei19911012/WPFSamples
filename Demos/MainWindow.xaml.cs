@@ -1,5 +1,4 @@
 ﻿using Demos.Demo;
-using Demos.Method;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -16,15 +15,6 @@ namespace Demos
             InitializeComponent();
         }
 
-        /// <summary>
-        /// NPOI 读写 Excel
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void BtnNPOI_Click(object sender, RoutedEventArgs e)
-        {
-            NpoiMethod.NpoiDemo();
-        }
 
         private void BtnLogger_Click(object sender, RoutedEventArgs e)
         {

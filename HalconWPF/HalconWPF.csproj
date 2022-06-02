@@ -126,6 +126,9 @@
     <Compile Include="UserControl\MeasureTools.xaml.cs">
       <DependentUpon>MeasureTools.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControl\MetrologyModel_8_2_Circle.xaml.cs">
+      <DependentUpon>MetrologyModel_8_2_Circle.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControl\MlpCarplate.xaml.cs">
       <DependentUpon>MlpCarplate.xaml</DependentUpon>
     </Compile>
@@ -211,6 +214,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControl\MeasureTools.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl\MetrologyModel_8_2_Circle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

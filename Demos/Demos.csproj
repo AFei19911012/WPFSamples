@@ -95,6 +95,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Demo\NpoiDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Demo\TcpDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -125,6 +129,9 @@
     <Compile Include="Demo\LoggerDemo.xaml.cs">
       <DependentUpon>LoggerDemo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Demo\NpoiDemo.xaml.cs">
+      <DependentUpon>NpoiDemo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Demo\TcpDemo.xaml.cs">
       <DependentUpon>TcpDemo.xaml</DependentUpon>
     </Compile>
@@ -145,7 +152,6 @@
   <ItemGroup>
     <Compile Include="Method\CustomArrow.cs" />
     <Compile Include="Method\InkCanvasMethod.cs" />
-    <Compile Include="Method\NpoiMethod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

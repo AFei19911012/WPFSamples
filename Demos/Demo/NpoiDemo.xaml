@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="Demos.Demo.NpoiDemo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Demos.Demo"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <StackPanel Orientation="Vertical">
+        <Button Content="创建 Excel 并写入内容" Margin="5" Click="ButtonCreateExcel_Click"/>
+        <Button Content="新增内容到现有 Excel" Margin="5" Click="ButtonAppendExcel_Click"/>
+        <Button Content="单元格格式、居中、字体颜色、背景填充" Margin="5" Click="ButtonCellStyleExcel_Click"/>
+        <Button Content="获取 Sheet 名称" Margin="5" Click="ButtonSheetNamesExcel_Click"/>
+        <Button Content="读取指定 Sheet 的内容" Margin="5" Click="ButtonReadContentExcel_Click"/>
+    </StackPanel>
+</UserControl>

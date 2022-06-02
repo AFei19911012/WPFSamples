@@ -33,6 +33,8 @@ namespace HalconWPF.Method
                 new CDataModel{ Name = "6.2 轴承滚子检测", ImgPath="pack://application:,,,/Resource/Image/F.png"},
                 new CDataModel{ Name = "6.3 LED灯珠检测", ImgPath="pack://application:,,,/Resource/Image/F.png"},
 
+                new CDataModel{ Name = "8.2 测量模型：定位圆", ImgPath="pack://application:,,,/Resource/Image/H.png"},
+
                 new CDataModel{ Name = "9.1 MLP应用：简单车牌识别", ImgPath="pack://application:,,,/Resource/Image/I.png"},
                 new CDataModel{ Name = "9.2 MLP应用：车牌识别", ImgPath="pack://application:,,,/Resource/Image/I.png"},
                 new CDataModel{ Name = "9.3 MLP应用：数字识别", ImgPath="pack://application:,,,/Resource/Image/I.png"},

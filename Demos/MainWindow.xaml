@@ -9,9 +9,7 @@
         Title="Demos" Height="450" Width="600">
     <TabControl TabStripPlacement="Left">
         <TabItem Header="NPOI: Excel 读写">
-            <StackPanel>
-                <Button Content="NPOI: Excel 读写、格式" Margin="10" Click="BtnNPOI_Click"/>
-            </StackPanel>
+            <demo:NpoiDemo/>
         </TabItem>
         <TabItem Header="任务线程案例">
             <demo:ThreadTaskDemo/>

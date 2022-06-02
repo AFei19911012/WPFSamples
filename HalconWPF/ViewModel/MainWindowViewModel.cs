@@ -133,10 +133,16 @@ namespace HalconWPF.ViewModel
                 _ = MainContent.Children.Add(new LedBoomDefectDetection());
             }
 
+            // 测量模型
+            else if (name.Contains("测量模型：定位圆"))
+            {
+                _ = MainContent.Children.Add(new LedBoomDefectDetection());
+            }
+
             // 9. OCR
             else if (name.Contains("MLP应用：简单车牌识别"))
             {
-                _ = MainContent.Children.Add(new MlpCarplateRecognition());
+                _ = MainContent.Children.Add(new MetrologyModel_8_2_Circle());
             }
             else if (name.Contains("MLP应用：车牌识别"))
             {
