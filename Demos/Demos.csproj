@@ -87,11 +87,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Demo\DataGridDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Demo\DrawingTransformArrow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Demo\LoggerDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Demo\ModbusDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -123,11 +131,17 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Demo\DataGridDemo.xaml.cs">
+      <DependentUpon>DataGridDemo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Demo\DrawingTransformArrow.xaml.cs">
       <DependentUpon>DrawingTransformArrow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Demo\LoggerDemo.xaml.cs">
       <DependentUpon>LoggerDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Demo\ModbusDemo.xaml.cs">
+      <DependentUpon>ModbusDemo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Demo\NpoiDemo.xaml.cs">
       <DependentUpon>NpoiDemo.xaml</DependentUpon>
@@ -152,6 +166,7 @@
   <ItemGroup>
     <Compile Include="Method\CustomArrow.cs" />
     <Compile Include="Method\InkCanvasMethod.cs" />
+    <Compile Include="Method\ModbusManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

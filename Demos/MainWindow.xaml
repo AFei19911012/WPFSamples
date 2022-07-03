@@ -20,6 +20,9 @@
         <TabItem Header="TCP 通讯测试">
             <demo:TcpDemo/>
         </TabItem>
+        <TabItem Header="Modbus 通讯测试">
+            <demo:ModbusDemo/>
+        </TabItem>
         <TabItem Header="日志记录">
             <Grid>
                 <demo:LoggerDemo x:Name="MyLogger"/>
@@ -30,6 +33,9 @@
         </TabItem>
         <TabItem Header="自动关闭的窗体">
             <Button Content="显示自动关闭的窗体" Click="BtnAutoClosedWindow_Click"/>
+        </TabItem>
+        <TabItem Header="DataGrid 测试">
+            <demo:DataGridDemo/>
         </TabItem>
     </TabControl>
 </Window>
