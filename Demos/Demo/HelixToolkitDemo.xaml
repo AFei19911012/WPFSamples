@@ -1,0 +1,113 @@
+﻿<UserControl x:Class="Demos.Demo.HelixToolkitDemo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:helix="http://helix-toolkit.org/wpf"
+             xmlns:ct="clr-namespace:Demos.Converter"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <LinearGradientBrush x:Key="RainbowBrush" StartPoint="0,0" EndPoint="1,0">
+            <LinearGradientBrush.GradientStops>
+                <GradientStop Color="Red" Offset="0"/>
+                <GradientStop Color="Orange" Offset="0.17"/>
+                <GradientStop Color="Yellow" Offset="0.33"/>
+                <GradientStop Color="Green" Offset="0.5"/>
+                <GradientStop Color="Blue" Offset="0.67"/>
+                <GradientStop Color="Indigo" Offset="0.84"/>
+                <GradientStop Color="Violet" Offset="1"/>
+            </LinearGradientBrush.GradientStops>
+        </LinearGradientBrush>
+
+        <ct:BoundsConverter x:Key="BoundsConverter"/>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Vertical">
+            <Button Content="新增对象" Click="ButtonAdd_Click"/>
+            <Button Content="缩放还原" Click="ButtonZoom_Click"/>
+            <RepeatButton Content="模型旋转X" Click="ButtonRotate_Click"/>
+            <RepeatButton Content="模型旋转Y" Click="ButtonRotate_Click"/>
+            <RepeatButton Content="模型旋转Z" Click="ButtonRotate_Click"/>
+            <Button Content="保存模型" Click="ButtonSave_Click"/>
+            <Button Content="设置相机" Click="ButtonCamera_Click"/>
+            <TextBlock Text="CurrentPosition(Obsolete) X Y Z"/>
+            <TextBox Text="{Binding Path=CurrentPosition.X, ElementName=HView3D, StringFormat={}{0:F2}, FallbackValue=0.0}"/>
+            <TextBox Text="{Binding Path=CurrentPosition.Y, ElementName=HView3D, StringFormat={}{0:F2}, FallbackValue=0.0}"/>
+            <TextBox Text="{Binding Path=CurrentPosition.Z, ElementName=HView3D, StringFormat={}{0:F2}, FallbackValue=0.0}"/>
+            <TextBlock Text="CursorPosition X Y Z"/>
+            <TextBox x:Name="TB_CursorPositionX"/>
+            <TextBox x:Name="TB_CursorPositionY"/>
+            <TextBox x:Name="TB_CursorPositionZ"/>
+            <TextBlock Text="CursorOnElementPosition X Y Z"/>
+            <TextBox x:Name="TB_CursorOnElementPositionX"/>
+            <TextBox x:Name="TB_CursorOnElementPositionY"/>
+            <TextBox x:Name="TB_CursorOnElementPositionZ"/>
+            <TextBlock Text="CursorOnConstructionPlanePosition X Y Z"/>
+            <TextBox x:Name="TB_CursorOnConstructionPlanePositionX"/>
+            <TextBox x:Name="TB_CursorOnConstructionPlanePositionY"/>
+            <TextBox x:Name="TB_CursorOnConstructionPlanePositionZ"/>
+        </StackPanel>
+
+        <helix:HelixViewport3D Grid.Column="1" x:Name="HView3D" ShowFrameRate="True" ZoomExtentsWhenLoaded="True" ZoomAroundMouseDownPoint="True" PanGesture="RightClick"
+                               RotateGesture="LeftClick" RotateAroundMouseDownPoint="True" IsViewCubeEdgeClicksEnabled="True" CalculateCursorPosition="True" ShowCoordinateSystem="True" 
+                               CoordinateSystemLabelForeground="Red" ShowCameraInfo="True" CoordinateSystemLabelX="x" CoordinateSystemLabelY="y" CoordinateSystemLabelZ="z"
+                               Title="Double helix" SubTitle="Colored with a 'rainbow' brush" TextBrush="Red" MouseMove="HView3D_MouseMove">
+            <ModelVisual3D x:Name="MV3D">
+                <ModelVisual3D.Transform>
+                    <TranslateTransform3D OffsetZ="-15"/>
+                </ModelVisual3D.Transform>
+                <!-- 必备光源 -->
+                <helix:SunLight/>
+
+                <!-- 创建两条螺旋链 -->
+                <helix:HelixVisual3D Radius="2" Diameter="0.5" Turns="3" Length="30" Fill="{StaticResource RainbowBrush}"/>
+                <helix:HelixVisual3D Radius="2" Diameter="0.5" Turns="3" Length="30" Phase="180" Fill="{StaticResource RainbowBrush}"/>
+
+                <!-- 网格线 -->
+                <helix:GridLinesVisual3D Width="20" Length="20" MajorDistance="1" MinorDistance="1" Thickness="0.01"/>
+            </ModelVisual3D>
+        </helix:HelixViewport3D>
+
+        <!-- 左键旋转 右键平移 -->
+        <helix:HelixViewport3D Grid.Column="2" x:Name="HView3D1" ShowCoordinateSystem="True" PanGesture="RightClick" RotateGesture="LeftClick" ZoomExtentsWhenLoaded="True" 
+                               ShowCameraInfo="True" ZoomAroundMouseDownPoint="True" RotateAroundMouseDownPoint="True"
+                               IsViewCubeEdgeClicksEnabled="True" CameraChanged="HView3D1_CameraChanged" 
+                               CurrentPosition="{Binding CurrentPosition, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}">
+            <helix:HelixViewport3D.DefaultCamera>
+                <PerspectiveCamera LookDirection="-1 0 0" UpDirection="0 0 1" FieldOfView="45" NearPlaneDistance="1"/>
+            </helix:HelixViewport3D.DefaultCamera>
+            <ModelVisual3D>
+                <helix:SunLight/>
+                <!-- 节点处用圆过渡 -->
+                <helix:SphereVisual3D Center="0 1 0" Radius="0.1" Fill="Blue"/>
+                <helix:SphereVisual3D Center="0 1.5 0.5" Radius="0.1" Fill="Blue"/>
+                <helix:SphereVisual3D Center="-1 1.5 0.5" Radius="0.1" Fill="Blue"/>
+                <!-- 管道节点处重复一次以免管道扭曲 -->
+                <helix:TubeVisual3D Path="0 0 0, 0 1 0, 0 1 0, 0 1.5 0.5, 0 1.5 0.5, -1 1.5 0.5, -1 1.5 0.5, -1 1.5 1.5" Diameter="0.2" ThetaDiv="20" Fill="Blue"/>
+                <!-- 网格线 -->
+                <helix:GridLinesVisual3D Width="2" Length="2" MajorDistance="0.2" MinorDistance="0.2" Thickness="0.01"/>
+            </ModelVisual3D>
+        </helix:HelixViewport3D>
+
+        <!-- 相机同步 -->
+        <helix:HelixViewport3D Grid.Column="3" x:Name="HView3D2" ShowCoordinateSystem="True" PanGesture="RightClick" RotateGesture="LeftClick" ZoomExtentsWhenLoaded="True" 
+                               ShowCameraInfo="True" ZoomAroundMouseDownPoint="True" RotateAroundMouseDownPoint="True" 
+                               IsViewCubeEdgeClicksEnabled="True" CameraChanged="HView3D2_CameraChanged"
+                               CurrentPosition="{Binding CurrentPosition, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}">
+            <ModelVisual3D>
+                <helix:SunLight/>
+                <helix:TubeVisual3D Path="{Binding TubeVisual3DPath}" Diameter="0.2" ThetaDiv="20" Fill="Blue"/>
+                <!-- 网格线 -->
+                <helix:GridLinesVisual3D Width="2" Length="2" MajorDistance="0.2" MinorDistance="0.2" Thickness="0.01"/>
+            </ModelVisual3D>
+        </helix:HelixViewport3D>
+    </Grid>
+</UserControl>

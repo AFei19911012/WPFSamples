@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+﻿using Demos.ViewModel;
 using System.Windows.Controls;
 
 namespace Demos.Demo
@@ -11,21 +11,10 @@ namespace Demos.Demo
         public DataGridDemo()
         {
             InitializeComponent();
-
-            DataContext = new ViewModel();
         }
 
-        public class ViewModel
+        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            public ObservableCollection<string> ControlTypes
-            {
-                get;
-                private set;
-            }
-            public ViewModel()
-            {
-                ControlTypes = new ObservableCollection<string>() { "Button", "TextBox", "CheckBox" };
-            }
         }
     }
 }

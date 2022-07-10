@@ -37,5 +37,17 @@
         <TabItem Header="DataGrid 测试">
             <demo:DataGridDemo/>
         </TabItem>
+
+        <TabItem Header="HelixToolkit 测试">
+            <demo:HelixToolkitDemo/>
+        </TabItem>
+
+        <TabItem Header="HelixToolkit 目标选中">
+            <demo:HelixToolkitDemo2/>
+        </TabItem>
+
+        <TabItem Header="HelixToolkit 3D 模型阅读器">
+            <demo:HelixToolkitDemo3/>
+        </TabItem>
     </TabControl>
 </Window>

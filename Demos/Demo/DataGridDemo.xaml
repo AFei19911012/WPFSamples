@@ -3,44 +3,53 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Demos.Demo"
+             xmlns:vm="clr-namespace:Demos.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <vm:DataGridDemoVM/>
+    </UserControl.DataContext>
     <Grid>
-        <DataGrid ItemsSource="{Binding ControlTypes}"
-              AutoGenerateColumns="False">
+        <DataGrid x:Name="MyDataGrid" ItemsSource="{Binding DataGridList}" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Control Type" Binding="{Binding}"/>
-                <DataGridTemplateColumn Header="Actual Control">
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" IsReadOnly="True"/>
+                
+                <DataGridTemplateColumn Header="Type">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <ContentControl>
                                 <ContentControl.Style>
                                     <Style TargetType="ContentControl">
                                         <Style.Triggers>
-                                            <DataTrigger Binding="{Binding}" Value="TextBox">
+                                            <!-- 当 Binding 的内容为 Value 时会触发 -->
+                                            <DataTrigger Binding="{Binding Name}" Value="TextBox">
                                                 <Setter Property="ContentTemplate">
                                                     <Setter.Value>
                                                         <DataTemplate>
-                                                            <TextBox Text="Default Text"/>
+                                                            <TextBox Text="This is a TextBox"/>
                                                         </DataTemplate>
                                                     </Setter.Value>
                                                 </Setter>
                                             </DataTrigger>
-                                            <DataTrigger Binding="{Binding}" Value="CheckBox">
+                                            <DataTrigger Binding="{Binding Name}" Value="ComboBox">
+                                                <Setter Property="Foreground" Value="Red"/>
                                                 <Setter Property="ContentTemplate">
                                                     <Setter.Value>
                                                         <DataTemplate>
-                                                            <CheckBox Content="Check Box"/>
+                                                            <ComboBox Text="This is a ComboBox" IsEditable="True">
+                                                                <ComboBoxItem Content="Item 1"/>
+                                                                <ComboBoxItem Content="Item 2"/>
+                                                            </ComboBox>
                                                         </DataTemplate>
                                                     </Setter.Value>
                                                 </Setter>
                                             </DataTrigger>
-                                            <DataTrigger Binding="{Binding}" Value="Button">
+
+                                            <DataTrigger Binding="{Binding Name}" Value="TextBoxBinding">
                                                 <Setter Property="ContentTemplate">
                                                     <Setter.Value>
                                                         <DataTemplate>
-                                                            <Button Content="Button"/>
+                                                            <TextBox Text="{Binding Content}"/>
                                                         </DataTemplate>
                                                     </Setter.Value>
                                                 </Setter>
@@ -54,5 +63,8 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+
+        <Button Content="获取更新值" VerticalAlignment="Bottom" Command="{Binding CmdGetNewValues}"
+                Click="Button_Click"/>
     </Grid>
 </UserControl>

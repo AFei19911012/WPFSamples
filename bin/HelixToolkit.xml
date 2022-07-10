@@ -1,0 +1,144 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HelixToolkit</name>
+    </assembly>
+    <members>
+        <member name="T:HelixToolkit.StringExtensions">
+            <summary>
+            Extension methods for strings.
+            </summary>
+        </member>
+        <member name="F:HelixToolkit.StringExtensions.oneOrMoreWhitespaces">
+            <summary>
+            A regular expression containing "a one or more whitespaces" pattern.
+            </summary>
+        </member>
+        <member name="M:HelixToolkit.StringExtensions.SplitOnWhitespace(System.String)">
+            <summary>
+            Splits the string on whitespace.
+            </summary>
+            <param name="input">The input string.</param>
+            <returns>Array of strings.</returns>
+        </member>
+        <member name="M:HelixToolkit.StringExtensions.EnumerateToString(System.Collections.IEnumerable,System.String,System.String)">
+            <summary>
+            Creates a string from the items in an enumerable.
+            </summary>
+            <param name="items">The items.</param>
+            <param name="prefix">The prefix.</param>
+            <param name="separator">The separator.</param>
+            <returns>
+            A string.
+            </returns>
+        </member>
+        <member name="T:HelixToolkit.Logger.DebugLogger">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:HelixToolkit.Logger.ILogger" />
+        </member>
+        <member name="M:HelixToolkit.Logger.DebugLogger.Log``1(HelixToolkit.Logger.LogLevel,``0,System.String,System.String,System.Int32)">
+            <summary>
+            Logs the specified log level.
+            </summary>
+            <typeparam name="MsgType">The type of the sg type.</typeparam>
+            <param name="logLevel">The log level.</param>
+            <param name="msg">The MSG.</param>
+            <param name="caller">The caller.</param>
+            <param name="lineNumber"></param>
+            <param name="className"></param>
+        </member>
+        <member name="T:HelixToolkit.Logger.ILogger">
+            <summary>
+            Provide simple log interface for user to log helix toolkit internal logs.
+            </summary>
+        </member>
+        <member name="M:HelixToolkit.Logger.ILogger.Log``1(HelixToolkit.Logger.LogLevel,``0,System.String,System.String,System.Int32)">
+            <summary>
+            Logs the specified log level.
+            </summary>
+            <typeparam name="MsgType">The type of the sg type.</typeparam>
+            <param name="logLevel">The log level.</param>
+            <param name="msg">The MSG.</param>
+            <param name="className"></param>
+            <param name="methodName">The caller.</param>
+            <param name="lineNumber"></param>
+        </member>
+        <member name="T:HelixToolkit.Logger.LogLevel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HelixToolkit.Logger.LogLevel.Trace">
+            <summary>
+            The trace
+            </summary>
+        </member>
+        <member name="F:HelixToolkit.Logger.LogLevel.Debug">
+            <summary>
+            The debug
+            </summary>
+        </member>
+        <member name="F:HelixToolkit.Logger.LogLevel.Information">
+            <summary>
+            The information
+            </summary>
+        </member>
+        <member name="F:HelixToolkit.Logger.LogLevel.Warning">
+            <summary>
+            The warning
+            </summary>
+        </member>
+        <member name="F:HelixToolkit.Logger.LogLevel.Error">
+            <summary>
+            The error
+            </summary>
+        </member>
+        <member name="T:HelixToolkit.Logger.LogWrapper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:HelixToolkit.Logger.LogWrapper.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:HelixToolkit.Logger.LogWrapper"/> class.
+            </summary>
+        </member>
+        <member name="M:HelixToolkit.Logger.LogWrapper.#ctor(HelixToolkit.Logger.ILogger)">
+            <summary>
+            Initializes a new instance of the <see cref="T:HelixToolkit.Logger.LogWrapper"/> class.
+            </summary>
+            <param name="logger">The logger.</param>
+        </member>
+        <member name="M:HelixToolkit.Logger.LogWrapper.Log``1(HelixToolkit.Logger.LogLevel,``0,System.String,System.String,System.Int32)">
+            <summary>
+            Logs the specified log level.
+            </summary>
+            <typeparam name="MsgType">The type of the sg type.</typeparam>
+            <param name="logLevel">The log level.</param>
+            <param name="msg">The MSG.</param>
+            <param name="caller">The caller.</param>
+            <param name="className"></param>
+            <param name="sourceLineNumber"></param>
+        </member>
+        <member name="T:HelixToolkit.Logger.NullLogger">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:HelixToolkit.Logger.ILogger" />
+        </member>
+        <member name="M:HelixToolkit.Logger.NullLogger.Log``1(HelixToolkit.Logger.LogLevel,``0,System.String,System.String,System.Int32)">
+            <summary>
+            Logs the specified log level.
+            </summary>
+            <typeparam name="MsgType">The type of the sg type.</typeparam>
+            <param name="logLevel">The log level.</param>
+            <param name="msg">The MSG.</param>
+            <param name="className"></param>
+            <param name="methodName">The caller.</param>
+            <param name="lineNumber"></param>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+    </members>
+</doc>
