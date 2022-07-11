@@ -49,5 +49,9 @@
         <TabItem Header="HelixToolkit 3D 模型阅读器">
             <demo:HelixToolkitDemo3/>
         </TabItem>
+
+        <TabItem Header="三菱PLC MC协议">
+            <demo:MelsecPlcDemo/>
+        </TabItem>
     </TabControl>
 </Window>

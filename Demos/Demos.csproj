@@ -118,6 +118,9 @@
     <Compile Include="Demo\HelixToolkitDemo3.xaml.cs">
       <DependentUpon>HelixToolkitDemo3.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Demo\MelsecPlcDemo.xaml.cs">
+      <DependentUpon>MelsecPlcDemo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\DataGridDemoVM.cs" />
     <Compile Include="ViewModel\HelixToolkitDemo2VM.cs" />
     <Compile Include="ViewModel\HelixToolkitDemo3VM.cs" />
@@ -142,6 +145,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Demo\LoggerDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Demo\MelsecPlcDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
