@@ -138,6 +138,9 @@
     <Compile Include="UserControl\MlpNumberRecognition.xaml.cs">
       <DependentUpon>MlpNumberRecognition.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControl\SurfaceScratch_6_4.xaml.cs">
+      <DependentUpon>SurfaceScratch_6_4.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControl\TeethDetection.xaml.cs">
       <DependentUpon>TeethDetection.xaml</DependentUpon>
     </Compile>
@@ -234,6 +237,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControl\PcbDefectDetection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl\SurfaceScratch_6_4.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

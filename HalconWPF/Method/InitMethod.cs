@@ -5,13 +5,13 @@ namespace HalconWPF.Method
 {
     ///
     /// ----------------------------------------------------------------
-    /// Copyright @Taosy.W 2021 All rights reserved
-    /// Author      : Taosy.W
+    /// Copyright @CoderMan/CoderMan1012 2021 All rights reserved
+    /// Author      : CoderMan/CoderMan1012
     /// Created Time: 2021/12/7 8:58:02
     /// Description :
     /// ------------------------------------------------------
     /// Version      Modified Time         Modified By    Modified Content
-    /// V1.0.0.0     2021/12/7 8:58:02    Taosy.W                 
+    /// V1.0.0.0     2021/12/7 8:58:02    CoderMan/CoderMan1012               
     ///
     public static class InitMethod
     {
@@ -32,6 +32,7 @@ namespace HalconWPF.Method
                 new CDataModel{ Name = "6.1 PCB板电路检测", ImgPath="pack://application:,,,/Resource/Image/F.png"},
                 new CDataModel{ Name = "6.2 轴承滚子检测", ImgPath="pack://application:,,,/Resource/Image/F.png"},
                 new CDataModel{ Name = "6.3 LED灯珠检测", ImgPath="pack://application:,,,/Resource/Image/F.png"},
+                new CDataModel{ Name = "6.4 划痕检测", ImgPath="pack://application:,,,/Resource/Image/F.png"},
 
                 new CDataModel{ Name = "8.2 测量模型：定位圆", ImgPath="pack://application:,,,/Resource/Image/H.png"},
 

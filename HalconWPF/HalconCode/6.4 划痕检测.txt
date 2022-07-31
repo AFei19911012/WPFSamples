@@ -1,0 +1,36 @@
+dev_close_window ()
+* 读取图片
+read_image (Image, 'surface_scratch')
+get_image_size (Image, Width, Height)
+dev_open_window (0, 0, Width, Height, 'black', WindowHandle)
+set_display_font (WindowHandle, 18, 'mono', 'true', 'false')
+dev_set_draw ('margin')
+dev_set_color ('yellow')
+dev_set_line_width (1)
+dev_display (Image)
+* 反色
+invert_image (Image, ImageInverted)
+* 频域滤波，增强划痕
+gen_sin_bandpass (ImageBandpass, 0.4, 'none', 'rft', Width, Height)
+rft_generic (ImageInverted, ImageFFT, 'to_freq', 'none', 'complex', Width)
+convol_fft (ImageFFT, ImageBandpass, ImageConvol)
+rft_generic (ImageConvol, Lines, 'from_freq', 'n', 'byte', Width)
+*
+* 识别划痕
+threshold (Lines, Region, 5, 255)
+connection (Region, ConnectedRegions)
+select_shape (ConnectedRegions, SelectedRegions, 'area', 'and', 5, 5000)
+dilation_circle (SelectedRegions, RegionDilation, 5.5)
+union1 (RegionDilation, RegionUnion)
+*
+* 抠图，取候选区域检测线状划痕
+reduce_domain (Image, RegionUnion, ImageReduced)
+lines_gauss (ImageReduced, LinesXLD, 0.8, 3, 5, 'dark', 'false', 'bar-shaped', 'false')
+* 合并近似共线的轮廓
+union_collinear_contours_xld (LinesXLD, UnionContours, 40, 3, 3, 0.2, 'attr_keep')
+select_shape_xld (UnionContours, SelectedXLD, 'contlength', 'and', 15, 1000)
+* 下面仅仅是为了圈出划痕位置
+gen_region_contour_xld (SelectedXLD, RegionXLD, 'filled')
+union1 (RegionXLD, RegionUnion)
+dilation_circle (RegionUnion, RegionScratches, 10.5)
+dev_display (RegionScratches)

@@ -132,17 +132,21 @@ namespace HalconWPF.ViewModel
             {
                 _ = MainContent.Children.Add(new LedBoomDefectDetection());
             }
+            else if (name.Contains("6.4 划痕检测"))
+            {
+                _ = MainContent.Children.Add(new SurfaceScratch_6_4());
+            }
 
             // 测量模型
             else if (name.Contains("测量模型：定位圆"))
             {
-                _ = MainContent.Children.Add(new LedBoomDefectDetection());
+                _ = MainContent.Children.Add(new MetrologyModel_8_2_Circle());
             }
 
             // 9. OCR
             else if (name.Contains("MLP应用：简单车牌识别"))
             {
-                _ = MainContent.Children.Add(new MetrologyModel_8_2_Circle());
+                _ = MainContent.Children.Add(new MlpCarplateRecognition());
             }
             else if (name.Contains("MLP应用：车牌识别"))
             {

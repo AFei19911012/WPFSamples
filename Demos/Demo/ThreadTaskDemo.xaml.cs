@@ -30,7 +30,7 @@ namespace Demos.Demo
         }
 
         /// <summary>
-        /// 线程 任务 计时器
+        /// 线程：无参、有参
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -48,18 +48,20 @@ namespace Demos.Demo
             Thread thread_para = new Thread(() => { ThreadParaEvent("带参"); });
             thread_para.Start();
 
-            _ = MessageBox.Show("线程状态：" + thread.IsAlive.ToString() + "\n" + "线程状态：" + thread_para.IsAlive.ToString());
+            _ = MessageBox.Show("线程状态：" + thread.IsAlive + "\n" + "线程状态：" + thread_para.IsAlive);
         }
 
         private void ThreadEvent()
         {
             // 在新的线程里用如下方式更新到界面
-            _ = Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
-            (ThreadStart)delegate ()
-            {
-                TB_Thread.Text = Thread_String + TB_Timer.Text;
-            }
-            );
+            //_ = Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
+            //(ThreadStart)delegate ()
+            //{
+            //    TB_Thread.Text = Thread_String + TB_Timer.Text;
+            //    Thread.Sleep(100);
+            //}
+            //);
+            TB_Thread.Text = Thread_String + TB_Timer.Text;
         }
 
         private void ThreadParaEvent(string para)
@@ -81,21 +83,19 @@ namespace Demos.Demo
             task.Start();
 
             // 任务：带参
-            Task task_para = new Task(() => { TaskParaEvent("带参"); });
-            task_para.Start();
+            //Task task_para = new Task(() => { TaskParaEvent("带参"); });
+            //task_para.Start();
+            Task task_para = Task.Run(() => { TaskParaEvent("带参"); });
 
-            _ = MessageBox.Show("线程状态：" + task.Status.ToString() + "\n" + "线程状态：" + task_para.Status.ToString());
+            _ = MessageBox.Show("线程状态：" + task.Status + "\n" + "线程状态：" + task_para.Status);
         }
 
         private void TaskEvent()
         {
-            // 在新的线程里用如下方式更新到界面
-            _ = Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
-            (ThreadStart)delegate ()
+            _ = Application.Current.Dispatcher.BeginInvoke(new Action(() =>
             {
                 TB_Task.Text = Task_String + TB_Timer.Text;
-            }
-            );
+            }));
         }
 
         private void TaskParaEvent(string para)
@@ -136,6 +136,13 @@ namespace Demos.Demo
         {
             Task task = new Task(TaskWaitHandle);
             task.Start();
+
+            // 2022-7-28
+            Task task1 = Task.Run(TaskEvent);
+            Task task2 = Task.Run(() => { TaskParaEvent("带参"); });
+            // 等待任务完成
+            Task.WaitAll(task1, task2);
+            _ = MessageBox.Show("任务1状态：" + task1.Status + "\n" + "任务2状态：" + task2.Status);
         }
 
         private void TaskWaitHandle()
@@ -167,7 +174,7 @@ namespace Demos.Demo
             bool result = WaitHandle.WaitAll(watchers);
             if (result)
             {
-                _ = MessageBox.Show("线程状态：" + tasks[0].Status.ToString() + "\n" + "线程状态：" + tasks[1].Status.ToString());
+                _ = MessageBox.Show("任务状态：" + tasks[0].Status + "\n" + "任务状态：" + tasks[1].Status);
             }
         }
     }

@@ -7,18 +7,18 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <StackPanel>
-            <Button Content="ModBus TCP 测试" Margin="10" FontSize="20" Click="BtnModBus_Click"/>
+            <Button Content="ModBus TCP 测试" Margin="5" FontSize="20" Height="48" Click="BtnModBus_Click"/>
             <TextBlock x:Name="TB_value100"/>
             <TextBlock x:Name="TB_value101"/>
             <TextBlock x:Name="TB_value102"/>
 
-            <Button Content="SimpleTcpClient 连接" Margin="10,0" FontSize="20" Click="BtnSimTcpClientConnect_Click"/>
-            <Button Content="SimpleTcpClient 写入" Margin="10,0" FontSize="20" Click="BtnSimTcpClientWrite_Click"/>
-            <Button Content="SimpleTcpClient 关闭" Margin="10,0" FontSize="20" Click="BtnSimTcpClientClose_Click"/>
+            <Button Content="SimpleTcpClient 连接" Margin="10,0" FontSize="20" Height="48" Click="BtnSimTcpClientConnect_Click"/>
+            <Button Content="SimpleTcpClient 写入" Margin="10,0" FontSize="20" Height="48" Click="BtnSimTcpClientWrite_Click"/>
+            <Button Content="SimpleTcpClient 关闭" Margin="10,0" FontSize="20" Height="48" Click="BtnSimTcpClientClose_Click"/>
 
-            <Button Content="SimpleTcpServer 启动" Margin="10,10,10,0" FontSize="20" Click="BtnSimTcpServerStart_Click"/>
-            <Button Content="SimpleTcpServer 发送" Margin="10,0" FontSize="20" Click="BtnSimTcpServerSend_Click"/>
-            <Button Content="SimpleTcpServer 关闭" Margin="10,0" FontSize="20" Click="BtnSimTcpServerClose_Click"/>
+            <Button Content="SimpleTcpServer 启动" Margin="10,10,10,0" FontSize="20" Height="48" Click="BtnSimTcpServerStart_Click"/>
+            <Button Content="SimpleTcpServer 发送" Margin="10,0" FontSize="20" Height="48" Click="BtnSimTcpServerSend_Click"/>
+            <Button Content="SimpleTcpServer 关闭" Margin="10,0" FontSize="20" Height="48" Click="BtnSimTcpServerClose_Click"/>
         </StackPanel>
     </Grid>
 </UserControl>
