@@ -7,12 +7,11 @@
                xmlns:viewmodel="clr-namespace:HalconWPF.ViewModel"
                xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
                mc:Ignorable="d"
-               ActiveGlowColor="{DynamicResource PrimaryColor}"
                ShowNonClientArea="True"
+               ShowTitle="False"
                WindowStartupLocation="CenterScreen"
                Background="{DynamicResource RegionBrush}"
                Title="Halcon WPF Demos"
-               ShowTitle="False"
                Height="600" Width="1000">
     <hc:GlowWindow.DataContext>
         <viewmodel:MainWindowViewModel/>
@@ -20,7 +19,7 @@
 
     <!-- 标题栏内容 -->
     <hc:GlowWindow.NonClientAreaContent>
-        <StackPanel Orientation="Horizontal" Background="{DynamicResource RegionBrush}">
+        <StackPanel Orientation="Horizontal" Background="{DynamicResource PrimaryBrush}">
             <Image Source="Resource/Image/icon.ico" Height="32" HorizontalAlignment="Left" Margin="10,3"/>
             <hc:OutlineText Margin="3" Text="Halcon WPF" FontSize="32" FontWeight="Bold" Fill="{DynamicResource PrimaryBrush}" Stroke="Violet" StrokeThickness="2"/>
         </StackPanel>
@@ -60,8 +59,8 @@
                                 <Image Source="Resource/Image/SortAscending_gray_16x.png" Stretch="Uniform" Height="16"/>
                             </ToggleButton>
                             <ToggleButton Margin="2" Padding="10" hc:BorderElement.CornerRadius="0" IsChecked="{Binding IsOpen,ElementName=DrawerSourceCode}"
-                                      hc:IconElement.Geometry="{DynamicResource CodeGeometry}" Command="{Binding CmdShowSourceCode}" 
-                                      CommandParameter="{Binding IsOpen,ElementName=DrawerSourceCode}"/>
+                                          hc:IconElement.Geometry="{DynamicResource CodeGeometry}" Command="{Binding CmdShowSourceCode}" 
+                                          CommandParameter="{Binding IsOpen,ElementName=DrawerSourceCode}"/>
                         </hc:ButtonGroup>
                     </Grid>
                     <ListBox Grid.Row="1" Name="ListBoxDemo" Margin="5" BorderThickness="1" SelectionMode="Single" Style="{StaticResource ListBoxTransparent}"

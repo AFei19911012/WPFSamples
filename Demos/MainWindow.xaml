@@ -53,5 +53,9 @@
         <TabItem Header="三菱PLC MC协议">
             <demo:MelsecPlcDemo/>
         </TabItem>
+
+        <TabItem Header="打开、保存文件、打开文件夹">
+            <demo:OpenFileFolderDemo/>
+        </TabItem>
     </TabControl>
 </Window>
