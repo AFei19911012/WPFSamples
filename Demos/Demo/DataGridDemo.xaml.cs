@@ -1,5 +1,4 @@
-﻿using Demos.ViewModel;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace Demos.Demo
 {
@@ -11,10 +10,6 @@ namespace Demos.Demo
         public DataGridDemo()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
         }
     }
 }

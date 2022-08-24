@@ -1,0 +1,113 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- DataGrid 列头样式 -->
+    <Style x:Key="MyDataGridColumnHeaderStyle" TargetType="DataGridColumnHeader">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Height" Value="22"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="DataGridColumnHeader">
+                    <ContentPresenter VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- DataGrid 行头样式 -->
+    <Style x:Key="MyDataGridRowHeaderStyle" TargetType="DataGridRowHeader">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Margin" Value="2"/>
+        <Setter Property="Height" Value="18"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="DataGridRowHeader">
+                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- DataGrid 行样式 -->
+    <Style x:Key="MyDataGridRowSytle" TargetType="DataGridRow">
+        <Setter Property="Height" Value="22"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Style.Triggers>
+            <!-- 隔行换色 放到前面 -->
+            <Trigger Property="AlternationIndex" Value="0" >
+                <Setter Property="Background" Value="{DynamicResource BorderBrush}" />
+            </Trigger>
+            <Trigger Property="AlternationIndex" Value="1" >
+                <Setter Property="Background" Value="{DynamicResource SecondaryRegionBrush}"/>
+            </Trigger>
+            <!-- 选中时背景颜色 -->
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="{DynamicResource PrimaryBrush}"/>
+            </Trigger>
+            <MultiTrigger>
+                <!-- 失去焦点时背景颜色 -->
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsSelected" Value="true"/>
+                    <Condition Property="Selector.IsSelectionActive" Value="false"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Background" Value="Pink"/>
+            </MultiTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- DataGrid 单元格样式 -->
+    <Style x:Key="MyDataGridCellSytle" TargetType="DataGridCell">
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Style.Triggers>
+            <!-- 选中时背景颜色 -->
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="{DynamicResource PrimaryBrush}"/>
+            </Trigger>
+            
+            <MultiTrigger>
+                <!-- 失去焦点时背景颜色 -->
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsSelected" Value="true"/>
+                    <Condition Property="Selector.IsSelectionActive" Value="false"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Background" Value="Pink"/>
+            </MultiTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- DataGrid 单元格样式 -->
+    <Style x:Key="MyDataGridSingleCellSytle" TargetType="DataGridCell">
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Style.Triggers>
+            <!-- 选中时背景颜色 -->
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="{DynamicResource PrimaryBrush}"/>
+            </Trigger>
+            
+            <MultiTrigger>
+                <!-- 失去焦点时背景颜色 -->
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsSelected" Value="true"/>
+                    <Condition Property="Selector.IsSelectionActive" Value="false"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Background" Value="Pink"/>
+            </MultiTrigger>
+
+            <!-- 根据绑定值设置文字颜色 -->
+            <DataTrigger Binding="{Binding InspectResult}" Value="NG">
+                <Setter Property="Foreground" Value="OrangeRed"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding InspectResult}" Value="OK">
+                <Setter Property="Foreground" Value="Black"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

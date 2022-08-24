@@ -5,19 +5,20 @@ using System;
 using System.Collections.ObjectModel;
 using System.Windows;
 
+
 namespace Demos.ViewModel
 {
     ///
     /// ----------------------------------------------------------------
     /// Copyright @CoderMan/CoderMan1012 2022 All rights reserved
     /// Author      : CoderMan/CoderMan1012
-    /// Created Time: 2022/7/5 21:44:25
+    /// Created Time: 2022/8/24 14:19:00
     /// Description :
     /// ------------------------------------------------------
     /// Version      Modified Time            Modified By    Modified Content
-    /// V1.0.0.0     2022/7/5 21:44:25    Taosy.W                 
+    /// V1.0.0.0     2022/8/24 14:19:00    Taosy.W                 
     ///
-    public class DataGridDemoVM : ViewModelBase
+    public class DataGridStyleVM : ViewModelBase
     {
         private ObservableCollection<DataModel> _DataGridList;
         public ObservableCollection<DataModel> DataGridList
@@ -26,21 +27,14 @@ namespace Demos.ViewModel
             set => Set(ref _DataGridList, value);
         }
 
-        public DataGridDemoVM()
+        public DataGridStyleVM()
         {
             DataGridList = new ObservableCollection<DataModel>
             {
-                new DataModel{ Name = "TextBox", Content = "This is a TextBox"},
-                new DataModel{ Name = "ComboBox", Content = "This is a ComboBox"},
-                new DataModel{ Name = "TextBoxBinding", Content = "This is a TextBox"},
+                new DataModel{ Name = "1054", Content = "型号1", InspectResult = "NG"},
+                new DataModel{ Name = "1245", Content = "型号2", InspectResult = "OK"},
+                new DataModel{ Name = "1125", Content = "型号3", InspectResult = "OK"},
             };
-        }
-
-        public RelayCommand CmdGetNewValues => new Lazy<RelayCommand>(() => new RelayCommand(GetNewValues)).Value;
-        private void GetNewValues()
-        {
-            _ = MessageBox.Show(string.Format("第一行：Name = {0}, Content = {1}\n第三行：Name = {2}, Content = {3}",
-                DataGridList[0].Name, DataGridList[0].Content, DataGridList[2].Name, DataGridList[2].Content));
         }
     }
 }

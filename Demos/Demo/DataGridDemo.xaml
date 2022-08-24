@@ -13,7 +13,7 @@
         <DataGrid x:Name="MyDataGrid" ItemsSource="{Binding DataGridList}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" IsReadOnly="True"/>
-                
+
                 <DataGridTemplateColumn Header="Type">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -64,7 +64,6 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button Content="获取更新值" VerticalAlignment="Bottom" Command="{Binding CmdGetNewValues}"
-                Click="Button_Click"/>
+        <Button Content="获取更新值" VerticalAlignment="Bottom" Command="{Binding CmdGetNewValues}"/>
     </Grid>
 </UserControl>

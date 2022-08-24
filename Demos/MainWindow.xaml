@@ -57,5 +57,9 @@
         <TabItem Header="打开、保存文件、打开文件夹">
             <demo:OpenFileFolderDemo/>
         </TabItem>
+
+        <TabItem Header="DataGrid 样式">
+            <demo:DataGridStyleDemo/>
+        </TabItem>
     </TabControl>
 </Window>
