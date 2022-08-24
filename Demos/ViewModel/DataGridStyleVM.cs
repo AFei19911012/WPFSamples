@@ -1,9 +1,6 @@
 ﻿using Demos.Model;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.CommandWpf;
-using System;
 using System.Collections.ObjectModel;
-using System.Windows;
 
 
 namespace Demos.ViewModel
@@ -15,8 +12,8 @@ namespace Demos.ViewModel
     /// Created Time: 2022/8/24 14:19:00
     /// Description :
     /// ------------------------------------------------------
-    /// Version      Modified Time            Modified By    Modified Content
-    /// V1.0.0.0     2022/8/24 14:19:00    Taosy.W                 
+    /// Version      Modified Time              Modified By                               Modified Content
+    /// V1.0.0.0     2022/8/24 14:19:00    CoderMan/CoderMan1012              
     ///
     public class DataGridStyleVM : ViewModelBase
     {
