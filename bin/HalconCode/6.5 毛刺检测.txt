@@ -1,0 +1,23 @@
+dev_set_draw('margin')
+dev_set_line_width(3)
+dev_close_window ()
+* 读取图像
+read_image (Image, 'fin1.png')
+get_image_size (Image, Width, Height)
+dev_open_window (0, 0, Width/2, Height/2, 'white', WindowHandle)
+* 字体大小
+set_display_font (WindowHandle, 16, 'mono', 'true', 'false')
+* 二值化
+binary_threshold (Image, Region, 'max_separability', 'dark', UsedThreshold)
+* 背景
+difference (Image, Region, RegionBackground)
+* 填充背景图的缺口
+closing_circle (RegionBackground, RegionClosing, 250)
+* 毛刺区域
+difference (RegionClosing, RegionBackground, RegionDifference)
+* 消除小的噪点
+opening_rectangle1 (RegionDifference, FinRegion, 5, 5)
+* 显示结果
+dev_display (Image)
+dev_set_color ('yellow')
+dev_display (FinRegion)

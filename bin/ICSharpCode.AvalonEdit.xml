@@ -8728,6 +8728,26 @@
             Gets/sets the Brush used for marking search results in the TextView.
             </summary>
         </member>
+        <member name="F:ICSharpCode.AvalonEdit.Search.SearchPanel.MarkerPenProperty">
+            <summary>
+            Dependency property for <see cref="P:ICSharpCode.AvalonEdit.Search.SearchPanel.MarkerPen"/>.
+            </summary>
+        </member>
+        <member name="P:ICSharpCode.AvalonEdit.Search.SearchPanel.MarkerPen">
+            <summary>
+            Gets/sets the Pen used for marking search results in the TextView.
+            </summary>
+        </member>
+        <member name="F:ICSharpCode.AvalonEdit.Search.SearchPanel.MarkerCornerRadiusProperty">
+            <summary>
+            Dependency property for <see cref="P:ICSharpCode.AvalonEdit.Search.SearchPanel.MarkerCornerRadius"/>.
+            </summary>
+        </member>
+        <member name="P:ICSharpCode.AvalonEdit.Search.SearchPanel.MarkerCornerRadius">
+            <summary>
+            Gets/sets the corner-radius used for marking search results in the TextView.
+            </summary>
+        </member>
         <member name="F:ICSharpCode.AvalonEdit.Search.SearchPanel.LocalizationProperty">
             <summary>
             Dependency property for <see cref="P:ICSharpCode.AvalonEdit.Search.SearchPanel.Localization"/>.

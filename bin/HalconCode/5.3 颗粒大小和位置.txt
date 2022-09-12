@@ -1,0 +1,20 @@
+dev_close_window ()
+read_image (Image, 'particle.png')
+get_image_size (Image, Width, Height)
+dev_open_window_fit_image (Image, 0, 0, -1, -1, WindowHandle)
+dev_set_draw('margin')
+dev_set_line_width(3)
+
+* 阈值分割
+threshold (Image, Regions, 120, 255)
+* 连通区域
+connection (Regions, ConnectedRegions)
+* 面积和重心
+area_center (ConnectedRegions, Area, Row, Column)
+gen_cross_contour_xld (Cross, Row, Column, 20, 0.785398)
+* 显示结果
+dev_display (Image)
+dev_set_colored (12)
+dev_display(ConnectedRegions)
+dev_set_color ('yellow')
+dev_display(Cross)

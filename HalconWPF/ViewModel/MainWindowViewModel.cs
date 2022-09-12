@@ -63,7 +63,8 @@ namespace HalconWPF.ViewModel
                 return;
             }
             string name = DataList[SelectedIndex].Name;
-            string filename = @"..\HalconWPF\HalconCode\" + name + ".txt";
+            //string filename = @"..\HalconWPF\HalconCode\" + name + ".txt";
+            string filename = @"HalconCode\" + name + ".txt";
             if (File.Exists(filename))
             {
                 TextContainer.Load(filename);
@@ -109,7 +110,7 @@ namespace HalconWPF.ViewModel
                 _ = MainContent.Children.Add(new CalibrationWithPoints());
             }
 
-            // 5. Bolb 分析
+            // 5. Blob 分析
             else if (name.Contains("计算别针数量和角度"))
             {
                 _ = MainContent.Children.Add(new ClipNumberAndAngle());
@@ -117,6 +118,10 @@ namespace HalconWPF.ViewModel
             else if (name.Contains("牙模切割"))
             {
                 _ = MainContent.Children.Add(new TeethDetection());
+            }
+            else if (name.Contains("5.3 颗粒大小和位置"))
+            {
+                _ = MainContent.Children.Add(new Particle_5_3());
             }
 
             // 6. 缺陷检测
@@ -136,8 +141,12 @@ namespace HalconWPF.ViewModel
             {
                 _ = MainContent.Children.Add(new SurfaceScratch_6_4());
             }
+            else if (name.Contains("6.5 毛刺检测"))
+            {
+                _ = MainContent.Children.Add(new Fin_6_5());
+            }
 
-            // 测量模型
+            // 8. 测量模型
             else if (name.Contains("测量模型：定位圆"))
             {
                 _ = MainContent.Children.Add(new MetrologyModel_8_2_Circle());

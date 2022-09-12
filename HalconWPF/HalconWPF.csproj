@@ -59,8 +59,8 @@
     <Reference Include="HandyControl, Version=3.3.0.0, Culture=neutral, PublicKeyToken=45be8712787a1e5b, processorArchitecture=MSIL">
       <HintPath>..\packages\HandyControl.3.3.0\lib\net47\HandyControl.dll</HintPath>
     </Reference>
-    <Reference Include="ICSharpCode.AvalonEdit, Version=6.1.2.30, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
-      <HintPath>..\packages\AvalonEdit.6.1.2.30\lib\net45\ICSharpCode.AvalonEdit.dll</HintPath>
+    <Reference Include="ICSharpCode.AvalonEdit, Version=6.1.3.50, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
+      <HintPath>..\packages\AvalonEdit.6.1.3.50\lib\net45\ICSharpCode.AvalonEdit.dll</HintPath>
     </Reference>
     <Reference Include="MvCameraControl.Net">
       <HintPath>..\..\..\..\..\Program Files\MVS\Development\DotNet\AnyCpu\MvCameraControl.Net.dll</HintPath>
@@ -117,6 +117,9 @@
     <Compile Include="UserControl\ClipNumberAndAngle.xaml.cs">
       <DependentUpon>ClipNumberAndAngle.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControl\Fin_6_5.xaml.cs">
+      <DependentUpon>Fin_6_5.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControl\ImageReadSave.xaml.cs">
       <DependentUpon>ImageReadSave.xaml</DependentUpon>
     </Compile>
@@ -137,6 +140,9 @@
     </Compile>
     <Compile Include="UserControl\MlpNumberRecognition.xaml.cs">
       <DependentUpon>MlpNumberRecognition.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\Particle_5_3.xaml.cs">
+      <DependentUpon>Particle_5_3.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControl\SurfaceScratch_6_4.xaml.cs">
       <DependentUpon>SurfaceScratch_6_4.xaml</DependentUpon>
@@ -208,6 +214,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControl\Fin_6_5.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControl\ImageReadSave.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -233,6 +243,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControl\MlpNumberRecognition.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl\Particle_5_3.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
