@@ -14,7 +14,6 @@ using System.Windows.Threading;
 using HalconWPF.Method;
 using HalconWPF.Model;
 using HalconWPF.UserControl;
-using Microsoft.Win32;
 
 namespace HalconWPF.ViewModel
 {
@@ -191,7 +190,7 @@ namespace HalconWPF.ViewModel
             {
                 HOperatorSet.GenEmptyObj(out Ho_Image);
                 Ho_Image.Dispose();
-                HOperatorSet.ReadImage(out Ho_Image, @"image\calibration_circle.bmp");
+                HOperatorSet.ReadImage(out Ho_Image, @"Image\calibration_circle.bmp");
                 // 显示属性
                 Ho_Window.SetColor("red");
                 Ho_Window.SetLineWidth(1);

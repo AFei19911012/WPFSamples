@@ -25,7 +25,7 @@ namespace Demos.Demo
         /// <param name="e"></param>
         private void ButtonCreateExcel_Click(object sender, RoutedEventArgs e)
         {
-            string filename = @"data\test1.xlsx";
+            string filename = @"Data\test1.xlsx";
             // 建议用 IWorkbook ISheet IRow ICell 统一管理避免不必要的错误
             // workbook --> sheet --> row --> cell
             // 创建空白工作簿
@@ -60,7 +60,7 @@ namespace Demos.Demo
         private void ButtonAppendExcel_Click(object sender, RoutedEventArgs e)
         {
             // 打开 Excel 文件
-            string filename = @"data\test1.xlsx";
+            string filename = @"Data\test1.xlsx";
             using (FileStream file = new FileStream(filename, FileMode.Open))
             {
                 IWorkbook workbook = new XSSFWorkbook(file);
@@ -94,7 +94,7 @@ namespace Demos.Demo
         /// <param name="e"></param>
         private void ButtonCellStyleExcel_Click(object sender, RoutedEventArgs e)
         {
-            string filename = @"data\test2.xlsx";
+            string filename = @"Data\test2.xlsx";
             IWorkbook workbook = new XSSFWorkbook();
             ISheet sheet = workbook.CreateSheet("Sheet1");
 
@@ -165,7 +165,7 @@ namespace Demos.Demo
         /// <param name="e"></param>
         private void ButtonSheetNamesExcel_Click(object sender, RoutedEventArgs e)
         {
-            string filename = @"data\test.xlsx";
+            string filename = @"Data\test.xlsx";
             // 获取 Sheet 名称
             IWorkbook workbook;
             FileStream file;
@@ -193,7 +193,7 @@ namespace Demos.Demo
         {
             // 读取 Excel 指定 sheet 内容
             // workbook --> sheet --> row --> cell
-            string filename = @"data\test.xlsx";
+            string filename = @"Data\test.xlsx";
             using (FileStream file = new FileStream(filename, FileMode.Open))
             {
                 IWorkbook workbook = new XSSFWorkbook(file);

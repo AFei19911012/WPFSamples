@@ -15,7 +15,7 @@ namespace HalconWPF.UserControl
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            HOperatorSet.ReadImage(out HObject ho_Image, @"image\fin2.png");
+            HOperatorSet.ReadImage(out HObject ho_Image, @"Image\fin2.png");
             HOperatorSet.BinaryThreshold(ho_Image, out HObject ho_Region, "max_separability", "dark", out _);
             // 背景
             HOperatorSet.Difference(ho_Image, ho_Region, out HObject ho_RegionBackground);

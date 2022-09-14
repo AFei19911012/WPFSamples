@@ -15,7 +15,7 @@ namespace HalconWPF.UserControl
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            HOperatorSet.ReadImage(out HObject ho_Image, @"image\LED.tif");
+            HOperatorSet.ReadImage(out HObject ho_Image, @"Image\LED.tif");
             // 动态阈值
             HOperatorSet.MedianImage(ho_Image, out HObject ho_ImageMedian, "circle", 3, "mirrored");
             HOperatorSet.DynThreshold(ho_Image, ho_ImageMedian, out HObject ho_Region, 3, "light");

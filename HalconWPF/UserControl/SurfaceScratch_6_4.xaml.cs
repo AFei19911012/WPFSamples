@@ -15,7 +15,7 @@ namespace HalconWPF.UserControl
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            HOperatorSet.ReadImage(out HObject ho_Image, @"image\surface_scratch_01.png");
+            HOperatorSet.ReadImage(out HObject ho_Image, @"Image\surface_scratch_01.png");
             HOperatorSet.GetImageSize(ho_Image, out HTuple hv_Width, out HTuple hv_Height);
             // 反色
             HOperatorSet.InvertImage(ho_Image, out HObject ho_ImageInvert);

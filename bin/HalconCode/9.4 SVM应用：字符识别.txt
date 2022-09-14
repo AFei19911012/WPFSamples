@@ -1,0 +1,103 @@
+dev_close_window ()
+read_image (Image, 'ocr/chars_training_01.png')
+get_image_pointer1 (Image, Pointer, Type, Width, Height)
+dev_open_window (0, 0, Width, Height, 'white', WindowHandle)
+set_display_font (WindowHandle, 16, 'mono', 'true', 'false')
+dev_set_draw ('margin')
+dev_set_line_width (2)
+dev_display (Image)
+*
+* 创建 SVM 分类器
+ClassNames := ['A','B','C','D','E','F','G']
+create_ocr_class_svm (8, 10, 'constant', ['convexity','num_holes','projection_horizontal','projection_vertical'], \
+                      ClassNames, 'rbf', 0.02, 0.05, 'one-versus-one', 'normalization', 10, OCRHandle)
+* 
+* 7 张训练图
+for I := 1 to 7 by 1
+    read_image (Image, 'ocr/chars_training_' + I$'.2d')
+    dev_display (Image)
+    * 获取轮廓
+    get_regions (Image, SortedRegions)
+    count_obj (SortedRegions, NumberObjects)
+    for J := 1 to NumberObjects by 1
+        select_obj (SortedRegions, ObjectSelected, J)
+        if (I == 1 and J == 1)
+            write_ocr_trainf (ObjectSelected, Image, ClassNames[J - 1], 'A_G_ocr.trf')
+        else
+            append_ocr_trainf (ObjectSelected, Image, ClassNames[J - 1], 'A_G_ocr.trf')
+        endif
+        dev_set_color ('gray')
+        dev_display (ObjectSelected)
+        disp_message (WindowHandle, ClassNames[J - 1], 'window', 10, 10 + (J * 20), 'black', 'true')
+    endfor
+    * F5 继续
+    disp_continue_message (WindowHandle, 'black', 'true')
+    stop ()
+endfor
+* 
+* 检查训练文件是否正确
+read_ocr_trainf (Characters, 'A_G_ocr.trf', CharacterNames)
+count_obj (Characters, NumberCharacters)
+for I := 1 to NumberCharacters by 1
+    select_obj (Characters, CharacterSelected, I)
+    dev_clear_window ()
+    dev_display (CharacterSelected)
+    disp_message (WindowHandle, CharacterNames[I - 1], 'window', 10, 10, 'black', 'true')
+    wait_seconds (0.1)
+endfor
+* 
+* 训练字体，将字体写入到训练文件
+trainf_ocr_class_svm (OCRHandle, 'A_G_ocr.trf', 0.001, 'default')
+reduce_ocr_class_svm (OCRHandle, 'bottom_up', 2, 0.001, OCRHandleReduced)
+write_ocr_class_svm (OCRHandleReduced, 'A_G_ocr.osc')
+* 释放内存
+clear_ocr_class_svm (OCRHandle)
+clear_ocr_class_svm (OCRHandleReduced)
+dev_update_window ('on')
+
+
+
+
+dev_close_window ()
+read_image (Image, 'ocr/chars_01.png')
+get_image_pointer1 (Image, Pointer, Type, Width, Height)
+dev_open_window (0, 0, Width, Height, 'white', WindowHandle)
+set_display_font (WindowHandle, 16, 'mono', 'true', 'false')
+dev_set_draw ('margin')
+dev_set_line_width (3)
+dev_display (Image)
+* 
+* 检测 SVM 字体文件是否存在
+file_exists ('A_G_ocr.osc', FileExists)
+if (FileExists)
+    * 
+    * 读取文件
+    read_ocr_class_svm ('A_G_ocr', OCRHandle)
+    * 
+    * 每一张图，提取字符区域，使用训练好的 OCR 分类器
+    for I := 1 to 3 by 1
+        read_image (Image, 'ocr/chars_' + I$'.2d')
+        dev_display (Image)
+        * 获取区域
+        get_regions (Image, SortedRegions)
+        * 使用 svm 分类器
+        do_ocr_multi_class_svm (SortedRegions, Image, OCRHandle, Classes)
+        * 面积和中心
+        area_center (SortedRegions, AreaCenter, Row, Column)
+        dev_set_color ('gray')
+        dev_display (SortedRegions)
+        * 计数
+        count_obj (SortedRegions, NumberObjects)
+        disp_message (WindowHandle, Classes, 'window', Row - 100, Column, 'black', 'true')
+        if (I < 3)
+            disp_continue_message (WindowHandle, 'black', 'true')
+            stop ()
+        endif
+    endfor
+    * 
+    * 清空内存
+    clear_ocr_class_svm (OCRHandle)
+else
+    Message := 'File not exist: A_G_ocr'
+    disp_message (WindowHandle, Message, 'window', 12, 12, 'red', 'true')
+endif

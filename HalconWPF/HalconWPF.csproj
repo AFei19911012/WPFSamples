@@ -147,6 +147,9 @@
     <Compile Include="UserControl\SurfaceScratch_6_4.xaml.cs">
       <DependentUpon>SurfaceScratch_6_4.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControl\SvmCharacter_9_4.xaml.cs">
+      <DependentUpon>SvmCharacter_9_4.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControl\TeethDetection.xaml.cs">
       <DependentUpon>TeethDetection.xaml</DependentUpon>
     </Compile>
@@ -255,6 +258,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControl\SurfaceScratch_6_4.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl\SvmCharacter_9_4.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

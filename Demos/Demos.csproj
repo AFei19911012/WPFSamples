@@ -134,11 +134,15 @@
     <Compile Include="Demo\OpenFileFolderDemo.xaml.cs">
       <DependentUpon>OpenFileFolderDemo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Demo\ProgressBarDemo.xaml.cs">
+      <DependentUpon>ProgressBarDemo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\DataModel.cs" />
     <Compile Include="ViewModel\DataGridDemoVM.cs" />
     <Compile Include="ViewModel\DataGridStyleVM.cs" />
     <Compile Include="ViewModel\HelixToolkitDemo2VM.cs" />
     <Compile Include="ViewModel\HelixToolkitDemo3VM.cs" />
+    <Compile Include="ViewModel\ProgressBarDemoVM.cs" />
     <Page Include="Demo\DataGridDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -180,6 +184,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Demo\OpenFileFolderDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Demo\ProgressBarDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -165,6 +165,10 @@ namespace HalconWPF.ViewModel
             {
                 _ = MainContent.Children.Add(new MlpNumberRecognition());
             }
+            else if (name.Contains("9.4 SVM应用：字符识别"))
+            {
+                _ = MainContent.Children.Add(new SvmCharacter_9_4());
+            }
         }
 
         /// <summary>
