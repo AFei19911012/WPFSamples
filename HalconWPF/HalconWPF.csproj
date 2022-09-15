@@ -144,6 +144,9 @@
     <Compile Include="UserControl\Particle_5_3.xaml.cs">
       <DependentUpon>Particle_5_3.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControl\Qr_10_1.xaml.cs">
+      <DependentUpon>Qr_10_1.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControl\SurfaceScratch_6_4.xaml.cs">
       <DependentUpon>SurfaceScratch_6_4.xaml</DependentUpon>
     </Compile>
@@ -254,6 +257,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControl\PcbDefectDetection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl\Qr_10_1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

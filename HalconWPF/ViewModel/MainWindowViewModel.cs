@@ -169,6 +169,12 @@ namespace HalconWPF.ViewModel
             {
                 _ = MainContent.Children.Add(new SvmCharacter_9_4());
             }
+
+            // 10. QR 和条形码
+            else if (name.Contains("10.1 二维码识别"))
+            {
+                _ = MainContent.Children.Add(new Qr_10_1());
+            }
         }
 
         /// <summary>

@@ -42,6 +42,8 @@ namespace HalconWPF.Method
                 new CDataModel{ Name = "9.2 MLP应用：车牌识别", ImgPath="pack://application:,,,/Resource/Image/I.png"},
                 new CDataModel{ Name = "9.3 MLP应用：数字识别", ImgPath="pack://application:,,,/Resource/Image/I.png"},
                 new CDataModel{ Name = "9.4 SVM应用：字符识别", ImgPath="pack://application:,,,/Resource/Image/I.png"},
+
+                new CDataModel{ Name = "10.1 二维码识别", ImgPath="pack://application:,,,/Resource/Image/J.png"},
             };
         }
     }

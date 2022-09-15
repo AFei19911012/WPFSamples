@@ -1,0 +1,15 @@
+dev_close_window ()
+read_image (Image, 'D:/04_image/qr.jpg')
+dev_open_window_fit_image (Image, 0, 0, -1, -1, WindowHandle)
+set_display_font (WindowHandle, 16, 'mono', 'true', 'false')
+dev_set_line_width (3)
+dev_set_color ('green')
+* 创建二维码模型
+create_data_code_2d_model ('QR Code', [], [], DataCodeHandle)
+* 寻找二维码并解码
+find_data_code_2d (Image, SymbolXLDs, DataCodeHandle, [], [], ResultHandles, DecodedDataStrings)
+* 清除二维码模型
+clear_data_code_2d_model (DataCodeHandle)
+dev_display (Image)
+dev_display (SymbolXLDs)
+dev_disp_text (DecodedDataStrings, 'window', 'top', 'left', 'black', [], [])
