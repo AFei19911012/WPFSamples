@@ -1,0 +1,36 @@
+dev_close_window ()
+dev_open_window (0, 0, 512, 512, 'black', WindowHandle)
+gen_image_const (Image, 'byte', 999, 999)
+dev_set_draw ('margin')
+
+* 矩形框：1号
+dev_set_color ('red')
+gen_rectangle1 (Rectangle, 700, 300, 900, 500)
+* Marker 点
+gen_cross_contour_xld (Cross, 700, 500, 50, 0.785398)
+dev_set_color ('blue')
+
+* 变换矩阵：（700,300,0）→（400,300,5）
+vector_angle_to_rigid (700, 300, 0, 400, 300, rad(5), HomMat2D)
+
+* 矩形框：2号
+affine_trans_region (Rectangle, RegionAffineTrans, HomMat2D, 'nearest_neighbor')
+affine_trans_contour_xld (Cross, ContoursAffinTrans, HomMat2D)
+dev_set_color ('green')
+
+* 矩形框：3号
+move_region (Rectangle, RegionMoved, -300, 400)
+
+* 3号到2号：（400,700,0）→（400,300,5）
+vector_angle_to_rigid(400, 700, 0, 400, 300, rad(5), HomMat2DG_B)
+* 变换
+affine_trans_region(RegionMoved, RegionG_B, HomMat2DG_B, 'nearest_neighbor')
+
+* 2号到1号：（400,300,5）→（700,300,0）
+vector_angle_to_rigid(400, 300, rad(5), 700, 300, 0, HomMat2DB_R)
+affine_trans_region(RegionG_B, RegionB_R, HomMat2DB_R, 'nearest_neighbor')
+
+* 3号到1号
+dev_set_color('magenta')
+hom_mat2d_compose(HomMat2DB_R,HomMat2DG_B,HomMat2DG_R)
+affine_trans_region (RegionMoved, RegionAffineTransrrrr, HomMat2DG_R, 'nearest_neighbor')

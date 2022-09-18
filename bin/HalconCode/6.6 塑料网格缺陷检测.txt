@@ -1,0 +1,39 @@
+* 读取图像
+read_image (Image, 'plastic_mesh/plastic_mesh_01')
+* 常规设置
+dev_close_window ()
+get_image_size (Image, Width, Height)
+dev_open_window (0, 0, Width, Height, 'black', WindowHandle)
+set_display_font (WindowHandle, 18, 'mono', 'true', 'false')
+dev_set_draw ('fill')
+dev_set_line_width (2)
+* 所有文件
+list_image_files ('plastic_mesh', 'png', [], ImageFiles)
+* 遍历
+for Index := 0 to |ImageFiles| - 1 by 1
+    read_image (Image, ImageFiles[Index])
+    * 均值滤波
+    mean_image (Image, ImageMean, 50, 50)
+    * 动态阈值分割
+    dyn_threshold (Image, ImageMean, RegionDynThresh, 5, 'dark')
+    * 连通区域
+    connection (RegionDynThresh, ConnectedRegions)
+    * 特征选择，正常网格孔面积比较小
+    select_shape (ConnectedRegions, ErrorRegions, 'area', 'and', 500, 99999)
+    * 计数
+    count_obj (ErrorRegions, NumberError)
+    dev_display (Image)
+    dev_set_color ('yellow')
+    dev_display (ErrorRegions)
+    * 判断
+    if (NumberError > 0)
+        disp_message (WindowHandle, 'Mesh not OK', 'window', 12, 12, 'black', 'true')
+    else
+        disp_message (WindowHandle, 'Mesh OK', 'window', 12, 12, 'black', 'true')
+    endif
+    if (Index < |ImageFiles| - 1)
+        * F5 继续
+        disp_continue_message (WindowHandle, 'black', 'true')
+        stop ()
+    endif
+endfor

@@ -1,6 +1,5 @@
 ﻿using HalconDotNet;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace HalconWPF.UserControl
 {

@@ -1,0 +1,61 @@
+dev_close_window ()
+dev_open_window (0, 0, 728, 512, 'black', WindowID)
+* 读取图像
+read_image (Bond, 'die/die_03')
+* 显示图像
+dev_display (Bond)
+* 字体、大小
+set_display_font (WindowID, 14, 'mono', 'true', 'false')
+* 按 F5 继续
+disp_continue_message (WindowID, 'black', 'true')
+stop ()
+* 阈值分割
+threshold (Bond, Bright, 100, 255)
+* 变形：矩形区域
+shape_trans (Bright, Die, 'rectangle2')
+dev_set_color ('green')
+dev_set_line_width (3)
+dev_set_draw ('margin')
+dev_display (Die)
+disp_continue_message (WindowID, 'black', 'true')
+stop ()
+* 获得矩形区域的图像
+reduce_domain (Bond, Die, DieGrey)
+threshold (DieGrey, Wires, 0, 50)
+* 填充区域内的孔洞
+fill_up_shape (Wires, WiresFilled, 'area', 1, 100)
+dev_display (Bond)
+dev_set_draw ('fill')
+dev_set_color ('red')
+dev_display (WiresFilled)
+disp_continue_message (WindowID, 'black', 'true')
+stop ()
+* 开运算
+opening_circle (WiresFilled, Balls, 15.5)
+dev_set_color ('green')
+dev_display (Balls)
+disp_continue_message (WindowID, 'black', 'true')
+stop ()
+* 连通区域
+connection (Balls, SingleBalls)
+* 特征选择
+select_shape (SingleBalls, IntermediateBalls, ['area', 'circularity'], 'and', [500, 0.85], [1500, 1.0])
+* 按照相对位置排序
+sort_region (IntermediateBalls, FinalBalls, 'first_point', 'true', 'column')
+dev_display (Bond)
+* 设置颜色
+dev_set_colored (12)
+dev_display (FinalBalls)
+disp_continue_message (WindowID, 'black', 'true')
+stop ()
+* 区域最小的外接圆：不规则的圆 → 圆
+smallest_circle (FinalBalls, Row, Column, Radius)
+NumBalls := |Radius|
+Diameter := 2 * Radius
+meanDiameter := mean(Diameter)
+minDiameter := min(Diameter)
+dev_display (Bond)
+disp_circle (WindowID, Row, Column, Radius)
+dev_set_color ('white')
+disp_message (WindowID, 'D: ' + Diameter$'.4', 'image', Row - 2 * Radius, Column, 'white', 'false')
+dev_update_window ('on')

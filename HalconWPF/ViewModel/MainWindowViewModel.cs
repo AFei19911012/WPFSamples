@@ -109,6 +109,10 @@ namespace HalconWPF.ViewModel
             {
                 _ = MainContent.Children.Add(new CalibrationWithPoints());
             }
+            else if (name.Contains("4.7 平面刚性矩阵左乘仿真"))
+            {
+                _ = MainContent.Children.Add(new HomMat2D_4_7());
+            }
 
             // 5. Blob 分析
             else if (name.Contains("计算别针数量和角度"))
@@ -122,6 +126,14 @@ namespace HalconWPF.ViewModel
             else if (name.Contains("5.3 颗粒大小和位置"))
             {
                 _ = MainContent.Children.Add(new Particle_5_3());
+            }
+            else if (name.Contains("5.4 小弹丸计数"))
+            {
+                _ = MainContent.Children.Add(new Pellets_Count_5_4());
+            }
+            else if (name.Contains("5.5 模具球形检测"))
+            {
+                _ = MainContent.Children.Add(new Die_5_5());
             }
 
             // 6. 缺陷检测
@@ -144,6 +156,10 @@ namespace HalconWPF.ViewModel
             else if (name.Contains("6.5 毛刺检测"))
             {
                 _ = MainContent.Children.Add(new Fin_6_5());
+            }
+            else if (name.Contains("6.6 塑料网格缺陷检测"))
+            {
+                _ = MainContent.Children.Add(new PlasticMesh_6_6());
             }
 
             // 8. 测量模型

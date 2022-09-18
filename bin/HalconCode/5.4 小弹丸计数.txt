@@ -1,0 +1,23 @@
+dev_close_window ()
+read_image (Image, 'pellets.png')
+get_image_pointer1 (Image, Pointer, Type, Width, Height)
+dev_open_window (0, 0, Width, Height, 'black', WindowHandle)
+dev_set_draw('margin')
+dev_set_line_width(3)
+set_display_font (WindowHandle, 12, 'mono', 'true', 'false')
+threshold (Image, Regions, 100, 255)
+connection (Regions, ConnectedRegions)
+select_shape (ConnectedRegions, SelectedRegions, 'area', 'and', 156, 6650)
+* 显示结果
+dev_set_colored (12)
+dev_display(Image)
+dev_display(SelectedRegions)
+* 按 F5 继续
+disp_continue_message (WindowHandle, 'black', 'true')
+stop ()
+erosion_circle (SelectedRegions, RegionErosion, 10)
+connection (RegionErosion, ConnectedRegions1)
+dilation_circle (ConnectedRegions1, RegionDilation, 10)
+* 显示结果
+dev_display(Image)
+dev_display(RegionDilation)

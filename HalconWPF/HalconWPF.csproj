@@ -117,8 +117,14 @@
     <Compile Include="UserControl\ClipNumberAndAngle.xaml.cs">
       <DependentUpon>ClipNumberAndAngle.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControl\Die_5_5.xaml.cs">
+      <DependentUpon>Die_5_5.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControl\Fin_6_5.xaml.cs">
       <DependentUpon>Fin_6_5.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\HomMat2D_4_7.xaml.cs">
+      <DependentUpon>HomMat2D_4_7.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControl\ImageReadSave.xaml.cs">
       <DependentUpon>ImageReadSave.xaml</DependentUpon>
@@ -143,6 +149,12 @@
     </Compile>
     <Compile Include="UserControl\Particle_5_3.xaml.cs">
       <DependentUpon>Particle_5_3.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\Pellets_Count_5_4.xaml.cs">
+      <DependentUpon>Pellets_Count_5_4.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\PlasticMesh_6_6.xaml.cs">
+      <DependentUpon>PlasticMesh_6_6.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControl\Qr_10_1.xaml.cs">
       <DependentUpon>Qr_10_1.xaml</DependentUpon>
@@ -220,7 +232,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControl\Die_5_5.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControl\Fin_6_5.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl\HomMat2D_4_7.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -257,6 +277,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControl\PcbDefectDetection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl\Pellets_Count_5_4.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl\PlasticMesh_6_6.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
