@@ -66,6 +66,10 @@
             <TabItem Header="ProgressBar">
                 <demo:ProgressBarDemo/>
             </TabItem>
+
+            <TabItem Header="Epplus: Excel 读写">
+                <demo:EpplusDemo/>
+            </TabItem>
         </TabControl>
     </ScrollViewer>
 </Window>
