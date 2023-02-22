@@ -1,8 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Windows;
-using System.Windows.Controls;
-using MathLib.Net;
+﻿using System.Windows;
 
 namespace MathLibTest
 {
@@ -28,6 +24,7 @@ namespace MathLibTest
             _ = ListBox_Functions.Items.Add("非负最小二乘解方程");
             _ = ListBox_Functions.Items.Add("指数拟合");
             _ = ListBox_Functions.Items.Add("高斯拟合");
+            _ = ListBox_Functions.Items.Add("饱和度反演");
         }
 
         private void ListBox_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -179,7 +176,7 @@ namespace MathLibTest
             else if (idx == 6)
             {
                 double[] x = WffCal.Linspace(0.1, 5, 10);
-                double[] p = new double[5] { 2, 3, 8, 6, 0.1};
+                double[] p = new double[3] { 2, 3, 0.1};
                 double[] y = WffCal.ExpFitting(x, p);
                 ListView_Result.Items.Add("x");
                 ListView_Result.Items.Add(x.Num2Str());
@@ -188,7 +185,7 @@ namespace MathLibTest
                 ListView_Result.Items.Add("y");
                 ListView_Result.Items.Add(y.Num2Str());
 
-                p = WffCal.ExpFitting(x, y, 2);
+                p = WffCal.ExpFitting(x, y, 1);
                 y = WffCal.ExpFitting(x, p);
                 ListView_Result.Items.Add("");
                 ListView_Result.Items.Add("ExpFitting");
@@ -215,6 +212,40 @@ namespace MathLibTest
                 ListView_Result.Items.Add(p.Num2Str());
                 ListView_Result.Items.Add("yfit");
                 ListView_Result.Items.Add(y.Num2Str());
+            }
+            else if (idx == 8)
+            {
+                double DTo1 = 820;
+                double DTo2 = 1420;
+                double DTw1 = 620;
+                double DTw2 = 1074;
+                double DENo = 0.95;
+                double DENw = 1;
+                double CNLo = 0.95;
+                double CNLw = 1;           
+                double phi = 0.1000;
+                double DTma1 = 182;
+                double DTma2 = 315;
+                double DENma = 2.65;
+                double n = 2;
+                double m = 2;
+                double Rw = 0.6;
+                double CNLma = -0.05;
+                double DTC = 118.1155;
+                double DTS = 225.3645;
+                double DENb = 2.6640;
+                double CNL = 19.6148;
+                double a = 0.2;
+                double b = 0.3;
+                double Rt1 = 14.8906;
+                double Rt2 = 14.9461;
+                double Rt3 = 14.1472;
+                double Swo = 1;
+                double lambda = 0.01;
+                double Sw1 = 0;
+                double Sw2 = 0;
+                double Sw3 = 0;
+                WffCal.InvSaturation(DTma1, DTma2, DTo1, DTo2, DTw1, DTw2, DENma, DENo, DENw, n, m, Rw, CNLma, CNLo, CNLw, DTC, DTS, phi, DENb, CNL, a, b, Rt1, Rt2, Rt3, Swo, lambda, ref Sw1, ref Sw2, ref Sw3);
             }
         }
     }

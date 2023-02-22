@@ -9,7 +9,7 @@ const double EPS = 2.2204e-16;           // 极小量
 const double PI = 3.141592653589793;     // π
 
 
-#pragma region 函数模板测试
+#pragma region 函数模板
 // 最小值
 template <typename T>
 inline T Min(T a, T b)
@@ -50,7 +50,7 @@ mat Solve(mat A, mat y)
 	for (int i = 0; i < len; i++)
 	{
 		s(i, i) = 1 / (vs(i) + EPS);
-		if (s(i, i) > 1e+10)
+		if (s(i, i) > 1e+12)
 		{
 			s(i, i) = 0;   // 截断
 		}

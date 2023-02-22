@@ -6,8 +6,7 @@
         xmlns:core="clr-namespace:System;assembly=mscorlib"
         xmlns:model="clr-namespace:MvvmCmdBinding.Model"
         xmlns:converter="clr-namespace:MvvmCmdBinding.Converter"
-        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-        xmlns:cmd="http://www.galasoft.ch/mvvmlight"
+        xmlns:mvvm="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:viewmodel="clr-namespace:MvvmCmdBinding.ViewModel"
         Name="MVVMWindow"
         mc:Ignorable="d"
@@ -26,25 +25,22 @@
         <viewmodel:ViewModelMain/>
     </Window.DataContext>
 
-    <i:Interaction.Triggers>
-        <i:EventTrigger EventName="Loaded">
-            <cmd:EventToCommand Command="{Binding CmdLoaded}" CommandParameter="{Binding ElementName=MVVMWindow}"/>
-        </i:EventTrigger>
-        <i:EventTrigger EventName="MouseMove">
-            <cmd:EventToCommand Command="{Binding CmdMouseMove}" PassEventArgsToCommand="True"/>
-        </i:EventTrigger>
-        <!--<i:EventTrigger EventName="MouseDown">
-            <cmd:EventToCommand Command="{Binding CmdMouseDown}" PassEventArgsToCommand="True"/>
-        </i:EventTrigger>-->
-    </i:Interaction.Triggers>
+    <mvvm:Interaction.Triggers>
+        <mvvm:EventTrigger EventName="Loaded">
+            <mvvm:InvokeCommandAction Command="{Binding CmdLoaded}" CommandParameter="{Binding ElementName=MVVMWindow}"/>
+        </mvvm:EventTrigger>
+        <mvvm:EventTrigger EventName="MouseMove">
+            <mvvm:InvokeCommandAction Command="{Binding CmdMouseMove}" PassEventArgsToCommand="True"/>
+        </mvvm:EventTrigger>
+    </mvvm:Interaction.Triggers>
 
     <UniformGrid Rows="2" Columns="3">
         <StackPanel>
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="MouseDown">
-                    <cmd:EventToCommand Command="{Binding CmdMouseDown}" PassEventArgsToCommand="True"/>
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
+            <mvvm:Interaction.Triggers>
+                <mvvm:EventTrigger EventName="MouseDown">
+                    <mvvm:InvokeCommandAction Command="{Binding CmdMouseDown}" PassEventArgsToCommand="True"/>
+                </mvvm:EventTrigger>
+            </mvvm:Interaction.Triggers>
             <StackPanel Orientation="Horizontal" Margin="3">
                 <Label Content="Binding Text" Width="120"/>
                 <TextBox Text="{Binding BindingText}" MinWidth="100" VerticalAlignment="Center"/>
@@ -53,6 +49,8 @@
                 <Label Content="Binding Number" Width="120"/>
                 <TextBox x:Name="TextValue" Text="{Binding BindingNumber, StringFormat={}{0:F3}}" MinWidth="100" VerticalAlignment="Center"/>
             </StackPanel>
+            <CheckBox Content="Binding Bool" IsChecked="{Binding BoolIsChecked}" VerticalAlignment="Center" 
+                          VerticalContentAlignment="Center"/>
             <StackPanel Orientation="Horizontal" Margin="3">
                 <Label Content="Binding Control" Width="120"/>
                 <TextBox Text="{Binding ElementName=TextValue, Path=Text}" MinWidth="100" VerticalAlignment="Center"/>

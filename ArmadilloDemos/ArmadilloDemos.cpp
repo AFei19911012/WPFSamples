@@ -25,8 +25,8 @@ void DemoArmadillo()
     A.fill(5);         // 全部赋值为 5
     A.print("A.fill(5) = ");
 
-    A.save("A.txt", raw_ascii);   // 保存为文本
-    B.load("A.txt");              // 加载文本
+    A.save("D:\\MyPrograms\\VisualStudio2019\\WPFSamples\\bin\\A.txt", raw_ascii);   // 保存为文本
+    B.load("D:\\MyPrograms\\VisualStudio2019\\WPFSamples\\bin\\A.txt");              // 加载文本
     B.print("B = ");
 
     // 类似 Matlab 操作  初始化 eye，ones，zeros，randu，randn，randi
@@ -186,7 +186,7 @@ void DemoFilter1D()
 {
     mat dataIn;
     // 绝对地址
-    dataIn.load("D:\\MyPrograms\\VisualStudio2019\\CPlusPlusPrograms\\CPlusPlusPrograms\\noiseSignal.txt");
+    dataIn.load("D:\\MyPrograms\\VisualStudio2019\\WPFSamples\\bin\\noiseSignal.txt");
     int signal_size = dataIn.n_rows;
     double* signal = new double[signal_size];
     for (int i = 0; i < signal_size; i++)
@@ -218,7 +218,7 @@ void DemoFilter1D()
 void DemoFilter2D()
 {
     imat signal2D;
-    signal2D.load("D:\\MyPrograms\\VisualStudio2019\\CPlusPlusPrograms\\CPlusPlusPrograms\\signal2D.txt");
+    signal2D.load("D:\\MyPrograms\\VisualStudio2019\\WPFSamples\\bin\\signal2D.txt");
     int height = signal2D.n_rows;
     int width = signal2D.n_cols;
     double** signal = new double* [height];
@@ -284,7 +284,7 @@ int main()
     system("color 0A");
 
     // 测试 Armadillo  
-    //DemoArmadillo();
+    DemoArmadillo();
 
     // 函数模板测试
     //DemoTemplateFunction();
@@ -299,7 +299,7 @@ int main()
     //DemoNNLS();
 
     // 一维信号滤波测试
-    DemoFilter1D();
+    //DemoFilter1D();
 
     // 二维信号滤波测试
     //DemoFilter2D();

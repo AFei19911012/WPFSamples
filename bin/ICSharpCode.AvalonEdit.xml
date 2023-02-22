@@ -3341,6 +3341,11 @@
             Margin showing line numbers.
             </summary>
         </member>
+        <member name="M:ICSharpCode.AvalonEdit.Editing.LineNumberMargin.#ctor">
+            <summary>
+            Creates a new instance of a LineNumberMargin
+            </summary>
+        </member>
         <member name="F:ICSharpCode.AvalonEdit.Editing.LineNumberMargin.typeface">
             <summary>
             The typeface used for rendering the line number margin.

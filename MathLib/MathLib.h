@@ -64,4 +64,7 @@ extern "C"
 	_declspec(dllexport) void InvT1T2(double* EH, double* tau1, int Nw, double* tau2, int NECH, double Tmin, double Tmax, double alpha, int Nt, int invModel, double* T2T1Dist, double* EHfit, double* T, double* T1Dist, double* T2Dist, double& ReError);
 	_declspec(dllexport) void InvDT2(double* EH, double* Gk2, int Ng, double* tau, int NECH, double Dmin, double Dmax, int Nd, double Tmin, double Tmax, double alpha, int Nt, double Delta1, double delta2, double* T2DDist, double* EHfit, double* D, double* DDist, double* T2, double* T2Dist, double& ReError);
 	_declspec(dllexport) void InvDT2_Gcst(double* SEQtau2, double* SEQsig, int* NECH, int N_echo, double* TE, double Gcst, double Dmin, double Dmax, double Tmin, double Tmax, int nPreset, double alpha, double* T2DDist, double* d_fit, double* D, double* DDist, double* T2, double* T2Dist, double& ReError);
+
+
+	_declspec(dllexport) void InvSaturation(double DTma1, double DTma2, double DTo1, double DTo2, double DTw1, double DTw2, double DENma, double DENo, double DENw, double n, double m, double Rw, double CNLma, double CNLo, double CNLw, double DTC, double DTS, double phi, double DENb, double CNL, double a, double b, double Rt1, double Rt2, double Rt3, double Swo, double lambda, double& Sw1, double& Sw2, double& Sw3);
 }

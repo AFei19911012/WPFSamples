@@ -1561,3 +1561,109 @@ void InvDT2_Gcst(double* SEQtau2, double* SEQsig, int* NECH, int N_echo, double*
 	delete[] aT2DDist;
 }
 #pragma endregion
+
+
+#pragma region 饱和度反演
+void InvSaturation(double DTma1, double DTma2, double DTo1, double DTo2, double DTw1, double DTw2, double DENma, double DENo, double DENw, double n, double m, double Rw, double CNLma, double CNLo, double CNLw, double DTC, double DTS, double phi, double DENb, double CNL, double a, double b, double Rt1, double Rt2, double Rt3, double Swo, double lambda, double& Sw1, double& Sw2, double& Sw3)
+{
+	// 系数矩阵 A
+	mat A = zeros(8, 6);
+	A(0, 0) = DTo1;
+	A(0, 1) = DTo1;
+	A(0, 2) = DTo1;
+	A(0, 3) = DTw1;
+	A(0, 4) = DTw1;
+	A(0, 5) = DTw1;
+	A(1, 0) = DTo2;
+	A(1, 1) = DTo2;
+	A(1, 2) = DTo2;
+	A(1, 3) = DTw2;
+	A(1, 4) = DTw2;
+	A(1, 5) = DTw2;
+	A(2, 0) = DENo;
+	A(2, 1) = DENo;
+	A(2, 2) = DENo;
+	A(2, 3) = DENw;
+	A(2, 4) = DENw;
+	A(2, 5) = DENw;
+	A(3, 0) = CNLo;
+	A(3, 1) = CNLo;
+	A(3, 2) = CNLo;
+	A(3, 3) = CNLw;
+	A(3, 4) = CNLw;
+	A(3, 5) = CNLw;
+	A(4, 3) = 1 / phi;
+	A(5, 4) = 1 / phi;
+	A(6, 5) = 1 / phi;
+	A(7, 0) = 1;
+	A(7, 1) = 1;
+	A(7, 2) = 1;
+	A(7, 3) = 1;
+	A(7, 4) = 1;
+	A(7, 5) = 1;
+	//A.save("D:\\MyPrograms\\VisualStudio2019\\WPFSamples\\bin\\A.txt", raw_ascii);
+
+	// 矩阵 Y
+	mat Y = zeros(8, 1);
+	Y(0) = DTC - (1 - phi) * DTma1;
+	Y(1) = DTS - (1 - phi) * DTma1;
+	Y(2) = DENb - (1 - phi) * DENma;
+	Y(3) = CNL - (1 - phi) * CNLma;
+	Y(4) = pow(a * b * Rw / (pow(phi, m) * Rt1), 1.0 / n);
+	Y(5) = pow(a * b * Rw / (pow(phi, m) * Rt2), 1.0 / n);
+	Y(6) = pow(a * b * Rw / (pow(phi, m) * Rt3), 1.0 / n);
+	Y(7) = 3 * phi;
+
+	// 解方程
+	mat X = zeros(1, 6);
+	mat AtA = A.t() * A + lambda * eye(6, 6);
+	X = inv(AtA) * A.t() * Y;
+	// 计算饱和度
+	double sw1 = X(3) / phi;
+	double sw2 = X(4) / phi;
+	double sw3 = X(5) / phi;
+
+	double aa = AtA(0, 0);
+
+	// 约束条件
+	if (sw1 >= 1 || sw2 >= 1 || sw3 >= 1)
+	{
+		Sw1 = Min(sw1, 1.0);
+		Sw2 = Min(sw2, 1.0);
+		Sw3 = Min(sw3, 1.0);
+	}
+	else
+	{
+		if (sw3 / Swo >= 0.9)
+		{
+			Sw1 = sw1;
+			Sw2 = sw2;
+			Sw3 = sw3;
+		}
+		else
+		{
+			if (sw2 / Swo >= 0.9)
+			{
+				Sw1 = sw1;
+				Sw2 = sw2;
+				Sw3 = sw2 / sw1 * sw2;
+			}
+			else
+			{
+				if (sw1 / Swo >= 0.9)
+				{
+					Sw1 = sw1;
+					Sw2 = sw1;
+					Sw3 = sw1;
+				}
+				else
+				{
+					Sw1 = 0.9 * Swo;
+					Sw2 = 0.95 * Swo;
+					Sw3 = 0.9 * Swo;
+				}
+			}
+		}
+	}
+}
+#pragma endregion

@@ -1,5 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Command;
 using HalconDotNet;
 using HalconWPF.Method;
 using HalconWPF.UserControl;

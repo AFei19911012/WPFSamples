@@ -13,11 +13,17 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ArmadilloDemos", "Armadillo
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MathLib", "MathLib\MathLib.vcxproj", "{348C1119-BF2C-4B7E-8477-42FCB6EB40EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathLib.Net", "MathLib.Net\MathLib.Net.csproj", "{60277BA2-EC00-41D5-A000-8F12E60699CE}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathLibTest", "MathLibTest\MathLibTest.csproj", "{BA1F334D-36FB-4432-83AD-955C879E2350}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "GalaSoft.MvvmLight", "GalaSoft.MvvmLight\GalaSoft.MvvmLight.shproj", "{E0D724F3-A34B-4ADF-A582-139C4E4AB3CA}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		GalaSoft.MvvmLight\GalaSoft.MvvmLight.projitems*{0c9cd4d6-33cd-4dd9-964b-735e461004ca}*SharedItemsImports = 4
+		GalaSoft.MvvmLight\GalaSoft.MvvmLight.projitems*{1b174f02-9805-4430-babb-740ec23d3245}*SharedItemsImports = 4
+		GalaSoft.MvvmLight\GalaSoft.MvvmLight.projitems*{2ea87da7-89bd-46c6-b1c1-c65e67bbbe05}*SharedItemsImports = 4
+		GalaSoft.MvvmLight\GalaSoft.MvvmLight.projitems*{e0d724f3-a34b-4adf-a582-139c4e4ab3ca}*SharedItemsImports = 13
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|x64 = Debug|x64
@@ -83,18 +89,6 @@ Global
 		{348C1119-BF2C-4B7E-8477-42FCB6EB40EE}.Release|x64.Build.0 = Release|x64
 		{348C1119-BF2C-4B7E-8477-42FCB6EB40EE}.Release|x86.ActiveCfg = Release|Win32
 		{348C1119-BF2C-4B7E-8477-42FCB6EB40EE}.Release|x86.Build.0 = Release|Win32
-		{60277BA2-EC00-41D5-A000-8F12E60699CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{60277BA2-EC00-41D5-A000-8F12E60699CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{60277BA2-EC00-41D5-A000-8F12E60699CE}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{60277BA2-EC00-41D5-A000-8F12E60699CE}.Debug|x64.Build.0 = Debug|Any CPU
-		{60277BA2-EC00-41D5-A000-8F12E60699CE}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{60277BA2-EC00-41D5-A000-8F12E60699CE}.Debug|x86.Build.0 = Debug|Any CPU
-		{60277BA2-EC00-41D5-A000-8F12E60699CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{60277BA2-EC00-41D5-A000-8F12E60699CE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{60277BA2-EC00-41D5-A000-8F12E60699CE}.Release|x64.ActiveCfg = Release|Any CPU
-		{60277BA2-EC00-41D5-A000-8F12E60699CE}.Release|x64.Build.0 = Release|Any CPU
-		{60277BA2-EC00-41D5-A000-8F12E60699CE}.Release|x86.ActiveCfg = Release|Any CPU
-		{60277BA2-EC00-41D5-A000-8F12E60699CE}.Release|x86.Build.0 = Release|Any CPU
 		{BA1F334D-36FB-4432-83AD-955C879E2350}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BA1F334D-36FB-4432-83AD-955C879E2350}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA1F334D-36FB-4432-83AD-955C879E2350}.Debug|x64.ActiveCfg = Debug|Any CPU

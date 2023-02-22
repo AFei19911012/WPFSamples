@@ -1,11 +1,10 @@
 ﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Command;
 using MvvmCmdBinding.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Input;
@@ -36,6 +35,13 @@ namespace MvvmCmdBinding.ViewModel
         {
             get => bindingNumber;
             set => Set(ref bindingNumber, value);
+        }
+
+        private bool _BoolIsChecked = true;
+        public bool BoolIsChecked
+        {
+            get => _BoolIsChecked;
+            set => Set(ref _BoolIsChecked, value);
         }
 
         private Gender bindingEnum;
