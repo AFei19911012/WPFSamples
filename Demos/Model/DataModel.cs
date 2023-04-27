@@ -1,4 +1,7 @@
-﻿namespace Demos.Model
+﻿using Newtonsoft.Json;
+using System;
+
+namespace Demos.Model
 {
     ///
     /// ----------------------------------------------------------------
@@ -10,10 +13,17 @@
     /// Version      Modified Time              Modified By                               Modified Content
     /// V1.0.0.0     2022/8/24 14:19:24    CoderMan/CoderMan1012                
     ///
+
+    [Serializable]
     public class DataModel
     {
+        [JsonProperty("Name")]
         public string Name { get; set; }
+
+        [JsonProperty("Content")]
         public string Content { get; set; }
+
+        [JsonIgnore]
         public string InspectResult { get; set; }
     }
 }

@@ -76,6 +76,9 @@
     <Reference Include="Microsoft.WindowsAPICodePack.Shell">
       <HintPath>..\..\SVNprograms\Dlls\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="NPOI, Version=2.5.5.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
       <HintPath>..\packages\NPOI.2.5.5\lib\net45\NPOI.dll</HintPath>
     </Reference>
@@ -164,9 +167,13 @@
     <Compile Include="Demo\ProgressBarDemo.xaml.cs">
       <DependentUpon>ProgressBarDemo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Demo\SerializationDemo.xaml.cs">
+      <DependentUpon>SerializationDemo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Demo\SvgDemo.xaml.cs">
       <DependentUpon>SvgDemo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helper\SerializeHelper.cs" />
     <Compile Include="Model\DataModel.cs" />
     <Compile Include="ViewModel\DataGridDemoVM.cs" />
     <Compile Include="ViewModel\DataGridStyleVM.cs" />
@@ -222,6 +229,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Demo\ProgressBarDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Demo\SerializationDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

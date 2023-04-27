@@ -6,7 +6,7 @@
         xmlns:demo="clr-namespace:Demos.Demo"
         mc:Ignorable="d"
         Closing="Window_Closing"
-        Title="Demos" Height="450" Width="600">
+        Title="Demos" Height="650" Width="1000">
     <ScrollViewer>
         <TabControl TabStripPlacement="Left">
             <TabItem Header="NPOI: Excel 读写">
@@ -73,6 +73,10 @@
 
             <TabItem Header="显示 SVG 图像">
                 <demo:SvgDemo/>
+            </TabItem>
+
+            <TabItem Header="文件序列化和反序列化">
+                <demo:SerializationDemo/>
             </TabItem>
         </TabControl>
     </ScrollViewer>
