@@ -70,6 +70,10 @@
             <TabItem Header="Epplus: Excel 读写">
                 <demo:EpplusDemo/>
             </TabItem>
+
+            <TabItem Header="显示 SVG 图像">
+                <demo:SvgDemo/>
+            </TabItem>
         </TabControl>
     </ScrollViewer>
 </Window>

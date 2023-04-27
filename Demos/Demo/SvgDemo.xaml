@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="Demos.Demo.SvgDemo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Demos.Demo"
+             xmlns:svg="http://sharpvectors.codeplex.com/svgc/"
+             mc:Ignorable="d" 
+             d:DesignHeight="750" d:DesignWidth="1000">
+    <WrapPanel>
+        <Button Margin="10" Height="90" Background="Transparent" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <!-- svg 图像 【右键】【属性】【生成操作】【设置为 Resource】 运行后可见图像，xaml 里看不见 -->
+                <svg:SvgViewbox Source="pack://application:,,,/Svg/003.svg" Height="64" Stretch="Uniform"/>
+                <TextBlock Text="svg" VerticalAlignment="Center" FontSize="48" Margin="10,5"/>
+            </StackPanel>
+        </Button>
+
+        <Button Margin="10" Height="90" Background="Transparent" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="{DynamicResource Image_ExportOut}" Height="80" HorizontalAlignment="Left" Stretch="Uniform"/>
+                <TextBlock Text="按钮" VerticalAlignment="Center" FontSize="24" Margin="10,5"/>
+            </StackPanel>
+        </Button>
+
+        <Button Margin="10" Height="90" Background="Transparent" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="{DynamicResource Image_ExportOutWithPen}" Height="80" HorizontalAlignment="Left" Stretch="Uniform"/>
+                <TextBlock Text="按钮" VerticalAlignment="Center" FontSize="24" Margin="10,5"/>
+            </StackPanel>
+        </Button>
+
+        <Button Margin="10" Height="90" Background="Transparent" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="{DynamicResource Image_Folder}" Height="80" HorizontalAlignment="Left" Stretch="Uniform"/>
+                <TextBlock Text="按钮" VerticalAlignment="Center" FontSize="24" Margin="10,5"/>
+            </StackPanel>
+        </Button>
+
+        <Button Margin="10" Height="90" Background="Transparent" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="{DynamicResource Image_ExcelOut}" Height="80" HorizontalAlignment="Left" Stretch="Uniform"/>
+                <TextBlock Text="按钮" VerticalAlignment="Center" FontSize="24" Margin="10,5"/>
+            </StackPanel>
+        </Button>
+
+        <Button Margin="10" Height="90" Background="Transparent" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="{DynamicResource defaul}" Height="40" HorizontalAlignment="Left" Stretch="Uniform" Margin="5"/>
+                <TextBlock Text="按钮" VerticalAlignment="Center" FontSize="24" Margin="10,5"/>
+            </StackPanel>
+        </Button>
+
+        <Button Margin="10" Height="180" Background="Transparent" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="{DynamicResource Image_ExcelOut}" Height="150" HorizontalAlignment="Left" Stretch="Uniform"/>
+                <TextBlock Text="按钮" VerticalAlignment="Center" FontSize="72" Margin="10,5"/>
+            </StackPanel>
+        </Button>
+    </WrapPanel>
+</UserControl>

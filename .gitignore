@@ -1,6 +1,11 @@
 # Build and Object Folders
 image/
 obj/
+.vs/
+
+
+bin/*.dll
+bin/*.xml
 
 # Nuget packages directory
 packages/
