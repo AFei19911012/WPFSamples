@@ -129,6 +129,7 @@
     <Reference Include="System.Data.SQLite, Version=1.0.117.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.117.0\lib\net46\System.Data.SQLite.dll</HintPath>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Security" />
     <Reference Include="System.Threading.Tasks" />
     <Reference Include="System.Windows.Forms" />
@@ -166,6 +167,9 @@
     <Compile Include="Demo\HelixToolkitDemo3.xaml.cs">
       <DependentUpon>HelixToolkitDemo3.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Demo\ImageDemo.xaml.cs">
+      <DependentUpon>ImageDemo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Demo\MelsecPlcDemo.xaml.cs">
       <DependentUpon>MelsecPlcDemo.xaml</DependentUpon>
     </Compile>
@@ -185,6 +189,7 @@
       <DependentUpon>SvgDemo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Entity\Table_Demo.cs" />
+    <Compile Include="Helper\ImageHelper.cs" />
     <Compile Include="Helper\SerializeHelper.cs" />
     <Compile Include="Model\DataModel.cs" />
     <Compile Include="ViewModel\DataGridDemoVM.cs" />
@@ -217,6 +222,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Demo\HelixToolkitDemo3.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Demo\ImageDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -357,6 +366,9 @@
     <Resource Include="Svg\001.svg" />
     <Resource Include="Svg\002.svg" />
     <Resource Include="Svg\003.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\ProfilePicture.jpg" />
   </ItemGroup>
   <Import Project="..\GalaSoft.MvvmLight\GalaSoft.MvvmLight.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

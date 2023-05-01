@@ -82,6 +82,10 @@
             <TabItem Header="SqlSugar Sqlite 数据库">
                 <demo:SqlSugarSqliteDemo/>
             </TabItem>
+
+            <TabItem Header="Image">
+                <demo:ImageDemo/>
+            </TabItem>
         </TabControl>
     </ScrollViewer>
 </Window>
