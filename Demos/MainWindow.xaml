@@ -86,6 +86,10 @@
             <TabItem Header="Image">
                 <demo:ImageDemo/>
             </TabItem>
+
+            <TabItem Header="Drawing">
+                <demo:DrawingDemo/>
+            </TabItem>
         </TabControl>
     </ScrollViewer>
 </Window>

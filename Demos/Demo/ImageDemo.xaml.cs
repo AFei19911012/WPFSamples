@@ -40,6 +40,7 @@ namespace Demos.Demo
         private void Button2_Click(object sender, RoutedEventArgs e)
         {
             ImageHelper.UiSaveToPng(MyGrid, "Data/test02.png");
+            MyImage.Source = new BitmapImage(new Uri(Environment.CurrentDirectory + "/Data/test02.png", UriKind.RelativeOrAbsolute));
         }
     }
 }

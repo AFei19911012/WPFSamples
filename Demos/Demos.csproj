@@ -155,6 +155,9 @@
     <Compile Include="Demo\DataGridStyleDemo.xaml.cs">
       <DependentUpon>DataGridStyleDemo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Demo\DrawingDemo.xaml.cs">
+      <DependentUpon>DrawingDemo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Demo\EpplusDemo.xaml.cs">
       <DependentUpon>EpplusDemo.xaml</DependentUpon>
     </Compile>
@@ -189,6 +192,7 @@
       <DependentUpon>SvgDemo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Entity\Table_Demo.cs" />
+    <Compile Include="Helper\DispatcherHelper.cs" />
     <Compile Include="Helper\ImageHelper.cs" />
     <Compile Include="Helper\SerializeHelper.cs" />
     <Compile Include="Model\DataModel.cs" />
@@ -202,6 +206,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Demo\DataGridStyleDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Demo\DrawingDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

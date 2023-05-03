@@ -6,6 +6,7 @@ obj/
 
 bin/*.dll
 bin/*.xml
+bin/*.exe
 
 # Nuget packages directory
 packages/
