@@ -90,6 +90,10 @@
             <TabItem Header="Drawing">
                 <demo:DrawingDemo/>
             </TabItem>
+
+            <TabItem Header="Drag 拖拽测试">
+                <demo:DragDemo/>
+            </TabItem>
         </TabControl>
     </ScrollViewer>
 </Window>

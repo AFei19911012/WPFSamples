@@ -180,7 +180,8 @@ namespace Demos.Demo
             using (Graphics graphics = Graphics.FromImage(backBitmap))
             {
                 // 设置成高质量或者抗锯齿模式更丝滑
-                graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+                //graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+                graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
                 //绘制外框
                 //graphics.DrawRectangle(new System.Drawing.Pen(System.Drawing.Brushes.DarkGray, 1), new System.Drawing.Rectangle(0, 0, height, height));

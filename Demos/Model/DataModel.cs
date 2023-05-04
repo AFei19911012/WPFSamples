@@ -25,5 +25,8 @@ namespace Demos.Model
 
         [JsonIgnore]
         public string InspectResult { get; set; }
+
+        [JsonIgnore]
+        public string Image { get; set; }
     }
 }

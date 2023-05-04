@@ -155,6 +155,9 @@
     <Compile Include="Demo\DataGridStyleDemo.xaml.cs">
       <DependentUpon>DataGridStyleDemo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Demo\DragDemo.xaml.cs">
+      <DependentUpon>DragDemo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Demo\DrawingDemo.xaml.cs">
       <DependentUpon>DrawingDemo.xaml</DependentUpon>
     </Compile>
@@ -206,6 +209,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Demo\DataGridStyleDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Demo\DragDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -377,6 +384,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Image\ProfilePicture.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\Earth.ico" />
   </ItemGroup>
   <Import Project="..\GalaSoft.MvvmLight\GalaSoft.MvvmLight.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -25,8 +25,6 @@ namespace Demos.Demo
         public SqlSugarSqliteDemo()
         {
             InitializeComponent();
-
-            Init();
         }
 
         /// <summary>
@@ -45,10 +43,7 @@ namespace Demos.Demo
             return db;
         }
 
-        /// <summary>
-        /// 初始化数据库
-        /// </summary>
-        private void Init()
+        private void ButtonNew_Click(object sender, RoutedEventArgs e)
         {
             var db = CreateDB();
             db.Ado.ExecuteCommand("VACUUM");

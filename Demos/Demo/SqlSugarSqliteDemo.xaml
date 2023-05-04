@@ -8,6 +8,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Content="新建" FontSize="24" Height="48" Margin="5" Click="ButtonNew_Click"/>
             <Button Content="增加" FontSize="24" Height="48" Margin="5" Click="ButtonAdd_Click"/>
             <Button Content="删除" FontSize="24" Height="48" Margin="5" Click="ButtonDel_Click"/>
             <Button Content="修改" FontSize="24" Height="48" Margin="5" Click="ButtonUpdate_Click"/>
