@@ -1,6 +1,15 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:o="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options">
+    
+    <DrawingImage o:Freeze="True" x:Key="Image_000000">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <GeometryDrawing Brush="#FF1890FF" Geometry=""/>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+    
     <DrawingImage x:Key="Image_ExcelOut" o:Freeze="True">
         <DrawingImage.Drawing>
             <DrawingGroup>
@@ -53,7 +62,7 @@
         </DrawingImage.Drawing>
     </DrawingImage>
 
-    <DrawingImage o:Freeze="True" x:Key="defaul">
+    <DrawingImage o:Freeze="True" x:Key="default">
         <DrawingImage.Drawing>
             <DrawingGroup>
                 <GeometryDrawing Brush="#FF1890FF" Geometry="M919.466667 264.533333V832c0 46.933333-38.4 85.333333-85.333334 85.333333h-640c-46.933333 0-85.333333-38.4-85.333333-85.333333V192c0-46.933333 38.4-85.333333 85.333333-85.333333h567.466667c6.4 0 10.666667 2.133333 14.933333 6.4l136.533334 136.533333c4.266667 4.266667 6.4 8.533333 6.4 14.933333z"/>

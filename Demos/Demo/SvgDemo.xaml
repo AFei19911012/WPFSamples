@@ -46,7 +46,7 @@
 
         <Button Margin="10" Height="90" Background="Transparent" VerticalAlignment="Center">
             <StackPanel Orientation="Horizontal">
-                <Image Source="{DynamicResource defaul}" Height="40" HorizontalAlignment="Left" Stretch="Uniform" Margin="5"/>
+                <Image Source="{DynamicResource default}" Height="40" HorizontalAlignment="Left" Stretch="Uniform" Margin="5"/>
                 <TextBlock Text="按钮" VerticalAlignment="Center" FontSize="24" Margin="10,5"/>
             </StackPanel>
         </Button>
