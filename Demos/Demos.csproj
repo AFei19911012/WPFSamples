@@ -176,6 +176,9 @@
     <Compile Include="Demo\ImageDemo.xaml.cs">
       <DependentUpon>ImageDemo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Demo\LockDemo.xaml.cs">
+      <DependentUpon>LockDemo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Demo\MelsecPlcDemo.xaml.cs">
       <DependentUpon>MelsecPlcDemo.xaml</DependentUpon>
     </Compile>
@@ -241,6 +244,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Demo\ImageDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Demo\LockDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

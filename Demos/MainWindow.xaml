@@ -7,93 +7,101 @@
         mc:Ignorable="d"
         Closing="Window_Closing"
         Title="Demos" Height="650" Width="1000">
-    <ScrollViewer>
-        <TabControl TabStripPlacement="Left">
-            <TabItem Header="NPOI: Excel 读写">
-                <demo:NpoiDemo/>
-            </TabItem>
-            <TabItem Header="任务线程案例">
-                <demo:ThreadTaskDemo/>
-            </TabItem>
-            <TabItem Header="InkCanvas绘制箭头">
-                <demo:DrawingTransformArrow/>
-            </TabItem>
-            <TabItem Header="TCP 通讯测试">
-                <demo:TcpDemo/>
-            </TabItem>
-            <TabItem Header="Modbus 通讯测试">
-                <demo:ModbusDemo/>
-            </TabItem>
-            <TabItem Header="日志记录">
-                <Grid>
-                    <demo:LoggerDemo x:Name="MyLogger"/>
-                    <StackPanel Orientation="Vertical" HorizontalAlignment="Right">
-                        <Button Content="添加日志" Click="BtnLogger_Click"/>
-                    </StackPanel>
-                </Grid>
-            </TabItem>
-            <TabItem Header="自动关闭的窗体">
-                <Button Content="显示自动关闭的窗体" Click="BtnAutoClosedWindow_Click"/>
-            </TabItem>
-            <TabItem Header="DataGrid 测试">
-                <demo:DataGridDemo/>
-            </TabItem>
+    <TabControl>
+        <TabItem Header="Page01">
+            <TabControl TabStripPlacement="Left">
+                <TabItem Header="NPOI: Excel 读写">
+                    <demo:NpoiDemo/>
+                </TabItem>
+                <TabItem Header="任务线程案例">
+                    <demo:ThreadTaskDemo/>
+                </TabItem>
+                <TabItem Header="InkCanvas绘制箭头">
+                    <demo:DrawingTransformArrow/>
+                </TabItem>
+                <TabItem Header="TCP 通讯测试">
+                    <demo:TcpDemo/>
+                </TabItem>
+                <TabItem Header="Modbus 通讯测试">
+                    <demo:ModbusDemo/>
+                </TabItem>
+                <TabItem Header="日志记录">
+                    <Grid>
+                        <demo:LoggerDemo x:Name="MyLogger"/>
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Right">
+                            <Button Content="添加日志" Click="BtnLogger_Click"/>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="自动关闭的窗体">
+                    <Button Content="显示自动关闭的窗体" Click="BtnAutoClosedWindow_Click"/>
+                </TabItem>
+                <TabItem Header="DataGrid 测试">
+                    <demo:DataGridDemo/>
+                </TabItem>
 
-            <TabItem Header="HelixToolkit 测试">
-                <demo:HelixToolkitDemo/>
-            </TabItem>
+                <TabItem Header="HelixToolkit 测试">
+                    <demo:HelixToolkitDemo/>
+                </TabItem>
 
-            <TabItem Header="HelixToolkit 目标选中">
-                <demo:HelixToolkitDemo2/>
-            </TabItem>
+                <TabItem Header="HelixToolkit 目标选中">
+                    <demo:HelixToolkitDemo2/>
+                </TabItem>
 
-            <TabItem Header="HelixToolkit 3D 模型阅读器">
-                <demo:HelixToolkitDemo3/>
-            </TabItem>
+                <TabItem Header="HelixToolkit 3D 模型阅读器">
+                    <demo:HelixToolkitDemo3/>
+                </TabItem>
 
-            <TabItem Header="三菱PLC MC协议">
-                <demo:MelsecPlcDemo/>
-            </TabItem>
+                <TabItem Header="三菱PLC MC协议">
+                    <demo:MelsecPlcDemo/>
+                </TabItem>
 
-            <TabItem Header="打开、保存文件、打开文件夹">
-                <demo:OpenFileFolderDemo/>
-            </TabItem>
+                <TabItem Header="打开、保存文件、打开文件夹">
+                    <demo:OpenFileFolderDemo/>
+                </TabItem>
 
-            <TabItem Header="DataGrid 样式">
-                <demo:DataGridStyleDemo/>
-            </TabItem>
+                <TabItem Header="DataGrid 样式">
+                    <demo:DataGridStyleDemo/>
+                </TabItem>
 
-            <TabItem Header="ProgressBar">
-                <demo:ProgressBarDemo/>
-            </TabItem>
+                <TabItem Header="ProgressBar">
+                    <demo:ProgressBarDemo/>
+                </TabItem>
 
-            <TabItem Header="Epplus: Excel 读写">
-                <demo:EpplusDemo/>
-            </TabItem>
+                <TabItem Header="Epplus: Excel 读写">
+                    <demo:EpplusDemo/>
+                </TabItem>
 
-            <TabItem Header="显示 SVG 图像">
-                <demo:SvgDemo/>
-            </TabItem>
+                <TabItem Header="显示 SVG 图像">
+                    <demo:SvgDemo/>
+                </TabItem>
 
-            <TabItem Header="文件序列化和反序列化">
-                <demo:SerializationDemo/>
-            </TabItem>
+                <TabItem Header="文件序列化和反序列化">
+                    <demo:SerializationDemo/>
+                </TabItem>
 
-            <TabItem Header="SqlSugar Sqlite 数据库">
-                <demo:SqlSugarSqliteDemo/>
-            </TabItem>
+                <TabItem Header="SqlSugar Sqlite 数据库">
+                    <demo:SqlSugarSqliteDemo/>
+                </TabItem>
+            </TabControl>
+        </TabItem>
+        <TabItem Header="Page02">
+            <TabControl>
+                <TabItem Header="Image">
+                    <demo:ImageDemo/>
+                </TabItem>
 
-            <TabItem Header="Image">
-                <demo:ImageDemo/>
-            </TabItem>
+                <TabItem Header="Drawing">
+                    <demo:DrawingDemo/>
+                </TabItem>
 
-            <TabItem Header="Drawing">
-                <demo:DrawingDemo/>
-            </TabItem>
-
-            <TabItem Header="Drag 拖拽测试">
-                <demo:DragDemo/>
-            </TabItem>
-        </TabControl>
-    </ScrollViewer>
+                <TabItem Header="Drag 拖拽测试">
+                    <demo:DragDemo/>
+                </TabItem>
+                <TabItem Header="Lock 线程锁">
+                    <demo:LockDemo/>
+                </TabItem>
+            </TabControl>
+        </TabItem>
+    </TabControl>
 </Window>
