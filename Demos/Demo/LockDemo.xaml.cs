@@ -81,7 +81,7 @@ namespace Demos.Demo
         {
             NumA = 0;
             NumB = 0;
-
+            Console.WriteLine("");
             string name = (sender as Button).Content.ToString();
             if (name.StartsWith("顺序执行"))
             {
