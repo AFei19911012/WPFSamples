@@ -25,16 +25,6 @@ namespace Demos.Demo
     /// </summary>
     public partial class LockDemo : UserControl
     {
-        public ObservableCollection<DataModel> Source
-        {
-            get { return (ObservableCollection<DataModel>)GetValue(SourceProperty); }
-            set { SetValue(SourceProperty, value); }
-        }
-        public static readonly DependencyProperty SourceProperty =
-            DependencyProperty.Register("Source", typeof(ObservableCollection<DataModel>), typeof(LockDemo), new PropertyMetadata(null));
-
-
-
         private object Obj { get; } = new object();
 
         private int NumA { get; set; } = 0;
@@ -51,19 +41,19 @@ namespace Demos.Demo
         private void MissionA()
         {
             NumA++;
-            Source.Add(new DataModel { Name = "This is MissionA: NumA = " + NumA });
+            Console.WriteLine("This is MissionA: NumA = " + NumA);
             Thread.Sleep(100);
             NumB++;
-            Source.Add(new DataModel { Name = "This is MissionB: NumB = " + NumB });
+            Console.WriteLine("This is MissionA: NumB = " + NumB);
         }
 
         private void MissionB()
         {
             NumA += 10;
-            Source.Add(new DataModel { Name = "This is MissionA: NumA = " + NumA });
+            Console.WriteLine("This is MissionA: NumA = " + NumA);
             Thread.Sleep(300);
             NumB += 10;
-            Source.Add(new DataModel { Name = "This is MissionB: NumB = " + NumB });
+            Console.WriteLine("This is MissionA: NumB = " + NumB);
         }
 
         private void MissionWithLockA()
@@ -84,14 +74,13 @@ namespace Demos.Demo
 
         private void MissionC()
         {
-            Source.Add(new DataModel { Name = "This is MissionC: CCC" });
+            Console.WriteLine("This is MissionC: CCC");
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             NumA = 0;
             NumB = 0;
-            Source = new ObservableCollection<DataModel>();
 
             string name = (sender as Button).Content.ToString();
             if (name.StartsWith("顺序执行"))
@@ -102,33 +91,15 @@ namespace Demos.Demo
             }
             else if (name.StartsWith("多线程"))
             {
-                Task.Run(() =>
-                {
-                    DispatcherHelper.Dispatcher.BeginInvoke(new Action(() => { MissionA(); }));
-                });
-                Task.Run(() =>
-                {
-                    DispatcherHelper.Dispatcher.BeginInvoke(new Action(() => { MissionB(); }));
-                });
-                Task.Run(() =>
-                {
-                    DispatcherHelper.Dispatcher.BeginInvoke(new Action(() => { MissionC(); }));
-                });
+                Task.Run(() => { MissionA(); });
+                Task.Run(() => { MissionB(); });
+                Task.Run(() => { MissionC(); });
             }
             else if (name.StartsWith("线程锁"))
             {
-                Task.Run(() =>
-                { 
-                    DispatcherHelper.Dispatcher.BeginInvoke(new Action(() => { MissionWithLockA(); }));
-                });
-                Task.Run(() =>
-                { 
-                    DispatcherHelper.Dispatcher.BeginInvoke(new Action(() => { MissionWithLockB(); }));
-                });
-                Task.Run(() =>
-                { 
-                    DispatcherHelper.Dispatcher.BeginInvoke(new Action(() => { MissionC(); }));
-                });
+                Task.Run(() => { MissionWithLockA(); });
+                Task.Run(() => { MissionWithLockB(); });
+                Task.Run(() => { MissionC(); });
             }
         }
     }

@@ -7,22 +7,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
         <WrapPanel Orientation="Horizontal">
             <Button Content="顺序执行" Margin="2" Click="Button_Click"/>
             <Button Content="多线程" Margin="2" Click="Button_Click"/>
             <Button Content="线程锁" Margin="2" Click="Button_Click"/>
         </WrapPanel>
-
-        <ListBox Grid.Row="1" ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=local:LockDemo,Mode=FindAncestor},Path=Source}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Margin="5" Text="{Binding Name}" VerticalAlignment="Center"/>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
     </Grid>
 </UserControl>
