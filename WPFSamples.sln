@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31424.327
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmCmdBinding", "MvvmCmdBinding\MvvmCmdBinding.csproj", "{0C9CD4D6-33CD-4DD9-964B-735E461004CA}"
 EndProject
@@ -9,15 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HalconWPF", "HalconWPF\Halc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demos", "Demos\Demos.csproj", "{2EA87DA7-89BD-46C6-B1C1-C65E67BBBE05}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "GalaSoft.MvvmLight", "GalaSoft.MvvmLight\GalaSoft.MvvmLight.shproj", "{E0D724F3-A34B-4ADF-A582-139C4E4AB3CA}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "GalaSoft.MvvmLight", "..\GalaSoft.MvvmLight\GalaSoft.MvvmLight.shproj", "{E0D724F3-A34B-4ADF-A582-139C4E4AB3CA}"
 EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		GalaSoft.MvvmLight\GalaSoft.MvvmLight.projitems*{0c9cd4d6-33cd-4dd9-964b-735e461004ca}*SharedItemsImports = 4
-		GalaSoft.MvvmLight\GalaSoft.MvvmLight.projitems*{1b174f02-9805-4430-babb-740ec23d3245}*SharedItemsImports = 4
-		GalaSoft.MvvmLight\GalaSoft.MvvmLight.projitems*{2ea87da7-89bd-46c6-b1c1-c65e67bbbe05}*SharedItemsImports = 4
-		GalaSoft.MvvmLight\GalaSoft.MvvmLight.projitems*{e0d724f3-a34b-4adf-a582-139c4e4ab3ca}*SharedItemsImports = 13
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|x64 = Debug|x64
@@ -69,5 +63,11 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {79770959-9388-492B-8E98-D33647011510}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		..\GalaSoft.MvvmLight\GalaSoft.MvvmLight.projitems*{0c9cd4d6-33cd-4dd9-964b-735e461004ca}*SharedItemsImports = 4
+		..\GalaSoft.MvvmLight\GalaSoft.MvvmLight.projitems*{1b174f02-9805-4430-babb-740ec23d3245}*SharedItemsImports = 4
+		..\GalaSoft.MvvmLight\GalaSoft.MvvmLight.projitems*{2ea87da7-89bd-46c6-b1c1-c65e67bbbe05}*SharedItemsImports = 4
+		..\GalaSoft.MvvmLight\GalaSoft.MvvmLight.projitems*{e0d724f3-a34b-4adf-a582-139c4e4ab3ca}*SharedItemsImports = 13
 	EndGlobalSection
 EndGlobal

@@ -354,6 +354,6 @@
     <Resource Include="Resource\Image\Y.png" />
     <Resource Include="Resource\Image\Z.png" />
   </ItemGroup>
-  <Import Project="..\GalaSoft.MvvmLight\GalaSoft.MvvmLight.projitems" Label="Shared" />
+  <Import Project="..\..\GalaSoft.MvvmLight\GalaSoft.MvvmLight.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
