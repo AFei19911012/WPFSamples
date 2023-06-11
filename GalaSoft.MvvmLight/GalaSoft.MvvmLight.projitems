@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>e0d724f3-a34b-4adf-a582-139c4e4ab3ca</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>GalaSoft.MvvmLight</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Command\RelayCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Command\RelayCommandGeneric.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\1DesignerPlatformLibrary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\DesignerPlatformLibrary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\Empty.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\FeatureDetection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\IExecuteWithObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\IExecuteWithObjectAndResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\WeakAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\WeakActionGeneric.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\WeakFunc.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\WeakFuncGeneric.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ICleanup.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messaging\GenericMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messaging\IMessenger.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messaging\MessageBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messaging\Messenger.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messaging\NotificationMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messaging\NotificationMessageAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messaging\NotificationMessageActionGeneric.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messaging\NotificationMessageGeneric.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messaging\NotificationMessageWithCallback.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messaging\PropertyChangedMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messaging\PropertyChangedMessageBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ObservableObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModelBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\IDialogService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\INavigationService.cs" />
+  </ItemGroup>
+</Project>
