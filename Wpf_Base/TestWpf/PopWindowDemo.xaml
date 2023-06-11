@@ -13,7 +13,6 @@
             <Button Content="错误弹窗" Margin="5" Click="ButtonError_Click"/>
             <Button Content="询问窗体" Margin="5" Click="ButtonQuestion_Click"/>
             <Button Content="登陆窗体" Margin="5" Click="ButtonLogin_Click"/>
-            <Button Content="注册窗体" Margin="5" Click="ButtonRegister_Click"/>
         </StackPanel>
     </Grid>
 </UserControl>

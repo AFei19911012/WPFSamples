@@ -52,10 +52,5 @@ namespace Wpf_Base.TestWpf
         {
             WinMethod.ShowLoginWindow("Admin", "123");
         }
-
-        private void ButtonRegister_Click(object sender, RoutedEventArgs e)
-        {
-            WinMethod.ShowRegisterWindow();
-        }
     }
 }
