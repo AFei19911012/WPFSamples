@@ -2,6 +2,10 @@
 
 记录 WPF 和 Halcon 编程的学习案例 :smile:
 
+2023.6.11 新增：视觉检测常用的模板匹配工具、二次测量工具、TCP通讯模块、相机模块、日志模块
+
+
+
 ```
 【WPF&Halcon案例代码解析】 https://www.zhihu.com/column/c_1403661250718617600 
 Github https://github.com/AFei19911012/WPFSamples 
