@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="TestUnit.Demo.Demo07"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:TestUnit.ViewModel" 
+             xmlns:cx="clr-namespace:WpfControlsX.ControlX;assembly=WpfControlsX"
+             mc:Ignorable="d">
+    <UserControl.DataContext>
+        <vm:MainVM/>
+    </UserControl.DataContext>
+    <Grid>
+        <ScrollViewer>
+            <VirtualizingStackPanel HorizontalAlignment="Left">
+                <WrapPanel Orientation="Horizontal" Margin="10">
+                    <StackPanel Orientation="Vertical" Margin="10">
+                        <cx:WxTextBlock Text="WxProgressBar 样式" FontSize="24" HorizontalAlignment="Left"/>
+
+                        <cx:WxProgressBar Value="0.25" Margin="20" Width="500" Title="进度"
+                                          FontSize="18" Text="0.25"/>
+
+                        <cx:WxProgressBar Value="0.75" Margin="20" Width="500" Title="进度" CornerRadius="10"
+                                          FontSize="18" Text="75%"/>
+
+                        <UniformGrid Columns="2">
+                            <cx:WxProgressBar Value="{Binding Percent}" Margin="20,100" cx:ExtendElement.Angle="90"
+                                              Title="进度" FontSize="18" Text="{Binding Percent, StringFormat={}{0:P2}}"/>
+
+                            <cx:WxProgressBar Value="{Binding Percent}" Margin="20" ProgressBarType="Circle" Thickness="20"
+                                              Text="{Binding Percent, StringFormat={}{0:P2}}"/>
+                        </UniformGrid>
+                    </StackPanel>
+                    
+                    <UniformGrid Name="PART_UniformGrid" Rows="3">
+                        <cx:WxStepBar x:Name="PART_Step" StepIndex="{Binding IntProgress,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Bottom">
+                            <cx:WxStepBarItem Content="选择ROI"/>
+                            <cx:WxStepBarItem Content="编辑ROI"/>
+                            <cx:WxStepBarItem Content="选择模板轮廓"/>
+                            <cx:WxStepBarItem Content="完成"/>
+                        </cx:WxStepBar>
+
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10">
+                            <cx:WxButton Content="上一步" Command="{Binding PrevCommand}" CommandParameter="{Binding ElementName=PART_UniformGrid}"/>
+                            <cx:WxButton Content="下一步" Command="{Binding NextCommand}" CommandParameter="{Binding ElementName=PART_UniformGrid}"/>
+                        </StackPanel>
+
+                        <cx:WxStepBar StepIndex="0" ItemsSource="{Binding ListSteps}" VerticalAlignment="Top"/>
+                    </UniformGrid>
+                </WrapPanel>
+            </VirtualizingStackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

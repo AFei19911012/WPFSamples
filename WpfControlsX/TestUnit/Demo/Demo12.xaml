@@ -1,0 +1,118 @@
+﻿<UserControl x:Class="TestUnit.Demo.Demo12"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:TestUnit.ViewModel" 
+             xmlns:cx="clr-namespace:WpfControlsX.ControlX;assembly=WpfControlsX"
+             mc:Ignorable="d"
+             Loaded="UserControl_Loaded">
+    <UserControl.DataContext>
+        <vm:MainVM/>
+    </UserControl.DataContext>
+    <Grid>
+        <ScrollViewer>
+            <VirtualizingStackPanel HorizontalAlignment="Left">
+                <StackPanel Orientation="Vertical">
+                    <cx:WxTextBlock Text="分隔线" FontSize="24"/>
+                    <WrapPanel Margin="10">
+                        <StackPanel Margin="16" Width="300">
+                            <cx:WxDivider/>
+                            <cx:WxDivider Content="Title"/>
+                            <cx:WxDivider Content="Title" Padding="10,0"/>
+                            <cx:WxDivider LineStrokeThickness="2" LineStroke="{DynamicResource BrushPrimary}"/>
+                            <cx:WxDivider LineStrokeDashArray="2,2"/>
+                        </StackPanel>
+                        <StackPanel Margin="16" Width="300">
+                            <cx:WxDivider Content="Title" HorizontalContentAlignment="Left"/>
+                            <cx:WxDivider Content="Title" Padding="10,0"  HorizontalContentAlignment="Right"/>
+                            <StackPanel Orientation="Horizontal">
+                                <cx:WxButton Content="Button"/>
+                                <cx:WxDivider Orientation="Vertical" MaxHeight="16"/>
+                                <cx:WxButton Content="Button"/>
+                                <cx:WxDivider Orientation="Vertical" MaxHeight="16"/>
+                                <cx:WxButton Content="Button"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
+                                <cx:WxButton Content="Button"/>
+                                <cx:WxDivider LineStrokeThickness="2" Orientation="Vertical" MaxHeight="16"/>
+                                <cx:WxButton Content="Button"/>
+                                <cx:WxDivider LineStrokeThickness="2" Orientation="Vertical" MaxHeight="16"/>
+                                <cx:WxButton Content="Button"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
+                                <cx:WxButton Content="Button"/>
+                                <cx:WxDivider LineStrokeThickness="2" LineStroke="{DynamicResource BrushPrimary}" Orientation="Vertical" MaxHeight="16"/>
+                                <cx:WxButton Content="Button"/>
+                                <cx:WxDivider LineStrokeThickness="2" LineStroke="{DynamicResource BrushPrimary}" Orientation="Vertical" MaxHeight="16"/>
+                                <cx:WxButton Content="Button"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </WrapPanel>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical">
+                    <cx:WxTextBlock Text="全球通用头像" FontSize="24"/>
+                    <StackPanel Margin="10" Orientation="Horizontal">
+                        <UniformGrid Rows="3" Columns="3" Width="240" Height="240">
+                            <cx:WxGravatar Id="User1"/>
+                            <cx:WxGravatar Id="User2"/>
+                            <cx:WxGravatar Padding="0" Id="User1">
+                                <Image Source="../Image/01.jpg"/>
+                            </cx:WxGravatar>
+                            <cx:WxGravatar Id="User4"/>
+                            <cx:WxGravatar Id="User5" CornerRadius="64"/>
+                            <cx:WxGravatar Id="User6"/>
+                            <cx:WxGravatar Source="../Image/02.jpg" Id="User1"/>
+                            <cx:WxGravatar Id="User8"/>
+                            <cx:WxGravatar Id="User9"/>
+                        </UniformGrid>
+                        <StackPanel Margin="10" VerticalAlignment="Center">
+                            <cx:WxTextBox Name="TextBoxName" Text="User1" BorderThickness="1"/>
+                            <cx:WxGravatar Height="180" Width="180" Id="{Binding ElementName=TextBoxName, Path=Text}" Margin="10"/>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical">
+                    <cx:WxTextBlock Text="放大镜" FontSize="24"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Text="{Binding ElementName=MySlider,Path=Value}" VerticalAlignment="Center" Margin="5" FontSize="18"/>
+                        <cx:WxSlider Name="MySlider" Minimum="1" Maximum="10" Value="{Binding ScaleXY}" SmallChange="1" LargeChange="2"/>
+                    </StackPanel>
+                    <UniformGrid Rows="1" Columns="2">
+                        <Image Margin="16" cx:WxMagnifier.Instance="{x:Static cx:WxMagnifier.Default}" Source="{Binding ImgPath}" Stretch="Uniform"/>
+                        <Image Margin="16" Source="{Binding ImgPath}" Stretch="Uniform">
+                            <cx:WxMagnifier.Instance>
+                                <cx:WxMagnifier Scale="{Binding ScaleXY}" HorizontalOffset="-16" VerticalOffset="-16"/>
+                            </cx:WxMagnifier.Instance>
+                        </Image>
+                    </UniformGrid>
+
+                    <Grid Width="600" Height="400">
+                        <Canvas Background="ForestGreen">
+                            <Border x:Name="border1" BorderThickness="2" BorderBrush="White" Width="280" Height="100"
+                                    Canvas.Left="200" Canvas.Top="100" RenderTransformOrigin="0.5,0.5">
+                                <Grid>
+                                    <cx:WxTransformThumb DataContext="{Binding ElementName=border1}"/>
+                                    <TextBlock Text="WpfControlsX" Foreground="White" FontSize="40"
+                                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Grid>
+                            </Border>
+
+                            <Border x:Name="border2" BorderThickness="2" BorderBrush="White" Width="280" Height="100"
+                                    Canvas.Left="200" Canvas.Top="250" RenderTransformOrigin="0.5,0.5">
+                                <Grid>
+                                    <cx:WxTransformThumb DataContext="{Binding ElementName=border2}"/>
+                                    <Image Source="../Image/1.jpg" Stretch="Uniform"/>
+                                </Grid>
+                            </Border>
+                        </Canvas>
+                    </Grid>
+                </StackPanel>
+                
+                
+            </VirtualizingStackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

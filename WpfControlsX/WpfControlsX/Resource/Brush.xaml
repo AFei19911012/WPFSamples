@@ -1,0 +1,85 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Color x:Key="ColorPrimary">#FF1E90FF</Color>
+    <Color x:Key="ColorAccent">#FFFF3300</Color>
+    <Color x:Key="ColorDanger">#FFCB3A56</Color>
+    <Color x:Key="ColorInfo">#FF43A9C7</Color>
+    <Color x:Key="ColorWarning">#FFFFA631</Color>
+    <Color x:Key="ColorSuccess">#FF0AA344</Color>
+    <SolidColorBrush x:Key="BrushPrimary" Color="{DynamicResource ColorPrimary}"/>
+    <SolidColorBrush x:Key="BrushAccent" Color="{DynamicResource ColorAccent}"/>
+    <SolidColorBrush x:Key="BrushDanger" Color="{DynamicResource ColorDanger}"/>
+    <SolidColorBrush x:Key="BrushInfo" Color="{DynamicResource ColorInfo}"/>
+    <SolidColorBrush x:Key="BrushWarning" Color="{DynamicResource ColorWarning}"/>
+    <SolidColorBrush x:Key="BrushSuccess" Color="{DynamicResource ColorSuccess}"/>
+
+    <Color x:Key="ColorRegion">#FFF5F5F5</Color>
+    <Color x:Key="ColorSecondaryRegion">#FFEEEEEE</Color>
+    <Color x:Key="ColorBorder">#FFE0E0E0</Color>
+    <Color x:Key="ColorSecondaryBorder">#FF212121</Color>
+    <Color x:Key="ColorText">#FF212121</Color>
+    <Color x:Key="ColorSecondaryText">#FF757575</Color>
+    <Color x:Key="ColorReversedText">#FFF8F8FF</Color>
+    <Color x:Key="ColorWindowClosedMouseEnter">#FFF07C82</Color>
+    <SolidColorBrush x:Key="BrushRegion" Color="{DynamicResource ColorRegion}"/>
+    <SolidColorBrush x:Key="BrushSecondaryRegion" Color="{DynamicResource ColorSecondaryRegion}"/>
+    <SolidColorBrush x:Key="BrushBorder" Color="{DynamicResource ColorBorder}"/>
+    <SolidColorBrush x:Key="BrushSecondaryBorder" Color="{DynamicResource ColorSecondaryBorder}"/>
+    <SolidColorBrush x:Key="BrushText" Color="{DynamicResource ColorText}"/>
+    <SolidColorBrush x:Key="BrushSecondaryText" Color="{DynamicResource ColorSecondaryText}"/>
+    <SolidColorBrush x:Key="BrushReversedText" Color="{DynamicResource ColorReversedText}"/>
+    <SolidColorBrush x:Key="BrushWindowClosedMouseEnter" Color="{DynamicResource ColorReversedText}"/>
+
+    <Color x:Key="ColorWaterMark">#FF919192</Color>
+    <SolidColorBrush x:Key="BrushWaterMark" Color="{DynamicResource ColorWaterMark}"/>
+
+    <Color x:Key="ColorListBackground">#FFFEF9EB</Color>
+    <Color x:Key="ColorListMouseOver">#FFFCEEB9</Color>
+    <Color x:Key="ColorListSelected">#FFFAE388</Color>
+    <Color x:Key="ColorListLostFocus">#FFFFE4E1</Color>
+    <Color x:Key="ColorDataGridBackgroundLight">#FFE7E7E7</Color>
+    <Color x:Key="ColorDataGridBackgroundMiddle">#FFF2F2F2</Color>
+    <SolidColorBrush x:Key="BrushListBackground" Color="{DynamicResource ColorListBackground}"/>
+    <SolidColorBrush x:Key="BrushListMouseOver" Color="{DynamicResource ColorListMouseOver}"/>
+    <SolidColorBrush x:Key="BrushListSelected" Color="{DynamicResource ColorListSelected}"/>
+    <SolidColorBrush x:Key="BrushListLostFocus" Color="{DynamicResource ColorListLostFocus}"/>
+    <SolidColorBrush x:Key="BrushDataGridBackgroundLight" Color="{DynamicResource ColorDataGridBackgroundLight}"/>
+    <SolidColorBrush x:Key="BrushDataGridBackgroundMiddle" Color="{DynamicResource ColorDataGridBackgroundMiddle}"/>
+
+    <Color x:Key="ColorScrollBarThumb">#FF646465</Color>
+    <Color x:Key="ColorScrollBarRepeatButton">#90000000</Color>
+    <SolidColorBrush x:Key="BrushScrollBarThumb" Color="{DynamicResource ColorScrollBarThumb}"/>
+    <SolidColorBrush x:Key="BrushScrollBarRepeatButton" Color="{DynamicResource ColorScrollBarRepeatButton}"/>
+
+    <Color x:Key="ColorMainContentForeground">#FFF0F0F0</Color>
+    <SolidColorBrush x:Key="BrushMainContentForeground" Color="{DynamicResource ColorMainContentForeground}"/>
+    <DrawingBrush x:Key="BrushMainContentForegroundDrawing" RenderOptions.CachingHint="Cache" Viewport="0,0,16,16" ViewportUnits="Absolute" Stretch="None" TileMode="Tile">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <GeometryDrawing Brush="{DynamicResource BrushMainContentForeground}">
+                    <GeometryDrawing.Geometry>
+                        <GeometryGroup>
+                            <RectangleGeometry Rect="0,0,8,8" />
+                            <RectangleGeometry Rect="8,8,8,8" />
+                        </GeometryGroup>
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+    <Color x:Key="ColorOpacity">#40000000</Color>
+    <SolidColorBrush x:Key="BrushOpacity" Color="{DynamicResource ColorOpacity}"/>
+
+    <Color x:Key="ColorBlack">#FF333333</Color>
+    <SolidColorBrush x:Key="BrushBlack" Color="{DynamicResource ColorBlack}"/>
+
+    <Color x:Key="ColorDarkMask">#20000000</Color>
+    <Color x:Key="ColorDarkOpacity">#40000000</Color>
+    <SolidColorBrush x:Key="BrushMaskColor" Color="{DynamicResource ColorDarkMask}"/>
+    <SolidColorBrush x:Key="BrushDarkOpacity" Color="{DynamicResource ColorDarkOpacity}"/>
+
+    <Color x:Key="ColorBackground">#FFEEEEEE</Color>
+    <SolidColorBrush x:Key="BrushBackground" Color="{DynamicResource ColorBackground}"/>
+</ResourceDictionary>

@@ -1,0 +1,57 @@
+﻿<UserControl x:Class="TestUnit.Demo.Demo10"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:TestUnit.ViewModel" 
+             xmlns:cx="clr-namespace:WpfControlsX.ControlX;assembly=WpfControlsX"
+             mc:Ignorable="d">
+    <UserControl.DataContext>
+        <vm:MainVM/>
+    </UserControl.DataContext>
+    <Grid>
+        <ScrollViewer>
+            <VirtualizingStackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                <StackPanel Orientation="Vertical">
+                    <cx:WxTextBlock Text="三色灯" FontSize="24"/>
+                    <cx:WxThreeColorLamp ThreeColorLampType="Warning" Height="64" Width="64" CornerRadius="32"/>
+                    <cx:WxThreeColorLamp ThreeColorLampType="Running" Height="64" Width="64" CornerRadius="32"/>
+                    <cx:WxThreeColorLamp ThreeColorLampType="Error" IsStart="True" Height="64" Width="64" CornerRadius="32"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical">
+                    <cx:WxTextBlock Text="路径动画" FontSize="24"/>
+                    <cx:WxPathAnimation Duration="0:0:2" Data="{DynamicResource IconGithub}"/>
+                    <cx:WxPathAnimation Duration="0:0:5" Data="{DynamicResource Icon3D}" Stroke="{DynamicResource BrushAccent}"/>
+                    <cx:WxPathAnimation Duration="0:0:5" Data="{DynamicResource Icon3DRotate}" Stroke="{DynamicResource BrushSuccess}"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical">
+                    <cx:WxTextBlock Text="霓虹灯渐变文本" FontSize="24"/>
+                    <cx:WxNeonText Content="霓虹灯渐变文本" FontSize="48"/>
+                    <cx:WxNeonText Content="霓虹灯渐变文本" FontSize="48" IsStart="True"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Margin="10">
+                    <cx:WxTextBlock Text="WxBusyBox 样式" FontSize="24" HorizontalAlignment="Left"/>
+                    <cx:WxBusyBox IsIndeterminate="True" Margin="20"/>
+                    <cx:WxBusyBox BusyBoxType="Circle" Text="等待 ···"/>
+                    <cx:WxBusyBox BusyBoxType="Loading" Text="等待 ···"/>
+                </StackPanel>
+
+                <StackPanel Margin="10" Width="300">
+                    <cx:WxTextBlock Text="滚动效果" FontSize="24" HorizontalAlignment="Left"/>
+                    <cx:WxRunningBlock Content="TextText"/>
+                    <cx:WxRunningBlock Runaway="False" Content="TextText"/>
+                    <cx:WxRunningBlock HorizontalAlignment="Left" Width="200" Content="TextText"/>
+                    <cx:WxRunningBlock HorizontalAlignment="Left" AutoRun="False" Width="200" Runaway="False" Content="TextText" Duration="0:0:1"/>
+                    <cx:WxRunningBlock AutoReverse="True" Content="TextText" Foreground="OrangeRed" Duration="0:0:10"/>
+                    <cx:WxRunningBlock Orientation="Vertical" Content="TextText" Foreground="OrangeRed" Duration="0:0:2"/>
+                    <cx:WxRunningBlock Duration="0:0:5" IsRunning="{Binding IsMouseOver,RelativeSource={RelativeSource Self},Converter={StaticResource Bool2BoolRe}}">
+                        <cx:WxPath Icon="{DynamicResource Icon3D}"/>
+                    </cx:WxRunningBlock>
+                </StackPanel>
+            </VirtualizingStackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

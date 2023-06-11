@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33627.172
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfControlsX", "WpfControlsX\WpfControlsX.csproj", "{2B9CEF09-33F3-436C-9571-BB8DB547CEFF}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "GalaSoft.MvvmLight", "..\GalaSoft.MvvmLight\GalaSoft.MvvmLight.shproj", "{E0D724F3-A34B-4ADF-A582-139C4E4AB3CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestUnit", "TestUnit\TestUnit.csproj", "{781DB5D4-05E9-4585-BF86-030F87731F08}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2B9CEF09-33F3-436C-9571-BB8DB547CEFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B9CEF09-33F3-436C-9571-BB8DB547CEFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B9CEF09-33F3-436C-9571-BB8DB547CEFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B9CEF09-33F3-436C-9571-BB8DB547CEFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{781DB5D4-05E9-4585-BF86-030F87731F08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{781DB5D4-05E9-4585-BF86-030F87731F08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{781DB5D4-05E9-4585-BF86-030F87731F08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{781DB5D4-05E9-4585-BF86-030F87731F08}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C5ADEC5E-D7BF-44ED-880E-D43978DFDB52}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		..\GalaSoft.MvvmLight\GalaSoft.MvvmLight.projitems*{2b9cef09-33f3-436c-9571-bb8db547ceff}*SharedItemsImports = 4
+		..\GalaSoft.MvvmLight\GalaSoft.MvvmLight.projitems*{781db5d4-05e9-4585-bf86-030f87731f08}*SharedItemsImports = 4
+		..\GalaSoft.MvvmLight\GalaSoft.MvvmLight.projitems*{e0d724f3-a34b-4adf-a582-139c4e4ab3ca}*SharedItemsImports = 13
+	EndGlobalSection
+EndGlobal

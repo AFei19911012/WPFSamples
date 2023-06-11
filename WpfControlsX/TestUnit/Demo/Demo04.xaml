@@ -1,0 +1,133 @@
+﻿<UserControl x:Class="TestUnit.Demo.Demo04"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:TestUnit.ViewModel" 
+             xmlns:cx="clr-namespace:WpfControlsX.ControlX;assembly=WpfControlsX"
+             mc:Ignorable="d">
+    <UserControl.DataContext>
+        <vm:MainVM/>
+    </UserControl.DataContext>
+    <Grid>
+        <ScrollViewer>
+            <VirtualizingStackPanel HorizontalAlignment="Left">
+                <WrapPanel Margin="10">
+                    <StackPanel Orientation="Vertical">
+                        <cx:WxTextBlock Text="ListBox 样式一" FontSize="24"/>
+                        <cx:WxListBox ItemsSource="{Binding ListDataModel}" Margin="10" Height="500">
+                            <cx:WxListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Text}"/>
+                                </DataTemplate>
+                            </cx:WxListBox.ItemTemplate>
+                        </cx:WxListBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <cx:WxTextBlock Text="ListBox 样式二" FontSize="24"/>
+                        <cx:WxListBox ItemsSource="{Binding ListDataModel}" Margin="10" Height="500" Width="300">
+                            <cx:WxListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Image Source="{Binding ImagePath}" Height="36" Width="36" Stretch="Uniform" HorizontalAlignment="Left" 
+                                               VerticalAlignment="Center" Margin="5"/>
+                                        <TextBlock Text="{Binding Name}" Margin="55,8,0,0" Foreground="{DynamicResource BrushText}" FontSize="14"/>
+                                        <TextBlock Text="{Binding Text}" Margin="55,30,0,8" Foreground="{DynamicResource BrushSecondaryText}" FontSize="12"/>
+                                        <TextBlock Text="{Binding TimeStr}" Foreground="{DynamicResource BrushSecondaryText}" FontSize="12"
+                                                   HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10,8,8,0"/>
+                                        <Path Visibility="{Binding ShowIcon, Converter={StaticResource Bool2Visibility}}" Stretch="Uniform" 
+                                              Margin="10,0,8,8" Fill="{DynamicResource BrushSecondaryText}" 
+                                              HorizontalAlignment="Right" VerticalAlignment="Bottom" Data="{DynamicResource IconNoDisturb}" 
+                                              Height="12" Width="12"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </cx:WxListBox.ItemTemplate>
+                        </cx:WxListBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <cx:WxTextBlock Text="ListView 样式" FontSize="24"/>
+                        <cx:WxListView ItemsSource="{Binding ListDataModel}" Margin="10" Height="500" Width="500">
+                            <cx:WxListView.View>
+                                <GridView ColumnHeaderContainerStyle="{DynamicResource GridViewColumnHeaderStyle}">
+                                    <GridViewColumn Header="图像" Width="48">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Image Source="{Binding ImagePath}" Height="36" Width="36" Stretch="Uniform"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="名称" DisplayMemberBinding="{Binding Name}" Width="auto"/>
+                                    <GridViewColumn Header="信息" DisplayMemberBinding="{Binding Text}"  Width="auto"/>
+                                    <GridViewColumn Header="模板" Width="150">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <cx:WxCheckBox IsChecked="{Binding ShowIcon}" Content="Template" CheckBoxType="Normal" 
+                                                               IconSize="10"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </cx:WxListView.View>
+                        </cx:WxListView>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <cx:WxTextBlock Text="TreeView 样式一" FontSize="24"/>
+                        <cx:WxTreeView Width="200" Height="500" Margin="10" ItemsSource="{Binding ListDataModel}">
+                            <cx:WxTreeView.ItemTemplate>
+                                <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+                                    <TextBlock Text="{Binding Name}"/>
+                                </HierarchicalDataTemplate>
+                            </cx:WxTreeView.ItemTemplate>
+                        </cx:WxTreeView>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <cx:WxTextBlock Text="TreeView 样式二" FontSize="24"/>
+                        <cx:WxTreeView Width="300" Height="500" Margin="10" ItemsSource="{Binding ListDataModel}">
+                            <cx:WxTreeView.ItemTemplate>
+                                <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+                                    <Grid>
+                                        <Image Source="{Binding ImagePath}" MaxHeight="36" MaxWidth="36" Stretch="Uniform" HorizontalAlignment="Left" 
+                                               VerticalAlignment="Center" Margin="5"/>
+                                        <TextBlock Text="{Binding Name}" Margin="55,8,0,0" Foreground="{DynamicResource BrushText}" FontSize="14"/>
+                                        <TextBlock Text="{Binding Text}" Margin="55,30,0,8" Foreground="{DynamicResource BrushSecondaryText}" FontSize="12"
+                                                   Visibility="{Binding ImagePath,Converter={StaticResource String2Visibility}}"/>
+                                        <TextBlock Text="{Binding TimeStr}" Foreground="{DynamicResource BrushSecondaryText}" FontSize="12"
+                                                   HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10,8,8,0"/>
+                                        <Path Visibility="{Binding ShowIcon, Converter={StaticResource Bool2Visibility}}" Stretch="Uniform" 
+                                              Margin="10,0,8,8" Fill="{DynamicResource BrushSecondaryText}" 
+                                              HorizontalAlignment="Right" VerticalAlignment="Bottom" Data="{DynamicResource IconNoDisturb}" 
+                                              Height="12" Width="12"/>
+                                    </Grid>
+                                </HierarchicalDataTemplate>
+                            </cx:WxTreeView.ItemTemplate>
+                        </cx:WxTreeView>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <cx:WxTextBlock Text="DataGrid 样式" FontSize="24" MouseDown="WxTextBlock_MouseDown"/>
+                        <cx:WxDataGrid ItemsSource="{Binding ListDataModel}" Height="500" Width="450" HeadersVisibility="All" 
+                                       ShowSelectAllIcon="True" ShowRowIndex="True">
+                            <cx:WxDataGrid.Columns>
+                                <DataGridTemplateColumn Header="图像">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Image Source="{Binding ImagePath}" Height="32" Width="32" Stretch="Uniform" HorizontalAlignment="Center" 
+                                                   VerticalAlignment="Center" Margin="5"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Header="名称" Width="auto"  Binding="{Binding  Name}"/>
+                                <DataGridTextColumn Header="备注" Width="auto"  Binding="{Binding Text}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="时间" Width="*"  Binding="{Binding TimeStr}"/>
+                            </cx:WxDataGrid.Columns>
+                        </cx:WxDataGrid>
+                    </StackPanel>
+                </WrapPanel>
+            </VirtualizingStackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

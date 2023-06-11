@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2B9CEF09-33F3-436C-9571-BB8DB547CEFF}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <RootNamespace>WpfControlsX</RootNamespace>
+    <AssemblyName>WpfControlsX</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <LangVersion>preview</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="ControlX\Window\WxIP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ControlX\Window\WxLogin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ControlX\Window\WxNumericalKeyboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resource\Brush.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resource\DrawingImage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resource\Geometry.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Theme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Commands\CloseWindowCommand.cs" />
+    <Compile Include="Commands\FunctionEventArgs`1.cs" />
+    <Compile Include="Commands\PushMainWindow2TopCommand.cs" />
+    <Compile Include="Commands\ShutdownAppCommand.cs" />
+    <Compile Include="ControlX\Animation\RunningBorder.cs" />
+    <Compile Include="ControlX\Animation\ThreeColorLampType.cs" />
+    <Compile Include="ControlX\Animation\WxNeonText.cs" />
+    <Compile Include="ControlX\Animation\WxPathAnimation.cs" />
+    <Compile Include="ControlX\Animation\WxRunningBlock.cs" />
+    <Compile Include="ControlX\Animation\WxThreeColorLamp.cs" />
+    <Compile Include="ControlX\Base\AdornerContainer.cs" />
+    <Compile Include="ControlX\Base\AdornerElement.cs" />
+    <Compile Include="ControlX\Base\Col.cs" />
+    <Compile Include="ControlX\Base\ColLayout.cs" />
+    <Compile Include="ControlX\Base\ColLayoutStatus.cs" />
+    <Compile Include="ControlX\Base\ElementAdorner.cs" />
+    <Compile Include="ControlX\Base\HeaderedSelectableItem.cs" />
+    <Compile Include="ControlX\Base\IGravatarGenerator.cs" />
+    <Compile Include="ControlX\Base\ISelectable.cs" />
+    <Compile Include="ControlX\Base\RegularItemsControl.cs" />
+    <Compile Include="ControlX\Base\Row.cs" />
+    <Compile Include="ControlX\Base\SelectableItem.cs" />
+    <Compile Include="ControlX\Base\SimpleItemsControl.cs" />
+    <Compile Include="ControlX\Container\WxToolBar.cs" />
+    <Compile Include="ControlX\Other\WxTransformThumb.cs" />
+    <Compile Include="ControlX\Other\WxMagnifier.cs" />
+    <Compile Include="ControlX\Other\WxGravatar.cs" />
+    <Compile Include="ControlX\Other\WxDivider.cs" />
+    <Compile Include="ControlX\Other\WxPath.cs" />
+    <Compile Include="ControlX\Container\FlyoutContainer.cs" />
+    <Compile Include="ControlX\Container\FlyoutShowMode.cs" />
+    <Compile Include="ControlX\Container\WxFlyout.cs" />
+    <Compile Include="ControlX\ImageText\WxCard.cs" />
+    <Compile Include="ControlX\ImageText\WxCarousel.cs" />
+    <Compile Include="ControlX\ImageText\WxCarouselItem.cs" />
+    <Compile Include="ControlX\ImageText\WxCoverView.cs" />
+    <Compile Include="ControlX\ImageText\WxCoverViewContent.cs" />
+    <Compile Include="ControlX\ImageText\WxCoverViewItem.cs" />
+    <Compile Include="ControlX\InputBox\WxToggleComboBox.cs" />
+    <Compile Include="ControlX\InputBox\WxFilePathBox.cs" />
+    <Compile Include="ControlX\InputBox\WxSearchBox.cs" />
+    <Compile Include="ControlX\Menu\WxDrawerMenu.cs" />
+    <Compile Include="ControlX\Menu\WxDrawerMenuItem.cs" />
+    <Compile Include="ControlX\Menu\WxMenuItem.cs" />
+    <Compile Include="ControlX\Base\WxSimplePanel.cs" />
+    <Compile Include="ControlX\Progress\StepBarState.cs" />
+    <Compile Include="ControlX\Progress\WxStepBar.cs" />
+    <Compile Include="ControlX\Progress\WxStepBarItem.cs" />
+    <Compile Include="ControlX\Slider\WxRangeSlider.cs" />
+    <Compile Include="ControlX\Slider\WxSlider.cs" />
+    <Compile Include="ControlX\Menu\WxContextMenu.cs" />
+    <Compile Include="ControlX\Menu\WxMenu.cs" />
+    <Compile Include="ControlX\Animation\BusyBoxType.cs" />
+    <Compile Include="ControlX\Animation\WxBusyBox.cs" />
+    <Compile Include="ControlX\Button\CheckBoxType.cs" />
+    <Compile Include="ControlX\ExtendElement.cs" />
+    <Compile Include="ControlX\Button\ButtonType.cs" />
+    <Compile Include="ControlX\Button\WxCheckBox.cs" />
+    <Compile Include="ControlX\InputBox\WxComboBox.cs" />
+    <Compile Include="ControlX\InputBox\WxComboBoxBaseData.cs" />
+    <Compile Include="ControlX\InputBox\WxCheckComboBox.cs" />
+    <Compile Include="ControlX\List\WxDataGrid.cs" />
+    <Compile Include="ControlX\Container\WxExpander.cs" />
+    <Compile Include="ControlX\Container\GroupBoxTitlePosition.cs" />
+    <Compile Include="ControlX\Container\WxGroupBox.cs" />
+    <Compile Include="ControlX\Text\LabelType.cs" />
+    <Compile Include="ControlX\Text\StrokePosition.cs" />
+    <Compile Include="ControlX\Text\WxLabel.cs" />
+    <Compile Include="ControlX\List\WxListBox.cs" />
+    <Compile Include="ControlX\List\WxListView.cs" />
+    <Compile Include="ControlX\Container\WxTabItem.cs" />
+    <Compile Include="ControlX\Text\WxOutlineText.cs" />
+    <Compile Include="ControlX\ValueBoxes.cs" />
+    <Compile Include="ControlX\Window\WxIP.xaml.cs">
+      <DependentUpon>WxIP.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ControlX\Window\WxLogin.xaml.cs">
+      <DependentUpon>WxLogin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ControlX\Window\MessageBox.cs" />
+    <Compile Include="ControlX\Window\MessageBoxType.cs" />
+    <Compile Include="ControlX\Window\WxMessageBox.cs" />
+    <Compile Include="ControlX\InputBox\WxNumericUpDown.cs" />
+    <Compile Include="ControlX\InputBox\WxPasswordBox.cs" />
+    <Compile Include="ControlX\Progress\ProgressBarType.cs" />
+    <Compile Include="ControlX\Progress\WxProgressBar.cs" />
+    <Compile Include="ControlX\Button\RadioButtonType.cs" />
+    <Compile Include="ControlX\Button\WxRadioButton.cs" />
+    <Compile Include="ControlX\Button\WxRepeatButton.cs" />
+    <Compile Include="ControlX\Button\WxResetButton.cs" />
+    <Compile Include="ControlX\Button\WxButton.cs" />
+    <Compile Include="ControlX\Container\WxScrollViewer.cs" />
+    <Compile Include="ControlX\Container\WxTabControl.cs" />
+    <Compile Include="ControlX\Text\WxTextBlock.cs" />
+    <Compile Include="ControlX\InputBox\WxTextBox.cs" />
+    <Compile Include="ControlX\Button\ToggleButtonType.cs" />
+    <Compile Include="ControlX\Button\WxToggleButton.cs" />
+    <Compile Include="ControlX\List\WxTreeView.cs" />
+    <Compile Include="ControlX\Window\WxNotification.cs" />
+    <Compile Include="ControlX\Window\WxNumericalKeyboard.xaml.cs">
+      <DependentUpon>WxNumericalKeyboard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ControlX\Window\WxWindow.cs" />
+    <Compile Include="Converter\BoolToBoolReConverter.cs" />
+    <Compile Include="Converter\BoolToOrientationConverter.cs" />
+    <Compile Include="Converter\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converter\BorderCircularClipConverter.cs" />
+    <Compile Include="Converter\ColLayoutConverter.cs" />
+    <Compile Include="Converter\DataGridRowToIndexConverter.cs" />
+    <Compile Include="Converter\NumToThicknessConverter.cs" />
+    <Compile Include="Converter\ObjectNullToVisibilityConverter.cs" />
+    <Compile Include="Converter\PercentToAngleConverter.cs" />
+    <Compile Include="Converter\WxStepBarItemToIndexConverter.cs" />
+    <Compile Include="Converter\StringToVisibilityConverter.cs" />
+    <Compile Include="Converter\StrToNumConverter.cs" />
+    <Compile Include="Helper\AnimationHelper.cs" />
+    <Compile Include="Helper\DesignerHelper.cs" />
+    <Compile Include="ControlX\Base\GithubGravatarGenerator.cs" />
+    <Compile Include="Helper\RegexPatterns.cs" />
+    <Compile Include="Helper\ResourceHelper.cs" />
+    <Compile Include="Helper\StringHelper.cs" />
+    <Compile Include="Helper\TokenizerHelper.cs" />
+    <Compile Include="Helper\UIElementHelper.cs" />
+    <Compile Include="Converter\VisibilityToReverse.cs" />
+    <Compile Include="Commands\ControlCommands.cs" />
+    <Compile Include="Helper\DispatcherHelper.cs" />
+    <Compile Include="Helper\DialogHelper.cs" />
+    <Compile Include="Helper\DpiHelper.cs" />
+    <Compile Include="Helper\ExternDll.cs" />
+    <Compile Include="Helper\FileIoHelper.cs" />
+    <Compile Include="Helper\GeometryHelper.cs" />
+    <Compile Include="Helper\InteropMethods.cs" />
+    <Compile Include="Helper\MathHelper.cs" />
+    <Compile Include="Helper\TextHelper.cs" />
+    <Compile Include="Helper\ValidateHelper.cs" />
+    <Compile Include="Helper\VisualHelper.cs" />
+    <Compile Include="Helper\WindowHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Validation\GreaterRule.cs" />
+    <Compile Include="Validation\NotNullRule.cs" />
+    <Compile Include="Validation\NumberRule.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Logo.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="..\..\GalaSoft.MvvmLight\GalaSoft.MvvmLight.projitems" Label="Shared" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

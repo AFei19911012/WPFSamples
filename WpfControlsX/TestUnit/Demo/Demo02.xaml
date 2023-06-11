@@ -1,0 +1,125 @@
+﻿<UserControl x:Class="TestUnit.Demo.Demo02"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:TestUnit.ViewModel" 
+             xmlns:cx="clr-namespace:WpfControlsX.ControlX;assembly=WpfControlsX" 
+             FontSize="18"
+             mc:Ignorable="d" >
+    <UserControl.DataContext>
+        <vm:MainVM/>
+    </UserControl.DataContext>
+    <Grid>
+        <ScrollViewer>
+            <VirtualizingStackPanel HorizontalAlignment="Left" Orientation="Vertical">
+                <StackPanel Orientation="Vertical">
+                    <cx:WxTextBlock Text="Button、ResetButton、RepeatButton 文字、图标、文字+图标" HorizontalAlignment="Left"/>
+                    <WrapPanel Margin="0,0,0,20">
+                        <cx:WxButton Content="IconText" cx:ExtendElement.AuthorityLevel="0"/>
+                        <cx:WxButton Content="IconText" />
+                        <cx:WxButton Icon="{DynamicResource Icon3D}" IconSize="36"/>
+                        <cx:WxButton CIcon="{DynamicResource Image_QQ_FaDai}" IconSize="36"/>
+                        <cx:WxButton Content="IconText" Icon="{DynamicResource Icon3D}" IconSize="36"/>
+                        <cx:WxButton Content="IconText" CIcon="{DynamicResource Image_QQ_KuKu}" IconSize="36"/>
+                        <cx:WxButton Icon="{DynamicResource Icon3D}" CIcon="{DynamicResource Image_QQ_NanGuo}"
+                                     Content="IconText"/>
+                        <cx:WxButton Icon="{DynamicResource Icon3D}" CIcon="{DynamicResource Image_QQ_NanGuo}"
+                                     Content="IconText" IconSize="36" IsVertical="True"/>
+                        <cx:WxButton Icon="{DynamicResource Icon3D}" CIcon="{DynamicResource Image_QQ_NanGuo}"
+                                     Content="IconText" IconSize="36" Background="{DynamicResource BrushPrimary}"
+                                     Foreground="{DynamicResource BrushReversedText}"/>
+                    </WrapPanel>
+
+                    <WrapPanel Margin="0,0,0,20">
+                        <cx:WxResetButton Content="IconText" cx:ExtendElement.AuthorityLevel="0"/>
+                        <cx:WxResetButton Content="IconText" FontSize="24"/>
+                        <cx:WxResetButton Icon="{DynamicResource Icon3D}" IconSize="36"/>
+                        <cx:WxResetButton CIcon="{DynamicResource Image_QQ_FaDai}" IconSize="36"/>
+                        <cx:WxResetButton Content="IconText" Icon="{DynamicResource Icon3D}" IconSize="36"/>
+                        <cx:WxResetButton Content="IconText" CIcon="{DynamicResource Image_QQ_KuKu}" IconSize="36"/>
+                        <cx:WxResetButton Icon="{DynamicResource Icon3D}" CIcon="{DynamicResource Image_QQ_NanGuo}"
+                                          Content="IconText" IconSize="36"/>
+                        <cx:WxResetButton Icon="{DynamicResource Icon3D}" CIcon="{DynamicResource Image_QQ_NanGuo}"
+                                          Content="IconText" IconSize="36" IsVertical="True"/>
+                        <cx:WxResetButton Icon="{DynamicResource Icon3D}" CIcon="{DynamicResource Image_QQ_NanGuo}"
+                                          Content="IconText" IconSize="36" Background="{DynamicResource BrushPrimary}"
+                                          Foreground="{DynamicResource BrushReversedText}"/>
+                    </WrapPanel>
+
+                    <WrapPanel Margin="0,0,0,20">
+                        <cx:WxRepeatButton Content="0" FontSize="24" Width="100" CornerRadius="20" Click="WxRepeatButton_Click"/>
+                        <cx:WxRepeatButton Icon="{DynamicResource IconEyeOpen}" Width="100" FontSize="24" Margin="10" Click="WxRepeatButton_Click"/>
+                        <cx:WxRepeatButton Content="0" ButtonType="IconText" Width="100" Icon="{DynamicResource IconEyeOpen}"
+                                           FontSize="24" Margin="10" Click="WxRepeatButton_Click"/>
+                        <cx:WxRepeatButton Content="0" ButtonType="IconText" Width="100" Icon="{DynamicResource IconEyeOpen}" Background="{DynamicResource BrushAccent}"
+                                           IsVertical="True" FontSize="24" Click="WxRepeatButton_Click"/>
+
+                        <cx:WxRepeatButton Content="0" ButtonType="IconTextPrimary" FontSize="24" Width="100" CornerRadius="20" Click="WxRepeatButton_Click"/>
+                        <cx:WxRepeatButton Icon="{DynamicResource IconEyeOpen}" ButtonType="IconTextPrimary" Width="100" FontSize="24" Margin="10" Click="WxRepeatButton_Click"/>
+                        <cx:WxRepeatButton Content="0" ButtonType="IconTextPrimary" Width="100" Icon="{DynamicResource IconEyeOpen}" Background="{DynamicResource BrushAccent}"
+                                           FontSize="24" Margin="10" Click="WxRepeatButton_Click"/>
+                        <cx:WxRepeatButton Content="0" ButtonType="IconTextPrimary" Width="100" Icon="{DynamicResource IconEyeOpen}"
+                                           FontSize="24" Margin="10" IsVertical="True" Click="WxRepeatButton_Click"/>
+                    </WrapPanel>
+
+                    <cx:WxTextBlock Text="ResetButton MouseDown、MouseUp 事件" FontSize="24" HorizontalAlignment="Left"/>
+                    <WrapPanel Margin="0,0,0,20">
+                        <cx:WxResetButton Content="Text" FontSize="24" MouseDown="WxResetButton_MouseDown" MouseUp="WxResetButton_MouseUp"/>
+                        <cx:WxResetButton Content="TextPrimary" FontSize="24" MouseDown="WxResetButton_MouseDown" MouseUp="WxResetButton_MouseUp"/>
+                    </WrapPanel>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical">
+                    <cx:WxTextBlock Text="CheckBox" FontSize="24" HorizontalAlignment="Left"/>
+                    <WrapPanel Margin="0,0,0,20">
+                        <cx:WxCheckBox Content="CheckBox" IsChecked="True" CheckBoxType="Normal" CornerRadius="0"/>
+                        <cx:WxCheckBox Content="CheckBox" CheckBoxType="Normal" FontSize="24" Foreground="{DynamicResource BrushAccent}"/>
+                        <cx:WxCheckBox Content="CheckBox" IsChecked="{x:Null}" CheckBoxType="Normal" FontSize="24" CornerRadius="6"/>
+                        <cx:WxCheckBox Content="权限0" CheckBoxType="Normal" FontSize="24" Padding="5" cx:ExtendElement.AuthorityLevel="0"/>
+
+                        <cx:WxCheckBox Content="CheckBox" IsChecked="True"  CornerRadius="0"/>
+                        <cx:WxCheckBox Content="CheckBox" CheckBoxType="Fill" FontSize="24" Foreground="{DynamicResource BrushAccent}"/>
+                        <cx:WxCheckBox Content="CheckBox" IsChecked="{x:Null}" FontSize="24"/>
+                        <cx:WxCheckBox Content="权限0" IsChecked="{x:Null}" FontSize="24" Padding="5" cx:ExtendElement.AuthorityLevel="0"/>
+                    </WrapPanel>
+                
+                    <cx:WxTextBlock Text="RadioButton" FontSize="24" HorizontalAlignment="Left"/>
+                    <WrapPanel Margin="0,0,0,20">
+                        <cx:WxRadioButton Content="WxRadioButton" IsChecked="True"/>
+                        <cx:WxRadioButton Content="WxRadioButton" FontSize="24" Padding="1"/>
+                        <cx:WxRadioButton Content="WxRadioButton" IconSize="24"/>
+                        <cx:WxRadioButton Content="权限0" FontSize="24" Padding="5" cx:ExtendElement.AuthorityLevel="0"/>
+
+                        <cx:WxRadioButton Content="WxRadioButton" RadioButtonType="Rectangle" Background="{DynamicResource BrushAccent}" IsChecked="True"/>
+                        <cx:WxRadioButton Content="WxRadioButton" RadioButtonType="Rectangle" Background="{DynamicResource BrushWarning}"/>
+                        <cx:WxRadioButton Content="WxRadioButton" RadioButtonType="Rectangle" Background="{DynamicResource BrushInfo}"/>
+                        <cx:WxRadioButton Content="WxRadioButton" RadioButtonType="Rectangle" Background="{DynamicResource BrushSuccess}" cx:ExtendElement.AuthorityLevel="0"/>
+                    </WrapPanel>
+
+                    <cx:WxTextBlock Text="ToggleButton " FontSize="24" HorizontalAlignment="Left"/>
+                    <WrapPanel Margin="0,0,0,20" Width="1000" HorizontalAlignment="Left">
+                        <cx:WxToggleButton Content="Toggle" Icon="{DynamicResource Icon3D}" Width="auto" FontSize="24"/>
+                        <cx:WxToggleButton Content="Toggle" FontSize="24"/>
+                        <cx:WxToggleButton Icon="{DynamicResource Icon3D}" IsChecked="True" FontSize="24"/>
+                        <cx:WxToggleButton Content="Toggle" Icon="{DynamicResource Icon3D}" IsVertical="True" Height="auto" IsChecked="True" FontSize="24"/>
+
+                        <cx:WxToggleButton ToggleButtonType="Text" Text="Off" TextOn="On" FontSize="24"/>
+                        <cx:WxToggleButton ToggleButtonType="TextPrimary" Text="Off" TextOn="On" FontSize="24"/>
+                        <cx:WxToggleButton ToggleButtonType="Icon" Icon="{DynamicResource IconEyeClose}" IconOn="{DynamicResource IconEyeOpen}" FontSize="24"/>
+                        <cx:WxToggleButton ToggleButtonType="IconPrimary" Icon="{DynamicResource IconEyeClose}" IconOn="{DynamicResource IconEyeOpen}" FontSize="24" Margin="10"/>
+
+                        <cx:WxToggleButton ToggleButtonType="IconText" Icon="{DynamicResource IconEyeClose}" IconOn="{DynamicResource IconEyeOpen}" FontSize="24"/>
+                        <cx:WxToggleButton ToggleButtonType="IconText" IsChecked="True" Icon="{DynamicResource IconEyeClose}" IconOn="{DynamicResource IconEyeOpen}"
+                                           Text="OFF" TextOn="ON" FontSize="24"/>
+                        <cx:WxToggleButton ToggleButtonType="IconText" Icon="{DynamicResource IconEyeClose}" IconOn="{DynamicResource IconEyeOpen}" Text="关" TextOn="开" FontSize="24"/>
+                        <cx:WxToggleButton ToggleButtonType="IconText" Icon="{DynamicResource IconEyeClose}" IconOn="{DynamicResource IconEyeOpen}" Text="离线" TextOn="在线" FontSize="24"/>
+                        <cx:WxToggleButton ToggleButtonType="IconText" Icon="{DynamicResource IconEyeClose}" IconOn="{DynamicResource IconEyeOpen}" Text="未选" TextOn="选中" FontSize="24"/>
+                        <cx:WxToggleButton ToggleButtonType="IconText" Icon="{DynamicResource IconEyeClose}" IconOn="{DynamicResource IconEyeOpen}" Text="待机" TextOn="运行" FontSize="24"/>
+                    </WrapPanel>
+                </StackPanel>
+                
+            </VirtualizingStackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

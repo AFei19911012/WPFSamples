@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="TestUnit.Demo.Demo03"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:TestUnit.ViewModel" 
+             xmlns:cx="clr-namespace:WpfControlsX.ControlX;assembly=WpfControlsX"
+             mc:Ignorable="d">
+    <UserControl.DataContext>
+        <vm:MainVM/>
+    </UserControl.DataContext>
+    <Grid>
+        <ScrollViewer>
+            <VirtualizingStackPanel>
+                <WrapPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical">
+                        <cx:WxTextBlock Text="文本"/>
+
+                        <cx:WxTextBlock Text="{Binding SomeText}" HorizontalAlignment="Left" Background="{DynamicResource BrushPrimary}"
+                                        Foreground="{DynamicResource BrushReversedText}">
+                            <TextBlock.InputBindings>
+                                <MouseBinding Command="{Binding SomeCommand}" CommandParameter="LeftClick" MouseAction="LeftClick"/>
+                            </TextBlock.InputBindings>
+                        </cx:WxTextBlock>
+
+                        <cx:WxTextBlock Text="背景色" Background="{DynamicResource BrushAccent}"/>
+                        <cx:WxTextBlock Text="背景色" Background="{DynamicResource BrushWarning}"/>
+                        <cx:WxTextBlock Text="背景色" Background="{DynamicResource BrushInfo}"/>
+                        <cx:WxTextBlock Text="居左" Background="{DynamicResource BrushInfo}" HorizontalAlignment="Left"/>
+                        <cx:WxTextBlock Text="文字颜色" Background="{DynamicResource BrushDanger}" Foreground="{DynamicResource BrushReversedText}"
+                                        HorizontalAlignment="Stretch"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" Width="200">
+                        <cx:WxLabel Content="标签"/>
+                        <cx:WxLabel Content="标签" HorizontalAlignment="Left" Background="{DynamicResource BrushPrimary}"
+                                    Foreground="{DynamicResource BrushReversedText}" cx:ExtendElement.AuthorityLevel="0"/>
+                        <cx:WxLabel Content="图标" Background="{DynamicResource BrushAccent}" HorizontalContentAlignment="Left" 
+                                    LabelType="Icon" Icon="{DynamicResource IconCodeShowOn}" CornerRadius="20"/>
+                        <cx:WxLabel Content="背景色" Background="{DynamicResource BrushWarning}"/>
+                        <cx:WxLabel Content="背景色" Background="{DynamicResource BrushInfo}" HorizontalContentAlignment="Left"/>
+                        <cx:WxLabel Content="居左" Background="{DynamicResource BrushInfo}" HorizontalAlignment="Left"/>
+                        <cx:WxLabel Content="文字颜色" Background="{DynamicResource BrushDanger}" Foreground="{DynamicResource BrushReversedText}"
+                                    HorizontalAlignment="Stretch" CornerRadius="10"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" Width="400" Margin="10">
+                        <cx:WxOutlineText Margin="3" TextWrapping="Wrap" Text="TextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextText"/>
+                        <cx:WxOutlineText Margin="3" FontSize="30" Fill="{DynamicResource BrushSuccess}" Text="TextTextTextTextTextTextTextText"/>
+                        <cx:WxOutlineText Margin="3" FontSize="30" FontStyle="Italic" Text="TextTextTextTextTextTextTextText"/>
+                        <cx:WxOutlineText Margin="3" Text="TextTextTextTextTextText" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" 
+                                          FontSize="50" StrokeThickness="2" Fill="{DynamicResource BrushDanger}" Stroke="{DynamicResource BrushPrimary}"/>
+                        <cx:WxOutlineText FontSize="80" Text="TextText" FontWeight="Bold" StrokeThickness="4" Fill="{DynamicResource BrushPrimary}" 
+                                          Stroke="{DynamicResource BrushDanger}"/>
+                    </StackPanel>
+                </WrapPanel>
+            </VirtualizingStackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

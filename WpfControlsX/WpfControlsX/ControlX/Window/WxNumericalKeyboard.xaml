@@ -1,0 +1,99 @@
+﻿<Window x:Class="WpfControlsX.ControlX.WxNumericalKeyboard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:cx="clr-namespace:WpfControlsX.ControlX"
+        mc:Ignorable="d"
+        Background="{DynamicResource BrushRegion}"
+        BorderBrush="{DynamicResource BrushPrimary}"
+        BorderThickness="1"
+        WindowStyle="None"
+        ShowInTaskbar="False"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner"
+        Title="数值输入" 
+        Height="230" Width="350">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Styles/Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <StackPanel Orientation="Vertical">
+        <Grid Background="{DynamicResource BrushPrimary}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <UniformGrid Columns="2" Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=cx:WxNumericalKeyboard}, Path=IsDouble, Converter={StaticResource Bool2Visibility}}">
+                <cx:WxTextBox Title="MIN:" FontSize="14" Foreground="{DynamicResource BrushReversedText}" HorizontalContentAlignment="Left" BorderThickness="0" IsHitTestVisible="False"
+                              Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=cx:WxNumericalKeyboard}, Path=Minimum, StringFormat={}{0:F2}}"/>
+                <cx:WxTextBox Title="MAX:" FontSize="14" Foreground="{DynamicResource BrushReversedText}" HorizontalContentAlignment="Left" BorderThickness="0" IsHitTestVisible="False"
+                              Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=cx:WxNumericalKeyboard}, Path=Maximum, StringFormat={}{0:F2}}"/>
+            </UniformGrid>
+            <UniformGrid Columns="2" Visibility="{Binding ElementName=PART_Double, Path=Visibility, Converter={StaticResource Visible2Reverse}}">
+                <cx:WxTextBox Title="MIN:" FontSize="14" Foreground="{DynamicResource BrushReversedText}"
+                              HorizontalContentAlignment="Left" BorderThickness="0" IsHitTestVisible="False"
+                              Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=cx:WxNumericalKeyboard}, Path=Minimum}"/>
+                <cx:WxTextBox Title="MAX:" FontSize="14" Foreground="{DynamicResource BrushReversedText}"
+                              HorizontalContentAlignment="Left" BorderThickness="0" IsHitTestVisible="False"
+                              Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=cx:WxNumericalKeyboard}, Path=Maximum}"/>
+            </UniformGrid>
+            <cx:WxButton Grid.Column="1" Icon="{DynamicResource IconClose}" IconSize="12" Padding="5" Margin="5" BorderThickness="0"
+                         HorizontalAlignment="Right" VerticalAlignment="Top" ToolTip="Close" IsTabStop="False"
+                         Background="{DynamicResource BrushRegion}" Foreground="{DynamicResource BrushPrimary}" Click="WxButtonClose_Click"/>
+        </Grid>
+
+        <StackPanel Orientation="Horizontal">
+            <cx:WxTextBox BorderThickness="1" Background="{DynamicResource BrushDataGridBackgroundLight}" CornerRadius="5" Width="295"
+                          Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=cx:WxNumericalKeyboard}, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <cx:WxButton Icon="{DynamicResource IconLeftBold}" IconSize="18" Padding="0" Margin="0" Width="40" Height="32" BorderThickness="0"
+                         HorizontalAlignment="Right" VerticalAlignment="Center" ToolTip="Close" IsTabStop="False"
+                         Background="{DynamicResource BrushDataGridBackgroundLight}" Foreground="{DynamicResource BrushPrimary}" Click="WxButtonBackspace_Click"/>
+        </StackPanel>
+
+        <UniformGrid Columns="5">
+            <cx:WxButton Content="1" FontSize="22" HorizontalAlignment="Stretch" Margin="2" Background="{DynamicResource BrushDataGridBackgroundLight}"
+                         Foreground="{DynamicResource BrushPrimary}" CornerRadius="5" Click="WxButton_Click"/>
+            <cx:WxButton Content="2" FontSize="22" HorizontalAlignment="Stretch" Margin="2" Background="{DynamicResource BrushDataGridBackgroundLight}"
+                         Foreground="{DynamicResource BrushPrimary}" CornerRadius="5" Click="WxButton_Click"/>
+            <cx:WxButton Content="3" FontSize="22" HorizontalAlignment="Stretch" Margin="2" Background="{DynamicResource BrushDataGridBackgroundLight}"
+                         Foreground="{DynamicResource BrushPrimary}" CornerRadius="5" Click="WxButton_Click"/>
+            <cx:WxButton Content="0" FontSize="22" HorizontalAlignment="Stretch" Margin="2" Background="{DynamicResource BrushDataGridBackgroundLight}"
+                         Foreground="{DynamicResource BrushPrimary}" CornerRadius="5" Click="WxButton_Click"/>
+            <cx:WxButton Content="-" FontSize="22" HorizontalAlignment="Stretch" Margin="2" Background="{DynamicResource BrushDataGridBackgroundLight}"
+                         Foreground="{DynamicResource BrushPrimary}" CornerRadius="5" Click="WxButton_Click"/>
+        </UniformGrid>
+
+        <UniformGrid Columns="5">
+            <cx:WxButton Content="4" FontSize="22" HorizontalAlignment="Stretch" Margin="2" Background="{DynamicResource BrushDataGridBackgroundLight}"
+                         Foreground="{DynamicResource BrushPrimary}" CornerRadius="5" Click="WxButton_Click"/>
+            <cx:WxButton Content="5" FontSize="22" HorizontalAlignment="Stretch" Margin="2" Background="{DynamicResource BrushDataGridBackgroundLight}"
+                         Foreground="{DynamicResource BrushPrimary}" CornerRadius="5" Click="WxButton_Click"/>
+            <cx:WxButton Content="6" FontSize="22" HorizontalAlignment="Stretch" Margin="2" Background="{DynamicResource BrushDataGridBackgroundLight}"
+                         Foreground="{DynamicResource BrushPrimary}" CornerRadius="5" Click="WxButton_Click"/>
+            <cx:WxButton Content="·" FontSize="22" HorizontalAlignment="Stretch" Margin="2" Background="{DynamicResource BrushDataGridBackgroundLight}"
+                         Foreground="{DynamicResource BrushPrimary}" CornerRadius="5" Click="WxButton_Click"/>
+            <cx:WxButton Content="CLR" FontSize="22" HorizontalAlignment="Stretch" Margin="2" Background="{DynamicResource BrushDataGridBackgroundLight}"
+                         Foreground="{DynamicResource BrushPrimary}" CornerRadius="5" Click="WxButtonClear_Click"/>
+        </UniformGrid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <UniformGrid Columns="3">
+                <cx:WxButton Content="7" FontSize="22" HorizontalAlignment="Stretch" Margin="2" Background="{DynamicResource BrushDataGridBackgroundLight}"
+                             Foreground="{DynamicResource BrushPrimary}" CornerRadius="5" Click="WxButton_Click"/>
+                <cx:WxButton Content="8" FontSize="22" HorizontalAlignment="Stretch" Margin="2" Background="{DynamicResource BrushDataGridBackgroundLight}"
+                             Foreground="{DynamicResource BrushPrimary}" CornerRadius="5" Click="WxButton_Click"/>
+                <cx:WxButton Content="9" FontSize="22" HorizontalAlignment="Stretch" Margin="2" Background="{DynamicResource BrushDataGridBackgroundLight}"
+                             Foreground="{DynamicResource BrushPrimary}" CornerRadius="5" Click="WxButton_Click"/>
+            </UniformGrid>
+            <cx:WxButton Grid.Column="1" Content="Enter" FontSize="22" HorizontalAlignment="Stretch" Margin="2" Background="{DynamicResource BrushDataGridBackgroundLight}"
+                         Foreground="{DynamicResource BrushPrimary}" CornerRadius="5" Click="WxButtonEnter_Click"/>
+        </Grid>
+    </StackPanel>
+</Window>

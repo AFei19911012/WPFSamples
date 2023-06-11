@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="TestUnit.Demo.Demo05"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:TestUnit.ViewModel" 
+             xmlns:cx="clr-namespace:WpfControlsX.ControlX;assembly=WpfControlsX"
+             mc:Ignorable="d">
+    <UserControl.DataContext>
+        <vm:MainVM/>
+    </UserControl.DataContext>
+    <Grid>
+        <ScrollViewer>
+            <VirtualizingStackPanel HorizontalAlignment="Left">
+                <WrapPanel Margin="10" Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical">
+                        <cx:WxButton Content="Info" Click="WxButton_Click"/>
+                        <cx:WxButton Content="Warning" Margin="10,0" Click="WxButton_Click"/>
+                        <cx:WxButton Content="Error" Click="WxButton_Click"/>
+                        <cx:WxButton Content="Success" Click="WxButton_Click"/>
+                        <cx:WxButton Content="Ask" Click="WxButton_Click"/>
+                        <cx:WxButton Content="AutoClosed" Click="WxButton_Click"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <cx:WxButton Content="阻塞线程弹窗" Click="WxButton_Click"/>
+                        <cx:WxButton Content="非阻塞线程弹窗" Click="WxButton_Click"/>
+                        <cx:WxButton Content="一次非阻塞线程弹窗" Click="WxButton_Click"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <cx:WxButton Content="Login" Click="WxButton_Click"/>
+                        <cx:WxButton Content="IP" Click="WxButton_Click"/>
+                        <cx:WxTextBox Title="浮点数" IsReadOnly="True" Text="0.00" MouseDoubleClick="WxTextBox_MouseDoubleClick"/>
+                        <cx:WxTextBox Title="整数" IsReadOnly="True" Text="0" MouseDoubleClick="WxTextBoxInt_MouseDoubleClick"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="10" Orientation="Vertical">
+                        <cx:WxTextBlock Text="Notification" FontSize="24"/>
+                        <cx:WxToggleButton Content="Stays Open" IsChecked="{Binding StaysOpen}"/>
+                        <cx:WxButton Command="{Binding OpenCmd}" Content="Send Notification" Click="WxButton_Click"/>
+                    </StackPanel>
+                </WrapPanel>
+            </VirtualizingStackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

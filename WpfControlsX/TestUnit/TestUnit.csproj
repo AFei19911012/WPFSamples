@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{781DB5D4-05E9-4585-BF86-030F87731F08}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>TestUnit</RootNamespace>
+    <AssemblyName>TestUnit</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Image\W.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="ViewModel\MainVM.cs" />
+    <Page Include="Demo\AppNotification.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Demo\Demo01.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Demo\Demo02.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Demo\Demo03.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Demo\Demo04.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Demo\Demo05.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Demo\Demo06.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Demo\Demo07.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Demo\Demo08.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Demo\Demo09.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Demo\Demo10.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Demo\Demo11.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Demo\Demo12.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Demo\AppNotification.xaml.cs">
+      <DependentUpon>AppNotification.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Demo\Demo01.xaml.cs">
+      <DependentUpon>Demo01.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Demo\Demo02.xaml.cs">
+      <DependentUpon>Demo02.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Demo\Demo03.xaml.cs">
+      <DependentUpon>Demo03.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Demo\Demo04.xaml.cs">
+      <DependentUpon>Demo04.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Demo\Demo05.xaml.cs">
+      <DependentUpon>Demo05.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Demo\Demo06.xaml.cs">
+      <DependentUpon>Demo06.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Demo\Demo07.xaml.cs">
+      <DependentUpon>Demo07.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Demo\Demo08.xaml.cs">
+      <DependentUpon>Demo08.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Demo\Demo09.xaml.cs">
+      <DependentUpon>Demo09.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Demo\Demo10.xaml.cs">
+      <DependentUpon>Demo10.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Demo\Demo11.xaml.cs">
+      <DependentUpon>Demo11.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Demo\Demo12.xaml.cs">
+      <DependentUpon>Demo12.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Model\DataModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WpfControlsX\WpfControlsX.csproj">
+      <Project>{2b9cef09-33f3-436c-9571-bb8db547ceff}</Project>
+      <Name>WpfControlsX</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\01.jpg" />
+    <Resource Include="Image\02.jpg" />
+    <Resource Include="Image\03.jpg" />
+    <Resource Include="Image\04.jpg" />
+    <Resource Include="Image\05.jpg" />
+    <Resource Include="Image\06.jpg" />
+    <Resource Include="Image\07.jpg" />
+    <Resource Include="Image\08.jpg" />
+    <Resource Include="Image\09.jpg" />
+    <Resource Include="Image\1.jpg" />
+    <Resource Include="Image\10.jpg" />
+    <Resource Include="Image\2.jpg" />
+    <Resource Include="Image\3.jpg" />
+    <Resource Include="Image\4.jpg" />
+    <Resource Include="Image\5.jpg" />
+    <Resource Include="Image\Archery.ico" />
+    <Resource Include="Image\Artistic Gymnastics.ico" />
+    <Resource Include="Image\Athletics.ico" />
+    <Resource Include="Image\Badminton.ico" />
+    <Resource Include="Image\Baseball.ico" />
+    <Resource Include="Image\Basketball.ico" />
+    <Resource Include="Image\Beach Volleyball.ico" />
+    <Resource Include="Image\Boxing.ico" />
+    <Resource Include="Image\Canoe Kayak Flatwater.ico" />
+    <Resource Include="Image\Canoe Kayak Slalom.ico" />
+    <Resource Include="Image\Cycling.ico" />
+    <Resource Include="Image\Diving.ico" />
+    <Resource Include="Image\Equestrian.ico" />
+    <Resource Include="Image\Fencing.ico" />
+    <Resource Include="Image\Football.ico" />
+    <Resource Include="Image\Handball.ico" />
+    <Resource Include="Image\Hockey.ico" />
+    <Resource Include="Image\Judo.ico" />
+    <Resource Include="Image\Modern Pentathlon.ico" />
+    <Resource Include="Image\ProfilePicture.jpg" />
+    <Resource Include="Image\Rhythmic Gymnastics.ico" />
+    <Resource Include="Image\Rowing.ico" />
+    <Resource Include="Image\Sailing.ico" />
+    <Resource Include="Image\Shooting.ico" />
+    <Resource Include="Image\Softball.ico" />
+    <Resource Include="Image\Swimming.ico" />
+    <Resource Include="Image\Synchronized Swimming.ico" />
+    <Resource Include="Image\Table Tennis.ico" />
+    <Resource Include="Image\Taekwondo.ico" />
+    <Resource Include="Image\tennis.ico" />
+    <Resource Include="Image\Trampoline.ico" />
+    <Resource Include="Image\Trianthlon.ico" />
+    <Resource Include="Image\Volleyball.ico" />
+    <Resource Include="Image\Water Polo.ico" />
+    <Resource Include="Image\Weightlifting.ico" />
+    <Resource Include="Image\Wrestling.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\W.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\W.png" />
+  </ItemGroup>
+  <Import Project="..\..\GalaSoft.MvvmLight\GalaSoft.MvvmLight.projitems" Label="Shared" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

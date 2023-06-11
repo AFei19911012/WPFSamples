@@ -1,0 +1,60 @@
+﻿<cx:WxWindow x:Class="TestUnit.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:TestUnit.ViewModel" 
+        xmlns:demo="clr-namespace:TestUnit.Demo"
+        xmlns:cx="clr-namespace:WpfControlsX.ControlX;assembly=WpfControlsX"
+        mc:Ignorable="d"
+             TitleFontSize="28"
+             TitleHeight="56"
+             IconSize="18"
+             Icon="Image\W.png"
+        WindowStartupLocation="CenterScreen"
+        Title="MainWindow" Height="600" Width="1200"
+             Closing="WxWindow_Closing">
+    <Window.DataContext>
+        <vm:MainVM/>
+    </Window.DataContext>
+
+    <cx:WxTabControl>
+        <cx:WxTabItem Header="01 输入框">
+            <demo:Demo01/>
+        </cx:WxTabItem>
+
+        <cx:WxTabItem Header="02 按钮">
+            <demo:Demo02/>
+        </cx:WxTabItem>
+        <cx:WxTabItem Header="03 文本">
+            <demo:Demo03/>
+        </cx:WxTabItem>
+        <cx:WxTabItem Header="04 列表">
+            <demo:Demo04/>
+        </cx:WxTabItem>
+        <cx:WxTabItem Header="05 窗体">
+            <demo:Demo05/>
+        </cx:WxTabItem>
+        <cx:WxTabItem Header="06 布局容器">
+            <demo:Demo06/>
+        </cx:WxTabItem>
+        <cx:WxTabItem Header="07 进度">
+            <demo:Demo07/>
+        </cx:WxTabItem>
+        <cx:WxTabItem Header="08 菜单">
+            <demo:Demo08/>
+        </cx:WxTabItem>
+        <cx:WxTabItem Header="09 滑动条">
+            <demo:Demo09/>
+        </cx:WxTabItem>
+        <cx:WxTabItem Header="10 动画效果">
+            <demo:Demo10/>
+        </cx:WxTabItem>
+        <cx:WxTabItem Header="11 图文展示">
+            <demo:Demo11/>
+        </cx:WxTabItem>
+        <cx:WxTabItem Header="12 未分类">
+            <demo:Demo12/>
+        </cx:WxTabItem>
+    </cx:WxTabControl>
+</cx:WxWindow>

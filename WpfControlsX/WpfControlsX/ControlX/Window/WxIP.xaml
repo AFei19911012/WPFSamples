@@ -1,0 +1,54 @@
+﻿<Window x:Class="WpfControlsX.ControlX.WxIP"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:cx="clr-namespace:WpfControlsX.ControlX"
+        mc:Ignorable="d"
+        Background="{DynamicResource BrushRegion}"
+        BorderBrush="{DynamicResource BrushPrimary}"
+        BorderThickness="1"
+        WindowStyle="None"
+        ShowInTaskbar="False"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner"
+        Title="设置 IP" 
+        Height="250" Width="400">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Styles/Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="设置 IP" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Margin="10"/>
+        <!-- 关闭按钮 -->
+        <cx:WxButton Icon="{DynamicResource IconClose}" IconSize="14" BorderThickness="0"
+                     Padding="0" Margin="10" HorizontalAlignment="Right" VerticalAlignment="Top" ToolTip="Close" IsTabStop="False"
+                     Click="WxButtonClose_Click"/>
+
+        <UniformGrid Grid.Row="1" Rows="3" Width="300" Margin="10">
+            <cx:WxComboBox x:Name="CBB_Type" Title="通讯类型" FontSize="18" Margin="5" TitleWidth="90"
+                           SelectionChanged="CBB_Type_SelectionChanged">
+                <ComboBoxItem Content="MBS"/>
+                <ComboBoxItem Content="TCP"/>
+                <ComboBoxItem Content="MC"/>
+                <ComboBoxItem Content="S7"/>
+            </cx:WxComboBox>
+            <cx:WxTextBox x:Name="TB_IP" Title="IP 地址" FontSize="18" Margin="5" BorderThickness="1" TitleWidth="90"
+                          HorizontalContentAlignment="Left"/>
+            <cx:WxTextBox x:Name="TB_Port" Title="端口" FontSize="18" Margin="5" BorderThickness="1" TitleWidth="90"
+                          HorizontalContentAlignment="Left"/>
+        </UniformGrid>
+
+        <!-- 登陆按钮 -->
+        <cx:WxButton Grid.Row="2" Content="确定" FontSize="24" Width="200" Height="48" Background="{DynamicResource BrushPrimary}"
+                     Foreground="{DynamicResource BrushReversedText}" Click="WxButtonConfirm_Click"/>
+    </Grid>
+</Window>
