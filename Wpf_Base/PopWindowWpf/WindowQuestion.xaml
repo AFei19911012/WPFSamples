@@ -1,0 +1,35 @@
+﻿<Window x:Class="Wpf_Base.PopWindowWpf.WindowQuestion"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Topmost="True"
+        Title="提示" 
+        Height="300"
+        Width="500">
+    <Border BorderBrush="Orange" BorderThickness="2">
+        <Grid>
+            <Grid Background="{DynamicResource BorderBrush}" VerticalAlignment="Top">
+                <TextBlock Text="询问提示" FontSize="20" Margin="5"/>
+            </Grid>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Path Fill="{DynamicResource PrimaryBrush}" Data="{StaticResource AskGeometry}" Width="48" Stretch="Uniform" 
+                  VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20"/>
+                <TextBlock x:Name="TB_Content" Text="是否关闭？" FontSize="24" VerticalAlignment="Center"/>
+            </StackPanel>
+
+            <hc:ButtonGroup VerticalAlignment="Bottom" Background="{DynamicResource BorderBrush}">
+                <Button Content="是" FontSize="24" Cursor="Hand" Margin="0,5"
+                    hc:BorderElement.CornerRadius="0" Background="Transparent" Click="ButtonYes_Click"/>
+                <Button Content="否" FontSize="24" Cursor="Hand"
+                    hc:BorderElement.CornerRadius="0" Background="Transparent" Click="ButtonNo_Click"/>
+            </hc:ButtonGroup>
+        </Grid>
+    </Border>
+</Window>

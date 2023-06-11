@@ -1,0 +1,18 @@
+﻿<Window x:Class="Wpf_Base.PopWindowWpf.WindowAutoClosed"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        Topmost="True"
+        Opacity="0.6"
+        Title="提示信息" Height="300" Width="500">
+    <Border BorderBrush="Orange" BorderThickness="1" Background="{DynamicResource BorderBrush}">
+        <Grid>
+            <TextBlock x:Name="TB_Content" Text="程序运行中，请稍候 ······" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                   Margin="10" FontSize="24" TextWrapping="Wrap"/>
+        </Grid>
+    </Border>
+</Window>

@@ -1,0 +1,145 @@
+﻿<UserControl x:Class="Wpf_Base.HalconWpf.Tools.MetrologyTool"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:halcon="clr-namespace:HalconDotNet;assembly=halcondotnet"
+             xmlns:vm="clr-namespace:Wpf_Base.HalconWpf.ViewModel" 
+             xmlns:wpf="clr-namespace:Wpf_Base.ControlsWpf"
+             xmlns:controls="clr-namespace:Wpf_Base.HalconWpf.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <vm:MetrologyToolVM/>
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <!-- 主题样式 -->
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <hc:Interaction.Triggers>
+        <hc:EventTrigger EventName="Loaded">
+            <hc:EventToCommand Command="{Binding CmdLoaded}" PassEventArgsToCommand="True"/>
+        </hc:EventTrigger>
+    </hc:Interaction.Triggers>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="400"/>
+        </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Button hc:IconElement.Geometry="{DynamicResource IconVideo}" hc:IconElement.Height="16" Content="{Binding StrGrabContent}"
+                    FontSize="16" Cursor="Hand" Style="{DynamicResource MyButtonIcon}" Command="{Binding CmdGrabImage}"/>
+                <Button hc:IconElement.Geometry="{DynamicResource IconImageAdd}" Content="加载图像" FontSize="16"
+			        Cursor="Hand" Style="{DynamicResource MyButtonIcon}" Command="{Binding CmdLoadSaveImage}" CommandParameter="LoadImage"/>
+                <Button hc:IconElement.Geometry="{DynamicResource IconExportOut}" Content="保存图像" FontSize="16"
+			        Cursor="Hand" Style="{DynamicResource MyButtonIcon}" Command="{Binding CmdLoadSaveImage}" CommandParameter="SaveImage"/>
+            </StackPanel>
+
+            <Border Grid.Row="1" x:Name="DrawingBorder" ClipToBounds="True">
+                <Grid>
+                    <!-- 这是一个载体 -->
+                    <hc:SimplePanel Background="White"/>
+                    <halcon:HSmartWindowControlWPF Name="HalconWPF" BorderThickness="1" BorderBrush="{DynamicResource PrimaryBrush}" IsHitTestVisible="False"/>
+                    <InkCanvas x:Name="DrawingCanvas" Background="Transparent" IsHitTestVisible="False" EditingMode="None"/>
+                </Grid>
+            </Border>
+            <wpf:PixelValueControl Grid.Row="2" x:Name="MyPixelValueControl"/>
+        </Grid>
+
+        <hc:ScrollViewer Grid.Column="1" Margin="5">
+            <StackPanel Grid.Column="1">
+                <controls:ImageChannelControl x:Name="MyImageChannelControl" Margin="5,0,0,0"/>
+
+                <Expander BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}" hc:BorderElement.CornerRadius="0" IsExpanded="True" Margin="0,2">
+                    <Expander.Header>
+                        <TextBlock Text="模板匹配参数" Margin="-10" VerticalAlignment="Center" FontWeight="Bold"/>
+                    </Expander.Header>
+                    <controls:FindShapeModelControl x:Name="MyFindShapeModelControl" FontSize="12"/>
+                </Expander>
+
+                <Expander BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}" hc:BorderElement.CornerRadius="0" IsExpanded="True">
+                    <Expander.Header>
+                        <TextBlock Text="测量模型对象" Margin="-10" VerticalAlignment="Center" FontWeight="Bold"/>
+                    </Expander.Header>
+                    <StackPanel Orientation="Vertical">
+                        <hc:ComboBox ItemsSource="{Binding EnumMetrologyObject}" SelectedValue="{Binding EnumMetrologyObjectSel}" 
+                                     DisplayMemberPath="Value" SelectedValuePath="Key" hc:BorderElement.CornerRadius="0" BorderThickness="0,0,0,1"
+                                     hc:InfoElement.TitleWidth="80" hc:InfoElement.TitlePlacement="Left" hc:InfoElement.Title="模型对象"/>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,2">
+                            <Button Content="新增" FontSize="16" Cursor="Hand" hc:IconElement.Geometry="{DynamicResource IconPlusSqure}" 
+                                    hc:IconElement.Height="16" Style="{DynamicResource MyButtonIcon}" Width="98" Command="{Binding CmdNewObject}"/>
+                            <Button Content="确定" FontSize="16" Cursor="Hand" hc:IconElement.Geometry="{DynamicResource IconCheck}" 
+                                    hc:IconElement.Height="16" Style="{DynamicResource MyButtonIcon}" Width="98" Command="{Binding CmdConfirmObject}"/>
+                            <Button Content="清空" FontSize="16" Cursor="Hand" hc:IconElement.Geometry="{DynamicResource IconClear}" 
+                                    hc:IconElement.Height="16" Style="{DynamicResource MyButtonIcon}" Width="98" Command="{Binding CmdDeleteObject}"/>
+                            <Button Content="显示" FontSize="16" Cursor="Hand" hc:IconElement.Geometry="{DynamicResource IconEyeOn}" 
+                                    hc:IconElement.Height="16" Style="{DynamicResource MyButtonIcon}" Width="98" Command="{Binding CmdShowObject}"/>
+                        </StackPanel>
+
+                        <DataGrid HeadersVisibility="Row" RowHeaderWidth="50" ItemsSource="{Binding ListModels}" 
+                                  hc:DataGridAttach.ShowRowNumber="True" Background="Transparent" MaxHeight="100" AlternationCount="2"
+                                  Style="{DynamicResource MyDataGridStyleSmall}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Name}" Header="模型名称" IsReadOnly="True" Width="300"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Expander>
+
+                <Expander BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}" hc:BorderElement.CornerRadius="0" IsExpanded="False" Margin="0,2">
+                    <Expander.Header>
+                        <TextBlock Text="测量对象参数" Margin="-10" VerticalAlignment="Center" FontWeight="Bold"/>
+                    </Expander.Header>
+                    <controls:MetrologyObjectControl x:Name="MyMetrologyObjectControl" FontSize="12"/>
+                </Expander>
+
+                
+                <hc:TextBox Text="{Binding NumScoreMin, StringFormat={}{0:F2}}" hc:BorderElement.CornerRadius="0" Cursor="IBeam" BorderThickness="0,0,0,1"
+                            hc:InfoElement.TitleWidth="85" hc:InfoElement.TitlePlacement="Left" hc:InfoElement.Title="分值阈值"/>
+                <hc:TextBox Text="{Binding NumOffsetX, StringFormat={}{0:F2} mm}" hc:BorderElement.CornerRadius="0" IsReadOnly="True" BorderThickness="0,0,0,1"
+                            hc:InfoElement.TitleWidth="85" hc:InfoElement.TitlePlacement="Left" hc:InfoElement.Title="偏移量 dx"/>
+                <hc:TextBox Text="{Binding NumOffsetY, StringFormat={}{0:F2} mm}" hc:BorderElement.CornerRadius="0" IsReadOnly="True" BorderThickness="0,0,0,1"
+                            hc:InfoElement.TitleWidth="85" hc:InfoElement.TitlePlacement="Left" hc:InfoElement.Title="偏移量 dy"/>
+                <hc:TextBox Text="{Binding NumOffsetA, StringFormat={}{0:F2} °}" hc:BorderElement.CornerRadius="0" IsReadOnly="True" BorderThickness="0,0,0,1"
+                            hc:InfoElement.TitleWidth="85" hc:InfoElement.TitlePlacement="Left" hc:InfoElement.Title="偏移量 da"/>
+
+                <hc:TextBox Text="{Binding StrRecipeName}" hc:BorderElement.CornerRadius="0" FontWeight="Bold" BorderThickness="0,0,0,1"
+                            hc:InfoElement.TitleWidth="80" hc:InfoElement.TitlePlacement="Left" hc:InfoElement.Title="模型名称"/>
+                
+                <StackPanel Orientation="Horizontal" Margin="0,2">
+                    <Button Content="加载标定" FontSize="16" Cursor="Hand" hc:IconElement.Geometry="{DynamicResource IconExportIn}" 
+                            hc:IconElement.Height="16" Style="{DynamicResource MyButtonIcon}" Width="128" Command="{Binding CmdLoadCalibration}"/>
+                    <Button Content="加载模板" FontSize="16" Cursor="Hand" hc:IconElement.Geometry="{DynamicResource IconExportIn}" 
+                            hc:IconElement.Height="16" Style="{DynamicResource MyButtonIcon}" Width="128" Command="{Binding CmdLoadShapeModule}"/>
+                    <Button Content="加载模型" FontSize="16" Cursor="Hand" hc:IconElement.Geometry="{DynamicResource IconExportIn}" 
+                            hc:IconElement.Height="16" Style="{DynamicResource MyButtonIcon}" Width="128" Command="{Binding CmdLoadModel}"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="建立模型" FontSize="16" Cursor="Hand" hc:IconElement.Geometry="{DynamicResource IconRun}" 
+                            hc:IconElement.Height="16" Style="{DynamicResource MyButtonIcon}" Width="128" Command="{Binding CmdCreateModel}"/>
+                    <Button Content="应用模型" FontSize="16" Cursor="Hand" hc:IconElement.Geometry="{DynamicResource IconRun}" 
+                            hc:IconElement.Height="16" Style="{DynamicResource MyButtonIcon}" Width="128" Command="{Binding CmdApplyModel}"/>
+                    <Button Content="保存模型" FontSize="16" Cursor="Hand" hc:IconElement.Geometry="{DynamicResource IconExportOut}" 
+                            hc:IconElement.Height="16" Style="{DynamicResource MyButtonIcon}" Width="128" Command="{Binding CmdSaveModel}"/>
+                </StackPanel>
+            </StackPanel>
+        </hc:ScrollViewer>
+    </Grid>
+</UserControl>

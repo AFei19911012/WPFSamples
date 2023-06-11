@@ -1,0 +1,73 @@
+﻿<UserControl x:Class="Wpf_Base.HalconWpf.Tools.QrTool"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:vm="clr-namespace:Wpf_Base.HalconWpf.ViewModel"
+             xmlns:ccd="clr-namespace:Wpf_Base.CcdWpf"
+             Background="{DynamicResource RegionBrush}"
+             FontSize="14"
+             mc:Ignorable="d" 
+             d:DesignHeight="650" d:DesignWidth="1000">
+    <UserControl.DataContext>
+        <vm:QrToolVM/>
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <!-- 主题样式 -->
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <hc:Interaction.Triggers>
+        <hc:EventTrigger EventName="Loaded">
+            <hc:EventToCommand Command="{Binding CmdLoaded}" PassEventArgsToCommand="True"/>
+        </hc:EventTrigger>
+    </hc:Interaction.Triggers>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="355"/>
+        </Grid.ColumnDefinitions>
+        <ccd:HalconWindowControl x:Name="MyHalconWindowControl"/>
+
+        <hc:ScrollViewer Grid.Column="1" Margin="5">
+            <StackPanel>
+                <hc:ComboBox hc:BorderElement.CornerRadius="0" IsEditable="True" hc:InfoElement.TitleWidth="80" 
+                             hc:InfoElement.TitlePlacement="Left" hc:InfoElement.Title="解码类型" BorderThickness="0,0,0,1" 
+                             Text="{Binding StrDecodeType}" SelectionChanged="ComboBox_SelectionChanged">
+                    <ComboBoxItem Content="Bar Code"/>
+                    <ComboBoxItem Content="Aztec Code"/>
+                    <ComboBoxItem Content="Data Matrix ECC 200"/>
+                    <ComboBoxItem Content="GS1 DataMatrix"/>
+                    <ComboBoxItem Content="GS1 QR Code"/>
+                    <ComboBoxItem Content="Micro QR Code"/>
+                    <ComboBoxItem Content="PDF417"/>
+                    <ComboBoxItem Content="QR Code"/>
+                </hc:ComboBox>
+
+                <hc:TextBox Text="{Binding StrRecipeName}" hc:BorderElement.CornerRadius="0" FontWeight="Bold" BorderThickness="0,0,0,1"
+                            hc:InfoElement.TitleWidth="80" hc:InfoElement.TitlePlacement="Left" hc:InfoElement.Title="项目名称"/>
+                <hc:TextBox Text="{Binding StrTcpFormat}" hc:BorderElement.CornerRadius="0" IsReadOnly="True" FontSize="12" BorderThickness="0,0,0,1"
+                            hc:InfoElement.TitleWidth="80" hc:InfoElement.TitlePlacement="Left" hc:InfoElement.Title="TCP格式"/>
+                <hc:TextBox Text="{Binding StrQRContent}" hc:BorderElement.CornerRadius="0" IsReadOnly="true" FontSize="12" BorderThickness="0,0,0,1"
+                            hc:InfoElement.TitleWidth="80" hc:InfoElement.TitlePlacement="Left" hc:InfoElement.Title="识别内容"/>
+
+                <StackPanel Orientation="Horizontal" Margin="2">
+                    <Button x:Name="BT_QR" Content="QR 识别" FontSize="16" Cursor="Hand" hc:IconElement.Geometry="{DynamicResource IconQrCode}" 
+                            hc:BorderElement.CornerRadius="0" Style="{DynamicResource MyButtonIcon}" Command="{Binding CmdRunQR}"/>
+                    <Button x:Name="BT_BarCode" Content="条码识别" FontSize="16" Cursor="Hand" hc:IconElement.Geometry="{DynamicResource IconBarCode}"
+                            hc:BorderElement.CornerRadius="0" Style="{DynamicResource MyButtonIcon}" Command="{Binding CmdRunBarCode}" IsEnabled="False"/>
+                    <Button Content="通讯检测" FontSize="16" Cursor="Hand" Style="{DynamicResource MyButtonIcon}" hc:IconElement.Geometry="{DynamicResource IconLightningFill}"
+                            hc:BorderElement.CornerRadius="0" Command="{Binding CmdTestProject}"/>
+                </StackPanel>
+            </StackPanel>
+        </hc:ScrollViewer>
+    </Grid>
+</UserControl>

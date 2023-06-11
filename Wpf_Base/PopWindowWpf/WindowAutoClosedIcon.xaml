@@ -1,0 +1,34 @@
+﻿<Window x:Class="Wpf_Base.PopWindowWpf.WindowAutoClosedIcon"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        Topmost="True"
+        Title="提示窗体"  
+        Height="300" Width="500">
+    <Border BorderBrush="Orange" BorderThickness="1" Background="{DynamicResource BorderBrush}">
+        <Grid>
+            <Path x:Name="MyPath" Fill="{DynamicResource WarningBrush}" Data="{StaticResource IconWarning}" Width="48" Stretch="Uniform" 
+                  VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10"/>
+
+            <Grid Margin="70,10" VerticalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock x:Name="TB_Info" Text="提示信息" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="18"
+                           HorizontalAlignment="Left"/>
+                <TextBlock Grid.Row="1" x:Name="TB_Time" Margin="0,10,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            </Grid>
+
+            <hc:ButtonGroup HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <Button Content="确定" FontSize="24" Foreground="{DynamicResource PrimaryBrush}" Height="48" Width="100" Cursor="Hand"
+                        hc:BorderElement.CornerRadius="0" Click="Button_Click"/>
+            </hc:ButtonGroup>
+        </Grid>
+    </Border>
+</Window>

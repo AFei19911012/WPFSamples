@@ -1,0 +1,27 @@
+﻿<Window x:Class="Wpf_Base.CcdWpf.WindowHalcon"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:hc="https://handyorg.github.io/handycontrol" 
+        xmlns:halcon="clr-namespace:HalconDotNet;assembly=halcondotnet" 
+        xmlns:controls="clr-namespace:Wpf_Base.ControlsWpf"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        Loaded="Window_Loaded"
+        Title="图像采集窗口" Height="600" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <halcon:HSmartWindowControlWPF Name="HalconWPF" HMouseMove="HalconWPF_HMouseMove"/>
+        <Button hc:IconElement.Geometry="{DynamicResource IconError}" Height="64" Cursor="Hand"
+                HorizontalAlignment="Right" VerticalAlignment="Top" Style="{DynamicResource ButtonIcon}" 
+                Foreground="{DynamicResource DangerBrush}" Click="Button_Click"/>
+        <TextBlock x:Name="TB_Cam" Text="HikRobot" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" FontSize="16"
+                   Foreground="{DynamicResource PrimaryBrush}" Background="Transparent"/>
+
+        <controls:PixelValueControl Grid.Row="1" x:Name="MyPixelValueControl"/>
+    </Grid>
+</Window>

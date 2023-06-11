@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="Wpf_Base.HalconWpf.Views.OcrControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:local="clr-namespace:Wpf_Base.HalconWpf.Views"
+             mc:Ignorable="d">
+    <UserControl.DataContext>
+        <local:OcrVM/>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <!-- 主题样式 -->
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <hc:NumericUpDown hc:InfoElement.TitleWidth="100" hc:BorderElement.CornerRadius="0" BorderThickness="0,0,0,1"
+                              hc:InfoElement.TitlePlacement="Left" hc:InfoElement.Title="字符最小高度" 
+                              Style="{StaticResource NumericUpDownPlus}" Minimum="5" Increment="1" Value="{Binding MinCharHeight}"/>
+            <hc:NumericUpDown hc:InfoElement.TitleWidth="100" hc:BorderElement.CornerRadius="0" BorderThickness="0,0,0,1"
+                              hc:InfoElement.TitlePlacement="Left" hc:InfoElement.Title="字符最小宽度" 
+                              Style="{StaticResource NumericUpDownPlus}" Minimum="5" Increment="1" Value="{Binding MinCharWidth}"/>
+            <hc:NumericUpDown hc:InfoElement.TitleWidth="100" hc:BorderElement.CornerRadius="0" BorderThickness="0,0,0,1"
+                              hc:InfoElement.TitlePlacement="Left" hc:InfoElement.Title="字符区域 Row1" 
+                              Style="{StaticResource NumericUpDownPlus}" Minimum="0" Increment="1" Value="{Binding NumRow1}"/>
+            <hc:NumericUpDown hc:InfoElement.TitleWidth="100" hc:BorderElement.CornerRadius="0" BorderThickness="0,0,0,1"
+                              hc:InfoElement.TitlePlacement="Left" hc:InfoElement.Title="字符区域 Col1" 
+                              Style="{StaticResource NumericUpDownPlus}" Minimum="0" Increment="1" Value="{Binding NumCol1}"/>
+            <hc:NumericUpDown hc:InfoElement.TitleWidth="100" hc:BorderElement.CornerRadius="0" BorderThickness="0,0,0,1"
+                              hc:InfoElement.TitlePlacement="Left" hc:InfoElement.Title="字符区域 Row2" 
+                              Style="{StaticResource NumericUpDownPlus}" Minimum="0" Increment="1" Value="{Binding NumRow2}"/>
+            <hc:NumericUpDown hc:InfoElement.TitleWidth="100" hc:BorderElement.CornerRadius="0" BorderThickness="0,0,0,1" 
+                              hc:InfoElement.TitlePlacement="Left" hc:InfoElement.Title="字符区域 Col2" 
+                              Style="{StaticResource NumericUpDownPlus}" Minimum="0" Increment="1" Value="{Binding NumCol2}"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

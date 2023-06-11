@@ -1,0 +1,95 @@
+﻿<UserControl x:Class="Wpf_Base.HalconWpf.Tools.CaliperTool"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:halcon="clr-namespace:HalconDotNet;assembly=halcondotnet"
+             xmlns:vm="clr-namespace:Wpf_Base.HalconWpf.ViewModel"
+             xmlns:wpf="clr-namespace:Wpf_Base.ControlsWpf"
+             Background="{DynamicResource RegionBrush}"
+             mc:Ignorable="d" 
+             FontSize="14"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <vm:CaliperToolVM/>
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <!-- 主题样式 -->
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <hc:Interaction.Triggers>
+        <hc:EventTrigger EventName="Loaded">
+            <hc:EventToCommand Command="{Binding CmdLoaded}" PassEventArgsToCommand="True"/>
+        </hc:EventTrigger>
+    </hc:Interaction.Triggers>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="300"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Button hc:IconElement.Geometry="{DynamicResource IconVideo}" Content="{Binding StrGrabContent}" hc:IconElement.Height="16"
+                    FontSize="16" Cursor="Hand" Style="{DynamicResource MyButtonIcon}" Command="{Binding CmdGrabImage}"/>
+                <Button hc:IconElement.Geometry="{DynamicResource IconImageAdd}" Content="加载图像" FontSize="16"
+			        Cursor="Hand" Style="{DynamicResource MyButtonIcon}" Command="{Binding CmdLoadSaveImage}" CommandParameter="LoadImage"/>
+                <Button hc:IconElement.Geometry="{DynamicResource IconExportOut}" Content="保存图像" FontSize="16"
+			        Cursor="Hand" Style="{DynamicResource MyButtonIcon}" Command="{Binding CmdLoadSaveImage}" CommandParameter="SaveImage"/>
+            </StackPanel>
+
+            <Border Grid.Row="1" x:Name="DrawingBorder" ClipToBounds="True">
+                <Grid>
+                    <!-- 这是一个载体 -->
+                    <hc:SimplePanel Background="White"/>
+                    <halcon:HSmartWindowControlWPF Name="HalconWPF" BorderThickness="1" BorderBrush="{DynamicResource PrimaryBrush}" IsHitTestVisible="False"/>
+                    <InkCanvas x:Name="DrawingCanvas" Background="Transparent" IsHitTestVisible="False" EditingMode="None"/>
+                </Grid>
+            </Border>
+            <wpf:PixelValueControl Grid.Row="2" x:Name="MyPixelValueControl"/>
+        </Grid>
+
+        <StackPanel Grid.Column="1" Margin="5">
+            <hc:NumericUpDown hc:BorderElement.CornerRadius="0" Value="{Binding NumMinAmp}" Minimum="0" Maximum="255" 
+                              Increment="1" Style="{StaticResource MyNumericUpDownStyle}" BorderThickness="0,0,0,1"
+                              hc:InfoElement.TitleWidth="105" hc:InfoElement.TitlePlacement="Left" hc:InfoElement.Title="最小幅度"/>
+            <hc:NumericUpDown hc:BorderElement.CornerRadius="0" Value="{Binding NumSmooth}" Minimum="0.4" Maximum="32" 
+                              Increment="0.1" Style="{StaticResource MyNumericUpDownStyle}" BorderThickness="0,0,0,1"
+                              hc:InfoElement.TitleWidth="105" hc:InfoElement.TitlePlacement="Left" hc:InfoElement.Title="平滑参数"/>
+
+            <hc:TextBox Text="{Binding NumAvePixel, StringFormat={}{0:F3} pixel}" hc:BorderElement.CornerRadius="0" IsReadOnly="True"
+                            hc:InfoElement.TitleWidth="105" hc:InfoElement.TitlePlacement="Left" hc:InfoElement.Title="像素长度" BorderThickness="0,0,0,1"/>
+            <hc:TextBox Text="{Binding NumActualLength, StringFormat={}{0:F3}}" hc:BorderElement.CornerRadius="0"
+                            hc:InfoElement.TitleWidth="105" hc:InfoElement.TitlePlacement="Left" hc:InfoElement.Title="实际长度 (mm)" BorderThickness="0,0,0,1"/>
+            <hc:TextBox Text="{Binding NumPixelSize, StringFormat={}{0:F5} mm/pixel}" hc:BorderElement.CornerRadius="0" IsReadOnly="True"
+                            hc:InfoElement.TitleWidth="105" hc:InfoElement.TitlePlacement="Left" hc:InfoElement.Title="像素尺寸" BorderThickness="0,0,0,1"/>
+
+            <hc:TextBox hc:BorderElement.CornerRadius="0" Text="{Binding StrRecipeName}" VerticalAlignment="Center" FontWeight="Bold" 
+                        hc:InfoElement.TitleWidth="105" hc:InfoElement.TitlePlacement="Left" hc:InfoElement.Title="配方名称"
+                        Cursor="IBeam" BorderThickness="0,0,0,1"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,2">
+                <Button Content="编辑参考线" FontSize="16" Cursor="Hand" hc:IconElement.Geometry="{DynamicResource IconEdit}" 
+                        Style="{DynamicResource MyButtonIcon}" Command="{Binding CmdChooseLine}"/>
+                <Button Content="执行" FontSize="16" Cursor="Hand" hc:IconElement.Geometry="{DynamicResource IconRun}"
+                        Style="{DynamicResource MyButtonIcon}" hc:BorderElement.CornerRadius="0" Command="{Binding CmdExecuteCaliper}"/>
+                <Button Content="保存" FontSize="16" Cursor="Hand" hc:IconElement.Geometry="{DynamicResource IconExportOut}"
+                        Style="{DynamicResource MyButtonIcon}" hc:BorderElement.CornerRadius="0" Command="{Binding CmdSaveCaliper}"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

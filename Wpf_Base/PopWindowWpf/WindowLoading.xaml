@@ -1,0 +1,23 @@
+﻿<Window x:Class="Wpf_Base.PopWindowWpf.WindowLoading"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        Topmost="True"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        Opacity="0.6"
+        Title="等待窗体" Height="300" Width="500">
+
+    <Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" Background="{DynamicResource BorderBrush}">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <hc:LoadingCircle Foreground="{StaticResource PrimaryBrush}" Style="{StaticResource MyLoadingCircleStyle}"
+                          Height="64" Width="64"/>
+            <TextBlock x:Name="TB_Content" Text="程序运行中，请稍候 ······" VerticalAlignment="Center" 
+                   Margin="10" FontSize="24" TextWrapping="Wrap"/>
+        </StackPanel>
+    </Border>
+</Window>

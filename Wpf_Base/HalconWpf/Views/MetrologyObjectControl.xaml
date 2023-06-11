@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="Wpf_Base.HalconWpf.Views.MetrologyObjectControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:local="clr-namespace:Wpf_Base.HalconWpf.Views"
+             mc:Ignorable="d">
+    <UserControl.DataContext>
+        <local:MetrologyObjectVM/>
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <!-- 主题样式 -->
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <StackPanel Orientation="Vertical">
+        <hc:NumericUpDown hc:InfoElement.TitleWidth="100" hc:BorderElement.CornerRadius="0" hc:InfoElement.TitlePlacement="Left" 
+                          hc:InfoElement.Title="测量区域半宽" Style="{StaticResource NumericUpDownPlus}" BorderThickness="0,0,0,1"
+                          Value="{Binding NumLength1}" Minimum="1" Increment="1"/>
+
+        <hc:NumericUpDown hc:InfoElement.TitleWidth="100" hc:BorderElement.CornerRadius="0" hc:InfoElement.TitlePlacement="Left" 
+                          hc:InfoElement.Title="测量区域半高" Style="{StaticResource NumericUpDownPlus}" BorderThickness="0,0,0,1"
+                          Value="{Binding NumLength2}" Minimum="1" Increment="1"/>
+
+        <hc:NumericUpDown hc:InfoElement.TitleWidth="100" hc:BorderElement.CornerRadius="0" hc:InfoElement.TitlePlacement="Left" 
+                          hc:InfoElement.Title="高斯平滑" Style="{StaticResource NumericUpDownPlus}" BorderThickness="0,0,0,1"
+                          Value="{Binding NumSigma}" Minimum="1" Increment="1"/>
+
+        <hc:NumericUpDown hc:InfoElement.TitleWidth="100" hc:BorderElement.CornerRadius="0" hc:InfoElement.TitlePlacement="Left" 
+                          hc:InfoElement.Title="最小边缘阈值" Style="{StaticResource NumericUpDownPlus}" BorderThickness="0,0,0,1"
+                          Value="{Binding NumThreshold}" Minimum="1" Increment="1"/>
+
+        <hc:ComboBox IsEditable="True" Text="{Binding StrSelectSelect}" hc:BorderElement.CornerRadius="0" BorderThickness="0,0,0,1"
+                     hc:InfoElement.TitleWidth="100" hc:InfoElement.TitlePlacement="Left" hc:InfoElement.Title="选择结束点">
+            <ComboBoxItem Content="all"/>
+            <ComboBoxItem Content="first"/>
+            <ComboBoxItem Content="last"/>
+        </hc:ComboBox>
+
+        <hc:ComboBox IsEditable="True" Text="{Binding StrSelectTransition}" hc:BorderElement.CornerRadius="0" BorderThickness="0,0,0,1"
+                     hc:InfoElement.TitleWidth="100" hc:InfoElement.TitlePlacement="Left" hc:InfoElement.Title="亮暗边缘">
+            <ComboBoxItem Content="all"/>
+            <ComboBoxItem Content="negative"/>
+            <ComboBoxItem Content="positive"/>
+            <ComboBoxItem Content="uniform"/>
+        </hc:ComboBox>
+
+        <hc:ComboBox IsEditable="True" Text="{Binding StrSelectInterpolation}" hc:BorderElement.CornerRadius="0" BorderThickness="0,0,0,1"
+                     hc:InfoElement.TitleWidth="100" hc:InfoElement.TitlePlacement="Left" hc:InfoElement.Title="插值类型">
+            <ComboBoxItem Content="bicubic"/>
+            <ComboBoxItem Content="bilinear"/>
+            <ComboBoxItem Content="nearest_neighbor"/>
+        </hc:ComboBox>
+
+        <hc:NumericUpDown hc:InfoElement.TitleWidth="100" hc:BorderElement.CornerRadius="0" hc:InfoElement.TitlePlacement="Left" 
+                          hc:InfoElement.Title="最小分数" Style="{StaticResource NumericUpDownPlus}" BorderThickness="0,0,0,1"
+                          Value="{Binding NumMinScore}" Minimum="0.1" MaxHeight="0.9" Increment="0.1"/>
+
+        <hc:NumericUpDown hc:InfoElement.TitleWidth="100" hc:BorderElement.CornerRadius="0" hc:InfoElement.TitlePlacement="Left" 
+                          hc:InfoElement.Title="拟合最大数量" Style="{StaticResource NumericUpDownPlus}" BorderThickness="0,0,0,1"
+                          Value="{Binding IntMinInstances}" Minimum="1" Increment="1"/>
+    </StackPanel>
+</UserControl>

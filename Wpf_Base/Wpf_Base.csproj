@@ -1,0 +1,620 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0DA963BE-CE73-4949-BB2C-E0A111D410B9}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Wpf_Base</RootNamespace>
+    <AssemblyName>Wpf_Base</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Image\icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto">
+      <HintPath>..\WsVisionWpf\Dlls\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="CommonServiceLocator">
+      <HintPath>..\WsVisionWpf\Dlls\CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="Encoder">
+      <HintPath>..\WsVisionWpf\Dlls\Encoder.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight">
+      <HintPath>..\WsVisionWpf\Dlls\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras">
+      <HintPath>..\WsVisionWpf\Dlls\GalaSoft.MvvmLight.Extras.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Platform">
+      <HintPath>..\WsVisionWpf\Dlls\GalaSoft.MvvmLight.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="halcondotnet">
+      <HintPath>..\WsVisionWpf\Dlls\halcondotnet.dll</HintPath>
+    </Reference>
+    <Reference Include="HandyControl, Version=3.3.0.0, Culture=neutral, PublicKeyToken=45be8712787a1e5b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dlls\HandyControl.dll</HintPath>
+    </Reference>
+    <Reference Include="HslCommunication, Version=7.0.1.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\WsVisionWpf\Dlls\HslCommunication.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\WsVisionWpf\Dlls\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="MvCameraControl.Net">
+      <HintPath>..\WsVisionWpf\Dlls\MvCameraControl.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI">
+      <HintPath>..\WsVisionWpf\Dlls\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML">
+      <HintPath>..\WsVisionWpf\Dlls\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net">
+      <HintPath>..\WsVisionWpf\Dlls\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats">
+      <HintPath>..\WsVisionWpf\Dlls\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleTCP">
+      <HintPath>..\WsVisionWpf\Dlls\SimpleTCP.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Speech" />
+    <Reference Include="System.Windows.Interactivity">
+      <HintPath>..\WsVisionWpf\Dlls\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="CcdWpf\CCcdIcon.cs" />
+    <Compile Include="CcdWpf\CcdInfoControl.xaml.cs">
+      <DependentUpon>CcdInfoControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CcdWpf\CcdManager.cs" />
+    <Compile Include="CcdWpf\CcdManagerControl.xaml.cs">
+      <DependentUpon>CcdManagerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CcdWpf\CcdManagerVM.cs" />
+    <Compile Include="CcdWpf\CHalCameraInfo.cs" />
+    <Compile Include="CcdWpf\CHikCameraInfo.cs" />
+    <Compile Include="CcdWpf\Converter\StringToGeometryConverter.cs" />
+    <Compile Include="CcdWpf\EnumCameraTriggerType.cs" />
+    <Compile Include="CcdWpf\EnumCameraType.cs" />
+    <Compile Include="CcdWpf\EnumCaptureMode.cs" />
+    <Compile Include="CcdWpf\EnumHalColor.cs" />
+    <Compile Include="CcdWpf\HalconWindowControl.xaml.cs">
+      <DependentUpon>HalconWindowControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CcdWpf\HalconWindowVM.cs" />
+    <Compile Include="CcdWpf\HalMethod.cs" />
+    <Compile Include="CcdWpf\MvsMethod.cs" />
+    <Compile Include="CcdWpf\WindowHalcon.xaml.cs">
+      <DependentUpon>WindowHalcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CommunicationWpf\EnumCommunicationType.cs" />
+    <Compile Include="CommunicationWpf\McManager.cs" />
+    <Compile Include="CommunicationWpf\ModbusManager.cs" />
+    <Compile Include="CommunicationWpf\ModbusServerManager.cs" />
+    <Compile Include="CommunicationWpf\S7Manager.cs" />
+    <Compile Include="CommunicationWpf\TcpClientManager.cs" />
+    <Compile Include="CommunicationWpf\TcpServerManager.cs" />
+    <Compile Include="CommunicationWpf\WindowIP.xaml.cs">
+      <DependentUpon>WindowIP.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CommunicationWpf\CFileNames.cs" />
+    <Compile Include="ControlsWpf\PixelValueControl.xaml.cs">
+      <DependentUpon>PixelValueControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ControlsWpf\PlotPieControl.xaml.cs">
+      <DependentUpon>PlotPieControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HalconWpf\Views\CreateAnisoShapeModelControl.xaml.cs">
+      <DependentUpon>CreateAnisoShapeModelControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HalconWpf\Views\CreateAnisoShapeModelVM.cs" />
+    <Compile Include="HalconWpf\Views\CreateScaledShapeModelControl.xaml.cs">
+      <DependentUpon>CreateScaledShapeModelControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HalconWpf\Views\CreateScaledShapeModelVM.cs" />
+    <Compile Include="HalconWpf\Views\CreateShapeModelControl.xaml.cs">
+      <DependentUpon>CreateShapeModelControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HalconWpf\Views\CreateShapeModelVM.cs" />
+    <Compile Include="HalconWpf\Views\FindAnisoShapeModelControl.xaml.cs">
+      <DependentUpon>FindAnisoShapeModelControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HalconWpf\Views\FindAnisoShapeModelVM.cs" />
+    <Compile Include="HalconWpf\Views\FindScaledShapeModelControl.xaml.cs">
+      <DependentUpon>FindScaledShapeModelControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HalconWpf\Views\FindScaledShapeModelVM.cs" />
+    <Compile Include="HalconWpf\Views\FindShapeModelControl.xaml.cs">
+      <DependentUpon>FindShapeModelControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HalconWpf\Views\FindShapeModelVM.cs" />
+    <Compile Include="HalconWpf\Views\ImageChannelControl.xaml.cs">
+      <DependentUpon>ImageChannelControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HalconWpf\Views\ImageChannelVM.cs" />
+    <Compile Include="HalconWpf\Views\MetrologyObjectControl.xaml.cs">
+      <DependentUpon>MetrologyObjectControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HalconWpf\Views\MetrologyObjectVM.cs" />
+    <Compile Include="HalconWpf\Views\OcrControl.xaml.cs">
+      <DependentUpon>OcrControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HalconWpf\Views\OcrVM.cs" />
+    <Compile Include="HalconWpf\Views\VisionOffsetValueControl.xaml.cs">
+      <DependentUpon>VisionOffsetValueControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HalconWpf\Views\VisionOffsetValueVM.cs" />
+    <Compile Include="HalconWpf\Converter\HTupleToStringConverter.cs" />
+    <Compile Include="HalconWpf\Converter\RobotMovePointToBoolConverter.cs" />
+    <Compile Include="HalconWpf\Method\EditMethod.cs" />
+    <Compile Include="HalconWpf\Method\HalconIoMethod.cs" />
+    <Compile Include="HalconWpf\Method\InitMethod.cs" />
+    <Compile Include="HalconWpf\Model\CDataModel.cs" />
+    <Compile Include="HalconWpf\Model\CHalOperatorParams.cs" />
+    <Compile Include="HalconWpf\Model\CMetrologyObjectMeasureParams.cs" />
+    <Compile Include="HalconWpf\Model\CMetrologyObjectParam.cs" />
+    <Compile Include="HalconWpf\Model\COcrProjectParams.cs" />
+    <Compile Include="HalconWpf\Model\CROI.cs" />
+    <Compile Include="HalconWpf\Model\EnumCalibrationType.cs" />
+    <Compile Include="HalconWpf\Model\EnumCaliperEditType.cs" />
+    <Compile Include="HalconWpf\Model\EnumDirectionX.cs" />
+    <Compile Include="HalconWpf\Model\EnumDirectionY.cs" />
+    <Compile Include="HalconWpf\Model\EnumGetMarkerMode.cs" />
+    <Compile Include="HalconWpf\Model\EnumHalOperator.cs" />
+    <Compile Include="HalconWpf\Model\EnumImageChannel.cs" />
+    <Compile Include="HalconWpf\Model\EnumMetrologyObjectType.cs" />
+    <Compile Include="HalconWpf\Model\EnumModuleEditState.cs" />
+    <Compile Include="HalconWpf\Model\EnumModuleEditType.cs" />
+    <Compile Include="HalconWpf\Model\EnumModuleType.cs" />
+    <Compile Include="HalconWpf\Model\EnumMoveType.cs" />
+    <Compile Include="HalconWpf\Model\EnumRobotMovePoint.cs" />
+    <Compile Include="HalconWpf\Model\EnumRotateType.cs" />
+    <Compile Include="HalconWpf\Tools\AnisoShapeModuleTool.xaml.cs">
+      <DependentUpon>AnisoShapeModuleTool.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HalconWpf\Tools\CalibrationTool.xaml.cs">
+      <DependentUpon>CalibrationTool.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HalconWpf\Tools\CaliperTool.xaml.cs">
+      <DependentUpon>CaliperTool.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HalconWpf\Tools\CircleCalibrationTool.xaml.cs">
+      <DependentUpon>CircleCalibrationTool.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HalconWpf\Tools\MetrologyTool.xaml.cs">
+      <DependentUpon>MetrologyTool.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HalconWpf\Tools\OcrTool.xaml.cs">
+      <DependentUpon>OcrTool.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HalconWpf\Tools\QrTool.xaml.cs">
+      <DependentUpon>QrTool.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HalconWpf\Tools\RoiTool.xaml.cs">
+      <DependentUpon>RoiTool.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HalconWpf\Tools\ScaledShapeModuleTool.xaml.cs">
+      <DependentUpon>ScaledShapeModuleTool.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HalconWpf\Tools\ShapeModuleTool.xaml.cs">
+      <DependentUpon>ShapeModuleTool.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HalconWpf\ViewModel\CalibrationToolVM.cs" />
+    <Compile Include="HalconWpf\ViewModel\CaliperToolVM.cs" />
+    <Compile Include="HalconWpf\ViewModel\CircleCalibrationToolVM.cs" />
+    <Compile Include="HalconWpf\ViewModel\MetrologyToolVM.cs" />
+    <Compile Include="HalconWpf\ViewModel\OcrToolVM.cs" />
+    <Compile Include="HalconWpf\ViewModel\QrToolVM.cs" />
+    <Compile Include="HalconWpf\ViewModel\RoiToolVM.cs" />
+    <Compile Include="HalconWpf\ViewModel\ShapeModuleToolAnisoVM.cs" />
+    <Compile Include="HalconWpf\ViewModel\ShapeModuleToolScaledVM.cs" />
+    <Compile Include="HalconWpf\ViewModel\ShapeModuleToolVM.cs" />
+    <Compile Include="LogWpf\CLogBrush.cs" />
+    <Compile Include="LogWpf\DataModel.cs" />
+    <Compile Include="LogWpf\EnumLogType.cs" />
+    <Compile Include="LogWpf\LogControl.xaml.cs">
+      <DependentUpon>LogControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LogWpf\LogTool.xaml.cs">
+      <DependentUpon>LogTool.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LogWpf\LogToolVM.cs" />
+    <Compile Include="MethodNet\BeepMethod.cs" />
+    <Compile Include="MethodNet\CConstants.cs" />
+    <Compile Include="MethodNet\CustomCaliperRectangle.cs" />
+    <Compile Include="MethodNet\CustomCircle.cs" />
+    <Compile Include="MethodNet\CustomEllipse.cs" />
+    <Compile Include="MethodNet\CustomLine.cs" />
+    <Compile Include="MethodNet\CustomLineMask.cs" />
+    <Compile Include="MethodNet\CustomMarkerCross.cs" />
+    <Compile Include="MethodNet\CustomParallelLines.cs" />
+    <Compile Include="MethodNet\CustomPolygon.cs" />
+    <Compile Include="MethodNet\CustomPolyline.cs" />
+    <Compile Include="MethodNet\CustomRectangle.cs" />
+    <Compile Include="MethodNet\FileIOMethod.cs" />
+    <Compile Include="MethodNet\ImgMethod.cs" />
+    <Compile Include="MethodNet\InkMethod.cs" />
+    <Compile Include="MethodNet\SysMethod.cs" />
+    <Compile Include="PopWindowWpf\EnumWindowType.cs" />
+    <Compile Include="PopWindowWpf\WindowAutoClosed.xaml.cs">
+      <DependentUpon>WindowAutoClosed.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PopWindowWpf\WindowAutoClosedIcon.xaml.cs">
+      <DependentUpon>WindowAutoClosedIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PopWindowWpf\WindowClosedQuestion.xaml.cs">
+      <DependentUpon>WindowClosedQuestion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PopWindowWpf\WindowIcon.xaml.cs">
+      <DependentUpon>WindowIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PopWindowWpf\WindowLoading.xaml.cs">
+      <DependentUpon>WindowLoading.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PopWindowWpf\WindowLogin.xaml.cs">
+      <DependentUpon>WindowLogin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PopWindowWpf\WindowQuestion.xaml.cs">
+      <DependentUpon>WindowQuestion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PopWindowWpf\WinMethod.cs" />
+    <Compile Include="TestWpf\ControlsDemoVM.cs" />
+    <Compile Include="TestWpf\FileIoDemo.xaml.cs">
+      <DependentUpon>FileIoDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TestWpf\HikCameraDemo.xaml.cs">
+      <DependentUpon>HikCameraDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TestWpf\MelsecPlcDemo.xaml.cs">
+      <DependentUpon>MelsecPlcDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TestWpf\ModbusDemo.xaml.cs">
+      <DependentUpon>ModbusDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TestWpf\SiemensS7NetDemo.xaml.cs">
+      <DependentUpon>SiemensS7NetDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TestWpf\TcpDemo.xaml.cs">
+      <DependentUpon>TcpDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TestWpf\ControlsDemo.xaml.cs">
+      <DependentUpon>ControlsDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TestWpf\LogDemo.xaml.cs">
+      <DependentUpon>LogDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TestWpf\PopWindowDemo.xaml.cs">
+      <DependentUpon>PopWindowDemo.xaml</DependentUpon>
+    </Compile>
+    <Page Include="CcdWpf\CcdInfoControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CcdWpf\CcdManagerControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CcdWpf\HalconWindowControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CcdWpf\WindowHalcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CommunicationWpf\WindowIP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ControlsWpf\DateTimeNowControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ControlsWpf\DispTextControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ControlsWpf\PixelValueControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ControlsWpf\PlotPieControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="HalconWpf\Views\CreateAnisoShapeModelControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="HalconWpf\Views\CreateScaledShapeModelControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="HalconWpf\Views\CreateShapeModelControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="HalconWpf\Views\FindAnisoShapeModelControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="HalconWpf\Views\FindScaledShapeModelControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="HalconWpf\Views\FindShapeModelControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="HalconWpf\Views\ImageChannelControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="HalconWpf\Views\MetrologyObjectControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="HalconWpf\Views\OcrControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="HalconWpf\Views\VisionOffsetValueControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="HalconWpf\Tools\AnisoShapeModuleTool.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="HalconWpf\Tools\CalibrationTool.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="HalconWpf\Tools\CaliperTool.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="HalconWpf\Tools\CircleCalibrationTool.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="HalconWpf\Tools\MetrologyTool.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="HalconWpf\Tools\OcrTool.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="HalconWpf\Tools\QrTool.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="HalconWpf\Tools\RoiTool.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="HalconWpf\Tools\ScaledShapeModuleTool.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="HalconWpf\Tools\ShapeModuleTool.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LogWpf\LogControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LogWpf\LogTool.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ControlsWpf\DateTimeNowControl.xaml.cs">
+      <DependentUpon>DateTimeNowControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ControlsWpf\Model\CPlotConstant.cs" />
+    <Compile Include="ControlsWpf\Model\CPlotInfo.cs" />
+    <Compile Include="ControlsWpf\DispTextControl.xaml.cs">
+      <DependentUpon>DispTextControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="PopWindowWpf\WindowAutoClosed.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PopWindowWpf\WindowAutoClosedIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PopWindowWpf\WindowClosedQuestion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PopWindowWpf\WindowIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PopWindowWpf\WindowLoading.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PopWindowWpf\WindowLogin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PopWindowWpf\WindowQuestion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TestWpf\FileIoDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestWpf\HikCameraDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestWpf\MelsecPlcDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestWpf\ModbusDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestWpf\SiemensS7NetDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestWpf\TcpDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestWpf\ControlsDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestWpf\LogDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestWpf\PopWindowDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Theme\Brush.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Theme\Geometry.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Theme\Style.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MethodNet\DispatcherHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\ProfilePicture.jpg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

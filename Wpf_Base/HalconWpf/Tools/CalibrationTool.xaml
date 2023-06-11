@@ -1,0 +1,306 @@
+﻿<UserControl x:Class="Wpf_Base.HalconWpf.Tools.CalibrationTool"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:halcon="clr-namespace:HalconDotNet;assembly=halcondotnet"
+             xmlns:vm="clr-namespace:Wpf_Base.HalconWpf.ViewModel"
+             xmlns:ct="clr-namespace:Wpf_Base.HalconWpf.Converter"
+             xmlns:core="clr-namespace:System;assembly=mscorlib"
+             xmlns:model="clr-namespace:Wpf_Base.HalconWpf.Model" 
+             xmlns:wpf="clr-namespace:Wpf_Base.ControlsWpf"
+             xmlns:controls="clr-namespace:Wpf_Base.HalconWpf.Views"
+             FontSize="14"
+             Background="{DynamicResource RegionBrush}">
+    <UserControl.DataContext>
+        <vm:CalibrationToolVM/>
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <!-- 主题样式 -->
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <!-- 转换器 -->
+            <ct:RobotMovePointToBoolConverter x:Key="CfgRobotMovePositionToBool"/>
+
+            <ObjectDataProvider x:Key="RotateTypes" MethodName="GetValues" ObjectType="{x:Type core:Enum}">
+                <ObjectDataProvider.MethodParameters>               
+                    <x:Type Type="model:EnumRotateType"/>  
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <hc:Interaction.Triggers>
+        <hc:EventTrigger EventName="Loaded">
+            <hc:EventToCommand Command="{Binding CmdLoaded}" PassEventArgsToCommand="True"/>
+        </hc:EventTrigger>
+    </hc:Interaction.Triggers>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="400"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Button hc:IconElement.Geometry="{DynamicResource IconVideo}" hc:IconElement.Height="16" Content="{Binding StrGrabContent}"
+                    FontSize="16" Cursor="Hand" Style="{DynamicResource MyButtonIcon}" Command="{Binding CmdGrabImage}"/>
+                <Button hc:IconElement.Geometry="{DynamicResource IconImageAdd}" Content="加载图像" FontSize="16"
+			        Cursor="Hand" Style="{DynamicResource MyButtonIcon}" Command="{Binding CmdLoadSaveImage}" CommandParameter="LoadImage"/>
+                <Button hc:IconElement.Geometry="{DynamicResource IconExportOut}" Content="保存图像" FontSize="16"
+			        Cursor="Hand" Style="{DynamicResource MyButtonIcon}" Command="{Binding CmdLoadSaveImage}" CommandParameter="SaveImage"/>
+            </StackPanel>
+
+            <Border Grid.Row="1" x:Name="DrawingBorder" ClipToBounds="True">
+                <Grid>
+                    <!-- 这是一个载体 -->
+                    <hc:SimplePanel Background="White"/>
+                    <halcon:HSmartWindowControlWPF Name="HalconWPF" BorderThickness="1" BorderBrush="{DynamicResource PrimaryBrush}" IsHitTestVisible="False"/>
+                    <InkCanvas x:Name="DrawingCanvas" Background="Transparent" IsHitTestVisible="False" EditingMode="None"/>
+                </Grid>
+            </Border>
+            <wpf:PixelValueControl Grid.Row="2" x:Name="MyPixelValueControl"/>
+        </Grid>
+
+        <hc:ScrollViewer Grid.Column="1">
+            <StackPanel Orientation="Vertical" Margin="5">
+                <Expander BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}" hc:BorderElement.CornerRadius="0" IsExpanded="True">
+                    <Expander.Header>
+                        <TextBlock Text="机器偏移" Margin="-5" VerticalAlignment="Center" FontWeight="Bold"/>
+                    </Expander.Header>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <UniformGrid Rows="3" Columns="3">
+                                <hc:Badge Status="Processing" BadgeMargin="12" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#88DB3340"
+                                          ShowBadge="{Binding EnumRobotPositionNumber, Mode=TwoWay, ConverterParameter=7, Converter={StaticResource CfgRobotMovePositionToBool}}">
+                                    <Button Content="7" hc:BorderElement.CornerRadius="0" Margin="1"/>
+                                </hc:Badge>
+                                <hc:Badge Status="Processing" BadgeMargin="12" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#88DB3340" 
+                                          ShowBadge="{Binding EnumRobotPositionNumber, Mode=TwoWay, ConverterParameter=8, Converter={StaticResource CfgRobotMovePositionToBool}}">
+                                    <Button Content="8" hc:BorderElement.CornerRadius="0"/>
+                                </hc:Badge>
+                                <hc:Badge Status="Processing" BadgeMargin="12" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#88DB3340"
+                                          ShowBadge="{Binding EnumRobotPositionNumber, Mode=TwoWay, ConverterParameter=9, Converter={StaticResource CfgRobotMovePositionToBool}}">
+                                    <Button Content="9" hc:BorderElement.CornerRadius="0"/>
+                                </hc:Badge>
+                                <hc:Badge Status="Processing" BadgeMargin="12" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#88DB3340"
+                                          ShowBadge="{Binding EnumRobotPositionNumber, Mode=TwoWay, ConverterParameter=6, Converter={StaticResource CfgRobotMovePositionToBool}}">
+                                    <Button Content="6" hc:BorderElement.CornerRadius="0"/>
+                                </hc:Badge>
+                                <hc:Badge Status="Processing" BadgeMargin="12" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#88DB3340"
+                                          ShowBadge="{Binding EnumRobotPositionNumber, Mode=TwoWay, ConverterParameter=1, Converter={StaticResource CfgRobotMovePositionToBool}}">
+                                    <Button Content="1" hc:BorderElement.CornerRadius="0"/>
+                                </hc:Badge>
+                                <hc:Badge Status="Processing" BadgeMargin="12" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#88DB3340" 
+                                          ShowBadge="{Binding EnumRobotPositionNumber, Mode=TwoWay, ConverterParameter=2, Converter={StaticResource CfgRobotMovePositionToBool}}">
+                                    <Button Content="2" hc:BorderElement.CornerRadius="0"/>
+                                </hc:Badge>
+                                <hc:Badge Status="Processing" BadgeMargin="12" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#88DB3340" 
+                                          ShowBadge="{Binding EnumRobotPositionNumber, Mode=TwoWay, ConverterParameter=5, Converter={StaticResource CfgRobotMovePositionToBool}}">
+                                    <Button Content="5" hc:BorderElement.CornerRadius="0"/>
+                                </hc:Badge>
+                                <hc:Badge Status="Processing" BadgeMargin="12" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#88DB3340" 
+                                          ShowBadge="{Binding EnumRobotPositionNumber, Mode=TwoWay, ConverterParameter=4, Converter={StaticResource CfgRobotMovePositionToBool}}">
+                                    <Button Content="4" hc:BorderElement.CornerRadius="0"/>
+                                </hc:Badge>
+                                <hc:Badge Status="Processing" BadgeMargin="12" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#88DB3340" 
+                                          ShowBadge="{Binding EnumRobotPositionNumber, Mode=TwoWay, ConverterParameter=3, Converter={StaticResource CfgRobotMovePositionToBool}}">
+                                    <Button Content="3" hc:BorderElement.CornerRadius="0"/>
+                                </hc:Badge>
+                            </UniformGrid>
+
+                            <UniformGrid Grid.Column="1" Rows="3" Columns="1">
+                                <hc:Badge Status="Processing" BadgeMargin="12" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#88DB3340"
+                                          ShowBadge="{Binding EnumRobotPositionNumber, Mode=TwoWay, ConverterParameter=12, Converter={StaticResource CfgRobotMovePositionToBool}}">
+                                    <Button Content="R+" hc:BorderElement.CornerRadius="0" Width="36"/>
+                                </hc:Badge>
+                                <hc:Badge Status="Processing" BadgeMargin="12" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#88DB3340" 
+                                          ShowBadge="{Binding EnumRobotPositionNumber, Mode=TwoWay, ConverterParameter=10, Converter={StaticResource CfgRobotMovePositionToBool}}">
+                                    <Button Content="R0" hc:BorderElement.CornerRadius="0" Width="36"/>
+                                </hc:Badge>
+                                <hc:Badge Status="Processing" BadgeMargin="12" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#88DB3340" 
+                                          ShowBadge="{Binding EnumRobotPositionNumber, Mode=TwoWay, ConverterParameter=11, Converter={StaticResource CfgRobotMovePositionToBool}}">
+                                    <Button Content="R-" hc:BorderElement.CornerRadius="0" Width="36"/>
+                                </hc:Badge>
+                            </UniformGrid>
+
+                            <UniformGrid Grid.Column="2" Rows="3" Columns="1">
+                                <ComboBox ItemsSource="{Binding EnumCalibrationTypeCal}" DisplayMemberPath="Value" SelectedValuePath="Key" hc:BorderElement.CornerRadius="0"
+                                          FontSize="12" SelectedValue="{Binding EnumCalibrationTypeSel}" BorderThickness="0,0,0,1"/>
+                                <ComboBox ItemsSource="{Binding Source={StaticResource RotateTypes}}" hc:BorderElement.CornerRadius="0"
+                                          FontSize="12" SelectedValue="{Binding EnumRotateTypeSel}" BorderThickness="0,0,0,1"/>
+                                <ComboBox ItemsSource="{Binding EnumMoveTypeCal}" DisplayMemberPath="Value" SelectedValuePath="Key" hc:BorderElement.CornerRadius="0"
+                                          FontSize="12" SelectedValue="{Binding EnumMoveTypeSel}" BorderThickness="0,0,0,1"/>
+                            </UniformGrid>
+
+                            <UniformGrid Grid.Column="3" Rows="3" Columns="1" Width="115" Margin="3">
+                                <hc:TextBox hc:InfoElement.TitleWidth="35" hc:InfoElement.TitlePlacement="Left" hc:InfoElement.Title=" dx=" BorderThickness="0,0,0,1"
+                                                FontSize="12" Text="{Binding NumDx, StringFormat={}{0:F2} mm}" hc:BorderElement.CornerRadius="0"/>
+                                <hc:TextBox hc:InfoElement.TitleWidth="35" hc:InfoElement.TitlePlacement="Left" hc:InfoElement.Title=" dy=" BorderThickness="0,0,0,1" 
+                                                FontSize="12" Text="{Binding NumDy, StringFormat={}{0:F2} mm}" hc:BorderElement.CornerRadius="0"/>
+                                <hc:TextBox hc:InfoElement.TitleWidth="35" hc:InfoElement.TitlePlacement="Left" hc:InfoElement.Title=" dr=" BorderThickness="0,0,0,1"
+                                                FontSize="12" Text="{Binding NumDr, StringFormat={}{0:F2} °}" hc:BorderElement.CornerRadius="0"/>
+                            </UniformGrid>
+                        </Grid>
+
+                        <Border Grid.Row="1" BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1">
+                            <UniformGrid Rows="1" Columns="3">
+                                <hc:Shield Subject="X 方向" hc:BorderElement.CornerRadius="0" Color="Transparent">
+                                    <ComboBox ItemsSource="{Binding EnumDirectionXCal}" DisplayMemberPath="Value" SelectedValuePath="Key" BorderThickness="0,0,0,1"
+                                              SelectedValue="{Binding EnumDirectionXSel}" VerticalAlignment="Center" hc:BorderElement.CornerRadius="0"/>
+                                </hc:Shield>
+                                <hc:Shield Subject="Y 方向" hc:BorderElement.CornerRadius="0" Color="Transparent">
+                                    <ComboBox ItemsSource="{Binding EnumDirectionYCal}" DisplayMemberPath="Value" SelectedValuePath="Key" BorderThickness="0,0,0,1"
+                                              SelectedValue="{Binding EnumDirectionYSel}" VerticalAlignment="Center" hc:BorderElement.CornerRadius="0"/>
+                                </hc:Shield>
+                                <hc:Shield Subject="XY 互换" hc:BorderElement.CornerRadius="0">
+                                    <CheckBox IsChecked="{Binding BoolSwitchXY}" BorderThickness="0" Background="{DynamicResource PrimaryBrush}" Cursor="Hand"/>
+                                </hc:Shield>
+                            </UniformGrid>
+                        </Border>
+                    </Grid>
+                </Expander>
+
+                <UniformGrid Rows="1" Columns="2">
+                    <hc:ComboBox ItemsSource="{Binding EnumGetMarkerCal}" SelectedValue="{Binding EnumGetMarkerSel}" 
+                             DisplayMemberPath="Value" SelectedValuePath="Key" hc:BorderElement.CornerRadius="0" 
+                             IsEditable="False" hc:InfoElement.TitlePlacement="Left"  BorderThickness="0,0,0,1"
+                             Margin="5,0" hc:InfoElement.Title="取点方式"/>
+                    <hc:NumericUpDown hc:BorderElement.CornerRadius="0" 
+                                      hc:InfoElement.TitlePlacement="Left" hc:InfoElement.Title="分值阈值" BorderThickness="0,0,0,1"
+                                      Style="{StaticResource NumericUpDownPlus}" Minimum="0" Maximum="1" Increment="0.1"
+                                      Value="{Binding NumScore, StringFormat={}{0:F2}}"/>
+                </UniformGrid>
+
+                <StackPanel Orientation="Horizontal" Margin="0,2">
+                    <Button Content="确认参数" FontSize="16" Cursor="Hand" hc:IconElement.Geometry="{DynamicResource IconCheck}"
+                            Style="{DynamicResource MyButtonIcon}" Width="130" Command="{Binding CmdConfirmParam}"/>
+                    <Button Content="拾取点位" FontSize="16" Cursor="Hand" hc:IconElement.Geometry="{DynamicResource IconTargetPoint}" 
+                            Style="{DynamicResource MyButtonIcon}" Width="130" Command="{Binding CmdGetMarker}"/>
+                    <Button Content="显示点位" FontSize="16" Cursor="Hand" hc:IconElement.Geometry="{DynamicResource IconEyeOn}" 
+                            Style="{DynamicResource MyButtonIcon}" Width="130" Command="{Binding CmdShowMarker}"/>
+                </StackPanel>
+
+                <Expander BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}" hc:BorderElement.CornerRadius="0" IsExpanded="True">
+                    <Expander.Header>
+                        <TextBlock Text="模板匹配" Margin="-5" VerticalAlignment="Center" FontWeight="Bold"/>
+                    </Expander.Header>
+                    <controls:FindShapeModelControl x:Name="MyFindShapeModelControl" FontSize="12"/>
+                </Expander>
+
+                <Expander BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}" hc:BorderElement.CornerRadius="0" IsExpanded="True" Margin="0,2">
+                    <Expander.Header>
+                        <TextBlock Text="Marker 点位" Margin="-5" VerticalAlignment="Center" FontWeight="Bold"/>
+                    </Expander.Header>
+                    <hc:ScrollViewer>
+                        <StackPanel>
+                            <UniformGrid Rows="1" Columns="3">
+                                <hc:Shield Subject="X0=" hc:BorderElement.CornerRadius="0" Color="Transparent" Margin="1">
+                                    <TextBlock Text="{Binding ValueX0, StringFormat={}{0:F2}}" Foreground="{DynamicResource PrimaryTextBrush}"/>
+                                </hc:Shield>
+                                <hc:Shield Subject="Y0=" hc:BorderElement.CornerRadius="0" Color="Transparent">
+                                    <TextBlock Text="{Binding ValueY0, StringFormat={}{0:F2}}" Foreground="{DynamicResource PrimaryTextBrush}"/>
+                                </hc:Shield>
+                                <hc:Shield Subject="R0=" hc:BorderElement.CornerRadius="0" Color="Transparent">
+                                    <TextBlock Text="{Binding ValueR0, StringFormat={}{0:F2}}" Foreground="{DynamicResource PrimaryTextBrush}"/>
+                                </hc:Shield>
+                            </UniformGrid>
+
+                            <DataGrid SelectionMode="Single" HeadersVisibility="All" AutoGenerateColumns="False" CanUserSortColumns="False"
+                                      ItemsSource="{Binding DataListCalMarker}" SelectedIndex="{Binding IntSelectedIndex}" AlternationCount="2"
+                                      HorizontalScrollBarVisibility="Hidden" FontSize="12" Height="200" Style="{DynamicResource DataGrid.Small}"
+                                      ColumnHeaderStyle="{DynamicResource MyDataGridColumnHeaderStyle}"
+                                      RowStyle="{DynamicResource MyDataGridRowSytle}"
+                                      CellStyle="{DynamicResource MyDataGridCellSytle}"
+                                      SelectionChanged="DataGrid_SelectionChanged">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Width="65" IsReadOnly="True" Binding="{Binding Header}" Header="点位"/>
+                                    <DataGridTextColumn Width="65" IsReadOnly="True" Binding="{Binding ImageX, StringFormat={}{0:F2}}" Header="图像X"/>
+                                    <DataGridTextColumn Width="65" IsReadOnly="True" Binding="{Binding ImageY, StringFormat={}{0:F2}}" Header="图像Y"/>
+                                    <DataGridTextColumn Width="65" IsReadOnly="True" Binding="{Binding RobotX, StringFormat={}{0:F3}}" Header="机器X"/>
+                                    <DataGridTextColumn Width="65" IsReadOnly="True" Binding="{Binding RobotY, StringFormat={}{0:F3}}" Header="机器Y"/>
+                                    <DataGridTextColumn Width="65" IsReadOnly="True" Binding="{Binding Angle, StringFormat={}{0:F2}}" Header="角度R"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </StackPanel>
+                    </hc:ScrollViewer>
+                </Expander>
+
+                <Expander BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}" hc:BorderElement.CornerRadius="0" IsExpanded="True" Margin="0.2">
+                    <Expander.Header>
+                        <TextBlock Text="标定结果" Margin="-5" VerticalAlignment="Center" FontWeight="Bold"/>
+                    </Expander.Header>
+                    <StackPanel>
+                        <UniformGrid Rows="2" Columns="3">
+                            <hc:Shield Subject="a1=" hc:BorderElement.CornerRadius="0" Color="Transparent" Margin="1">
+                                <TextBlock Text="{Binding ValueA1, StringFormat={}{0:F8}}" Foreground="{DynamicResource PrimaryTextBrush}"/>
+                            </hc:Shield>
+                            <hc:Shield Subject="b1=" hc:BorderElement.CornerRadius="0" Color="Transparent">
+                                <TextBlock Text="{Binding ValueB1, StringFormat={}{0:F8}}" Foreground="{DynamicResource PrimaryTextBrush}"/>
+                            </hc:Shield>
+                            <hc:Shield Subject="c1=" hc:BorderElement.CornerRadius="0" Color="Transparent">
+                                <TextBlock Text="{Binding ValueC1, StringFormat={}{0:F8}}" Foreground="{DynamicResource PrimaryTextBrush}"/>
+                            </hc:Shield>
+                            <hc:Shield Subject="a2=" hc:BorderElement.CornerRadius="0" Color="Transparent" Margin="1">
+                                <TextBlock Text="{Binding ValueA2, StringFormat={}{0:F8}}" Foreground="{DynamicResource PrimaryTextBrush}"/>
+                            </hc:Shield>
+                            <hc:Shield Subject="b2=" hc:BorderElement.CornerRadius="0" Color="Transparent">
+                                <TextBlock Text="{Binding ValueB2, StringFormat={}{0:F8}}" Foreground="{DynamicResource PrimaryTextBrush}"/>
+                            </hc:Shield>
+                            <hc:Shield Subject="c2=" hc:BorderElement.CornerRadius="0" Color="Transparent">
+                                <TextBlock Text="{Binding ValueC2, StringFormat={}{0:F8}}" Foreground="{DynamicResource PrimaryTextBrush}"/>
+                            </hc:Shield>
+                        </UniformGrid>
+
+                        <UniformGrid Rows="1" Columns="3">
+                            <hc:Shield Subject="CenerX=" hc:BorderElement.CornerRadius="0" Color="Transparent" Margin="1">
+                                <TextBlock Text="{Binding CenterX, StringFormat={}{0:F3}}" Foreground="{DynamicResource PrimaryTextBrush}"/>
+                            </hc:Shield>
+                            <hc:Shield Subject="CenerY=" hc:BorderElement.CornerRadius="0" Color="Transparent">
+                                <TextBlock Text="{Binding CenterY, StringFormat={}{0:F3}}" Foreground="{DynamicResource PrimaryTextBrush}"/>
+                            </hc:Shield>
+                        </UniformGrid>
+                    </StackPanel>
+                </Expander>
+
+                <hc:TextBox Text="{Binding StrRecipeName}" hc:BorderElement.CornerRadius="0" FontWeight="Bold" hc:InfoElement.TitlePlacement="Left" 
+                            hc:InfoElement.Title="配方名称" BorderThickness="0,0,0,1"/>
+
+                <StackPanel Orientation="Horizontal" Margin="0,2">
+                    <Button Content="九点标定" Command="{Binding CmdRunCalibrationXY}" hc:IconElement.Geometry="{DynamicResource IconMoreAll}" 
+                            FontSize="16" Cursor="Hand" Style="{DynamicResource MyButtonIcon}" Width="125"/>
+                    <Button Content="旋转标定" Command="{Binding CmdRunCalibrationR}" hc:IconElement.Geometry="{DynamicResource Icon3DRotate}" 
+                            FontSize="16" Cursor="Hand" Style="{DynamicResource MyButtonIcon}" Width="130"/>
+                    <Button Content="自动标定" Command="{Binding CmdRunCalibrationAuto}" hc:IconElement.Geometry="{DynamicResource IconRunAuto}" 
+                            FontSize="16" Cursor="Hand" Style="{DynamicResource MyButtonIcon}" Width="125"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,2">
+                    <Button Content="加载模板" FontSize="16" Cursor="Hand" hc:IconElement.Geometry="{DynamicResource IconExportIn}" 
+                            Style="{DynamicResource MyButtonIcon}" Command="{Binding CmdLoadShapeModule}" Width="190"/>
+                    <Button Content="保存标定" Command="{Binding CmdSaveCalibration}" hc:IconElement.Geometry="{DynamicResource IconExportOut}" 
+                            FontSize="16" Cursor="Hand" Style="{DynamicResource MyButtonIcon}" Width="190"/>
+                </StackPanel>
+            </StackPanel>
+        </hc:ScrollViewer>
+    </Grid>
+</UserControl>

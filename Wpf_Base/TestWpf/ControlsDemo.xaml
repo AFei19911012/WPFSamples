@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="Wpf_Base.TestWpf.ControlsDemo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wpf="clr-namespace:Wpf_Base.ControlsWpf" 
+             xmlns:vm="clr-namespace:Wpf_Base.TestWpf"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <vm:ControlsDemoVM/>
+    </UserControl.DataContext>
+    
+    <UniformGrid Rows="1" Columns="2">
+        <StackPanel>
+            <wpf:DateTimeNowControl/>
+
+            <wpf:DispTextControl x:Name="MyDispTextControl"/>
+
+            <Button Content="{Binding BtnName}" Height="32" Margin="10" Style="{DynamicResource ButtonIcon}"
+                    hc:IconElement.Geometry="{DynamicResource IconAsk}" Foreground="Red"/>
+
+            <Button Content="{Binding BtnName}" Height="32" Margin="10" hc:IconElement.Geometry="{DynamicResource IconAsk}"
+                    Foreground="Red" Command="{Binding CmdRun}" Style="{DynamicResource MyButtonIcon}"/>
+
+            <hc:ButtonGroup>
+                <Button Content="{Binding BtnName}" hc:IconElement.Geometry="{DynamicResource IconAsk}"
+                        Foreground="Red" Command="{Binding CmdRun}" Style="{DynamicResource MyButtonIcon}"/>
+            </hc:ButtonGroup>
+        </StackPanel>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <wpf:PlotPieControl x:Name="MyPlotPieControl"/>
+
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <Button Content="绘图" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="ButtonPlot_Click"/>
+                <Button Content="数据" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="ButtonData_Click"/>
+                <Button Content="大小" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="ButtonSize_Click"/>
+                <Button Content="颜色" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="ButtonColor_Click"/>
+            </StackPanel>
+        </Grid>
+    </UniformGrid>
+</UserControl>

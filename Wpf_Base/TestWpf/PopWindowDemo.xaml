@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="Wpf_Base.TestWpf.PopWindowDemo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <Button Content="自动关闭窗体" Margin="5" Click="ButtonAutoClosed_Click"/>
+            <Button Content="自动关闭窗体（图标）" Margin="5" Click="ButtonAutoClosedIcon_Click"/>
+            <Button Content="加载窗体" Margin="5" Click="ButtonLoading_Click"/>
+            <Button Content="错误弹窗" Margin="5" Click="ButtonError_Click"/>
+            <Button Content="询问窗体" Margin="5" Click="ButtonQuestion_Click"/>
+            <Button Content="登陆窗体" Margin="5" Click="ButtonLogin_Click"/>
+            <Button Content="注册窗体" Margin="5" Click="ButtonRegister_Click"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

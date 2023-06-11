@@ -1,0 +1,108 @@
+﻿<hc:Window x:Class="Wpf_Base.MainWindow"
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           xmlns:hc="https://handyorg.github.io/handycontrol" 
+           xmlns:test="clr-namespace:Wpf_Base.TestWpf" 
+           xmlns:log="clr-namespace:Wpf_Base.LogWpf" 
+           xmlns:ccd="clr-namespace:Wpf_Base.CcdWpf" 
+           xmlns:tools="clr-namespace:Wpf_Base.HalconWpf.Tools"
+           mc:Ignorable="d"
+           WindowState="Maximized"
+           Closing="Window_Closing"
+           Icon="Image/icon.ico"
+           Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <ccd:CcdManagerControl x:Name="MyCcdManagerControl"/>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <TabControl>
+                <TabItem Header="功能测试">
+                    <TabControl TabStripPlacement="Left" SelectedIndex="0" Margin="5">
+                        <TabItem Header="用户控件测试">
+                            <test:ControlsDemo x:Name="MyControlsDemo"/>
+                        </TabItem>
+                        <TabItem Header="弹窗模块测试">
+                            <test:PopWindowDemo/>
+                        </TabItem>
+                        <TabItem Header="日志功能测试">
+                            <test:LogDemo/>
+                        </TabItem>
+                        <TabItem Header="ini xml xlsx">
+                            <test:FileIoDemo/>
+                        </TabItem>
+                        <TabItem Header="海康相机测试">
+                            <test:HikCameraDemo x:Name="MyHikCameraDemo"/>
+                        </TabItem>
+                        <TabItem Header="Geometry">
+                            <ScrollViewer>
+                                <WrapPanel Name="MyGeometryContainer"/>
+                            </ScrollViewer>
+                        </TabItem>
+                    </TabControl>
+                </TabItem>
+                <TabItem Header="通讯测试">
+                    <TabControl TabStripPlacement="Left" SelectedIndex="0" Margin="5">
+                        <TabItem Header="TCP通讯测试">
+                            <test:TcpDemo x:Name="MyTcpDemo"/>
+                        </TabItem>
+                        <TabItem Header="MC通讯测试">
+                            <test:MelsecPlcDemo x:Name="MyMelsecPlcDemo"/>
+                        </TabItem>
+                        <TabItem Header="Modbus通讯测试">
+                            <test:ModbusDemo x:Name="MyModbusDemo"/>
+                        </TabItem>
+                        <TabItem Header="S7通讯测试">
+                            <test:SiemensS7NetDemo x:Name="MySiemensS7NetDemo"/>
+                        </TabItem>
+                    </TabControl>
+                </TabItem>
+                <TabItem Header="视觉测试">
+                    <TabControl TabStripPlacement="Left" SelectedIndex="0" Margin="5">
+                        <TabItem Header="条码 二维码">
+                            <tools:QrTool x:Name="MyQrTool"/>
+                        </TabItem>
+                        <TabItem Header="卡尺标定">
+                            <tools:CaliperTool x:Name="MyCaliperTool"/>
+                        </TabItem>
+                        <TabItem Header="九点标定">
+                            <tools:CalibrationTool x:Name="MyCalibrationTool"/>
+                        </TabItem>
+                        <TabItem Header="二次测量模型">
+                            <tools:MetrologyTool x:Name="MyMetrologyTool"/>
+                        </TabItem>
+                        <TabItem Header="OCR分类器">
+                            <tools:OcrTool x:Name="MyOcrTool"/>
+                        </TabItem>
+                        <TabItem Header="ROI工具">
+                            <tools:RoiTool x:Name="MyRoiTool"/>
+                        </TabItem>
+                        <TabItem Header="标准模板匹配">
+                            <tools:ShapeModuleTool x:Name="MyShapeModuleTool"/>
+                        </TabItem>
+                        <TabItem Header="模板匹配（缩放）">
+                            <tools:ScaledShapeModuleTool x:Name="MyScaledShapeModuleTool"/>
+                        </TabItem>
+                        <TabItem Header="模板匹配（异形）">
+                            <tools:AnisoShapeModuleTool x:Name="MyAnisoShapeModuleTool"/>
+                        </TabItem>
+                        <TabItem Header="标准圆尺寸标定">
+                            <tools:CircleCalibrationTool x:Name="MyCircleCalibrationTool"/>
+                        </TabItem>
+                    </TabControl>
+                </TabItem>
+            </TabControl>
+            <log:LogTool Grid.Row="1" x:Name="MyLog" Height="100"/>
+        </Grid>
+    </Grid>
+</hc:Window>

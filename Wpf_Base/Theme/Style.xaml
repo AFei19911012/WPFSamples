@@ -1,0 +1,282 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hc="https://handyorg.github.io/handycontrol">
+
+    <Style x:Key="MyDataGridStyleSmall" BasedOn="{StaticResource DataGrid.Small}" TargetType="{x:Type DataGrid}">
+        <Setter Property="CellStyle" Value="{DynamicResource MyDataGridCellSytle}" />
+        <Setter Property="RowStyle" Value="{DynamicResource MyDataGridRowSytle}" />
+        <Setter Property="ColumnHeaderStyle" Value="{DynamicResource MyDataGridColumnHeaderStyle}"/>
+        <Setter Property="RowHeaderStyle" Value="{DynamicResource MyDataGridRowHeaderStyle}"/>
+        <Setter Property="ColumnHeaderHeight" Value="28"/>
+        <Setter Property="RowHeight" Value="24"/>
+        <Setter Property="AutoGenerateColumns" Value="False"/>
+        <Setter Property="CanUserResizeRows" Value="False"/>
+        <Setter Property="CanUserReorderColumns" Value="False"/>
+        <Setter Property="CanUserAddRows" Value="False"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="1"/>
+    </Style>
+    <!-- DataGrid 列头样式 -->
+    <Style x:Key="MyDataGridColumnHeaderStyle" BasedOn="{StaticResource DataGridColumnHeaderStyle.Small}" TargetType="DataGridColumnHeader">
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryBrush}"/>
+        <Setter Property="Margin" Value="6,0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="DataGridColumnHeader">
+                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!-- DataGrid 行头样式 -->
+    <Style x:Key="MyDataGridRowHeaderStyle" TargetType="DataGridRowHeader">
+        <Setter Property="Foreground" Value="{DynamicResource ReverseTextBrush}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="DataGridRowHeader">
+                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!-- DataGrid 行样式 -->
+    <Style x:Key="MyDataGridRowSytle" TargetType="DataGridRow">
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Margin" Value="0"/>
+        <Style.Triggers>
+            <!-- 隔行换色 放到前面 -->
+            <Trigger Property="AlternationIndex" Value="0" >
+                <Setter Property="Background" Value="{DynamicResource BackgroundBrushDark}" />
+            </Trigger>
+            <Trigger Property="AlternationIndex" Value="1" >
+                <Setter Property="Background" Value="{DynamicResource BackgroundBrushLight}"/>
+            </Trigger>
+
+            <!-- 鼠标停留时背景色 -->
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{DynamicResource MouseOverBrush}"/>
+            </Trigger>
+            
+            <!-- 选中时背景颜色 -->
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="{DynamicResource ListSelectedBrush}"/>
+            </Trigger>
+
+            <!-- 失去焦点时背景颜色 -->
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsSelected" Value="true"/>
+                    <Condition Property="Selector.IsSelectionActive" Value="false"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Background" Value="{DynamicResource LostFocusBrush}"/>
+            </MultiTrigger>
+        </Style.Triggers>
+    </Style>
+    <!-- DataGrid 单元格样式 -->
+    <Style x:Key="MyDataGridCellSytle" TargetType="DataGridCell">
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Style.Triggers>
+            <!-- 选中时背景颜色 -->
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="{DynamicResource ListSelectedBrush}"/>
+            </Trigger>
+
+            <!-- 失去焦点时背景颜色 -->
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsSelected" Value="true"/>
+                    <Condition Property="Selector.IsSelectionActive" Value="false"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Background" Value="{DynamicResource LostFocusBrush}"/>
+            </MultiTrigger>
+
+            <!-- 根据日志类型设置文字颜色 -->
+            <DataTrigger Binding="{Binding Type}" Value="Debug">
+                <Setter Property="Foreground" Value="Black"/>
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Type}" Value="Info">
+                <Setter Property="Foreground" Value="{DynamicResource InfoBrush}"/>
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Type}" Value="Warning">
+                <Setter Property="Foreground" Value="{DynamicResource WarningBrush}"/>
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Type}" Value="Success">
+                <Setter Property="Foreground" Value="{DynamicResource SuccessBrush}"/>
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Type}" Value="Error">
+                <Setter Property="Foreground" Value="{DynamicResource DangerBrush}"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    
+
+    <Style x:Key="MyDataGridCellSytleNG" BasedOn="{StaticResource MyDataGridCellSytle}" TargetType="DataGridCell">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Result}" Value="NG">
+                <Setter Property="Foreground" Value="{DynamicResource DangerBrush}"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+
+    <Style x:Key="MyListBoxRowSytle" BasedOn="{StaticResource ListBoxItemBaseStyle.Small}" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Style.Triggers>
+            <!-- 鼠标停留时背景色 -->
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{DynamicResource MouseOverBrush}"/>
+            </Trigger>
+            
+            <!-- 选中时背景颜色 -->
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsSelected" Value="true"/>
+                    <Condition Property="Selector.IsSelectionActive" Value="true"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Background" Value="{DynamicResource LostFocusBrush}"/>
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            </MultiTrigger>
+        </Style.Triggers>
+    </Style>
+    
+    
+    <Style x:Key="MyLoadingCircleStyle" BasedOn="{StaticResource LoadingCircleBaseStyle}" TargetType="{x:Type hc:LoadingCircle}">
+        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+        <Setter Property="hc:BorderElement.CornerRadius" Value="0"/>
+        <Setter Property="hc:InfoElement.TitlePlacement" Value="Left"/>
+    </Style>
+
+
+    <Style x:Key="MyNumericUpDownStyle" BasedOn="{StaticResource NumericUpDownPlusBaseStyle}" TargetType="{x:Type hc:NumericUpDown}">
+        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+        <Setter Property="hc:BorderElement.CornerRadius" Value="0"/>
+        <Setter Property="hc:InfoElement.TitlePlacement" Value="Left"/>
+    </Style>
+
+    <Style x:Key="MyButtonIcon" BasedOn="{StaticResource ButtonBaseStyle}" TargetType="Button">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}"/>
+        <Setter Property="hc:BorderElement.CornerRadius" Value="0"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="{Binding Path=(hc:BorderElement.CornerRadius),RelativeSource={RelativeSource TemplatedParent}}" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                        <ContentControl HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Path x:Name="MyPath" Fill="{TemplateBinding Foreground}" SnapsToDevicePixels="True" Stretch="Uniform" Width="{TemplateBinding hc:IconElement.Width}" 
+                                      Height="{TemplateBinding hc:IconElement.Height}" Data="{TemplateBinding hc:IconElement.Geometry}"/>
+                                <TextBlock Grid.Column="1" VerticalAlignment="Center" Text="{TemplateBinding Content}" Margin="5,0"
+                                           Foreground="{Binding ElementName=MyPath, Path=Fill}"/>
+                            </Grid>
+                        </ContentControl>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <!-- 鼠标停留时背景色 -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="MyPath" Property="Fill" Value="{DynamicResource PrimaryBrush}"/>
+                        </Trigger>
+
+                        <!-- 特殊文字颜色 -->
+                        <Trigger Property="Content" Value="开始采集">
+                            <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}"/>
+                        </Trigger>
+                        <Trigger Property="Content" Value="停止采集">
+                            <Setter Property="Foreground" Value="{DynamicResource AccentBrush}"/>
+                        </Trigger>
+                        <Trigger Property="Content" Value="连接设备">
+                            <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}"/>
+                        </Trigger>
+                        <Trigger Property="Content" Value="断开设备">
+                            <Setter Property="Foreground" Value="{DynamicResource AccentBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="MyButtonIconVertical" BasedOn="{StaticResource ButtonBaseStyle}" TargetType="Button">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}"/>
+        <Setter Property="hc:BorderElement.CornerRadius" Value="0"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="{Binding Path=(hc:BorderElement.CornerRadius),RelativeSource={RelativeSource TemplatedParent}}" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                        <ContentControl HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+                                <Path x:Name="MyPath" Fill="{TemplateBinding Foreground}" SnapsToDevicePixels="True" Stretch="Uniform" Width="{TemplateBinding hc:IconElement.Width}" 
+                                      Height="{TemplateBinding hc:IconElement.Height}" Data="{TemplateBinding hc:IconElement.Geometry}"/>
+                                <TextBlock Grid.Row="1" VerticalAlignment="Center" Text="{TemplateBinding Content}" Margin="0,5"
+                                           Foreground="{Binding ElementName=MyPath, Path=Fill}" HorizontalAlignment="Center"/>
+                            </Grid>
+                        </ContentControl>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <!-- 鼠标停留时背景色 -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="MyPath" Property="Fill" Value="{DynamicResource PrimaryBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="MyButtonIconFont" BasedOn="{StaticResource ButtonBaseStyle}" TargetType="Button">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}"/>
+        <Setter Property="hc:BorderElement.CornerRadius" Value="0"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="{Binding Path=(hc:BorderElement.CornerRadius),RelativeSource={RelativeSource TemplatedParent}}" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                        <ContentControl HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                            <Grid>
+                                <Path x:Name="MyPath" Fill="{TemplateBinding Foreground}" SnapsToDevicePixels="True" Stretch="Uniform" Width="{TemplateBinding hc:IconElement.Width}" 
+                                      Height="{TemplateBinding hc:IconElement.Height}" Data="{TemplateBinding hc:IconElement.Geometry}"/>
+                            </Grid>
+                        </ContentControl>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <!-- 鼠标停留时背景色 -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="MyPath" Property="Fill" Value="{DynamicResource PrimaryBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
