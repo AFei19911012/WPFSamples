@@ -4,7 +4,27 @@
 
 2023.6.11 新增：视觉检测常用的模板匹配工具、二次测量工具、TCP通讯模块、相机模块、日志模块
 
+增加自定义控件 UI 项目和部分截图
 
+[![pCDvdzR.png](https://s1.ax1x.com/2023/07/02/pCDvdzR.png)](https://imgse.com/i/pCDvdzR)
+
+[![pCDvYoF.png](https://s1.ax1x.com/2023/07/02/pCDvYoF.png)](https://imgse.com/i/pCDvYoF)
+
+[![pCDvaW9.png](https://s1.ax1x.com/2023/07/02/pCDvaW9.png)](https://imgse.com/i/pCDvaW9)
+
+[![pCDvUJJ.png](https://s1.ax1x.com/2023/07/02/pCDvUJJ.png)](https://imgse.com/i/pCDvUJJ)
+
+[![pCDvfSA.png](https://s1.ax1x.com/2023/07/02/pCDvfSA.png)](https://imgse.com/i/pCDvfSA)
+
+[![pCDv0Q1.png](https://s1.ax1x.com/2023/07/02/pCDv0Q1.png)](https://imgse.com/i/pCDv0Q1)
+
+[![pCDvgFe.png](https://s1.ax1x.com/2023/07/02/pCDvgFe.png)](https://imgse.com/i/pCDvgFe)
+
+[![pCDv6oD.png](https://s1.ax1x.com/2023/07/02/pCDv6oD.png)](https://imgse.com/i/pCDv6oD)
+
+[![pCDvydO.png](https://s1.ax1x.com/2023/07/02/pCDvydO.png)](https://imgse.com/i/pCDvydO)
+
+[![pCDvRWd.png](https://s1.ax1x.com/2023/07/02/pCDvRWd.png)](https://imgse.com/i/pCDvRWd)
 
 ```
 【WPF&Halcon案例代码解析】 https://www.zhihu.com/column/c_1403661250718617600 

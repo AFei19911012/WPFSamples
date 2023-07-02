@@ -206,7 +206,6 @@
     <Resource Include="Image\07.jpg" />
     <Resource Include="Image\08.jpg" />
     <Resource Include="Image\09.jpg" />
-    <Resource Include="Image\1.jpg" />
     <Resource Include="Image\10.jpg" />
     <Resource Include="Image\2.jpg" />
     <Resource Include="Image\3.jpg" />
@@ -254,6 +253,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Image\W.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\1.jpg" />
   </ItemGroup>
   <Import Project="..\..\GalaSoft.MvvmLight\GalaSoft.MvvmLight.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

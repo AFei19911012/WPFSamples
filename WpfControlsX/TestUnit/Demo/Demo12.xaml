@@ -104,7 +104,7 @@
                                     Canvas.Left="200" Canvas.Top="250" RenderTransformOrigin="0.5,0.5">
                                 <Grid>
                                     <cx:WxTransformThumb DataContext="{Binding ElementName=border2}"/>
-                                    <Image Source="../Image/1.jpg" Stretch="Uniform"/>
+                                    <Image Source="../Resource/11.jpg" Stretch="Uniform"/>
                                 </Grid>
                             </Border>
                         </Canvas>
